@@ -19,7 +19,7 @@ exports.authZ = async (req,res,next)=>{
         try {
             //decode  me payload hoga jo jwt bnate time dale the
             const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
-            console.log(decode);
+           // console.log(decode);
             //req ki body me rkhlo as a user property
             req.user = decode;
         } catch (error) {

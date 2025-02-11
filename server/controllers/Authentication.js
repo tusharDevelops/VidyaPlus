@@ -15,6 +15,8 @@ exports.signUp = async(req,res)=>{
         //data fetch karo from request ki body
         const{firstName, lastName, email, password, confirmPassword,accountType,otp,contactNumber} = req.body;
         //validate krlo
+        
+
         if(!firstName || !lastName || !email || !password || !confirmPassword
             || !otp) {
                 return res.status(403).json({
@@ -44,7 +46,7 @@ exports.signUp = async(req,res)=>{
 
          //find the recent otp in db and match with the otp sent by client
          const recentOtp = await OTP.find({email}).sort({createdAt: -1}).limit(1);
-         console.log("recent most otp", recentOtp[0]);
+        //console.log("recent most otp", recentOtp[0]);
 
          //validate krlo
          if(recentOtp.length == 0) {
@@ -204,6 +206,8 @@ exports.sendOTP = async(req,res)=>{
             });
         }
 
+        
+
         //generate otp
         var otp = otpGenerator.generate(6,{
             upperCaseAlphabets:false,
@@ -211,7 +215,7 @@ exports.sendOTP = async(req,res)=>{
             specialChars:false,
         });
 
-        console.log("GENERATED OTP: ",otp);
+        //console.log("GENERATED OTP: ",otp);
 
         //HARD SCOPE OF UPGRADATION (very bruteforce method)
 
@@ -234,7 +238,7 @@ exports.sendOTP = async(req,res)=>{
         const otpPayload = {email,otp};
         //db me entry crete hone se phle user ko mail jayega
         const otpBody = await OTP.create(otpPayload);
-        console.log("otpBody: ", otpBody);
+       // console.log("otpBody: ", otpBody);
        
 
         // return the success response to client
@@ -309,7 +313,7 @@ exports.changePassword = async (req, res) => {
 					`${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
 				)
 			);
-			console.log("Email sent successfully:", emailResponse.response);
+			//console.log("Email sent successfully:", emailResponse.response);
 		} catch (error) {
 			// If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
 			console.error("Error occurred while sending email:", error);
@@ -334,3 +338,29 @@ exports.changePassword = async (req, res) => {
 		});
 	}
 };
+
+exports.permissionTokenCheck = (req, res)=>{
+
+    const {accountType,permissionToken}= req.body
+    //data validation krlo
+    if(!accountType || !permissionToken) {
+        return res.status(403). json({
+            success:false,
+            message:'All fields are required, please try again',
+        });
+    }
+    if(accountType === "Instructor" && permissionToken === "testa"){
+        return res.status(200).json({
+            success:true,
+            message:"Valiadted",
+        });
+    }
+    else{
+        return res.status(400).json({
+            success:false,
+            message:" not Valiadted",
+        });
+    }
+
+
+}

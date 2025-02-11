@@ -8,6 +8,7 @@ const {
   signUp,
   sendOTP,
   changePassword,
+  permissionTokenCheck
 } = require("../controllers/Authentication")
 const {
   resetPasswordToken,
@@ -22,6 +23,7 @@ const { authZ } = require("../middlewares/Authorization")
 //?                                      Authentication routes
 // ********************************************************************************************************
 
+router.post("/check-permission-token", permissionTokenCheck);
 // Route for user login
 router.post("/login", login)
 

@@ -16,7 +16,7 @@ exports.createCategory = async(req,res)=>{
         //create entry in DB
         const categoryDetails = await Category.create({name,description});
 
-        console.log(categoryDetails);
+       // console.log(categoryDetails);
             //return response
 
             return res.status(200).json({
@@ -56,6 +56,7 @@ exports.showAllCategories = async(req,res)=>{
 exports.categoryPageDetails = async (req, res) => {
     try {
       const { categoryId } = req.body;
+     
   
       // Get courses for the specified category
       const selectedCategory = await Category.findById(categoryId)

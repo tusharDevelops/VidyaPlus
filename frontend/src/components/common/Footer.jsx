@@ -20,8 +20,7 @@ const Resources = [
   "Learning Modules",
 ];
 
-const Plans = ["Membership Plans", "For Students", "School Programs"];
-
+// Unused Plans removed for linting compliance
 const Community = ["Discussion Forums", "Study Groups", "Events"];
 
 
@@ -57,8 +56,13 @@ const Footer = () => {
               </div>
               
               <div className="flex gap-4 pt-4">
-                {[FaFacebook, FaGoogle, FaTwitter, FaYoutube].map((Icon, i) => (
-                   <a key={i} href="#" className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300">
+                {[
+                  { Icon: FaFacebook, link: "https://facebook.com" },
+                  { Icon: FaGoogle, link: "https://google.com" },
+                  { Icon: FaTwitter, link: "https://twitter.com" },
+                  { Icon: FaYoutube, link: "https://youtube.com" }
+                ].map(({ Icon, link }, i) => (
+                   <a key={i} href={link} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300">
                       <Icon className="text-lg" />
                    </a>
                 ))}

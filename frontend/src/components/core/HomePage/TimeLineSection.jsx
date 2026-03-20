@@ -38,14 +38,16 @@ export default function TimeLineSection() {
             {
                 timeline.map( (element, index) => {
                     return (
-                        <div className='flex flex-row gap-6 group' key={index}>
-                            <div className='relative w-[56px] h-[56px] rounded-full bg-slate-100 dark:bg-slate-800/80 flex flex-col items-center justify-center shadow-sm border border-slate-200 dark:border-slate-700 transition-all group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 group-hover:border-purple-200 dark:group-hover:border-purple-800/50'>
-                                <img src={element.Logo} width={24} height={24} alt='icon' className="dark:brightness-200 dark:grayscale transition-all opacity-80 group-hover:opacity-100"/>
-                                {index !== 3 && <div className="absolute top-[56px] left-1/2 -translate-x-1/2 h-14 w-[2px] border-l-2 border-dashed border-slate-300 dark:border-slate-700"></div>}
+                        <div className='flex flex-row gap-8 group ml-2' key={index}>
+                            <div className='relative w-[64px] h-[64px] rounded-2xl bg-white dark:bg-slate-900 flex flex-col items-center justify-center shadow-2xl shadow-indigo-500/10 border-2 border-slate-100 dark:border-slate-800 transition-all duration-500 group-hover:bg-indigo-600 group-hover:border-indigo-600 group-hover:-translate-y-1'>
+                                <img src={element.Logo} width={28} height={28} alt='icon' className="dark:brightness-200 dark:contrast-125 transition-all duration-500 group-hover:brightness-0 group-hover:invert"/>
+                                {index !== 3 && (
+                                  <div className="absolute top-[72px] left-1/2 -translate-x-1/2 h-10 w-[2px] bg-gradient-to-b from-indigo-600/30 to-transparent"></div>
+                                )}
                             </div>
                             <div className='flex flex-col justify-center'>
-                                <h2 className='font-bold text-[18px] text-slate-900 dark:text-white transition-colors'>{element.heading}</h2>
-                                <p className='text-slate-500 dark:text-slate-400 mt-1 leading-relaxed'>{element.Description}</p>
+                                <h2 className='text-xl font-black text-slate-900 dark:text-white transition-colors tracking-tight'>{element.heading}</h2>
+                                <p className='text-sm font-bold text-slate-500 dark:text-slate-400 mt-1 leading-relaxed max-w-[320px]'>{element.Description}</p>
                             </div>
                         </div>
                     )
@@ -53,14 +55,18 @@ export default function TimeLineSection() {
             }
         </div>
         
-        <div className='relative shadow-2xl shadow-indigo-900/5 dark:shadow-indigo-900/30 w-full h-[450px] overflow-hidden lg:w-[55%] rounded-2xl border border-slate-200 dark:border-slate-800'>
+        <div className='relative w-full h-[520px] overflow-hidden lg:w-[55%] rounded-[3rem] border-8 border-white dark:border-slate-900 shadow-[0_30px_100px_rgba(79,70,229,0.15)] group'>
+            <div className="absolute inset-0 bg-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10"></div>
             <MapComponent/>
 
-            <div className='absolute bg-indigo-600/95 dark:bg-slate-900/90 backdrop-blur-md flex flex-row text-white uppercase py-4 px-8 rounded-full
-                            left-[50%] bottom-8 translate-x-[-50%] shadow-xl shadow-indigo-900/20 border border-indigo-500/30 dark:border-slate-700'>
-                <div className='flex flex-row gap-3 items-center'>
-                    <span className="text-xl">📍</span>
-                    <p className='text-indigo-50 dark:text-slate-300 text-sm font-bold tracking-widest'>Where to Find Us</p>
+            <div className='absolute bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl flex flex-row items-center gap-4 py-5 px-10 rounded-[2rem]
+                            left-[50%] bottom-10 translate-x-[-50%] shadow-2xl shadow-black/10 border border-slate-200/50 dark:border-slate-700/50 z-20 group-hover:-translate-y-2 transition-transform duration-500'>
+                <div className='w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white text-xl shadow-lg shadow-indigo-600/30'>
+                   📍
+                </div>
+                <div>
+                   <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.2em] mb-0.5">Global Presence</p>
+                   <p className='text-sm font-black text-slate-900 dark:text-white tracking-tight'>Strategic Regional Gateways</p>
                 </div>
             </div>
         </div>

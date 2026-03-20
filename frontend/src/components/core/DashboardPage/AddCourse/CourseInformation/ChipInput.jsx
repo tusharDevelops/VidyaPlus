@@ -55,29 +55,29 @@ export default function ChipInput({
   },[])
 
   return (
-    <div className='flex flex-col space-y-2'>
+    <div className='flex flex-col space-y-4'>
        {/* Render the label for the input */}
-       <label className="text-sm text-richblack-5" htmlFor={name}>
-        {label} <sup className="text-pink-200">*</sup>
+       <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]" htmlFor={name}>
+        {label} <sup className="text-red-500 font-bold">*</sup>
       </label>
 
        {/* Render the chips and input */}
-       <div className='flex w-full flex-wrap gap-y-2'>
+       <div className='flex w-full flex-wrap gap-3 p-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm focus-within:border-indigo-600 focus-within:ring-4 focus-within:ring-indigo-600/5 transition-all duration-300'>
         {/* Map over the chips array and render each chip */}
             {
                 chips.map((chip,index)=>(
                 <div
                 key={index}
-                className="m-1 flex items-center rounded-full bg-yellow-400 px-2 py-1 text-sm text-richblack-5">
+                className="flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-black text-white shadow-lg shadow-indigo-600/20 group hover:scale-105 transition-transform duration-300">
                 {/* Render the chip value */}
-                {chip}
+                <span className="tracking-tight">{chip}</span>
                 {/* Render the button to delete the chip */}
                 <button
-                type="button"
-                className="ml-2 focus:outline-none"
-                onClick={() => handleDeleteChip(index)}
+                  type="button"
+                  className="w-5 h-5 rounded-lg bg-white/20 flex items-center justify-center hover:bg-red-500 transition-colors shadow-inner"
+                  onClick={() => handleDeleteChip(index)}
                 >
-                <MdClose className="text-sm" />
+                  <MdClose className="text-xs" />
                 </button>
             </div>
                 ))
@@ -88,16 +88,16 @@ export default function ChipInput({
           id={name}
           name={name}
           type="text"
-          placeholder={placeholder}
+          placeholder={chips.length === 0 ? placeholder : "Add more..."}
           onKeyDown={handleKeyDown}
-          className="form-style w-full"
+          className="flex-1 bg-transparent border-none outline-none text-slate-900 dark:text-white px-2 py-1.5 text-sm font-bold placeholder:text-slate-400 dark:placeholder:text-slate-600 min-w-[150px]"
         />
 
        </div>
-                {/* Render an error message if the input is required and not filled */}
+                 {/* Render an error message if the input is required and not filled */}
             {errors[name] && (
-                <span className="ml-2 text-xs tracking-wide text-pink-200">
-                {label} is required
+                <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+                  At least one {label.toLowerCase()} is required
                 </span>
             )}
     </div>

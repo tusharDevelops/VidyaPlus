@@ -24,17 +24,28 @@ export default function MyCourses() {
   }, [])
 
   return (
-    <div>
-      <div className="mb-14 flex items-center justify-between">
-        <h1 className="text-3xl font-medium text-richblack-5">My Courses</h1>
+    <div className="space-y-12 animate-in fade-in duration-700">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b border-slate-200 dark:border-slate-800 pb-10">
+        <div className="space-y-2">
+           <div className="flex items-center gap-3 mb-1">
+             <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+                CONTENT MANAGER
+             </span>
+           </div>
+          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Your Curriculum</h1>
+          <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Manage, iterate, and deploy your instructional high-fidelity assets.</p>
+        </div>
         <IconBtn
-          text="Add Course"
+          text="Initialize New Curriculum"
           onclick={() => navigate("/dashboard/add-course")}
+          customClasses="w-full sm:w-auto px-8 py-4 rounded-[1.25rem] shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
         >
-          <VscAdd />
+          <VscAdd size={20} />
         </IconBtn>
       </div>
-      {courses && <CoursesTable courses={courses} setCourses={setCourses} />}
+      <div className="animate-in slide-in-from-bottom-8 duration-1000">
+         {courses && <CoursesTable courses={courses} setCourses={setCourses} />}
+      </div>
     </div>
   )
 }

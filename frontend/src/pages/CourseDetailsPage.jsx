@@ -132,111 +132,158 @@ const CourseDetails = () => {
    
   return (
 <>
-    <div className={`relative w-full bg-richblack-800`}>
+    <div className='relative w-full bg-slate-900 overflow-hidden'>
+        {/* Animated Background Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }}></div>
+        
         {/* Hero Section */}
-        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
-            <div className='mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 
-             lg:justify-items-start lg:py-0 xl:max-w-[810px]'>
-                <div className="relative block max-h-[30rem] lg:hidden">
-                    <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
+        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative z-10">
+            <div className='mx-auto grid min-h-[500px] max-w-maxContentTab justify-items-center py-12 lg:mx-0 
+             lg:justify-items-start lg:py-16 xl:max-w-[810px]'>
+                <div className="relative block max-h-[30rem] lg:hidden w-full mb-8">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     <img
                     src={thumbnail}
                     alt="course thumbnail"
-                    className="aspect-auto w-full"
+                    className="aspect-video w-full rounded-3xl object-cover shadow-2xl"
                     />
                 </div>
                 
-                <div className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}>
-                <div>
-                  <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">
+                <div className="flex flex-col justify-center gap-6 text-slate-100">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-indigo-400 mb-2">
+                    <span>Course</span>
+                    <span className="text-slate-600">/</span>
+                    <span className="text-slate-400">{courseData?.data?.courseDetails?.category?.name}</span>
+                  </div>
+                  
+                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
                     {courseName}
+                  </h1>
+                  
+                  <p className="text-lg text-slate-400 font-medium max-w-[700px] leading-relaxed italic border-l-4 border-indigo-600 pl-6">
+                    {courseDescription}
                   </p>
-                </div>
-                <p className={`text-richblack-200`}>{courseDescription}</p>
-                <div className="text-md flex flex-wrap items-center gap-2">
-                  <span className="text-yellow-25">{avgReviewCount}</span>
-                  <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
-                  <span>{`(${ratingAndReviews.length} reviews)`}</span>
-                  <span>{`${studentsEnrolled.length} students enrolled`}</span>
-                </div>
-                <div>
-                  <p className="">
-                    Created By {`${instructor.firstName} ${instructor.lastName}`}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-5 text-lg">
-                  <p className="flex items-center gap-2">
-                    {" "}
-                    <BiInfoCircle /> Created at {formatDate(createdAt)}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    {" "}
-                    <HiOutlineGlobeAlt /> English
-                  </p>
-                </div>
+                  
+                  <div className="flex flex-wrap items-center gap-y-4 gap-x-6 pt-2">
+                    <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-2xl border border-slate-700/50 backdrop-blur-md">
+                      <span className="text-indigo-400 font-black text-lg">{avgReviewCount}</span>
+                      <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
+                    </div>
+                    <div className="flex items-center gap-6 text-sm font-bold text-slate-400">
+                      <span className="hover:text-white transition-colors cursor-default">{`(${ratingAndReviews.length} reviews)`}</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
+                      <span className="hover:text-white transition-colors cursor-default">{`${studentsEnrolled.length} Students`}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-8 pt-4">
+                    <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-sm font-black border-2 border-white/20">
+                          {instructor?.firstName?.[0]}
+                       </div>
+                       <div>
+                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Instructor</p>
+                          <p className="text-sm font-black text-white">{`${instructor.firstName} ${instructor.lastName}`}</p>
+                       </div>
+                    </div>
+                    
+                    <div className="flex gap-8 border-l border-slate-800 pl-8">
+                       <div className="flex items-center gap-3 text-sm font-bold text-slate-400">
+                          <BiInfoCircle className="text-indigo-400 text-xl" />
+                          <span>{formatDate(createdAt)}</span>
+                       </div>
+                       <div className="flex items-center gap-3 text-sm font-bold text-slate-400">
+                          <HiOutlineGlobeAlt className="text-indigo-400 text-xl" />
+                          <span>English</span>
+                       </div>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
-                <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
-                  Rs. {price}
-                </p>
-                <button className="yellowButton" onClick={handleBuyCourse}>
-                  Buy Now
-                </button>
-                <button className="blackButton">Add to Cart</button>
+                {/* Mobile Sticky Price Bar (Mockup transition) */}
+                <div className="flex w-full flex-col gap-6 border-t border-slate-800 mt-12 pt-8 lg:hidden">
+                  <div className="flex items-center justify-between">
+                    <div>
+                       <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Total investment</p>
+                       <p className="text-4xl font-black text-white">₹{price}</p>
+                    </div>
+                    <div className="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 font-black text-xs">
+                       90% OFF
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button className="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20" onClick={handleBuyCourse}>
+                      Enroll Now
+                    </button>
+                    <button className="px-8 py-4 rounded-2xl bg-slate-800 text-white font-black hover:bg-slate-700 transition-all border border-slate-700">
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
                 
             </div>
 
-            {/* Courses Card */}
-            <div className="right-[3rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 
-            md:translate-y-0 lg:absolute lg:block">
+            {/* Floating Sidebar Card (Desktop) */}
+            <div className="right-[3rem] top-[80px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 
+            md:translate-y-0 lg:absolute lg:block z-40">
                 <CourseDetailsCard
                   course={courseData?.data?.courseDetails}
                   setConfirmationModal={setConfirmationModal}
                   handleBuyCourse={handleBuyCourse}
                 />
             </div>
-
         </div>
     </div>
 
     
-    <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
+    <div className="mx-auto box-content px-4 pt-20 pb-20 text-start lg:w-[1260px]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
-          <div className="my-8 border border-richblack-600 p-8">
-            <p className="text-3xl font-semibold">What you'll learn</p>
-            <div className="mt-5"><ReactMarkdown>{whatYouWillLearn}</ReactMarkdown></div>
+          <div className="mb-20 p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-8 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-sm">💡</span>
+              What you'll learn
+            </h2>
+            <div className="prose prose-slate dark:prose-invert max-w-none prose-p:font-medium prose-li:font-bold">
+               <ReactMarkdown>{whatYouWillLearn}</ReactMarkdown>
+            </div>
           </div>
 
           {/* Course Content Section */}
-          <div className="max-w-[830px] ">
-            <div className="flex flex-col gap-3">
-              <p className="text-[28px] font-semibold">Course Content</p>
-              <div className="flex flex-wrap justify-between gap-2">
-                <div className="flex gap-2">
-                  <span>
-                    {courseContent.length} {`section(s)`}
-                  </span>
-                  <span>
-                    {totalNoOfLectures} {`lecture(s)`}
-                  </span>
-                  <span>{courseData.data?.totalDuration} total length</span>
+          <div className="max-w-[830px]">
+            <div className="flex flex-col gap-6 mb-10">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div className="space-y-1">
+                  <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Curriculum</h2>
+                  <p className="text-slate-500 dark:text-slate-400 font-medium">Over {totalNoOfLectures} expert-led lessons.</p>
                 </div>
-                <div>
+                <div className="flex items-center gap-6 text-sm font-black text-slate-400">
+                  <span className="flex items-center gap-2">
+                    <span className="text-indigo-600 dark:text-indigo-400">{courseContent.length}</span> Sections
+                  </span>
+                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                  <span className="flex items-center gap-2">
+                    <span className="text-indigo-600 dark:text-indigo-400">{totalNoOfLectures}</span> Lectures
+                  </span>
+                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                  <span className="text-slate-900 dark:text-white">{courseData.data?.totalDuration}</span>
+                </div>
+              </div>
+              
+              <div className="flex justify-end">
                   <button
-                    className="text-yellow-25"
+                    className="text-sm font-black text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all"
                     onClick={() => setIsActive([])}
                   >
-                    Collapse all sections
+                    COLAPSE ALL SECTIONS
                   </button>
-                </div>
               </div>
             </div>
 
             {/* Course Details Accordion */}
-            <div className="py-4">
+            <div className="space-y-1">
               {courseContent?.map((section, index) => (
                 <CourseAccordionBar
                   section={section}
@@ -248,23 +295,31 @@ const CourseDetails = () => {
             </div>
 
             {/* Author Details */}
-            <div className="mb-12 py-4">
-              <p className="text-[28px] font-semibold">Author</p>
-              <div className="flex items-center gap-4 py-4">
-                <img
-                  src={
-                    instructor.image
-                      ? instructor.image
-                      : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
-                  }
-                  alt="Author"
-                  className="h-14 w-14 rounded-full object-cover"
-                />
-                <p className="text-lg">{`${instructor.firstName} ${instructor.lastName}`}</p>
+            <div className="mt-24 mb-12 p-10 rounded-[2.5rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800">
+              <p className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em] mb-8">Meet your Instructor</p>
+              <div className="flex items-center gap-8 mb-8">
+                <div className="relative group">
+                   <div className="absolute inset-0 bg-indigo-600 rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                   <img
+                    src={
+                      instructor.image
+                        ? instructor.image
+                        : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
+                    }
+                    alt={instructor.firstName}
+                    className="h-24 w-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-xl relative z-10"
+                  />
+                </div>
+                <div>
+                   <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                     {`${instructor.firstName} ${instructor.lastName}`}
+                   </h3>
+                   <p className="text-slate-500 dark:text-slate-400 font-bold">Expert Educator @ Vidya+</p>
+                </div>
               </div>
-              <p className="text-richblack-50">
-                {instructor?.additionalDetails?.about}
-              </p>
+              <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 shadow-sm italic text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                {instructor?.additionalDetails?.about || "An expert instructor dedicated to providing high-quality education and helping students master complex topics through practical and engaging learning experiences."}
+              </div>
             </div>
           </div>
         

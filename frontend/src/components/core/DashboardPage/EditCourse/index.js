@@ -31,24 +31,40 @@ export default function EditCourse() {
 
   if (loading) {
     return (
-      <div className="grid place-items-center">
-        <div className="spinner"></div>
+      <div className="flex h-[calc(100vh-10rem)] items-center justify-center">
+        <div className="w-16 h-16 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     )
   }
 
   return (
-    <div>
-      <h1 className="mb-14 text-3xl font-medium text-richblack-5">
-        Edit Course
-      </h1>
-      <div className="mx-auto max-w-[600px]">
+    <div className="space-y-12 animate-in fade-in duration-700">
+      <header className="border-b border-slate-200 dark:border-slate-800 pb-10">
+        <div className="flex items-center gap-3 mb-2">
+           <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+              CURRICULUM REFINEMENT
+           </span>
+        </div>
+        <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+          Edit Course Artifact
+        </h1>
+        <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Modify credentials, pedagogical structure, and deployment parameters.</p>
+      </header>
+      
+      <div className="animate-in slide-in-from-bottom-8 duration-1000 max-w-[800px]">
         {course ? (
           <RenderSteps />
         ) : (
-          <p className="mt-14 text-center text-3xl font-semibold text-richblack-100">
-            Course not found
-          </p>
+          <div className="mt-20 flex flex-col items-center justify-center p-24 text-center rounded-[4rem] border-2 border-dashed border-slate-200 dark:border-slate-800 bg-white/5 dark:bg-slate-900/20 backdrop-blur-sm group">
+             <div className="relative mb-12">
+                <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl"></div>
+                <div className="relative w-32 h-32 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 text-6xl shadow-2xl">
+                  🔍
+                </div>
+             </div>
+             <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-4">Curriculum Not Found</h2>
+             <p className="text-xl font-bold text-slate-500 dark:text-slate-400 max-w-md mx-auto">The requested instructional asset could not be retrieved from the repository.</p>
+          </div>
         )}
       </div>
     </div>

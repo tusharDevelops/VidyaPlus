@@ -110,73 +110,99 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
 
 
   return (
-    <div className=' space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6'>
-      <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex flex-col space-y-2">
-          <label className="text-sm text-richblack-5" htmlFor="sectionName">
-            Section Name <sup className="text-pink-200">*</sup>
+    <div className='space-y-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none'>
+      <header className="space-y-2 border-b border-slate-100 dark:border-slate-800 pb-8">
+        <div className="flex items-center gap-3 mb-1">
+           <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+             STEP 02
+           </span>
+        </div>
+        <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Curriculum Architecture</h2>
+        <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Organize your expertise into logical modules and refined instructional units.</p>
+      </header>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-10 shadow-inner group">
+        <div className="flex flex-col space-y-3">
+          <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="sectionName">
+            Module Designation <sup className="text-red-500 font-bold">*</sup>
           </label>
           <input
             id="sectionName"
             disabled={loading}
-            placeholder="Add a section to build your course"
+            placeholder="e.g. Fundamental Principles & Architecture"
             {...register("sectionName", { required: true })}
-            className="form-style w-full"
+            className="form-style w-full bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
           />
           {errors.sectionName && (
-            <span className="ml-2 text-xs tracking-wide text-pink-200">
-              Section name is required
+            <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+              Module designation is mandatory
             </span>
           )}
         </div>
-        <div className="flex items-end gap-x-4">
+        <div className="flex items-center gap-x-6">
           <IconBtn
             type="submit"
             disabled={loading}
-            text={editSectionName ? "Edit Section Name" : "Create Section"}
+            text={editSectionName ? "Synchronize Updates" : "Initialize Module"}
             outline={true}
+            customClasses="shadow-xl shadow-indigo-600/5 border-2 rounded-[1.25rem] px-8 py-3 font-black text-xs uppercase tracking-widest"
           >
-            <IoAddCircleOutline size={20} className="text-yellow-50" />
+            <IoAddCircleOutline size={20} className="text-indigo-600 dark:text-indigo-400" />
           </IconBtn>
           {editSectionName && (
             <button
               type="button"
               onClick={cancelEdit}
-              className="text-sm text-richblack-300 underline"
+              className="text-xs font-black text-slate-400 hover:text-red-500 transition-all uppercase tracking-widest flex items-center gap-2 group/cancel"
             >
-              Cancel Edit
+              <span className="w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/cancel:bg-red-500 transition-colors"></span>
+              Abort Edit
             </button>
           )}
         </div>
       </form>
 
         {/* NestedView (very imp) */}
-        <NestedView handleChangeEditSectionName={handleChangeEditSectionName}/>
+        <div className="pt-4">
+           <NestedView handleChangeEditSectionName={handleChangeEditSectionName}/>
+        </div>
 
       {/* Exam Notes Section */}
-      <div className="space-y-4 rounded-md border border-richblack-600 bg-richblack-700 p-6">
-        <div className="flex items-center justify-between">
-          <p className="text-xl font-semibold text-richblack-5">Course Exam Notes</p>
+      <section className="space-y-8 rounded-[2rem] border border-indigo-600/10 bg-indigo-600/[0.02] dark:bg-indigo-400/[0.01] p-10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.2em]">ENHANCED MATERIAL</p>
+            <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Curriculum Artifacts (PDF)</p>
+            <p className="text-sm font-bold text-slate-500 dark:text-slate-400">Deploy high-resolution instructional assets for your students.</p>
+          </div>
           <IconBtn
-            text="Add Exam Note"
+            text="Deploy PDF Asset"
             onclick={() => setExamNoteModalData(true)}
             outline={true}
+            customClasses="w-full md:w-auto px-8 py-3 rounded-[1.25rem] border-2 font-black text-xs uppercase tracking-widest"
           >
-            <IoAddCircleOutline size={20} className="text-yellow-50" />
+            <IoAddCircleOutline size={20} className="text-indigo-600 dark:text-indigo-400" />
           </IconBtn>
         </div>
         
         {course?.examNotes?.length > 0 ? (
-          <div className="flex flex-col gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {course.examNotes.map((note) => (
-              <div key={note._id} className="flex items-center justify-between border-b border-richblack-600 pb-2">
-                <a href={note.url} target="_blank" rel="noreferrer" className="text-sm font-medium text-richblack-50 hover:text-yellow-50 hover:underline flex items-center gap-2">
-                  <span>📄</span> {note.title}
+              <div key={note._id} className="group flex items-center justify-between p-5 rounded-2xl bg-white dark:bg-slate-800/60 border border-white dark:border-slate-700 shadow-sm hover:border-indigo-600/30 hover:shadow-2xl hover:shadow-indigo-600/5 transition-all duration-500">
+                <a href={note.url} target="_blank" rel="noreferrer" className="flex items-center gap-4 flex-1 min-w-0">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white text-xl shadow-lg shadow-indigo-600/20 group-hover:scale-110 transition-transform">
+                     📄
+                  </div>
+                  <div className="flex flex-col truncate">
+                    <span className="text-sm font-black text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 transition-colors truncate">
+                      {note.title}
+                    </span>
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">VERIFIED ARTIFACT</span>
+                  </div>
                 </a>
                 <button
                   type="button"
-                  title="Delete Exam Note"
+                  title="Purge Artifact"
                   onClick={async () => {
                     setLoading(true)
                     const { deleteExamNote } = await import("../../../../../services/operations/courseDetailsAPI")
@@ -184,28 +210,32 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
                     if (result) dispatch(setCourse(result))
                     setLoading(false)
                   }}
-                  className="text-richblack-300 hover:text-pink-200 transition-all hover:scale-110"
+                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-all ml-4"
                 >
-                   <RxCross2 size={20} />
+                   <RxCross2 size={18} />
                 </button>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-sm text-richblack-300">No exam notes added yet</p>
+          <div className="bg-slate-50/50 dark:bg-slate-900/50 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[2rem] p-16 text-center animate-in fade-in duration-700">
+             <div className="w-16 h-16 rounded-3xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-3xl mx-auto mb-6">📂</div>
+             <p className="text-lg font-black text-slate-300 dark:text-slate-700 uppercase tracking-[0.2em]">Repository Depleted</p>
+             <p className="text-sm font-bold text-slate-400 dark:text-slate-500 mt-2">Add high-fidelity instructional materials to bolster your curriculum.</p>
+          </div>
         )}
-      </div>
+      </section>
 
       {/* Next Prev Button */}
-      <div className="flex justify-end gap-x-3">
+      <div className="flex justify-end gap-x-6 pt-12 border-t border-slate-100 dark:border-slate-800">
         <button
           onClick={goBack}
-          className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+          className="flex cursor-pointer items-center gap-x-2 rounded-[1.25rem] bg-slate-100 dark:bg-slate-800 py-4 px-10 font-black text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
         >
-          Back
+          Revisit Info
         </button>
-        <IconBtn disabled={loading} text="Next" onclick={goToNext}>
-          <MdNavigateNext />
+        <IconBtn disabled={loading} text="Commit Phase 02" onclick={goToNext} customClasses="px-10 py-4 rounded-[1.25rem] shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest">
+          <MdNavigateNext className="text-2xl" />
         </IconBtn>
       </div>
 

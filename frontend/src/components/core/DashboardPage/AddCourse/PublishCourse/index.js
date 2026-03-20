@@ -65,37 +65,71 @@ export default function PublishCourse() {
   }
 
   return (
-    <div className="rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
-      <p className="text-2xl font-semibold text-richblack-5">
-        Publish Settings
-      </p>
+    <div className='space-y-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none animate-in fade-in zoom-in-95 duration-700'>
+      <header className="space-y-2 border-b border-slate-100 dark:border-slate-800 pb-8">
+        <div className="flex items-center gap-3 mb-1">
+           <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+             STEP 03
+           </span>
+        </div>
+        <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Deployment & Visibility</h2>
+        <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Finalize your curriculum's accessibility parameters before synchronization.</p>
+      </header>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Checkbox */}
-        <div className="my-6 mb-8">
-          <label htmlFor="public" className="inline-flex items-center text-lg">
-            <input
-              type="checkbox"
-              id="public"
-              {...register("public")}
-              className="border-gray-300 h-4 w-4 rounded bg-richblack-500 text-richblack-400 focus:ring-2 focus:ring-richblack-5"
-            />
-            <span className="ml-2 text-richblack-400">
-              Make this course as public
-            </span>
+        <div className="my-10 p-10 rounded-[2.5rem] bg-indigo-600/[0.02] dark:bg-indigo-400/[0.01] border border-indigo-600/10 shadow-inner group">
+          <label htmlFor="public" className="inline-flex items-start cursor-pointer group/label">
+            <div className="relative flex items-center mt-1">
+              <input
+                type="checkbox"
+                id="public"
+                {...register("public")}
+                className="peer h-7 w-7 cursor-pointer appearance-none rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 checked:bg-indigo-600 checked:border-indigo-600 transition-all duration-500 shadow-sm"
+              />
+              <svg
+                className="absolute h-4 w-4 text-white opacity-0 peer-checked:opacity-100 transition-all duration-500 scale-50 peer-checked:scale-100 pointer-events-none left-1.5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div className="ml-6 flex flex-col">
+              <span className="text-xl font-black text-slate-900 dark:text-white group-hover/label:text-indigo-600 dark:group-hover/label:text-indigo-400 transition-colors tracking-tight">
+                Authorize Public Access
+              </span>
+              <p className="mt-2 text-sm font-bold text-slate-500 dark:text-slate-400 leading-relaxed max-w-[500px]">
+                 Publicly authorized curricula are indexed within the global directory and available for student enrollment across all verified sectors.
+              </p>
+            </div>
           </label>
+           <div className="mt-8 pt-8 border-t border-indigo-600/5 flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></div>
+              <p className="text-[10px] font-black text-indigo-600/50 dark:text-indigo-400/50 uppercase tracking-[0.2em]">STATUS: PENDING AUTHORIZATION</p>
+           </div>
         </div>
 
         {/* Next Prev Button */}
-        <div className="ml-auto flex max-w-max items-center gap-x-4">
+        <div className="flex justify-end items-center gap-x-6 pt-12 border-t border-slate-100 dark:border-slate-800">
           <button
             disabled={loading}
             type="button"
             onClick={goBack}
-            className="flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900"
+            className="flex cursor-pointer items-center gap-x-2 rounded-[1.25rem] bg-slate-100 dark:bg-slate-800 py-4 px-10 font-black text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
           >
-            Back
+            Revisit Architecture
           </button>
-          <IconBtn disabled={loading} text="Save Changes" />
+          <IconBtn 
+            disabled={loading} 
+            text="Commit & Deploy" 
+            customClasses="px-12 py-4 rounded-[1.25rem] shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
+          />
         </div>
       </form>
     </div>

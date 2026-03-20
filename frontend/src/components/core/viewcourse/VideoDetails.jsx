@@ -171,99 +171,141 @@ export default function VideoDetails() {
 
 
   return (
-    <div className="flex flex-col gap-5 text-white">
+    <div className="flex flex-col gap-8">
     {!videoData ? (
-      <img
-        src={previewSource}
-        alt="Preview"
-        className="h-full w-full rounded-md object-cover"
-      />
+      <div className="relative group overflow-hidden rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-2xl">
+        <img
+          src={previewSource}
+          alt="Preview"
+          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-slate-900/40 flex items-center justify-center backdrop-blur-[2px]">
+           <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white animate-pulse">
+              <span className="text-4xl text-white">🎬</span>
+           </div>
+        </div>
+      </div>
     ) : (
-      <Player
-        ref={playerRef}
-        aspectRatio="16:9"
-        playsInline
-        onEnded={() => setVideoEnded(true)}
-        src={videoData?.videoUrl}
-      >
-        <BigPlayButton position="center" />
-        {/* Render When Video Ends */}
-        {videoEnded && (
-          <div
-            style={{
-              backgroundImage:
-                "linear-gradient(to top, rgb(0, 0, 0), rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0.1)",
-            }}
-            className="full absolute inset-0 z-[100] grid h-full place-content-center font-inter"
-          >
-            {!completedLectures.includes(subSectionId) && (
-              <IconBtn
-                disabled={loading}
-                onclick={()=>handleLectureCompletion()}
-                text={!loading ? "Mark As Completed" : "Loading..."}
-                customClasses="text-xl max-w-max px-4 mx-auto"
-              />
-            )}
-            <IconBtn
-              disabled={loading}
-              onclick={() => {
-                if (playerRef?.current) {
-                  // set the current time of the video to 0
-                  playerRef?.current?.seek(0)
-                  setVideoEnded(false)
-                }
-              }}
-              text="Rewatch"
-              customClasses="text-xl max-w-max px-4 mx-auto mt-2"
-            />
-            <div className="mt-10 flex min-w-[250px] justify-center gap-x-4 text-xl">
-              {!isFirstVideo() && (
-                <button
-                  disabled={loading}
-                  onClick={goToPrevVideo}
-                  className="blackButton"
-                >
-                  Prev
-                </button>
-              )}
-              {!isLastVideo() && (
-                <button
-                  disabled={loading}
-                  onClick={goToNextVideo}
-                  className="blackButton"
-                >
-                  Next
-                </button>
-              )}
+      <div className="relative rounded-[2.5rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl bg-black group">
+        <Player
+          ref={playerRef}
+          aspectRatio="16:9"
+          playsInline
+          onEnded={() => setVideoEnded(true)}
+          src={videoData?.videoUrl}
+        >
+          <BigPlayButton position="center" />
+          {/* Render When Video Ends */}
+          {videoEnded && (
+            <div
+              className="absolute inset-0 z-[100] grid h-full place-content-center bg-slate-950/80 backdrop-blur-xl animate-in fade-in duration-500"
+            >
+              <div className="flex flex-col items-center gap-8 max-w-md text-center p-8">
+                <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-indigo-600/40 mb-2">
+                   {completedLectures.includes(subSectionId) ? "✅" : "🏆"}
+                </div>
+                
+                <h3 className="text-2xl font-black text-white tracking-tight">
+                  {completedLectures.includes(subSectionId) ? "Lecture Completed!" : "Great Job Learning!"}
+                </h3>
+                
+                <div className="flex flex-col w-full gap-3">
+                  {!completedLectures.includes(subSectionId) && (
+                    <button
+                      disabled={loading}
+                      onClick={() => handleLectureCompletion()}
+                      className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20"
+                    >
+                      {!loading ? "Mark As Completed" : "Saving Progress..."}
+                    </button>
+                  )}
+                  
+                  <button
+                    disabled={loading}
+                    onClick={() => {
+                      if (playerRef?.current) {
+                        playerRef?.current?.seek(0)
+                        setVideoEnded(false)
+                      }
+                    }}
+                    className="w-full py-4 rounded-2xl bg-slate-800 text-white font-black hover:bg-slate-700 transition-all border border-slate-700"
+                  >
+                    Rewatch Lesson
+                  </button>
+                </div>
+                
+                <div className="flex w-full items-center justify-center gap-4 pt-4">
+                  {!isFirstVideo() && (
+                    <button
+                      disabled={loading}
+                      onClick={goToPrevVideo}
+                      className="flex-1 py-3 rounded-xl bg-slate-100/10 text-white text-xs font-black uppercase tracking-widest hover:bg-white/20 transition-all border border-white/10"
+                    >
+                      Previous
+                    </button>
+                  )}
+                  {!isLastVideo() && (
+                    <button
+                      disabled={loading}
+                      onClick={goToNextVideo}
+                      className="flex-1 py-3 rounded-xl bg-white text-slate-900 text-xs font-black uppercase tracking-widest hover:bg-slate-200 transition-all"
+                    >
+                      Next Lesson
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
-
-
-      </Player>
+          )}
+        </Player>
+      </div>
     )}
 
-    <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
-    <p className="pt-2 pb-6">{videoData?.description}</p>
+    <div className="space-y-4">
+       <div className="flex items-center gap-3">
+          <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+            ACTIVE LESSON
+          </span>
+       </div>
+       <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+         {videoData?.title}
+       </h1>
+       <p className="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-4xl">
+         {videoData?.description || "In this lesson, you will dive deep into the core concepts covered in this module. Follow along with the instructor to build a solid foundation."}
+       </p>
+    </div>
 
     {/* PDF Notes Section */}
     {videoData?.notes?.length > 0 && (
-      <div className="mt-8 border-t border-richblack-700 pt-8">
-        <h2 className="text-2xl font-semibold mb-4 text-richblack-5">Lecture Notes & Resources</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-8 pt-12 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex items-center gap-3 mb-8">
+           <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-sm">📚</div>
+           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Lecture Resources</h2>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {videoData.notes.map((note, index) => (
             <a
               key={index}
               href={note.url}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-between p-4 rounded-lg bg-richblack-800 border border-richblack-700 hover:bg-richblack-700 transition-all group"
+              className="flex items-center justify-between p-6 rounded-3xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:border-indigo-600/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group shadow-sm hover:shadow-xl hover:shadow-indigo-500/10"
             >
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">📄</span>
-                <span className="font-medium text-richblack-50 group-hover:text-yellow-50">{note.title}</span>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-600/10 flex items-center justify-center text-2xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                  📄
+                </div>
+                <div className="space-y-0.5">
+                   <p className="font-black text-slate-900 dark:text-white tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                     {note.title}
+                   </p>
+                   <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Download PDF</p>
+                </div>
               </div>
-              <span className="text-sm text-yellow-50 font-semibold underline">View PDF</span>
+              <div className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 text-slate-400 group-hover:border-indigo-600 group-hover:text-indigo-600 transition-all">
+                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+              </div>
             </a>
           ))}
         </div>

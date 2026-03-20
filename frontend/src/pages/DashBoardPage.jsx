@@ -9,20 +9,22 @@ export default function DashBoardPage() {
     const{loading: profileLoading} = useSelector((state)=>state.profile);
 
     if(authLoading || profileLoading){
-        return (<div className='grid min-h-[calc(100vh-3.5rem)] place-items-center'>
-                <div className='spinner'></div>
-                </div>)
+        return (
+          <div className='flex h-screen items-center justify-center bg-white dark:bg-slate-950'>
+            <div className='w-16 h-16 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin'></div>
+          </div>
+        )
     }
     
     return(
-<div className="relative flex min-h-[calc(100vh-3.5rem)]">
-      <SideBar />
-      <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
-        <div className="mx-auto w-11/12 max-w-[1000px] py-10">
-          <Outlet />
+      <div className="relative flex min-h-[calc(100vh-7rem)] bg-white dark:bg-slate-950 transition-colors duration-500">
+        <SideBar />
+        <div className="flex-1 h-[calc(100vh-7rem)] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800">
+          <div className="mx-auto w-11/12 max-w-[1200px] py-14 px-4 lg:px-10">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
     )
 
 

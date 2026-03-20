@@ -66,103 +66,120 @@ export default function NestedView({handleChangeEditSectionName}) {
   
   return (
     <>
-      <div className='rounded-lg bg-richblack-700 p-6 px-8' id="nestedViewContainer">
-        {
-          course?.courseContent?.map((section,index)=>(
-          
-           <details key={index} open>
-              <summary className="flex cursor-pointer items-center justify-between border-b-2 border-b-richblack-600 py-2">
-                  <div className="flex items-center gap-x-3">
-                   <RxDropdownMenu className="text-2xl text-richblack-50"/>
-                    <p className="font-semibold text-richblack-50">
-                      {section.sectionName}
-                    </p>
+      <div className='rounded-[2rem] bg-slate-50/50 dark:bg-slate-900/30 p-10 border border-slate-200 dark:border-slate-800 shadow-inner overflow-hidden space-y-6' id="nestedViewContainer">
+        {course?.courseContent?.map((section, index) => (
+           <details key={index} open className="group transition-all duration-500 bg-white dark:bg-slate-800/40 rounded-3xl border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-indigo-600/5 transition-all">
+              <summary className="flex cursor-pointer items-center justify-between py-6 px-8 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all select-none">
+                  <div className="flex items-center gap-x-5">
+                    <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/20 group-hover:scale-105 transition-transform">
+                       <RxDropdownMenu className="text-2xl"/>
+                    </div>
+                    <div>
+                       <p className="text-xl font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors tracking-tight leading-tight">
+                        {section.sectionName}
+                       </p>
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">
+                          {section.subSection.length} {section.subSection.length === 1 ? 'Instructional Unit' : 'Instructional Units'}
+                       </p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-x-3">
+                  <div className="flex items-center gap-x-4" onClick={(e) => e.stopPropagation()}>
                     <button
+                      className="w-10 h-10 flex items-center justify-center rounded-xl text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-white dark:hover:bg-slate-800 shadow-sm border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all"
                       onClick={() =>
                         handleChangeEditSectionName(
                           section._id,
                           section.sectionName
                         )
                       }
+                      title="Refine Module Nomenclature"
                     >
-                      <MdEdit className="text-xl text-richblack-300" />
+                      <MdEdit size={18} />
                     </button>
                     <button
+                      className="w-10 h-10 flex items-center justify-center rounded-xl text-slate-400 hover:text-red-500 hover:bg-white dark:hover:bg-slate-800 shadow-sm border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all"
                       onClick={() =>
                         setConfirmationModal({
-                          text1: "Delete this Section?",
-                          text2: "All the lectures in this section will be deleted",
-                          btn1Text: "Delete",
-                          btn2Text: "Cancel",
+                          text1: "Deconstruct this Module?",
+                          text2: "Synthesizing this action will permanently remove all associated instructional units from the curriculum.",
+                          btn1Text: "Deconstruct",
+                          btn2Text: "Abort",
                           btn1Handler: () => handleDeleleSection(section._id),
                           btn2Handler: () => setConfirmationModal(null),
                         })
                       }
+                      title="Purge Module"
                     >
-                      <RiDeleteBin6Line className="text-xl text-richblack-300" />
+                      <RiDeleteBin6Line size={18} />
                     </button>
-                    <span className="font-medium text-richblack-300">|</span>
-                   <span ref={rotateRef} onClick={rotateElement}><AiFillCaretDown className={`text-xl text-richblack-300`} /></span> 
+                    <div className="h-8 w-[1px] bg-slate-100 dark:bg-slate-700 mx-1"></div>
+                    <AiFillCaretDown className="text-xl text-slate-300 dark:text-slate-600 group-open:rotate-180 transition-transform duration-500" />
                   </div>
               </summary>
 
-              <div className="px-6 pb-4">
+              <div className="px-10 pb-8 pt-2 space-y-4 bg-slate-50/50 dark:bg-slate-900/20 border-t border-slate-50 dark:border-slate-800/50 animate-in slide-in-from-top-4 duration-500">
                 {/* Render All Sub Sections Within a Section */}
-                {section.subSection.map((data) => (
-                  <div
-                    key={data?._id}
-                    onClick={() => setViewSubSection(data)}
-                    className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
-                  >
-                    <div className="flex items-center gap-x-3 py-2 ">
-                      <RxDropdownMenu className="text-2xl text-richblack-50" />
-                      <p className="font-semibold text-richblack-50">
-                        {data.title}
-                      </p>
-                    </div>
+                <div className="space-y-3">
+                  {section.subSection.map((data) => (
                     <div
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-x-3"
+                      key={data?._id}
+                      onClick={() => setViewSubSection(data)}
+                      className="flex cursor-pointer items-center justify-between gap-x-4 p-5 rounded-2xl bg-white dark:bg-slate-800 border border-white dark:border-slate-700 shadow-sm hover:shadow-lg hover:shadow-indigo-600/5 hover:border-indigo-600/20 transition-all group/sub"
                     >
-                      <button
-                        onClick={() =>
-                          setEditSubSection({ ...data, sectionId: section._id })
-                        }
+                      <div className="flex items-center gap-x-4 flex-1 min-w-0">
+                        <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-400 dark:text-indigo-600">
+                           <RxDropdownMenu className="text-lg" />
+                        </div>
+                        <div className="flex flex-col truncate">
+                          <p className="font-bold text-slate-700 dark:text-slate-200 group-hover/sub:text-indigo-600 transition-colors truncate">
+                            {data.title}
+                          </p>
+                          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-0.5">LECTURE UNIT</p>
+                        </div>
+                      </div>
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-x-2"
                       >
-                        <MdEdit className="text-xl text-richblack-300" />
-                      </button>
-                      <button
-                        onClick={() =>
-                          setConfirmationModal({
-                            text1: "Delete this Sub-Section?",
-                            text2: "This lecture will be deleted",
-                            btn1Text: "Delete",
-                            btn2Text: "Cancel",
-                            btn1Handler: () =>
-                              handleDeleteSubSection(data._id, section._id),
-                            btn2Handler: () => setConfirmationModal(null),
-                          })
-                        }
-                      >
-                        <RiDeleteBin6Line className="text-xl text-richblack-300" />
-                      </button>
+                        <button
+                          className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
+                          onClick={() =>
+                            setEditSubSection({ ...data, sectionId: section._id })
+                          }
+                        >
+                          <MdEdit size={16} />
+                        </button>
+                        <button
+                          className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-500 transition-all"
+                          onClick={() =>
+                            setConfirmationModal({
+                              text1: "Purge Instructional Unit?",
+                              text2: "This specific lecture will be permanently removed from the curriculum architecture.",
+                              btn1Text: "Purge",
+                              btn2Text: "Abort",
+                              btn1Handler: () =>
+                                handleDeleteSubSection(data._id, section._id),
+                              btn2Handler: () => setConfirmationModal(null),
+                            })
+                          }
+                        >
+                          <RiDeleteBin6Line size={16} />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
                 {/* Add New Lecture to Section */}
                 <button
                   onClick={() => setAddSubsection(section._id)}
-                  className="mt-3 flex items-center gap-x-1 text-yellow-50"
+                  className="w-full flex items-center justify-center gap-x-3 px-6 py-4 rounded-2xl border-2 border-dashed border-indigo-200 dark:border-indigo-800/50 text-indigo-600 dark:text-indigo-400 font-black text-xs uppercase tracking-widest hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white hover:border-transparent transition-all duration-500 mt-6"
                 >
-                  <FaPlus className="text-lg" />
-                  <p>Add Lecture</p>
+                  <FaPlus className="text-xs" />
+                  <span>Integrate New Instructional Unit</span>
                 </button>
               </div>
-                
            </details>
-           
           ))
         }
       </div>

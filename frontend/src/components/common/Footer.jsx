@@ -27,160 +27,133 @@ const Community = ["Discussion Forums", "Study Groups", "Events"];
 
 const Footer = () => {
   return (
-    <div className=" bg-blue-1000 mt-9">
-      <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-richblack-800 leading-6 mx-auto relative py-14">
-        <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-richblack-700">
+    <footer className="bg-slate-950 border-t border-slate-900 pt-20 pb-10 mt-20 relative overflow-hidden">
+      {/* Decorative Blur Orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div className="mx-auto w-11/12 max-w-maxContent relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 pb-16 border-b border-slate-900">
           {/* Section 1 */}
-          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
-            <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
-              {/* <img src={Logo} alt="" className="object-contain" /> */}
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
-                Company
-              </h1>
-              <div className="flex flex-col gap-2">
-                {["About", "Careers", "Affiliates"].map((ele, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+          <div className="lg:w-[60%] flex flex-wrap gap-12 justify-between">
+            <div className="w-full lg:w-[30%] space-y-6">
+              <div className="flex items-center gap-2">
+                 <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xl font-black">V+</div>
+                 <span className="text-xl font-black text-white tracking-tighter">Vidya<span className="text-indigo-500">+</span></span>
+              </div>
+              
+              <div className="space-y-4 pt-2">
+                <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">Company</h3>
+                <nav className="flex flex-col gap-3">
+                  {["About", "Careers", "Affiliates"].map((ele, i) => (
+                    <Link 
+                      key={i} 
+                      to={ele.toLowerCase()}
+                      className="text-sm font-bold text-slate-500 hover:text-indigo-400 transition-colors"
                     >
-                      <Link to={ele.toLowerCase()}>{ele}</Link>
-                    </div>
-                  );
-                })}
+                      {ele}
+                    </Link>
+                  ))}
+                </nav>
               </div>
-              <div className="flex gap-3 text-lg">
-                <FaFacebook />
-                <FaGoogle />
-                <FaTwitter />
-                <FaYoutube />
-              </div>
-              <div></div>
-            </div>
-
-            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
-                Resources
-              </h1>
-
-              <div className="flex flex-col gap-2 mt-2">
-                {Resources.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
-                Support
-              </h1>
-              <div className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200 mt-2">
-                <Link to={"/help-center"}>Help Center</Link>
+              
+              <div className="flex gap-4 pt-4">
+                {[FaFacebook, FaGoogle, FaTwitter, FaYoutube].map((Icon, i) => (
+                   <a key={i} href="#" className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300">
+                      <Icon className="text-lg" />
+                   </a>
+                ))}
               </div>
             </div>
 
-            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]">
-                Plans
-              </h1>
+            <div className="w-[45%] lg:w-[30%] space-y-6">
+              <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">Resources</h3>
+              <nav className="flex flex-col gap-3">
+                {Resources.slice(0, 6).map((ele, index) => (
+                  <Link 
+                    key={index} 
+                    to={ele.split(" ").join("-").toLowerCase()}
+                    className="text-sm font-bold text-slate-500 hover:text-indigo-400 transition-colors"
+                  >
+                    {ele}
+                  </Link>
+                ))}
+              </nav>
+            </div>
 
-              <div className="flex flex-col gap-2 mt-2">
-                {Plans.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                    >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
+            <div className="w-[45%] lg:w-[30%] space-y-8">
+              <div className="space-y-6">
+                <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">Support</h3>
+                <Link to="/help-center" className="block text-sm font-bold text-slate-500 hover:text-indigo-400 transition-colors">
+                  Help Center
+                </Link>
               </div>
-              <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
-                Community
-              </h1>
-
-              <div className="flex flex-col gap-2 mt-2">
-                {Community.map((ele, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+              <div className="space-y-6 pt-2">
+                <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">Community</h3>
+                <nav className="flex flex-col gap-3">
+                  {Community.map((ele, index) => (
+                    <Link 
+                      key={index} 
+                      to={ele.split(" ").join("-").toLowerCase()}
+                      className="text-sm font-bold text-slate-500 hover:text-indigo-400 transition-colors"
                     >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
-                        {ele}
-                      </Link>
-                    </div>
-                  );
-                })}
+                      {ele}
+                    </Link>
+                  ))}
+                </nav>
               </div>
             </div>
           </div>
 
           {/* Section 2 */}
-          <div className="lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
-            {FooterLink2.map((ele, i) => {
-              return (
-                <div key={i} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-                  <h1 className="text-richblack-50 font-semibold text-[16px]">
-                    {ele.title}
-                  </h1>
-                  <div className="flex flex-col gap-2 mt-2">
-                    {ele.links.map((link, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                        >
-                          <Link to={link.link}>{link.title}</Link>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="lg:w-[40%] flex flex-wrap gap-12 justify-between">
+            {FooterLink2.map((ele, i) => (
+              <div key={i} className="w-[45%] space-y-6">
+                <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">{ele.title}</h3>
+                <nav className="flex flex-col gap-3">
+                  {ele.links.map((link, index) => (
+                    <Link 
+                      key={index} 
+                      to={link.link}
+                      className="text-sm font-bold text-slate-500 hover:text-indigo-400 transition-colors"
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Footer */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pt-10 text-xs font-black uppercase tracking-widest">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+            {BottomFooter.map((ele, i) => (
+              <Link
+                key={i}
+                to={ele.split(" ").join("-").toLocaleLowerCase()}
+                className="text-slate-600 hover:text-white transition-colors"
+              >
+                {ele}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2 text-slate-600">
+            <span>Made with</span>
+            <span className="text-red-500 animate-pulse text-lg">❤️</span>
+            <a 
+              href="https://github.com/tusharDevelops" 
+              className="text-white hover:text-indigo-400 transition-colors ml-1" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              tusharDevelops
+            </a>
           </div>
         </div>
       </div>
-
-      <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-800 mx-auto  pb-14 text-sm">
-        {/* Section 1 */}
-        <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
-          <div className="flex flex-row">
-            {BottomFooter.map((ele, i) => {
-              return (
-                <div
-                  key={i}
-                  className={` ${
-                    BottomFooter.length - 1 === i
-                      ? ""
-                      : "border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                  } px-3 `}
-                >
-                  <Link to={ele.split(" ").join("-").toLocaleLowerCase()}>
-                    {ele}
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-
-          <a href="https://github.com/tusharDevelops" className="text-center" target="_blank" rel="noopener noreferrer">
-  Made with ❤️ tusharDevelops
-</a>
-        </div>
-      </div>
-    </div>
+    </footer>
   );
 };
 

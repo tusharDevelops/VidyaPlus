@@ -29,9 +29,9 @@ export default function SideBar() {
 
 
   return (
-    <div className='flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col
-    border-r-[1px] border-r-richblack-700  bg-richblack-900 py-10'>
-        <div className='flex flex-col'>
+    <div className='flex h-[calc(100vh-3.5rem)] min-w-[260px] flex-col
+    border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 backdrop-blur-xl py-12 transition-all duration-500 shadow-2xl shadow-indigo-500/[0.02]'>
+        <div className='flex flex-col gap-y-2'>
           {
             sidebarLinks.map((link)=>{
               if(link.type && user?.accountType !== link.type)return null;
@@ -40,29 +40,28 @@ export default function SideBar() {
           }
         </div>
 
-      <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
+      <div className="mx-auto mt-10 mb-10 h-[1px] w-10/12 bg-slate-100 dark:bg-slate-800/50" />
 
-      <div className='flex flex-col'>
-          <SideBarLinks link={{name: "Settings", path:"/dashboard/settings"}} iconName={"VscSettingsGear"}/>
-              <button
-              onClick={
-                      ()=>setConfirmationModal({
-                      text1: "Are you sure?",
-                      text2: "You will be logged out of your account.",
-                      btn1Text: "Logout",
-                      btn2Text: "Cancel",
-                      btn1Handler: () => dispatch(logout(navigate)),
-                      btn2Handler: () => setConfirmationModal(null),
-                      })
-                    }
-              className="px-8 py-2 text-sm font-medium text-richblack-300">
-
-                  <div className="flex items-center gap-x-2">
-                  <VscSignOut className="text-lg" />
-                  <span>Logout</span>
-                  </div>
-
-              </button>
+      <div className='flex flex-col gap-y-2'>
+          <SideBarLinks link={{name: "System Settings", path:"/dashboard/settings"}} iconName={"VscSettingsGear"}/>
+          <button
+            onClick={
+              ()=>setConfirmationModal({
+                text1: "Terminate Session?",
+                text2: "You are about to be de-authenticated from the regional gateway.",
+                btn1Text: "De-authenticate",
+                btn2Text: "Maintain Session",
+                btn1Handler: () => dispatch(logout(navigate)),
+                btn2Handler: () => setConfirmationModal(null),
+              })
+            }
+            className="group relative px-8 py-4 transition-all duration-500 hover:bg-red-500/[0.03] dark:hover:bg-red-500/[0.02]"
+          >
+            <div className="flex items-center gap-x-4">
+              <VscSignOut className="text-xl text-slate-400 group-hover:text-red-500 group-hover:scale-110 transition-all duration-300" />
+              <span className="text-[10px] font-black text-slate-500 group-hover:text-red-500 uppercase tracking-[0.2em] transition-all duration-300">De-authenticate</span>
+            </div>
+          </button>
       </div>
 
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}

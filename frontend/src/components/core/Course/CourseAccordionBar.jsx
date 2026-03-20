@@ -18,27 +18,29 @@ export default function CourseAccordionBar({ section, isActive, handleActive }) 
   }, [active])
 
   return (
-    <div className="overflow-hidden border border-solid border-richblack-600 bg-richblack-700 text-richblack-5 last:mb-0">
+    <div className="overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 rounded-2xl mb-2 transition-all duration-300">
       <div>
         <div
-          className={`flex cursor-pointer items-start justify-between bg-opacity-20 px-7  py-6 transition-[0.3s]`}
+          className={`flex cursor-pointer items-center justify-between px-8 py-5 transition-all duration-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 ${active ? 'bg-slate-50 dark:bg-slate-800/50' : ''}`}
           onClick={() => {
             handleActive(section._id)
           }}
         >
-          <div className="flex items-center gap-2">
-            <i
-              className={
-                isActive.includes(section._id) ? "rotate-180" : "rotate-0"
-              }
+          <div className="flex items-center gap-4">
+            <div
+              className={`w-6 h-6 rounded-lg flex items-center justify-center bg-indigo-600/10 text-indigo-600 dark:text-indigo-400 transition-transform duration-500 ${
+                isActive.includes(section._id) ? "rotate-180 bg-indigo-600 text-white" : "rotate-0"
+              }`}
             >
-              <AiOutlineDown />
-            </i>
-            <p>{section?.sectionName}</p>
+              <AiOutlineDown className="text-sm" />
+            </div>
+            <p className="font-black text-slate-800 dark:text-slate-100 tracking-tight">
+              {section?.sectionName}
+            </p>
           </div>
-          <div className="space-x-4">
-            <span className="text-yellow-25">
-              {`${section.subSection.length || 0} lecture(s)`}
+          <div className="flex items-center gap-4">
+            <span className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest bg-indigo-600/5 px-3 py-1 rounded-full border border-indigo-600/10">
+              {`${section.subSection.length || 0} Lectures`}
             </span>
           </div>
         </div>
@@ -46,12 +48,12 @@ export default function CourseAccordionBar({ section, isActive, handleActive }) 
       
           <div
             ref={contentEl}
-            className={`relative h-0 overflow-hidden bg-richblack-900 transition-[height] duration-[0.35s] ease-[ease]`}
+            className={`relative h-0 overflow-hidden bg-white dark:bg-slate-900/20 transition-[height] duration-500 ease-in-out border-t border-slate-100 dark:border-slate-800/50`}
             style={{
               height: sectionHeight,
             }}
           >
-            <div className="text-textHead flex flex-col gap-2 px-7 py-6 font-semibold">
+            <div className="flex flex-col px-8 py-4 divide-y divide-slate-100 dark:divide-slate-800/50">
               {section?.subSection?.map((subSec, i) => {
                 return <CourseSubSectionAccordion subSec={subSec} key={i} />
               })}

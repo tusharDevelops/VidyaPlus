@@ -176,53 +176,53 @@ export default function CourseInformationForm() {
 }
   return (
     <form onSubmit={handleSubmit(onSubmit)}
-    className='space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6'>
+    className='space-y-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none'>
       
       {/* Course Title */}
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseTitle">
-          Course Title <sup className="text-pink-200">*</sup>
+      <div className="flex flex-col space-y-3">
+        <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="courseTitle">
+          Course Nomenclature <sup className="text-red-500 font-bold">*</sup>
         </label>
         <input
           id="courseTitle"
-          placeholder="Enter Course Title"
+          placeholder="e.g. Advanced Quantum Mechanics"
           {...register("courseTitle", { required: true })}
-          className="form-style w-full"
+          className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
         />
         {errors.courseTitle && (
-          <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Course title is required
+          <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+             Course identity is required
           </span>
         )}
       </div>
 
        {/* Course Short Description */}
-       <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseShortDesc">
-          Course Short Description <sup className="text-pink-200">*</sup>
+       <div className="flex flex-col space-y-3">
+        <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="courseShortDesc">
+          Curriculum Overview <sup className="text-red-500 font-bold">*</sup>
         </label>
         <textarea
           id="courseShortDesc"
-          placeholder="Enter Description"
+          placeholder="Expound upon the core objectives and expected outcomes..."
           {...register("courseShortDesc", { required: true })}
-          className="form-style resize-x-none min-h-[130px] w-full"
+          className="form-style resize-none min-h-[160px] w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
         />
         {errors.courseShortDesc && (
-          <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Course Description is required
+          <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+            Academic description is mandatory
           </span>
         )}
       </div>
 
       {/* Course Price */}
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="coursePrice">
-          Course Price <sup className="text-pink-200">*</sup>
+      <div className="flex flex-col space-y-3">
+        <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="coursePrice">
+          Valuation (INR) <sup className="text-red-500 font-bold">*</sup>
         </label>
         <div className="relative">
           <input
             id="coursePrice"
-            placeholder="Enter Course Price"
+            placeholder="0.00"
             {...register("coursePrice", {
               required: true,
               valueAsNumber: true,
@@ -230,50 +230,55 @@ export default function CourseInformationForm() {
                 value: /^(0|[1-9]\d*)(\.\d+)?$/,
               },
             })}
-            className="form-style w-full !pl-12"
+            className="form-style w-full !pl-14 bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
           />
-          <HiOutlineCurrencyRupee className="absolute left-3 top-1/2 inline-block -translate-y-1/2 text-2xl text-richblack-400" />
+          <HiOutlineCurrencyRupee className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-indigo-600 dark:text-indigo-400" />
         </div>
         {errors.coursePrice && (
-          <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Course Price is required
+          <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+            Financial valuation is required
           </span>
         )}
       </div>
 
       {/* Course Category */}
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseCategory">
-          Course Category <sup className="text-pink-200">*</sup>
+      <div className="flex flex-col space-y-3">
+        <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="courseCategory">
+          Academic Discipline <sup className="text-red-500 font-bold">*</sup>
         </label>
-        <select
-          {...register("courseCategory", { required: true })}
-          defaultValue=""
-          id="courseCategory"
-          className="form-style w-full"
-        >
-          <option value="" disabled>
-            Choose a Category
-          </option>
-          {!loading &&
-            courseCategories?.map((category, indx) => (
-              <option key={indx} value={category?._id}>
-                {category?.name}
-              </option>
-            ))}
-        </select>
+        <div className="relative">
+          <select
+            {...register("courseCategory", { required: true })}
+            defaultValue=""
+            id="courseCategory"
+            className="form-style w-full appearance-none cursor-pointer bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm pr-12"
+          >
+            <option value="" disabled>
+              Choose a discipline...
+            </option>
+            {!loading &&
+              courseCategories?.map((category, indx) => (
+                <option key={indx} value={category?._id}>
+                  {category?.name}
+                </option>
+              ))}
+          </select>
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+             <MdNavigateNext className="rotate-90 text-xl" />
+          </div>
+        </div>
         {errors.courseCategory && (
-          <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Course Category is required
+          <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+            Categorical classification is required
           </span>
         )}
       </div>
+
       {/* Course Tags */}
-      
       <ChipInput
-        label="Tags"
+        label="Indexed Tags"
         name="courseTags"
-        placeholder="Enter Tags and press Enter"
+        placeholder="Type a tag and press Enter"
         register={register}
         errors={errors}
         setValue={setValue}
@@ -283,78 +288,82 @@ export default function CourseInformationForm() {
       {/* Course Thumbnail Image */}
       <Upload
         name="courseImage"
-        label="Course Thumbnail"
+        label="Course Artifact (Thumbnail)"
         register={register}
         setValue={setValue}
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
       />
 
-      {/* Exam Note Upload (Instructor only, after course creation usually, but for now in step 1 edit) */}
+      {/* Exam Note Upload */}
       {editCourse && (
-        <div className="flex flex-col space-y-2">
-          <label className="text-sm text-richblack-5">Exam Notes (PDF)</label>
+        <div className="flex flex-col space-y-6 rounded-3xl border border-indigo-600/10 bg-indigo-600/[0.02] dark:bg-indigo-400/[0.01] p-8">
+          <div className="space-y-1 px-1">
+             <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.2em]">
+                ENHANCED RESOURCES
+             </p>
+             <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                Supplemental Exam Notes
+             </p>
+          </div>
           <Upload
             name="examNote"
-            label="Add Important Exam Note"
+            label="Artifact Upload (PDF)"
             register={register}
             setValue={setValue}
             errors={errors}
             pdf={true}
           />
-          <p className="text-xs text-richblack-400">Note: Exam notes added here will be immediately uploaded to this course.</p>
+          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 px-1">Notes deployed here will be synchronized across all student portals immediately.</p>
         </div>
       )}
 
       {/* Benefits of the course */}
-      <div className="flex flex-col space-y-2">
-        <label className="text-sm text-richblack-5" htmlFor="courseBenefits">
-          Benefits of the course <sup className="text-pink-200">*</sup>
+      <div className="flex flex-col space-y-3">
+        <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="courseBenefits">
+          Instructional Outcomes <sup className="text-red-500 font-bold">*</sup>
         </label>
         <textarea
           id="courseBenefits"
-          placeholder="Enter benefits of the course"
+          placeholder="Synthesize the primary knowledge and skills students will acquire..."
           {...register("courseBenefits", { required: true })}
-          className="form-style resize-x-none min-h-[130px] w-full"
+          className="form-style resize-none min-h-[160px] w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
         />
         {errors.courseBenefits && (
-          <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Benefits of the course is required
+          <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+            Learning objectives must be defined
           </span>
         )}
       </div>
 
       <RequirementsField
         name="courseRequirements"
-        label="Requirements/Instructions"
+        label="Prerequisites & Protocol"
         register={register}
         setValue={setValue}
         errors={errors}
         getValues={getValues}
       />
 
-         {/* Next Button */}
-      <div className="flex justify-end gap-x-2">
+      {/* Next Button */}
+      <div className="flex justify-end gap-x-6 pt-12 border-t border-slate-100 dark:border-slate-800">
         {editCourse && (
           <button
             onClick={() => dispatch(setStep(2))}
             disabled={loading}
-            className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+            className="flex cursor-pointer items-center gap-x-2 rounded-[1.25rem] bg-slate-100 dark:bg-slate-800 py-4 px-8 font-black text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
           >
-            Continue Without Saving
+            Bypass Current State
           </button>
         )}
         <IconBtn
           disabled={loading}
-          text={!editCourse ? "Next" : "Save Changes"}
-          
-          
+          text={!editCourse ? "Initialize & Proceed" : "Commit Changes"}
+          customClasses="px-10 py-4 rounded-[1.25rem] shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
         >
-          <MdNavigateNext />
+          <MdNavigateNext className="text-2xl" />
         </IconBtn>
       </div>
-
-
     </form>
   )
 }

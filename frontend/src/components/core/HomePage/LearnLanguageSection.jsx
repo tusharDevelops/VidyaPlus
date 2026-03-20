@@ -7,45 +7,46 @@ import CTAButton from "../HomePage/Button"
 
 export default function LearnLanguageSection() {
   return (
-    <div className='mt-[130px] mb-32'>
-    <div className='flex flex-col gap-5 items-center'>
+    <div className='mt-[160px] mb-40 animate-in fade-in slide-in-from-bottom-10 duration-1000'>
+      <div className='flex flex-col gap-10 items-center'>
 
-          <div className='text-4xl font-semibold text-center'>
-              Your Swiss Knife for
-              <HighlightText text={" learning any language"} />
-          </div>
+            <div className='text-5xl font-black text-center text-slate-900 dark:text-white tracking-tight leading-tight'>
+                Your Swiss Knife for
+                <HighlightText text={" learning any language"} />
+            </div>
 
-          <div className='text-center text-richblack-600 mx-auto text-base font-medium w-[70%]'>
-          Using spin making learning multiple languages easy. with 20+ languages realistic voice-over, progress tracking, custom schedule and more.
-          </div>
+            <div className='text-center text-slate-500 dark:text-slate-400 mx-auto text-lg font-bold w-full max-w-[800px] leading-relaxed italic border-x-4 border-indigo-600/30 px-10'>
+              Using spin makes learning multiple languages simple and intuitive. With 20+ languages, realistic voice-overs, progress tracking, and custom scheduling, your academic odyssey starts here.
+            </div>
 
-          <div className='flex flex-row items-center justify-center mt-5'>
-              <img 
-                  src = {know_your_progress}
-                  alt = "KNowYourProgressImage"
-                  className='object-contain -mr-32 '
-              />
-              <img 
-                  src = {compare_with_others}
-                  alt = "KNowYourProgressImage"
-                  className='object-contain'
-              />
-              <img 
-                  src = {plan_your_lesson}
-                  alt = "KNowYourProgressImage"
-                  className='object-contain -ml-36'
-              />
-          </div>
+            <div className='flex flex-col lg:flex-row items-center justify-center mt-12 relative'>
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[300px] bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+                <img 
+                    src = {know_your_progress}
+                    alt = "KNowYourProgressImage"
+                    className='object-contain lg:-mr-32 relative z-10 hover:scale-105 transition-transform duration-500 hover:z-30 drop-shadow-2xl'
+                />
+                <img 
+                    src = {compare_with_others}
+                    alt = "KNowYourProgressImage"
+                    className='object-contain relative z-20 hover:scale-110 transition-transform duration-500 hover:z-30 drop-shadow-2xl'
+                />
+                <img 
+                    src = {plan_your_lesson}
+                    alt = "KNowYourProgressImage"
+                    className='object-contain lg:-ml-36 relative z-10 hover:scale-105 transition-transform duration-500 hover:z-30 drop-shadow-2xl'
+                />
+            </div>
 
-          <div className='w-fit'>
-              <CTAButton active={true} linkto={"/signup"}>
-                  <div>
-                      Learn more
-                  </div>
-              </CTAButton>
-          </div>
+            <div className='mt-16'>
+                <CTAButton active={true} linkto={"/signup"}>
+                    <div className="px-10 py-2">
+                        Initialize Learning Voyage
+                    </div>
+                </CTAButton>
+            </div>
 
+      </div>
     </div>
-  </div>
   )
 }

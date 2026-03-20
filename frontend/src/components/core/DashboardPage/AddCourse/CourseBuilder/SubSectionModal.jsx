@@ -139,101 +139,119 @@ export default function SubSectionModal({
 
 
   return (
-    <div className='fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm'>
+    <div className='fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-slate-900/60 backdrop-blur-md p-4'>
 
       {/* BOX */}
-      <div className='my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800'>
+      <div className='my-10 w-full max-w-[800px] rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_0_100px_rgba(79,70,229,0.1)] overflow-hidden transition-all duration-500 transform scale-100'>
        
         {/* Modal Header */}
-        <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
-          <p className="text-xl font-semibold text-richblack-5">
-            {view && "Viewing"} {add && "Adding"} {edit && "Editing"} Lecture
-          </p>
-          <button onClick={() => (!loading ? setModalData(null) : {})}>
-            <RxCross2 className="text-2xl text-richblack-5" />
+        <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-8 border-b border-slate-100 dark:border-slate-800">
+          <div className="flex items-center gap-4">
+             <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-xl shadow-indigo-600/20">
+                <span className="text-xl">📹</span>
+             </div>
+             <div>
+                <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1">
+                  {view && "Lecture Preview"} {add && "Integrate New Lecture"} {edit && "Refine Lecture Details"}
+                </p>
+                <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">CURRICULUM ARCHITECTURE / INSTRUCTIONAL UNIT</p>
+             </div>
+          </div>
+          <button 
+            onClick={() => (!loading ? setModalData(null) : {})}
+            className="w-10 h-10 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 text-slate-400 hover:text-red-500 transition-all hover:rotate-90 border border-slate-100 dark:border-slate-700 shadow-sm"
+          >
+            <RxCross2 size={24} />
           </button>
         </div>
 
         {/* Modal Form */}
-        <form className="space-y-8 px-8 py-10" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-12 p-10" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Lecture Video Upload */}
-          <Upload
-            name="lectureVideo"
-            label="Lecture Video"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            video={true}
-            viewData={view ? modalData.videoUrl : null}
-            editData={edit ? modalData.videoUrl : null}
-          />
-
-          {/* Lecture Title */}
-            <div className="flex flex-col space-y-2">
-            <label className="text-sm text-richblack-5" htmlFor="lectureTitle">
-              Lecture Title {!view && <sup className="text-pink-200">*</sup>}
-            </label>
-            <input
-              disabled={view || loading}
-              id="lectureTitle"
-              placeholder="Enter Lecture Title"
-              {...register("lectureTitle", { required: true })}
-              className="form-style w-full"
-            />
-            {errors.lectureTitle && (
-              <span className="ml-2 text-xs tracking-wide text-pink-200">
-                Lecture title is required
-              </span>
-            )}
+          <div className="animate-in fade-in slide-in-from-top-4 duration-700">
+             <Upload
+               name="lectureVideo"
+               label="Instructional Video (MP4/WebM)"
+               register={register}
+               setValue={setValue}
+               errors={errors}
+               video={true}
+               viewData={view ? modalData.videoUrl : null}
+               editData={edit ? modalData.videoUrl : null}
+             />
           </div>
 
-          {/* Lecture Description */}
-          <div className="flex flex-col space-y-2">
-            <label className="text-sm text-richblack-5" htmlFor="lectureDesc">
-              Lecture Description{" "}
-              {!view && <sup className="text-pink-200">*</sup>}
-            </label>
-            <textarea
-              disabled={view || loading}
-              id="lectureDesc"
-              placeholder="Enter Lecture Description"
-              {...register("lectureDesc", { required: true })}
-              className="form-style resize-x-none min-h-[130px] w-full"
-            />
-            {errors.lectureDesc && (
-              <span className="ml-2 text-xs tracking-wide text-pink-200">
-                Lecture Description is required
-              </span>
-            )}
+          <div className="grid grid-cols-1 gap-10">
+            {/* Lecture Title */}
+            <div className="flex flex-col space-y-3">
+              <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="lectureTitle">
+                Instructional Title {!view && <sup className="text-red-500 font-bold">*</sup>}
+              </label>
+              <input
+                disabled={view || loading}
+                id="lectureTitle"
+                placeholder="e.g. 01. Conceptual Framework & Protocol"
+                {...register("lectureTitle", { required: true })}
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+              />
+              {errors.lectureTitle && (
+                <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+                  Instructional identity is mandatory
+                </span>
+              )}
+            </div>
+
+            {/* Lecture Description */}
+            <div className="flex flex-col space-y-3">
+              <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="lectureDesc">
+                Instructional Abstract{" "}
+                {!view && <sup className="text-red-500 font-bold">*</sup>}
+              </label>
+              <textarea
+                disabled={view || loading}
+                id="lectureDesc"
+                placeholder="Expound upon the core concepts addressed within this unit..."
+                {...register("lectureDesc", { required: true })}
+                className="form-style resize-none min-h-[160px] w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+              />
+              {errors.lectureDesc && (
+                <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+                  Academic abstract is required
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Lecture Notes Upload */}
-          <Upload
-            name="lectureNote"
-            label="Lecture Notes (PDF)"
-            register={register}
-            setValue={setValue}
-            errors={errors}
-            pdf={true}
-            viewData={view ? (modalData.notes?.[0]?.url || null) : null}
-            editData={edit ? (modalData.notes?.[0]?.url || null) : null}
-          />
+          <div className="p-10 rounded-[2.5rem] border border-indigo-600/10 bg-indigo-600/[0.02] dark:bg-indigo-400/[0.01]">
+            <Upload
+              name="lectureNote"
+              label="Supplemental Artifacts (PDF)"
+              register={register}
+              setValue={setValue}
+              errors={errors}
+              pdf={true}
+              viewData={view ? (modalData.notes?.[0]?.url || null) : null}
+              editData={edit ? (modalData.notes?.[0]?.url || null) : null}
+            />
+             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mt-6 flex items-center gap-2">
+                <span className="w-4 h-[1px] bg-indigo-600/30"></span>
+                OPTIONAL LEARNING RESOURCES
+             </p>
+          </div>
+
           {!view && (
-            <div className="flex justify-end">
+            <div className="flex justify-end pt-10 border-t border-slate-100 dark:border-slate-800">
               <IconBtn
                 disabled={loading}
-                text={loading ? "Loading.." : edit ? "Save Changes" : "Save"}
+                text={loading ? "Synchronizing..." : edit ? "Commit Modifications" : "Initialize Unit"}
+                customClasses="px-10 py-4 rounded-[1.25rem] shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
               />
             </div>
           )}
-
-
         </form>
-
-
       </div>
-
     </div>
   )
 }

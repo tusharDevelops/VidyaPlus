@@ -43,67 +43,95 @@ export default function CourseReviewModal({ setReviewModal }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
+    <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-slate-900/60 backdrop-blur-md p-4">
+      <div className="my-10 w-full max-w-[650px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl shadow-indigo-500/10 overflow-hidden">
         {/* Modal Header */}
-        <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
-          <p className="text-xl font-semibold text-richblack-5">Add Review</p>
-          <button onClick={() => setReviewModal(false)}>
-            <RxCross2 className="text-2xl text-richblack-5" />
+        <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-800/50 p-6 border-b border-slate-100 dark:border-slate-800">
+           <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
+                 <span className="text-xl">🌟</span>
+              </div>
+              <div>
+                 <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1">
+                   Share Your Experience
+                 </p>
+                 <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">COURSE REVIEW / RATING</p>
+              </div>
+           </div>
+          <button 
+            onClick={() => setReviewModal(false)}
+            className="p-2 rounded-xl bg-slate-200/50 dark:bg-slate-700/50 text-slate-500 hover:text-red-500 transition-all hover:rotate-90"
+          >
+            <RxCross2 className="text-2xl" />
           </button>
         </div>
+        
         {/* Modal Body */}
-        <div className="p-6">
-          <div className="flex items-center justify-center gap-x-4">
+        <div className="p-8">
+          <div className="flex items-center gap-x-5 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 mb-8">
             <img
               src={user?.image}
-              alt={user?.firstName + "profile"}
-              className="aspect-square w-[50px] rounded-full object-cover"
+              alt={user?.firstName}
+              className="aspect-square w-[60px] rounded-full object-cover border-4 border-white dark:border-slate-700 shadow-md"
             />
-            <div className="">
-              <p className="font-semibold text-richblack-5">
+            <div className="space-y-1">
+              <p className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
                 {user?.firstName} {user?.lastName}
               </p>
-              <p className="text-sm text-richblack-5">Posting Publicly</p>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Public Review</p>
+              </div>
             </div>
           </div>
+
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="mt-6 flex flex-col items-center"
+            className="flex flex-col items-center"
           >
-            <ReactStars
-              count={5}
-              onChange={ratingChanged}
-              size={24}
-              activeColor="#ffd700"
-            />
-            <div className="flex w-11/12 flex-col space-y-2">
+            <div className="mb-8 p-6 rounded-2xl bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 w-full flex flex-col items-center gap-4">
+               <p className="text-sm font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Select Rating</p>
+               <ReactStars
+                count={5}
+                onChange={ratingChanged}
+                size={40}
+                activeColor="#4f46e5"
+                color="#cbd5e1"
+              />
+            </div>
+
+            <div className="flex w-full flex-col space-y-2">
               <label
-                className="text-sm text-richblack-5"
+                className="lable-style"
                 htmlFor="courseExperience"
               >
-                Add Your Experience <sup className="text-pink-200">*</sup>
+                Detailed Experience <sup className="text-red-500 font-bold">*</sup>
               </label>
               <textarea
                 id="courseExperience"
-                placeholder="Add Your Experience"
+                placeholder="What did you think of this course? Your feedback helps other students."
                 {...register("courseExperience", { required: true })}
-                className="form-style resize-x-none min-h-[130px] w-full"
+                className="form-style resize-none min-h-[140px] w-full"
               />
               {errors.courseExperience && (
-                <span className="ml-2 text-xs tracking-wide text-pink-200">
-                  Please Add Your Experience
+                <span className="ml-2 text-xs font-bold tracking-wide text-red-500">
+                  Please share your learning experience
                 </span>
               )}
             </div>
-            <div className="mt-6 flex w-11/12 justify-end gap-x-2">
+
+            <div className="mt-10 flex w-full justify-end gap-x-4 pt-6 border-t border-slate-100 dark:border-slate-800">
               <button
+                type="button"
                 onClick={() => setReviewModal(false)}
-                className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+                className="px-8 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
               >
                 Cancel
               </button>
-              <IconBtn text="Save" />
+              <IconBtn 
+                text="Submit Review" 
+                customClasses="px-10 py-3 rounded-xl shadow-lg shadow-indigo-600/20"
+              />
             </div>
           </form>
         </div>

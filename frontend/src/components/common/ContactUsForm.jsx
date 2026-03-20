@@ -19,7 +19,7 @@ export default function ContactUsForm() {
       try {
         setLoading(true);
         
-        const output = await apiConnector("POST", contactusEndpoint.CONTACT_US_API,data);
+        await apiConnector("POST", contactusEndpoint.CONTACT_US_API,data);
         //console.log("this is e res", output);
         setLoading(false);
         toast.dismiss(toastid);

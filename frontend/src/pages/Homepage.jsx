@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaArrowRight, FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaStar, FaTrophy, FaGraduationCap, FaPlay, FaCheckCircle, FaRocket, FaChartLine, FaUserCheck, FaMedal } from 'react-icons/fa'
+import { FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaStar, FaTrophy, FaPlay, FaCheckCircle, FaRocket, FaChartLine, FaUserCheck, FaMedal } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import HighlightText from "../components/core/HomePage/HighlightText"
 import CTAButton from '../components/core/HomePage/Button'

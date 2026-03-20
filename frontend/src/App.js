@@ -47,7 +47,7 @@ function App() {
   }, [])
 
   return (
-  <div className="w-screen min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-inter transition-colors duration-300">
+  <div className="w-screen min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 font-inter transition-colors duration-300">
 
   <Navbar/>
     

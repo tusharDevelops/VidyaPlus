@@ -1,201 +1,206 @@
-//import React, { useEffect } from 'react'
 import logo from "../../assets/Logo/vidyaplus-removebg-preview.png"
 import { Link, matchPath } from 'react-router-dom'
-import {NavbarLinks} from "../../data/navbar-links"
+import { NavbarLinks } from "../../data/navbar-links"
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import {AiOutlineShoppingCart} from "react-icons/ai"
+import { AiOutlineShoppingCart } from "react-icons/ai"
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
 import { apiConnector } from '../../services/apiConnector'
 import { categories } from '../../services/apis'
-import { useState,useEffect } from 'react'
-import {IoIosArrowDropdownCircle} from "react-icons/io"
-import { RxHamburgerMenu } from "react-icons/rx";
-
+import { useState, useEffect } from 'react'
+import { IoChevronDown } from "react-icons/io5"
 import HamburgerDrawer from "./HamburgerDrawer"
-
-// const subLinks = [
-//     {
-//         title: "python",
-//         link:"/catalog/python"
-//     },
-//     {
-//         title: "web dev",
-//         link:"/catalog/web-development"
-//     },
-// ];
-
+import { FaSun, FaMoon } from 'react-icons/fa'
+import { HiMenuAlt3 } from 'react-icons/hi'
 
 const Navbar = () => {
-    //console.log("Printing base url: ",process.env.REACT_APP_BASE_URL);
-    const {token} = useSelector( (state) => state.auth );
-    const {user} = useSelector( (state) => state.profile );
-    const {totalItems} = useSelector( (state) => state.cart )
-    const location = useLocation();
-    const[hamburgerOpen, setHamBurgerOpen] = useState(false)
-   
+  const { token } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.profile)
+  const { totalItems } = useSelector((state) => state.cart)
+  const location = useLocation()
+  const [hamburgerOpen, setHamBurgerOpen] = useState(false)
+  const [subLinks, setSubLinks] = useState([])
+  const [scrolled, setScrolled] = useState(false)
+  const [isDark, setIsDark] = useState(
+    document.documentElement.classList.contains('dark') ||
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  )
 
-     const [subLinks, setSsubLinks]  = useState([]);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-    const fetchSublinks = async() => {
-        try{
-            const result = await apiConnector("GET", categories.CATEGORIES_API);
-             //console.log("Printing Sublinks result:" , result);
-            setSsubLinks(result.data.data);
-        }
-        catch(error) {
-            console.log("Could not fetch the category list");
-        }
+  const fetchSublinks = async () => {
+    try {
+      const result = await apiConnector("GET", categories.CATEGORIES_API)
+      setSubLinks(result.data.data)
+    } catch (error) {
+      console.log("Could not fetch the category list")
     }
+  }
 
+  useEffect(() => { fetchSublinks() }, [])
 
-    useEffect( () => {
-        fetchSublinks();
-
-    },[] )
-
-
-
-    const matchRoute = (route) => {
-        return matchPath({path:route}, location.pathname);
+  const toggleTheme = () => {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark')
+      localStorage.theme = 'light'
+      setIsDark(false)
+    } else {
+      document.documentElement.classList.add('dark')
+      localStorage.theme = 'dark'
+      setIsDark(true)
     }
+  }
+
+  const matchRoute = (route) => matchPath({ path: route }, location.pathname)
+
+  // Is the current page the homepage?
+  const isHome = location.pathname === '/'
 
   return (
-    <div className='flex relative h-16 items-center justify-center border-b-[1px] border-b-richblack-700'>
-      <div className='  w-11/12  flex flex-row items-center justify-between lg:max-w-maxContent'>
-        {/* Image */}
-      <Link to="/">
-        
-        <div className=" text-4xl text-white  font-bold">Vidya+</div>
-        <img src={logo} width={120} height={30} className=" absolute top-6 left-39 saturate-150 z-10" alt='x' loading='lazy'/>
-      </Link>
+    <>
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+          ${scrolled || !isHome
+            ? 'bg-white/98 dark:bg-slate-900/98 backdrop-blur-xl shadow-md border-b border-slate-200 dark:border-slate-800'
+            : 'bg-transparent border-b border-transparent'
+          }
+        `}
+      >
+        <div className='max-w-7xl mx-auto px-4 md:px-8 flex h-28 items-center justify-between gap-6'>
 
-      <div className=" flex ml-auto  md:hidden" onClick={()=>setHamBurgerOpen(true)} >{!hamburgerOpen && <RxHamburgerMenu className=" text-2xl text-white "/>}</div>
+          {/* Logo (Composite Text + Feather layered) */}
+          <Link to="/" className="relative flex items-center justify-center flex-shrink-0 group px-2 py-1 mt-1">
+            {/* The Text */}
+            <span className="text-3xl md:text-[34px] font-black tracking-tighter text-slate-900 dark:text-white transition-colors duration-300 relative z-10 leading-none">
+              Vidya+
+            </span>
+            {/* The Feather overlapping exactly like the reference image */}
+            <img
+              src={logo}
+              alt="Feather Logo"
+              loading="lazy"
+              className="absolute left-1 top-[14px] w-full h-auto object-contain z-20 opacity-95 group-hover:opacity-100 group-hover:scale-105 drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] dark:drop-shadow-none transition-all duration-300 pointer-events-none"
+            />
+          </Link>
 
-      {/* Nav Links */}
-      <nav>
-        <ul className=' hidden md:flex gap-x-6 text-richblack-25 text-lg'>
-        {
-            NavbarLinks.map( (link, index) => (
-                 <li key={index}>
-                    {
-                                link.title === "Catalog" ? (
-                                   
-                                    <div className='relative flex items-center gap-2 group'>
-                                        <p>{link.title}</p>
-                                        <IoIosArrowDropdownCircle/>
-        
-                                        <div className='invisible z-20 absolute left-[50%]
-                                            translate-x-[-50%] translate-y-[20%]
-                                         top-[50%]
-                                        flex flex-col rounded-md  bg-richblack-5 p-4 text-richblack-900
-                                        opacity-0 transition-all duration-200 group-hover:visible
-                                        group-hover:opacity-100 lg:w-[300px]'>
-        
-                                        <div className='absolute left-[50%] top-0
-                                        translate-x-[80%]
-                                        translate-y-[-45%] h-6 w-6 rotate-45 rounded  bg-richblack-5'>
-                                        </div>
-        
-                                        {
-                                            subLinks.length ? (
-                                                    subLinks.map( (subLink, index) => (
-                                                        <Link to={`/catalog/${subLink.name
-                                                                    .split(" ")
-                                                                    .join("-")
-                                                                    .toLowerCase()}`} key={index}>
-                                                            <p>{subLink.name}</p>
-                                                        </Link>
-                                                    ) )
-                                            ) : (<div></div>)
-                                        }
-        
-                                        </div>
-        
-        
-                                    </div>
-        
-                                )  :
-                        
-                        
-                        
-                         (
-                            <Link to={link?.path}>
-                                <p className={`${ matchRoute(link?.path) ? " text-blue-1000" : "text-richblack-25"}`}>
-                                    {link.title}
-                                </p>
-                                
-                            </Link>
-                        )
-                    }
-                </li>
-             ) )
-        }
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {NavbarLinks.map((link, index) => (
+              <div key={index} className="relative group">
+                {link.title === "Catalog" ? (
+                  <div className="flex items-center gap-1.5 px-4 py-2 rounded-lg cursor-pointer text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span>{link.title}</span>
+                    <IoChevronDown className="text-xs transition-transform group-hover:rotate-180" />
 
-        </ul>
-      </nav>
+                    {/* Dropdown */}
+                    <div className='invisible opacity-0 absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-2 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 translate-y-1'>
+                      {/* Arrow */}
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-white dark:bg-slate-900 border-t border-l border-slate-200 dark:border-slate-700 rounded-tl-sm"></div>
+                      {subLinks.length ? (
+                        subLinks.map((subLink, i) => (
+                          <Link
+                            key={i}
+                            to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`}
+                            className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                          >
+                            {subLink.name}
+                          </Link>
+                        ))
+                      ) : (
+                        <p className="text-sm text-slate-400 px-4 py-2">Loading...</p>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    to={link?.path}
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors
+                      ${matchRoute(link?.path)
+                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20'
+                        : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      }`}
+                  >
+                    {link.title}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </nav>
 
+          {/* Right Side Actions */}
+          <div className='hidden md:flex items-center gap-3'>
 
-        {/* Login/SignUp/Dashboard */}
-        <div className='hidden md:flex  gap-x-4 items-center '>
+            {/* Theme Toggle */}
             <button
-                onClick={() => {
-                  if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.theme = 'light';
-                  } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.theme = 'dark';
-                  }
-                }}
-                className='text-2xl text-richblack-100 hover:text-white dark:text-slate-300 dark:hover:text-white transition-all'
-                title="Toggle Theme"
+              onClick={toggleTheme}
+              title="Toggle Theme"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
             >
-                🌓
+              {isDark ? <FaSun className="text-yellow-400 text-base" /> : <FaMoon className="text-indigo-500 text-base" />}
             </button>
 
-            {
-                user && user?.accountType !== "Instructor" && (
-                    <Link to="/dashboard/cart" className='relative text-richblue-300'>
-                        <AiOutlineShoppingCart />
-                        {
-                            totalItems > 0 && (
-                                <span>
-                                    {totalItems}
-                                </span>
-                            )
-                        }
-                    </Link>
-                )
-            }
-            {
-                token === null && (
-                    <Link to="/login">
-                        <button className='border border-richblack-700  px-[12px] py-[8px] text-richblack-100 rounded-md'>
-                            Log in
-                        </button>
-                    </Link>
-                )
-            }
-            {
-                token === null && (
-                    <Link to="/signup">
-                        <button  className='border border-richblack-700  px-[12px] py-[8px] text-richblack-100 rounded-md'>
-                            Sign Up
-                        </button>
-                    </Link>
-                )
-            }
-            {
-                token !== null && <ProfileDropDown />
-            }
-            
+            {/* Cart */}
+            {user && user?.accountType !== "Instructor" && (
+              <Link to="/dashboard/cart" className="relative w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                <AiOutlineShoppingCart className="text-lg" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-indigo-600 text-white text-[9px] font-black flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+            )}
+
+            {/* Login / Signup / Profile */}
+            {token === null ? (
+              <>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 rounded-xl text-sm font-bold text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all"
+                >
+                  Log In
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-4 py-2 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-md shadow-indigo-500/20 hover:-translate-y-0.5 hover:shadow-indigo-500/40 transition-all"
+                >
+                  Sign Up Free
+                </Link>
+              </>
+            ) : (
+              <ProfileDropDown />
+            )}
+          </div>
+
+          {/* Mobile Hamburger */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-300 bg-slate-100/80 dark:bg-slate-800 transition-all"
+            >
+              {isDark ? <FaSun className="text-yellow-400 text-base" /> : <FaMoon className="text-indigo-500 text-base" />}
+            </button>
+            <button
+              onClick={() => setHamBurgerOpen(true)}
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-800 transition-all"
+            >
+              <HiMenuAlt3 className="text-xl" />
+            </button>
+          </div>
+
         </div>
-
-
       </div>
-      <HamburgerDrawer isOpen={hamburgerOpen} setIsOpen={setHamBurgerOpen}/>
-    </div>
+
+      {/* Spacer so content doesn't hide under fixed navbar */}
+      <div className="h-28" />
+
+      <HamburgerDrawer isOpen={hamburgerOpen} setIsOpen={setHamBurgerOpen} />
+    </>
   )
 }
 

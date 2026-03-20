@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaArrowRight, FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaStar, FaTrophy, FaGraduationCap, FaPlay, FaCheckCircle } from 'react-icons/fa'
+import { FaArrowRight, FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaStar, FaTrophy, FaGraduationCap, FaPlay, FaCheckCircle, FaRocket, FaChartLine, FaUserCheck, FaMedal } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import HighlightText from "../components/core/HomePage/HighlightText"
 import CTAButton from '../components/core/HomePage/Button'
@@ -17,10 +17,10 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="bg-white dark:bg-slate-950 w-full h-auto flex flex-col overflow-hidden transition-colors duration-300">
+    <div className="bg-white dark:bg-slate-900 w-full h-auto flex flex-col overflow-hidden transition-colors duration-300">
       
       {/* HERO SECTION - MODERN & WOW */}
-      <div className='relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-slate-900 to-slate-950'>
+      <div className='relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50/50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-500'>
         
         {/* Animated background elements */}
         <div className="absolute inset-0">
@@ -45,12 +45,12 @@ export default function HomePage() {
             </div>
 
             {/* Main heading */}
-            <h1 className='text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight mb-6'>
+            <h1 className='text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white leading-tight tracking-tight mb-6 transition-colors duration-300'>
               Your Path to <HighlightText text={"Excellence"} /> Starts Here
             </h1>
 
             {/* Subheading */}
-            <p className='text-lg md:text-xl text-gray-300 font-medium max-w-2xl leading-relaxed mb-10'>
+            <p className='text-lg md:text-xl text-slate-600 dark:text-gray-300 font-medium max-w-2xl leading-relaxed mb-10 transition-colors duration-300'>
               Transform your academic journey with India's premier online coaching. Expert faculty, personalized learning, and guaranteed results.
             </p>
 
@@ -63,39 +63,39 @@ export default function HomePage() {
                 </div>
               </CTAButton>
               <CTAButton active={false} linkto={"/catalog/courses"}>
-                <span className="text-white">Explore Courses</span>
+                <span className="text-slate-900 dark:text-white transition-colors duration-300">Explore Courses</span>
               </CTAButton>
             </div>
 
             {/* Social proof */}
             <div className="grid grid-cols-3 gap-6 md:gap-12 w-full max-w-2xl">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-black text-cyan-400 mb-2">50K+</div>
-                <div className="text-sm text-gray-400">Active Students</div>
+                <div className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">50K+</div>
+                <div className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors duration-300">Active Students</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-black text-cyan-400 mb-2">4.9/5</div>
-                <div className="text-sm text-gray-400">Parent Rating</div>
+                <div className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">4.9/5</div>
+                <div className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors duration-300">Parent Rating</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-black text-cyan-400 mb-2">99%</div>
-                <div className="text-sm text-gray-400">Success Rate</div>
+                <div className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">99%</div>
+                <div className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors duration-300">Success Rate</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="flex flex-col items-center gap-2 animate-bounce">
-            <span className="text-xs text-cyan-400 font-semibold">Scroll to explore</span>
-            <div className="w-0.5 h-6 bg-gradient-to-b from-cyan-400 to-transparent"></div>
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 hidden md:block">
+          <div className="flex flex-col items-center gap-2 animate-bounce opacity-70 hover:opacity-100 transition-opacity">
+            <span className="text-xs text-indigo-500 dark:text-cyan-400 font-bold uppercase tracking-wider">Scroll</span>
+            <div className="w-0.5 h-6 bg-gradient-to-b from-indigo-500 dark:from-cyan-400 to-transparent rounded-full"></div>
           </div>
         </div>
       </div>
 
       {/* FLOATING CATEGORIES */}
-      <div className="w-full py-16 bg-white dark:bg-slate-950 relative z-20">
+      <div className="w-full py-16 bg-white dark:bg-slate-900 relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Choose Your Path</h2>
@@ -120,7 +120,7 @@ export default function HomePage() {
       </div>
 
       {/* STATS & ACHIEVEMENTS SECTION */}
-      <div className="w-full py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+      <div className="w-full py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
@@ -185,7 +185,7 @@ export default function HomePage() {
       </div>
 
       {/* FEATURES BENTO GRID */}
-      <div className='w-full py-20 bg-white dark:bg-slate-950'>
+      <div className='w-full py-20 bg-white dark:bg-slate-900'>
         <div className='max-w-7xl mx-auto px-4 md:px-8'>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
@@ -253,80 +253,78 @@ export default function HomePage() {
         <ExploreMore/>
       </div>
 
-      {/* FACULTY SECTION */}
-      <div className='w-full bg-gradient-to-b from-white to-slate-50 dark:from-slate-950 dark:to-slate-900 py-20 border-t border-slate-200 dark:border-slate-800'>
-        <div className='max-w-7xl mx-auto px-4 md:px-8'>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
-              Learn from <HighlightText text={"Top Educators"} />
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Ex-IITians, NITians, and subject matter experts with proven track records
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Faculty 1 */}
-            <div className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group">
-              <div className="h-32 bg-gradient-to-r from-blue-600 to-blue-400 relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
-              <div className="relative px-6 pb-6">
-                <div className="w-32 h-32 rounded-2xl mx-auto -mt-16 border-4 border-white dark:border-slate-800 bg-slate-300 overflow-hidden shadow-lg mb-4">
-                  <img src="https://api.dicebear.com/5.x/initials/svg?seed=Rahul+Kapoor&backgroundColor=1e88e5" alt="Teacher" className="w-full h-full" />
-                </div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white text-center mb-1">Rahul Kapoor</h3>
-                <p className="text-blue-600 dark:text-blue-400 font-bold text-sm text-center mb-3">Physics Expert | 15+ Yrs</p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm text-center">Senior board examiner with dozens of state toppers mentored.</p>
-              </div>
+      {/* HOW IT WORKS — STUDENT JOURNEY */}
+      <div className='w-full py-24 bg-slate-800 dark:bg-slate-900 relative overflow-hidden'>
+        {/* Radial glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px]"></div>
+        </div>
+          <div className='relative z-10 max-w-7xl mx-auto px-4 md:px-8'>
+            <div className="text-center mb-16">
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-5 uppercase tracking-widest">Your Journey</span>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                4 Steps to <HighlightText text={"Academic Excellence"} />
+              </h2>
+              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+                A proven, structured roadmap designed around every student's unique learning journey.
+              </p>
             </div>
 
-            {/* Faculty 2 - Featured */}
-            <div className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 transform md:-translate-y-4">
-              <div className="absolute top-6 right-6 z-20">
-                <div className="flex items-center gap-1 bg-yellow-400 text-slate-900 px-4 py-2 rounded-full font-black text-sm shadow-lg">
-                  <FaStar /> 5.0
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+              <div className="hidden lg:block absolute top-14 left-[15%] right-[15%] h-px bg-gradient-to-r from-blue-500/30 via-indigo-500/50 to-green-500/30 z-0"></div>
+
+            {[
+              {
+                step: '01', icon: <FaUserCheck className="text-3xl" />,
+                title: 'Enroll & Assess',
+                desc: 'Sign up and take a free diagnostic test. We pinpoint your strengths and build a personalised study plan.',
+                from: 'from-blue-500', to: 'to-cyan-400', glow: 'shadow-blue-500/30',
+              },
+              {
+                step: '02', icon: <FaVideo className="text-3xl" />,
+                title: 'Live Expert Classes',
+                desc: 'Join interactive daily sessions by top educators. Ask doubts live, participate in polls, and clarify instantly.',
+                from: 'from-indigo-500', to: 'to-violet-500', glow: 'shadow-indigo-500/30',
+              },
+              {
+                step: '03', icon: <FaChartLine className="text-3xl" />,
+                title: 'Practice & Track',
+                desc: 'Attempt chapter-wise tests, full mock exams, and track performance with detailed AI-driven analytics.',
+                from: 'from-orange-500', to: 'to-amber-400', glow: 'shadow-orange-500/30',
+              },
+              {
+                step: '04', icon: <FaMedal className="text-3xl" />,
+                title: 'Achieve & Certify',
+                desc: 'Crack board exams, earn top percentile scores, collect your certificate, and launch into a bright future.',
+                from: 'from-green-500', to: 'to-emerald-400', glow: 'shadow-green-500/30',
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center relative z-10 group">
+                <div className={`w-28 h-28 rounded-full bg-gradient-to-br ${item.from} ${item.to} flex items-center justify-center text-white shadow-2xl ${item.glow} mb-6 relative transition-transform group-hover:-translate-y-2 duration-300`}>
+                  {item.icon}
+                  <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-slate-900 text-white text-xs font-black border-2 border-slate-700 flex items-center justify-center shadow-lg">
+                    {item.step}
+                  </span>
+                </div>
+                <div className="w-full rounded-2xl bg-slate-800/60 border border-slate-700/60 p-6 backdrop-blur-sm group-hover:border-slate-500 transition-all duration-300">
+                  <h3 className="text-lg font-extrabold text-white mb-3">{item.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
-              <div className="h-40 bg-gradient-to-r from-yellow-500 to-amber-500 relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/10"></div>
-              </div>
-              <div className="relative px-6 pb-6">
-                <div className="w-36 h-36 rounded-2xl mx-auto -mt-18 border-4 border-white dark:border-slate-800 bg-slate-300 overflow-hidden shadow-xl mb-4">
-                  <img src="https://api.dicebear.com/5.x/initials/svg?seed=Aisha+Khan&backgroundColor=f4511e" alt="Teacher" className="w-full h-full" />
-                </div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white text-center mb-1">Dr. Aisha Khan</h3>
-                <p className="text-amber-600 dark:text-amber-400 font-bold text-sm text-center mb-3">Biology HOD | Ph.D. Scholar</p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm text-center">Renowned for building deep concept foundations and exceptional student outcomes.</p>
-              </div>
+            ))}
             </div>
 
-            {/* Faculty 3 */}
-            <div className="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group">
-              <div className="h-32 bg-gradient-to-r from-green-600 to-teal-400 relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
-              <div className="relative px-6 pb-6">
-                <div className="w-32 h-32 rounded-2xl mx-auto -mt-16 border-4 border-white dark:border-slate-800 bg-slate-300 overflow-hidden shadow-lg mb-4">
-                  <img src="https://api.dicebear.com/5.x/initials/svg?seed=Vikram+Singh&backgroundColor=43a047" alt="Teacher" className="w-full h-full" />
-                </div>
-                <h3 className="text-xl font-black text-slate-900 dark:text-white text-center mb-1">Vikram Singh</h3>
-                <p className="text-green-600 dark:text-green-400 font-bold text-sm text-center mb-3">Math Wizard | M.Sc Gold Medalist</p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm text-center">Makes complex theorems simple with innovative, engaging teaching methods.</p>
-              </div>
+            <div className="text-center mt-14">
+              <Link to="/signup" className="inline-flex items-center gap-3 px-9 py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-extrabold rounded-full shadow-xl shadow-indigo-500/30 hover:-translate-y-1 hover:shadow-indigo-500/50 transition-all duration-300 text-base">
+                <FaRocket /> Begin Your Journey — It's Free
+              </Link>
             </div>
-          </div>
 
-          <div className="text-center mt-12">
-            <CTAButton active={false} linkto="/catalog/courses">
-              See All Faculty
-            </CTAButton>
           </div>
         </div>
-      </div>
 
       {/* Contact form section */}
-      <div className="w-full pt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+      <div className="w-full pt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
         <VismeForm/>
       </div>
 

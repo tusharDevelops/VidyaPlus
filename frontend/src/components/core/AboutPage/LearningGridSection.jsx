@@ -54,21 +54,21 @@ export default function LearningGridSection() {
             return(
                 <div
             key={i}
-            className={`${i === 0 && "xl:col-span-2 xl:h-[294px]"}  ${
+            className={`${i === 0 && "xl:col-span-2 xl:h-[320px]"} ${
               card.order % 2 === 1
-                ? "bg-richblack-700 h-[294px]"
+                ? "bg-slate-50 dark:bg-slate-800/60 h-[320px] border border-slate-200 dark:border-slate-700/50"
                 : card.order % 2 === 0
-                ? "bg-richblack-800 h-[294px]"
+                ? "bg-white dark:bg-slate-900 h-[320px] border border-slate-200 dark:border-slate-700/50"
                 : "bg-transparent"
-            } ${card.order === 3 && "xl:col-start-2"}`}
+            } ${card.order === 3 && "xl:col-start-2"} flex flex-col justify-center transition-all duration-300 hover:shadow-xl hover:z-10`}
           >
             {card.order < 0 ? (
-              <div className="xl:w-[90%] flex flex-col gap-3 pb-10 xl:pb-0">
-                <div className="text-4xl font-semibold ">
+              <div className="xl:w-[90%] flex flex-col gap-4 pb-10 xl:pb-0 px-8">
+                <div className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">
                   {card.heading}
                   <HighlightText text={card.highlightText} />
                 </div>
-                <p className="text-richblack-300 font-medium">
+                <p className="text-slate-600 dark:text-slate-400 font-medium text-lg">
                   {card.description}
                 </p>
 
@@ -79,10 +79,10 @@ export default function LearningGridSection() {
                 </div>
               </div>
             ) : (
-              <div className="p-8 flex flex-col gap-8">
-                <h1 className="text-richblack-5 text-lg">{card.heading}</h1>
+              <div className="p-10 flex flex-col gap-6">
+                <h1 className="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">{card.heading}</h1>
 
-                <p className="text-richblack-300 font-medium">
+                <p className="text-slate-600 dark:text-slate-400 font-medium">
                   {card.description}
                 </p>
               </div>

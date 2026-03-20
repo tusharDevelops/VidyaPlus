@@ -138,22 +138,28 @@ html, body {
 
 
 .lable-style {
-   @apply text-[14px] text-richblack-5;
- }
- .form-style {
-   @apply rounded-lg bg-richblack-700 p-3 text-[16px] leading-[24px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
- }
+  @apply text-[14px] font-medium text-slate-700 dark:text-slate-200;
+}
+.form-style {
+  @apply rounded-xl bg-white dark:bg-slate-800/80 p-3 text-[16px] leading-[24px] text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all duration-200;
+}
 
- .yellowButton {
-  @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblack-900;
+.yellowButton {
+  background-color: #4f46e5 !important;
+  color: white !important;
+  @apply cursor-pointer rounded-xl px-[24px] py-[10px] font-bold shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-200 active:scale-95;
+}
+
+.yellowButton:hover {
+  background-color: #6366f1 !important;
 }
 
 .blackButton {
-  @apply cursor-pointer rounded-md bg-richblack-800 px-[20px] py-[8px] font-semibold text-richblack-5;
+  @apply cursor-pointer rounded-xl bg-slate-200 dark:bg-slate-800 px-[24px] py-[10px] font-bold text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all duration-200 active:scale-95;
 }
 
 .section_heading {
-  @apply text-2xl font-bold text-richblack-5 lg:text-4xl;
+  @apply text-2xl font-bold text-slate-900 dark:text-slate-100 lg:text-4xl;
 }
 
 /* For conditional coloring of icons in dashboard sidebar */

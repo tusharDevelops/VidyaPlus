@@ -54,7 +54,7 @@ export default function ContactUsForm() {
       <div className='flex flex-col gap-5 lg:flex-row'>
         {/* FIRST_NAME_DIV */}
         <div className='flex flex-col gap-2 lg:w-[48%]'>
-            <label className='label-style' htmlFor='firstname'>First Name</label>
+            <label className='lable-style mb-1 block' htmlFor='firstname'>First Name</label>
             <input
                 name='firstname'
                 id='firstname'
@@ -62,11 +62,11 @@ export default function ContactUsForm() {
                 className='form-style'
                 {...register("firstname",{required:true})}
             />
-            {errors.firstname && (<span className='-mt-1 text-[12px] text-red-600	'>Please enter name</span>)}
+            {errors.firstname && (<span className='mt-1 text-[12px] text-rose-500 font-medium'>Please enter your first name</span>)}
         </div>
          {/* LAST_NAME_DIV */}
          <div className='flex flex-col gap-2 lg:w-[48%]'>
-            <label className='label-style'>Last Name</label>
+            <label className='lable-style mb-1 block' htmlFor='lastname'>Last Name</label>
             <input
                 className='form-style'
                 id='lastname'
@@ -79,7 +79,7 @@ export default function ContactUsForm() {
 
        {/* EMAIL_ADDRESS_DIV */}
       <div className='flex flex-col gap-2'>
-            <label htmlFor='email' className='label-style'>Email Address</label>
+            <label htmlFor='email' className='lable-style mb-1 block'>Email Address</label>
             <input
                 id='email'
                 name='email'
@@ -88,7 +88,7 @@ export default function ContactUsForm() {
                 {...register("email", {required: true} )}
             />
                {errors.email && (
-                <span className="-mt-1 text-[12px] text-red-600	">
+                <span className="mt-1 text-[12px] text-rose-500 font-medium">
                     Please enter your Email address.
                 </span>
                 )}
@@ -100,20 +100,18 @@ export default function ContactUsForm() {
         {/* COUNTRY_CODE_&_PHONE_NUMBER_INPUT */}
         <div className='flex gap-5'>
             {/* COUNTRY_CODE */}
-            <div className='flex w-[81px] flex-col gap-2'>
+            <div className='flex w-[100px] flex-col gap-2'>
             <select 
-              type="text"
-              name="firstname"
-              id="firstname"
-              placeholder="Enter first name"
-              className='form-style'
+              name="countrycode"
+              id="countrycode"
+              className='form-style appearance-none cursor-pointer'
               {...register("countrycode",{required:true})}
               >
                 {
                     CountryCode.map((ele,i)=>{
                       return(
-                        <option key={i} value={ele.code} className=' bg-richblack-900'>
-                        {ele.code} -{ele.country}
+                        <option key={i} value={ele.code} className='bg-white dark:bg-slate-900'>
+                        {ele.code} - {ele.country}
                         </option>
                       )
                     })
@@ -123,25 +121,25 @@ export default function ContactUsForm() {
             </div>
 
             {/* PHONE_NUMBER */}
-            <div className='flex w-[calc(100%-90px)] flex-col gap-2'>
+            <div className='flex w-[calc(100%-120px)] flex-col gap-2'>
                 <input
                   type='number'
                   id='phonenumber'
                   name='phonenumber'
-                  placeholder='123456789'
+                  placeholder='1234567890'
                   className='form-style'
                   {...register("phoneNo", {
                     required:{
                       value:true,
-                      message: "please enter the number"
+                      message: "Please enter your phone number"
                   },
-                  maxLength:{value: 12,message:"invalid number"},
-                  minLength:{value: 10, message: "invalid number"}
+                  maxLength:{value: 12,message:"Invalid number"},
+                  minLength:{value: 10, message: "Invalid number"}
                   })}
                 />
             </div>
         </div>
-        {errors.phoneNo && ( <span className="-mt-1 text-[12px] text-red-600	">
+        {errors.phoneNo && ( <span className="mt-1 text-[12px] text-rose-500 font-medium">
             {errors.phoneNo.message}
           </span>
         )}
@@ -149,18 +147,19 @@ export default function ContactUsForm() {
 
       {/* MESSAGE_DIV */}
       <div className='flex flex-col gap-2'>
-        <label htmlFor='message'>Message</label>
+        <label htmlFor='message' className="lable-style mb-1 block">Message</label>
         <textarea 
         name='message'
         id='message'
         className='form-style'
+        placeholder="How can we help you?"
         cols="30"
         rows="7"
         {...register("message", { required: true })}
         />
             {errors.message && (
-          <span className="-mt-1 text-[12px] text-red-600	">
-            Please enter your Message.
+          <span className="mt-1 text-[12px] text-rose-500 font-medium">
+            Please enter your message.
           </span>
         )}
       </div>
@@ -169,14 +168,10 @@ export default function ContactUsForm() {
       <button
       disabled={loading}
       type='submit'
-      className={`rounded-md bg-blue-1000 px-6 py-3 text-center text-[13px] font-bold
-       text-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.18)] 
-         ${
-           !loading &&
-           "transition-all duration-200 hover:scale-95 hover:shadow-none"
-         } 
-          disabled:bg-richblack-500 sm:text-[16px] `}
-      >Send Message</button>
+      className="yellowButton w-full mt-2"
+      >
+        {loading ? "Sending Message..." : "Send Message"}
+      </button>
         
       
 

@@ -8,7 +8,6 @@ import { BigPlayButton, Player } from "video-react"
 
  import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI"
  import { updateCompletedLectures } from "../../../redux/slices/viewCourseSlice"
-import IconBtn from "../../common/IconBtn"
 
 export default function VideoDetails() {
 

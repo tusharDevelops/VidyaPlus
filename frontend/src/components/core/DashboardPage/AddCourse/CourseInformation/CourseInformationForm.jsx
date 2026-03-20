@@ -4,7 +4,9 @@ import { useDispatch,useSelector } from 'react-redux';
 import { HiOutlineCurrencyRupee } from "react-icons/hi" 
 import {  addCourseDetails,
   editCourseDetails,
-  fetchCourseCategories,} from '../../../../../services/operations/courseDetailsAPI'
+  fetchCourseCategories,
+  addExamNote,
+} from '../../../../../services/operations/courseDetailsAPI'
 import toast from 'react-hot-toast';
 import ChipInput from './ChipInput';
 import Upload from '../Upload'
@@ -138,6 +140,13 @@ export default function CourseInformationForm() {
       const result = await editCourseDetails(formData, token)
       setLoading(false)
       if (result) {
+        if (data.examNote) {
+          const noteData = new FormData()
+          noteData.append("courseId", course._id)
+          noteData.append("title", "Important Exam Note") // Default title
+          noteData.append("pdf", data.examNote)
+          await addExamNote(noteData, token)
+        }
         dispatch(setStep(2))
         dispatch(setCourse(result))
       }
@@ -280,6 +289,22 @@ export default function CourseInformationForm() {
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
       />
+
+      {/* Exam Note Upload (Instructor only, after course creation usually, but for now in step 1 edit) */}
+      {editCourse && (
+        <div className="flex flex-col space-y-2">
+          <label className="text-sm text-richblack-5">Exam Notes (PDF)</label>
+          <Upload
+            name="examNote"
+            label="Add Important Exam Note"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            pdf={true}
+          />
+          <p className="text-xs text-richblack-400">Note: Exam notes added here will be immediately uploaded to this course.</p>
+        </div>
+      )}
 
       {/* Benefits of the course */}
       <div className="flex flex-col space-y-2">

@@ -12,6 +12,16 @@ const {
     
   } = require("../controllers/CourseProgress")
 
+// Course Notes Controllers
+const {
+  addExamNote,
+  deleteExamNote,
+  addSubSectionNote,
+  deleteSubSectionNote,
+  getExamNotes,
+  getSubSectionNotes,
+} = require("../controllers/CourseNotes")
+
 //& Categories Controllers Import
 const {showAllCategories,createCategory,categoryPageDetails, } = require("../controllers/Category");
 
@@ -25,7 +35,7 @@ const {createSubSection,updateSubSection, deleteSubSection,} = require("../contr
  const {createRating,getAverageRating,getAllRating,} = require("../controllers/RatingAndReview");
   
 //& Importing Middlewares
-const { authZ, isInstructor, isStudent, isAdmin } = require("../middlewares/Authorization");
+const { authZ, isInstructor, isStudent, hasPermission } = require("../middlewares/Authorization");
 
 
 // ********************************************************************************************************
@@ -62,11 +72,20 @@ router.post("/getFullCourseDetails", authZ, getFullCourseDetails)
 router.post("/updateCourseProgress", authZ, isStudent, updateCourseProgress)
 
 // ********************************************************************************************************
-//                                      Category routes (Only by Admin)
+//                                      In-course Notes (Enrolled-only access)
 // ********************************************************************************************************
-// Category can Only be Created by Admin
-// TODO: Put IsAdmin Middleware here
-router.post("/createCategory", authZ, isAdmin, createCategory)
+router.post("/addExamNote", authZ, isInstructor, addExamNote)
+router.post("/deleteExamNote", authZ, isInstructor, deleteExamNote)
+router.post("/addSubSectionNote", authZ, isInstructor, addSubSectionNote)
+router.post("/deleteSubSectionNote", authZ, isInstructor, deleteSubSectionNote)
+router.post("/getExamNotes", authZ, isStudent, getExamNotes)
+router.post("/getSubSectionNotes", authZ, isStudent, getSubSectionNotes)
+
+// ********************************************************************************************************
+//                                      Category routes (Elevated Instructor)
+// ********************************************************************************************************
+// Category can only be created by an Instructor with permissions
+router.post("/createCategory", authZ, isInstructor, createCategory)
 router.get("/showAllCategories", showAllCategories)
 router.post("/getCategoryPageDetails", categoryPageDetails)
 

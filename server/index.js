@@ -9,7 +9,7 @@ const paymentRoutes = require("./routes/Payments")
 const profileRoutes = require("./routes/Profile")
 const userRoutes = require("./routes/User")
 const contactUsRoutes = require("./routes/Contact")
-const notesRoutes = require("./routes/Notes")
+const certificateRoutes = require("./routes/Certificate")
 
 //^importing configs
 
@@ -45,7 +45,7 @@ app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/reach", contactUsRoutes);
-app.use("/api/v1/notes", notesRoutes);
+app.use("/api/v1/certificate", certificateRoutes);
 
 //default route for this port
 

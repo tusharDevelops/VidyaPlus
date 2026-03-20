@@ -15,6 +15,10 @@ export const NavbarLinks = [
     title: "Contact Us",
     path: "/contact",
   },
+  {
+    title: "Verify Certificate",
+    path: "/verify-certificate",
+  },
 ];
 
 
@@ -24,8 +28,12 @@ export const NavbarLinksMob = [
     path: "/",
   },
   {
-    title: "Notes",
-     path: '/notes',
+    title: "Catalog",
+    path: "/catalog/all",
+  },
+  {
+    title: "Verify Certificate",
+    path: "/verify-certificate",
   },
   {
     title: "About Us",

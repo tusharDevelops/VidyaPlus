@@ -16,6 +16,8 @@ import {
 } from "../../../../../redux/slices/courseSlice"
 import IconBtn from "../../../../common/IconBtn"
 import NestedView from "./NestedView"
+import ExamNoteModal from "./ExamNoteModal"
+import { RxCross2 } from "react-icons/rx"
 
 export default function CourseBuilderForm() {
 
@@ -31,6 +33,7 @@ export default function CourseBuilderForm() {
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
   const [editSectionName, setEditSectionName] = useState(null)
+  const [examNoteModalData, setExamNoteModalData] = useState(null)
   const dispatch = useDispatch()
 
 
@@ -151,6 +154,47 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
         {/* NestedView (very imp) */}
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName}/>
 
+      {/* Exam Notes Section */}
+      <div className="space-y-4 rounded-md border border-richblack-600 bg-richblack-700 p-6">
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-semibold text-richblack-5">Course Exam Notes</p>
+          <IconBtn
+            text="Add Exam Note"
+            onclick={() => setExamNoteModalData(true)}
+            outline={true}
+          >
+            <IoAddCircleOutline size={20} className="text-yellow-50" />
+          </IconBtn>
+        </div>
+        
+        {course?.examNotes?.length > 0 ? (
+          <div className="flex flex-col gap-3">
+            {course.examNotes.map((note) => (
+              <div key={note._id} className="flex items-center justify-between border-b border-richblack-600 pb-2">
+                <a href={note.url} target="_blank" rel="noreferrer" className="text-sm font-medium text-richblack-50 hover:text-yellow-50 hover:underline flex items-center gap-2">
+                  <span>📄</span> {note.title}
+                </a>
+                <button
+                  type="button"
+                  title="Delete Exam Note"
+                  onClick={async () => {
+                    setLoading(true)
+                    const { deleteExamNote } = await import("../../../../../services/operations/courseDetailsAPI")
+                    const result = await deleteExamNote({ courseId: course._id, noteId: note._id }, token)
+                    if (result) dispatch(setCourse(result))
+                    setLoading(false)
+                  }}
+                  className="text-richblack-300 hover:text-pink-200 transition-all hover:scale-110"
+                >
+                   <RxCross2 size={20} />
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-richblack-300">No exam notes added yet</p>
+        )}
+      </div>
 
       {/* Next Prev Button */}
       <div className="flex justify-end gap-x-3">
@@ -165,6 +209,10 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
         </IconBtn>
       </div>
 
+      {/* Exam Note Modal */}
+      {examNoteModalData && (
+        <ExamNoteModal setModalData={setExamNoteModalData} />
+      )}
     </div>
   )
 }

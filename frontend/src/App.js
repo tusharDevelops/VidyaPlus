@@ -27,12 +27,27 @@ import CourseDetailsPage from './pages/CourseDetailsPage'
 import ViewCourse from './pages/ViewCoursePage'
 import VideoDetails from './components/core/viewcourse/VideoDetails'
 import Instructor from "./components/core/DashboardPage/Instructor";
-import Notes from "./pages/Notes";
-import MyNotes from "./components/core/DashboardPage/NotesSec";
+import Certificates from "./components/core/DashboardPage/Certificates";
+import VerifyCertificatePage from "./pages/VerifyCertificatePage";
+import AddCategory from "./components/core/DashboardPage/AddCategory";
+import CertificateViewPage from "./pages/CertificateViewPage";
+import { useEffect } from "react";
+
 function App() {
   const { user } = useSelector((state) => state.profile)
+
+  useEffect(() => {
+    // On load or when changing themes, best to add inline in `head` to avoid FOUC
+    // But this standard approach works for React
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
+
   return (
-  <div className="w-screen min-h-screen bg-richblack-900 font-inter">
+  <div className="w-screen min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-inter transition-colors duration-300">
 
   <Navbar/>
     
@@ -52,7 +67,8 @@ function App() {
       <Route path="/update-password/:id" element={<OpenRoute><UpdatePassword/></OpenRoute>}/> {/* Update Password Routescope of security */}
       <Route path="/about" element={<OpenRoute><AboutPage/></OpenRoute>}/> {/* About page route*/}
       <Route path="/contact" element={<OpenRoute><ContactUsPage/></OpenRoute>}/> {/* contactus page route*/}
-      <Route path="/notes" element={<OpenRoute><Notes/></OpenRoute>}/>
+      <Route path="/verify-certificate" element={<OpenRoute><VerifyCertificatePage/></OpenRoute>} />
+      <Route path="/certificate/:certificateId" element={<CertificateViewPage/>} />
       
 
       {/* ****************** YOU CAN GO THESE ROUTE ONLY IF YOU ARE LOGGED_IN********************* */}
@@ -68,6 +84,7 @@ function App() {
            <>
           <Route path="dashboard/cart" element={<Cart />} />
           <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+          <Route path="dashboard/certificates" element={<Certificates />} />
            </>
           )
         } 
@@ -80,8 +97,8 @@ function App() {
            <>
            <Route path="dashboard/instructor" element={<Instructor />} />
            <Route path="dashboard/add-course" element={<AddCourse />} />
+            <Route path="dashboard/add-category" element={<AddCategory />} />
            <Route path="dashboard/my-courses" element={<MyCourses />} />
-           <Route path="dashboard/my-notes" element={<MyNotes />} />           
            <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
            </>
           )

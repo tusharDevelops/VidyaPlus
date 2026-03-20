@@ -1,116 +1,93 @@
 export const HomePageExplore = [
     {
-      tag: 'Free Resources',
+      tag: 'Primary (Class 1-5)',
       courses: [
         {
-          heading: "Introduction to Mathematics",
-          description: "Basic concepts in mathematics for early learners, including arithmetic, geometry, and basic problem-solving skills.",
-          level: 'Class 1-3',
-          lessonNumber: 5
+          heading: "Foundation Mathematics",
+          description: "Build strong fundamental concepts in numbers, basic arithmetic, shapes, and logical reasoning for young minds.",
+          level: 'Class 1-5',
+          lessonNumber: 15
         },
         {
-          heading: "Fundamentals of Science",
-          description: "Explore the basics of science with engaging experiments and activities for young students.",
-          level: 'Class 1-3',
-          lessonNumber: 5
-        },
-        {
-          heading: "Basic English Language Skills",
-          description: "Develop fundamental English language skills, including vocabulary, reading comprehension, and simple grammar.",
-          level: 'Class 1-3',
-          lessonNumber: 5
-        },
-      ]
-    },
-    {
-      tag: 'New Arrivals',
-      courses: [
-        {
-          heading: "Introduction to Algebra",
-          description: "A beginner-friendly course on algebra concepts, including variables, equations, and basic problem-solving.",
-          level: 'Class 4-6',
-          lessonNumber: 8
-        },
-        {
-          heading: "Exploring Earth Sciences",
-          description: "Learn about Earth sciences, including geology, weather, and ecosystems through interactive content.",
-          level: 'Class 4-6',
-          lessonNumber: 8
-        },
-        {
-          heading: "Intermediate English Grammar",
-          description: "Enhance English grammar skills with lessons on sentence structure, punctuation, and advanced vocabulary.",
-          level: 'Class 4-6',
-          lessonNumber: 8
-        },
-      ]
-    },
-    {
-      tag: 'Top Courses',
-      courses: [
-        {
-          heading: "Advanced Mathematics",
-          description: "Dive into advanced mathematics topics such as geometry, trigonometry, and calculus for high school students.",
-          level: 'Class 10-12',
+          heading: "Environmental Science",
+          description: "Discover the world around us. Engaging visual lessons about nature, animals, and basic physical sciences.",
+          level: 'Class 1-5',
           lessonNumber: 12
         },
         {
-          heading: "High School Physics",
-          description: "Comprehensive course on high school physics topics including mechanics, electricity, and modern physics.",
-          level: 'Class 10-12',
-          lessonNumber: 12
-        },
-        {
-          heading: "Advanced English Literature",
-          description: "Explore classic and modern literature, including analysis of texts, themes, and critical essays.",
-          level: 'Class 10-12',
-          lessonNumber: 12
+          heading: "English Reading & Grammar",
+          description: "Develop crucial reading, writing, and vocabulary skills through interactive stories and grammar exercises.",
+          level: 'Class 1-5',
+          lessonNumber: 20
         },
       ]
     },
     {
-      tag: 'Skill Development',
+      tag: 'Middle (Class 6-8)',
       courses: [
         {
-          heading: "Critical Thinking and Problem Solving",
-          description: "Develop essential critical thinking and problem-solving skills through interactive exercises and case studies.",
-          level: 'Class 7-12',
-          lessonNumber: 10
+          heading: "Mathematics Mastery",
+          description: "Step into algebra, geometry, and advanced arithmetic. Clear explanations for complex middle-school math topics.",
+          level: 'Class 6-8',
+          lessonNumber: 25
         },
         {
-          heading: "Effective Study Techniques",
-          description: "Learn proven study techniques and strategies to improve learning efficiency and academic performance.",
-          level: 'Class 7-12',
-          lessonNumber: 10
+          heading: "Integrated Science",
+          description: "Comprehensive coverage of Physics, Chemistry, and Biology fundamentals laying the groundwork for high school.",
+          level: 'Class 6-8',
+          lessonNumber: 30
         },
         {
-          heading: "Public Speaking and Communication",
-          description: "Enhance public speaking and communication skills with practical exercises and presentation tips.",
-          level: 'Class 7-12',
-          lessonNumber: 10
+          heading: "Social Studies & History",
+          description: "Interactive timeline-based learning covering Indian History, Geography, and Civics tailored for middle school.",
+          level: 'Class 6-8',
+          lessonNumber: 18
         },
       ]
     },
     {
-      tag: 'Career Exploration',
+      tag: 'Secondary (Class 9-10)',
       courses: [
         {
-          heading: "Introduction to Career Paths",
-          description: "Explore various career paths and professional opportunities with insights and guidance for future planning.",
-          level: 'Class 10-12',
-          lessonNumber: 8
+          heading: "Board Exam Prep - Mathematics",
+          description: "Exhaustive problem-solving, previous year questions, and advanced geometry/trigonometry to ace the 10th boards.",
+          level: 'Class 9-10',
+          lessonNumber: 40
         },
         {
-          heading: "Career Skills for Success",
-          description: "Acquire essential career skills including resume writing, interview techniques, and job search strategies.",
-          level: 'Class 10-12',
-          lessonNumber: 8
+          heading: "Science for Board Exams",
+          description: "In-depth Physics, Chemistry, and Biology. Focus on numericals, chemical equations, and life processes.",
+          level: 'Class 9-10',
+          lessonNumber: 45
         },
         {
-          heading: "Industry Insights and Trends",
-          description: "Gain insights into current industry trends and future career opportunities across different sectors.",
-          level: 'Class 10-12',
-          lessonNumber: 8
+          heading: "NTSE & Olympiad Foundation",
+          description: "Higher-order thinking skills and advanced problem-solving techniques for competitive exams.",
+          level: 'Class 9-10',
+          lessonNumber: 25
+        },
+      ]
+    },
+    {
+      tag: 'Senior Secondary (Class 11-12)',
+      courses: [
+        {
+          heading: "Senior Secondary Physics",
+          description: "Rigorous mechanics, electromagnetism, and modern physics tailored for NCERT and State Board examinations.",
+          level: 'Class 11-12',
+          lessonNumber: 60
+        },
+        {
+          heading: "Core Biology & Chemistry",
+          description: "Comprehensive NCERT-aligned curriculum with deep dives into human physiology, genetics, and organic chemistry.",
+          level: 'Class 11-12',
+          lessonNumber: 75
+        },
+        {
+          heading: "Commerce & Accountancy",
+          description: "Master financial accounting, business studies, and economics principles for board exams and higher studies.",
+          level: 'Class 11-12',
+          lessonNumber: 50
         },
       ]
     },

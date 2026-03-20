@@ -6,7 +6,11 @@ require("dotenv").config();
 exports.authZ = async (req,res,next)=>{
     try {
         //extract token
-        const token = req.body.token || req.cookies.token || req.header("Authorisation").replace("Bearer ","");
+        const token =
+            req.body.token ||
+            req.cookies.token ||
+            req.header("Authorization")?.replace("Bearer ", "") ||
+            req.header("Authorisation")?.replace("Bearer ", "");
         // if token is missing
    
         if(!token){
@@ -94,4 +98,25 @@ exports.isStudent = async (req, res, next) => {
       });
     }
   };
+
+// hasPermission
+exports.hasPermission = (permission) => {
+  return async (req, res, next) => {
+    try {
+      const perms = req.user?.permissions || []
+      if (!Array.isArray(perms) || !perms.includes(permission)) {
+        return res.status(403).json({
+          success: false,
+          message: "Missing required permission",
+        })
+      }
+      next()
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "User permission cannot be verified, please try again",
+      })
+    }
+  }
+}
   

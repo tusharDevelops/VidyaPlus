@@ -388,6 +388,17 @@ exports.getFullCourseDetails = async (req, res) => {
       })
     }
 
+    // Enrolled-only gating for full course content (videos + in-course notes)
+    const isEnrolled = courseDetails.studentsEnrolled?.some(
+      (id) => id.toString() === userId.toString()
+    )
+    if (!isEnrolled) {
+      return res.status(403).json({
+        success: false,
+        message: "You are not enrolled in this course",
+      })
+    }
+
     // if (courseDetails.status === "Draft") {
     //   return res.status(403).json({
     //     success: false,

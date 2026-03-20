@@ -20,6 +20,11 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  CREATE_CATEGORY_API,
+  ADD_EXAM_NOTE_API,
+  DELETE_EXAM_NOTE_API,
+  ADD_SUBSECTION_NOTE_API,
+  DELETE_SUBSECTION_NOTE_API,
 } = courseEndpoints
 
 export const getAllCourses = async () => {
@@ -87,7 +92,7 @@ export const addCourseDetails = async (data, token) => {
   try {
     const response = await apiConnector("POST", CREATE_COURSE_API, data, {
       "Content-Type": "multipart/form-data",
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     console.log("CREATE COURSE API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -110,7 +115,7 @@ export const editCourseDetails = async (data, token) => {
   try {
     const response = await apiConnector("POST", EDIT_COURSE_API, data, {
       "Content-Type": "multipart/form-data",
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     //console.log("EDIT COURSE API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -132,7 +137,7 @@ export const createSection = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", CREATE_SECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
    // console.log("CREATE SECTION API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -155,7 +160,7 @@ export const createSubSection = async (data, token) => {
  
   try {
     const response = await apiConnector("POST", CREATE_SUBSECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     //console.log("CREATE SUB-SECTION API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -177,7 +182,7 @@ export const updateSection = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", UPDATE_SECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     //console.log("UPDATE SECTION API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -199,7 +204,7 @@ export const updateSubSection = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", UPDATE_SUBSECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
    //console.log("UPDATE SUB-SECTION API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -221,7 +226,7 @@ export const deleteSection = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", DELETE_SECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     //console.log("DELETE SECTION API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -242,7 +247,7 @@ export const deleteSubSection = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", DELETE_SUBSECTION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
    // console.log("DELETE SUB-SECTION API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -268,7 +273,7 @@ export const fetchInstructorCourses = async (token) => {
       GET_ALL_INSTRUCTOR_COURSES_API,
       null,
       {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }
     )
     //console.log("INSTRUCTOR COURSES API RESPONSE............", response)
@@ -303,6 +308,27 @@ export const deleteCourse = async (data, token) => {
   toast.dismiss(toastId)
 }
 
+export const addSubSectionNote = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Adding Lecture Note...")
+  try {
+    const response = await apiConnector("POST", ADD_SUBSECTION_NOTE_API, data, {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    })
+    if (!response?.data?.success) {
+      throw new Error("Could Not Add Lecture Note")
+    }
+    toast.success("Lecture Note Added")
+    result = response?.data?.data
+  } catch (error) {
+    console.log("ADD SUBSECTION NOTE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
 // get full details of a course
 export const getFullDetailsOfCourse = async (courseId, token) => {
   const toastId = toast.loading("Loading...")
@@ -316,7 +342,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
         courseId,
       },
       {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }
     )
     console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response)
@@ -342,7 +368,7 @@ export const markLectureAsComplete = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", LECTURE_COMPLETION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     // console.log(
     //   "MARK_LECTURE_AS_COMPLETE_API API RESPONSE............",
@@ -369,7 +395,7 @@ export const createRating = async (data, token) => {
   let success = false
   try {
     const response = await apiConnector("POST", CREATE_RATING_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     //console.log("CREATE RATING API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -384,4 +410,80 @@ export const createRating = async (data, token) => {
   }
   toast.dismiss(toastId)
   return success
+}
+
+export const createCategory = async (data, token) => {
+  const toastId = toast.loading("Loading...")
+  let result = null
+  try {
+    const response = await apiConnector("POST", CREATE_CATEGORY_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("CREATE CATEGORY API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Create Category")
+    }
+    toast.success("Category Created Successfully")
+    result = response?.data?.data
+  } catch (error) {
+    console.log("CREATE CATEGORY API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+export const addExamNote = async (data, token) => {
+  let result = null
+  const toastId = toast.loading("Adding Exam Note...")
+  try {
+    const response = await apiConnector("POST", ADD_EXAM_NOTE_API, data, {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    })
+    if (!response?.data?.success) {
+      throw new Error("Could Not Add Exam Note")
+    }
+    toast.success("Exam Note Added")
+    result = response?.data?.data
+  } catch (error) {
+    console.log("ADD EXAM NOTE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+  return result
+}
+
+export const deleteExamNote = async (data, token) => {
+  const toastId = toast.loading("Deleting Exam Note...")
+  try {
+    const response = await apiConnector("POST", DELETE_EXAM_NOTE_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    if (!response?.data?.success) {
+      throw new Error("Could Not Delete Exam Note")
+    }
+    toast.success("Exam Note Deleted")
+  } catch (error) {
+    console.log("DELETE EXAM NOTE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+}
+
+export const deleteSubSectionNote = async (data, token) => {
+  const toastId = toast.loading("Deleting Lecture Note...")
+  try {
+    const response = await apiConnector("POST", DELETE_SUBSECTION_NOTE_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    if (!response?.data?.success) {
+      throw new Error("Could Not Delete Lecture Note")
+    }
+    toast.success("Lecture Note Deleted")
+  } catch (error) {
+    console.log("DELETE SUBSECTION NOTE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
 }

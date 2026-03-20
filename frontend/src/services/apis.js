@@ -24,10 +24,6 @@ export const profileEndpoints = {
   GET_USER_DETAILS_API: BASE_URL + "/profile/getUserDetails",
   GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
   GET_INSTRUCTOR_DATA_API: BASE_URL + "/profile/instructorDashboard",
-//notes endpoints
-  NOTES_CLASS_API: BASE_URL + "/notes/classes",
-  
-
 }
 
 // STUDENTS ENDPOINTS
@@ -55,6 +51,13 @@ export const courseEndpoints = {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED:BASE_URL + "/course/getFullCourseDetails",
   LECTURE_COMPLETION_API: BASE_URL + "/course/updateCourseProgress",
   CREATE_RATING_API: BASE_URL + "/course/createRating",
+  CREATE_CATEGORY_API: BASE_URL + "/course/createCategory",
+  ADD_EXAM_NOTE_API: BASE_URL + "/course/addExamNote",
+  DELETE_EXAM_NOTE_API: BASE_URL + "/course/deleteExamNote",
+  ADD_SUBSECTION_NOTE_API: BASE_URL + "/course/addSubSectionNote",
+  DELETE_SUBSECTION_NOTE_API: BASE_URL + "/course/deleteSubSectionNote",
+  GET_EXAM_NOTES_API: BASE_URL + "/course/getExamNotes",
+  GET_SUBSECTION_NOTES_API: BASE_URL + "/course/getSubSectionNotes",
 }
 
 // RATINGS AND REVIEWS
@@ -82,4 +85,11 @@ export const settingsEndpoints = {
   UPDATE_PROFILE_API: BASE_URL + "/profile/updateProfile",
   CHANGE_PASSWORD_API: BASE_URL + "/auth/changepassword",
   DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+}
+
+// CERTIFICATE ENDPOINTS
+export const certificateEndpoints = {
+  VERIFY_CERTIFICATE_API: BASE_URL + "/certificate/verify",
+  MY_CERTIFICATES_API: BASE_URL + "/certificate/my",
+  GENERATE_CERTIFICATE_API: BASE_URL + "/certificate/generate",
 }

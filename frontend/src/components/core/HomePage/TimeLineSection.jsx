@@ -32,58 +32,37 @@ const timeline = [
 export default function TimeLineSection() {
   return (
     
-      <div className='w-11/12 flex flex-col md:flex-row gap-12 items-center '>
+      <div className='w-full flex w-11/12 mx-auto flex-col lg:flex-row gap-16 items-center'>
 
-        <div className=' flex flex-col gap-16 md:w-[45%]'>
+        <div className='w-full lg:w-[45%] flex flex-col gap-14'>
             {
                 timeline.map( (element, index) => {
                     return (
-                        
-                        <div className='flex flex-row gap-6' key={index}>
-
-                            <div className='w-[50px] h-[50px] bg-white flex flex-col gap-7 items-center'>
-
-                                <img src={element.Logo} width={30} height={30} alt='ig'/>
-                                {index !== 3 && <div className=" mt-3 w-10 border-b-2 border-dotted border-black rotate-90"></div>}
+                        <div className='flex flex-row gap-6 group' key={index}>
+                            <div className='relative w-[56px] h-[56px] rounded-full bg-slate-100 dark:bg-slate-800/80 flex flex-col items-center justify-center shadow-sm border border-slate-200 dark:border-slate-700 transition-all group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 group-hover:border-purple-200 dark:group-hover:border-purple-800/50'>
+                                <img src={element.Logo} width={24} height={24} alt='icon' className="dark:brightness-200 dark:grayscale transition-all opacity-80 group-hover:opacity-100"/>
+                                {index !== 3 && <div className="absolute top-[56px] left-1/2 -translate-x-1/2 h-14 w-[2px] border-l-2 border-dashed border-slate-300 dark:border-slate-700"></div>}
                             </div>
-
-                            <div>
-                                <h2 className='font-semibold text-[18px]'>{element.heading}</h2>
-                                <p className='text-base'>{element.Description}</p>
-                                
+                            <div className='flex flex-col justify-center'>
+                                <h2 className='font-bold text-[18px] text-slate-900 dark:text-white transition-colors'>{element.heading}</h2>
+                                <p className='text-slate-500 dark:text-slate-400 mt-1 leading-relaxed'>{element.Description}</p>
                             </div>
-
-
-
                         </div>
-                        
                     )
                 } )
             }
         </div>
         
-        <div className='relative shadow-blue-200 w-full h-[400px] overflow-hidden  md:w-[55%]'>
-
-            {/* <img  src={timelineImage}
-            alt="timelineImage"
-            className='shadow-white object-cover h-fit'
-            /> */}
+        <div className='relative shadow-2xl shadow-indigo-900/5 dark:shadow-indigo-900/30 w-full h-[450px] overflow-hidden lg:w-[55%] rounded-2xl border border-slate-200 dark:border-slate-800'>
             <MapComponent/>
-                
-           
 
-            <div className='absolute bg-caribbeangreen-700 flex flex-row text-white uppercase py-7
-                            left-[50%] bottom-[1px] translate-x-[-50%] translate-y-[-50%]'>
-                <div className='flex flex-row gap-5 items-center border-r border-caribbeangreen-300 px-7'>
-                    
-                    <p className='text-caribbeangreen-300 text-sm'>Where to Find Us:</p>
+            <div className='absolute bg-indigo-600/95 dark:bg-slate-900/90 backdrop-blur-md flex flex-row text-white uppercase py-4 px-8 rounded-full
+                            left-[50%] bottom-8 translate-x-[-50%] shadow-xl shadow-indigo-900/20 border border-indigo-500/30 dark:border-slate-700'>
+                <div className='flex flex-row gap-3 items-center'>
+                    <span className="text-xl">📍</span>
+                    <p className='text-indigo-50 dark:text-slate-300 text-sm font-bold tracking-widest'>Where to Find Us</p>
                 </div>
-
-               
-
-
             </div>
-
         </div>
 
       </div>

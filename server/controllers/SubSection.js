@@ -1,6 +1,7 @@
 const SubSection = require("../models/subSection");
 const Section  = require("../models/section");
 const {uploadImageToCloudinary}  = require("../utilities/imageUploader");
+const cloudinary = require("cloudinary").v2;
 
 
 //create SubSection
@@ -11,6 +12,8 @@ exports.createSubSection = async (req, res) => {
             const {sectionId, title, description} = req.body;
             //extract file/video
             const video  = req.files.video;
+            const pdf = req.files.pdf;
+            
             //validation
             if(!sectionId || !title || !description || !video) {
                 return res.status(400).json({
@@ -20,12 +23,26 @@ exports.createSubSection = async (req, res) => {
             }
             //upload video to cloudinary
             const uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME);
+            
+            let pdfUrl = "";
+            let pdfPublicId = "";
+            if(pdf) {
+                const pdfUploadDetails = await cloudinary.uploader.upload(pdf.tempFilePath, {
+                    folder: process.env.FOLDER_NAME,
+                    resource_type: "raw",
+                    format: "pdf",
+                });
+                pdfUrl = pdfUploadDetails.secure_url;
+                pdfPublicId = pdfUploadDetails.public_id;
+            }
+
             //create a sub-section
             const subSectionDetails = await SubSection.create({
               title: title,
               timeDuration: `${uploadDetails.duration}`,
               description: description,
               videoUrl: uploadDetails.secure_url,
+              notes: pdfUrl ? [{ title: "Lecture Note", url: pdfUrl, publicId: pdfPublicId }] : []
             })
             //update section with this sub section ObjectId
             const updatedSection = await Section.findByIdAndUpdate({_id:sectionId},
@@ -77,6 +94,18 @@ exports.updateSubSection = async (req, res) => {
         )
         subSection.videoUrl = uploadDetails.secure_url
         subSection.timeDuration = `${uploadDetails.duration}`
+      }
+
+      if (req.files && req.files.pdf !== undefined) {
+        const pdf = req.files.pdf
+        const pdfUploadDetails = await cloudinary.uploader.upload(
+          pdf.tempFilePath, {
+            folder: process.env.FOLDER_NAME,
+            resource_type: "raw",
+            format: "pdf"
+          }
+        )
+        subSection.notes = [{ title: "Lecture Note", url: pdfUploadDetails.secure_url, publicId: pdfUploadDetails.public_id }]
       }
   
       await subSection.save()

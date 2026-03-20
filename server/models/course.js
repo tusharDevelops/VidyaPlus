@@ -51,6 +51,15 @@ const courseSchema = new mongoose.Schema({
         ref:"User",
     }],
 
+    examNotes: [
+        {
+            title: { type: String, required: true },
+            url: { type: String, required: true },
+            publicId: { type: String },
+            createdAt: { type: Date, default: Date.now },
+        },
+    ],
+
     instructions: {
 		type: [String],
 	},

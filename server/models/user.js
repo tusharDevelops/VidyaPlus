@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema(
             required:true
         },
 
+        permissions: {
+            type: [String],
+            default: [],
+        },
+
         active:{
             type: Boolean,
             default: true,

@@ -1,16 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     fontFamily: {
       inter: ["Inter", "sans-serif"],
       "edu-sa": ["Edu SA Beginner", "cursive"],
       mono: ["Roboto Mono", "monospace"],
     },
-    colors: {
-      white: "#fff",
-      black: "#000",
-      transparent: "#ffffff00",
+    extend: {
+      colors: {
+        white: "#fff",
+        black: "#000",
+        transparent: "#ffffff00",
       richblack: {
         5: "#F1F2FF",
         25: "#DBDDEA",
@@ -128,8 +130,7 @@ module.exports = {
         600: "rgb(220 38 38)"
       }
     },
-    extend: {
-      maxWidth: {
+    maxWidth: {
         maxContent: "1260px",
         maxContentTab: "650px"
       },

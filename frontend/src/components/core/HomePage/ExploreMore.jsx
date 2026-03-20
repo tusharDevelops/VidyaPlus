@@ -7,11 +7,10 @@ import HighlightText from './HighlightText';
 import CourseCard from './CourseCard';
 
 const tabsName = [
-  "Free Resources",
-  "New Arrivals",
-  "Top Courses",
-  "Skill Development",
-  "Career Exploration",
+  "Primary (Class 1-5)",
+  "Middle (Class 6-8)",
+  "Secondary (Class 9-10)",
+  "Senior Secondary (Class 11-12)",
 ];
 
 export default function ExploreMore() {
@@ -27,23 +26,25 @@ export default function ExploreMore() {
   };
 
   return (
-    <div className='hidden md:block mt-24 relative'>
-      <div className='text-center text-4xl'>
+    <div className='hidden md:block mt-32 relative w-full mb-10'>
+      <div className='text-center text-4xl font-bold text-slate-900 dark:text-white'>
         Unlock the <HighlightText text={"Potential of Learning"} />
       </div>
-      <div className='text-center text-lg text-richblack-300 font-bold'>
+      <div className='text-center text-lg text-slate-500 dark:text-slate-400 mt-4 leading-relaxed'>
         Gain the Skills to Achieve Excellence in Every Subject
       </div>
 
-      <div className='flex justify-between w-[80%] shadow-custom bg-richblack-800 border-richblack-100
-         mx-auto rounded-full mt-5 mb-[200px]'>
+      <div className='flex items-center justify-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700
+         w-fit mx-auto rounded-full mt-10 mb-[220px] shadow-sm p-1.5'>
         {
           tabsName.map((element, index) => (
             <div
               key={index}
-              className={`text-sm px-2 py-1 my-1 mx-1 font-medium rounded-full cursor-pointer
-                 transition-colors duration-400 ease-in-out
-                 ${currentTab === element ? 'bg-richblack-900 text-white' : 'text-richblack-300 hover:bg-richblack-700'}`}
+              className={`text-[15px] px-6 py-2 rounded-full cursor-pointer
+                 transition-all duration-300 ease-in-out font-semibold
+                 ${currentTab === element 
+                    ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-purple-400 shadow-sm' 
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50'}`}
               onClick={() => setMyCard(element)}
             >
               {element}
@@ -53,7 +54,7 @@ export default function ExploreMore() {
       </div>
 
       {/* CARD SECTION */}
-      <div className='w-11/12 left-[50%] top-[60%] -translate-x-[50%] flex gap-5 absolute'>
+      <div className='w-full max-w-maxContent left-[50%] top-[65%] -translate-x-[50%] flex justify-between gap-6 absolute px-5'>
         {courses.map((element, index) => (
           <CourseCard
             key={index}

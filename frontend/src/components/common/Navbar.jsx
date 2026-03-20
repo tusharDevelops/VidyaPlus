@@ -79,46 +79,43 @@ const Navbar = () => {
             NavbarLinks.map( (link, index) => (
                  <li key={index}>
                     {
-                        link.title === "Catalog" ? (
-                           
-                            <div className='relative flex items-center gap-2 group'>
-                                <p>{link.title}</p>
-                                <IoIosArrowDropdownCircle/>
-
-                                <div className='invisible z-20 absolute left-[50%]
-                                    translate-x-[-50%] translate-y-[20%]
-                                 top-[50%]
-                                flex flex-col rounded-md  bg-richblack-5 p-4 text-richblack-900
-                                opacity-0 transition-all duration-200 group-hover:visible
-                                group-hover:opacity-100 lg:w-[300px]'>
-
-                                <div className='absolute left-[50%] top-0
-                                translate-x-[80%]
-                                translate-y-[-45%] h-6 w-6 rotate-45 rounded  bg-richblack-5'>
-                                </div>
-
-                                {
-                                    subLinks.length ? (
-                                            subLinks.map( (subLink, index) => (
-                                                <Link to={`/catalog/${subLink.name
-                                                            .split(" ")
-                                                            .join("-")
-                                                            .toLowerCase()}`} key={index}>
-                                                    <p>{subLink.name}</p>
-                                                </Link>
-                                            ) )
-                                    ) : (<div></div>)
-                                }
-                                {
-                                    <Link to={'/notes'}>Notes</Link>
-                                }
-
-                                </div>
-
-
-                            </div>
-
-                        )  :
+                                link.title === "Catalog" ? (
+                                   
+                                    <div className='relative flex items-center gap-2 group'>
+                                        <p>{link.title}</p>
+                                        <IoIosArrowDropdownCircle/>
+        
+                                        <div className='invisible z-20 absolute left-[50%]
+                                            translate-x-[-50%] translate-y-[20%]
+                                         top-[50%]
+                                        flex flex-col rounded-md  bg-richblack-5 p-4 text-richblack-900
+                                        opacity-0 transition-all duration-200 group-hover:visible
+                                        group-hover:opacity-100 lg:w-[300px]'>
+        
+                                        <div className='absolute left-[50%] top-0
+                                        translate-x-[80%]
+                                        translate-y-[-45%] h-6 w-6 rotate-45 rounded  bg-richblack-5'>
+                                        </div>
+        
+                                        {
+                                            subLinks.length ? (
+                                                    subLinks.map( (subLink, index) => (
+                                                        <Link to={`/catalog/${subLink.name
+                                                                    .split(" ")
+                                                                    .join("-")
+                                                                    .toLowerCase()}`} key={index}>
+                                                            <p>{subLink.name}</p>
+                                                        </Link>
+                                                    ) )
+                                            ) : (<div></div>)
+                                        }
+        
+                                        </div>
+        
+        
+                                    </div>
+        
+                                )  :
                         
                         
                         
@@ -141,6 +138,21 @@ const Navbar = () => {
 
         {/* Login/SignUp/Dashboard */}
         <div className='hidden md:flex  gap-x-4 items-center '>
+            <button
+                onClick={() => {
+                  if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                  } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                  }
+                }}
+                className='text-2xl text-richblack-100 hover:text-white dark:text-slate-300 dark:hover:text-white transition-all'
+                title="Toggle Theme"
+            >
+                🌓
+            </button>
 
             {
                 user && user?.accountType !== "Instructor" && (

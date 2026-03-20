@@ -3,6 +3,9 @@ import { BsChevronDown } from "react-icons/bs"
 import { IoIosArrowBack } from "react-icons/io"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { toast } from "react-hot-toast"
+import { apiConnector } from "../../../services/apiConnector"
+import { certificateEndpoints } from "../../../services/apis"
 
 import IconBtn from "../../common/IconBtn"
 
@@ -19,8 +22,26 @@ export default function VideoDetailsSidebar({setReviewModal}) {
     totalNoOfLectures,
     completedLectures,
   } = useSelector((state) => state.viewCourse)
+  const { token } = useSelector((state) => state.auth)
 
-
+  const handleGenerateCertificate = async () => {
+    const toastId = toast.loading("Generating your certificate...")
+    try {
+      const res = await apiConnector(
+        "POST",
+        certificateEndpoints.GENERATE_CERTIFICATE_API,
+        { courseId: courseEntireData._id },
+        { Authorization: `Bearer ${token}` }
+      )
+      if (res?.data?.success) {
+        toast.success("Certificate generated successfully!")
+        navigate(`/certificate/${res.data.data.certificateNumber}`)
+      }
+    } catch (e) {
+      toast.error(e?.response?.data?.message || "Failed to generate certificate")
+    }
+    toast.dismiss(toastId)
+  }
   useEffect(() => {
     ;(() => {
       if (!courseSectionData.length) return
@@ -70,6 +91,39 @@ export default function VideoDetailsSidebar({setReviewModal}) {
               {completedLectures?.length} / {totalNoOfLectures}
             </p>
           </div>
+        </div>
+
+        {/* Exam Notes & Certificate Section */}
+        <div className="mx-5 py-4 border-b border-richblack-600">
+          {courseEntireData?.examNotes?.length > 0 && (
+            <div className="mb-4">
+              <p className="text-sm font-bold text-yellow-50 mb-2 uppercase tracking-wider">
+                📚 Important Exam Notes
+              </p>
+              <div className="flex flex-col gap-2">
+                {courseEntireData.examNotes.map((note, index) => (
+                  <a
+                    key={index}
+                    href={note.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-richblack-100 hover:text-yellow-50 underline flex items-center gap-1"
+                  >
+                    <span>📄</span> {note.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {completedLectures?.length === totalNoOfLectures && totalNoOfLectures > 0 && (
+            <button
+              onClick={handleGenerateCertificate}
+              className="flex w-full items-center justify-center gap-2 rounded-md bg-yellow-50 py-2 text-sm font-bold text-richblack-900 transition-all hover:scale-95"
+            >
+              <span>🎖️</span> Get Certificate
+            </button>
+          )}
         </div>
 
         <div className="h-[calc(100vh - 5rem)] overflow-y-auto">

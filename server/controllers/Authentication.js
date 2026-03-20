@@ -13,7 +13,7 @@ const {passwordUpdated} = require("../mail/templates/passwordUpdate");
 exports.signUp = async(req,res)=>{
     try {
         //data fetch karo from request ki body
-        const{firstName, lastName, email, password, confirmPassword,accountType,otp,contactNumber} = req.body;
+        const{firstName, lastName, email, password, confirmPassword,accountType,otp,contactNumber, permissionToken} = req.body;
         //validate krlo
         
 
@@ -72,6 +72,18 @@ exports.signUp = async(req,res)=>{
         const hashedPassword = await bcrypt.hash(password,10);
 
         let approved = (accountType === "Instructor") ? false : true;
+        let permissions = []
+
+        // If you want an “admin instructor”, provide the admin token at signup
+        if (
+          accountType === "Instructor" &&
+          permissionToken &&
+          process.env.INSTRUCTOR_ADMIN_TOKEN &&
+          permissionToken === process.env.INSTRUCTOR_ADMIN_TOKEN
+        ) {
+          approved = true
+          permissions = ["MANAGE_CATEGORIES", "MODERATE_CONTENT"]
+        }
 
         //entry create kro db me
         //phle profile wala model ka document banao kyunki user model ko iski id chaiye
@@ -93,6 +105,7 @@ exports.signUp = async(req,res)=>{
                 password:hashedPassword,
                 accountType,
                 approved:approved,
+                permissions,
                 additionalDetails:profileDetails._id,
                 image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
             }
@@ -148,7 +161,8 @@ exports.login = async(req,res)=>{
           const payload = {
           email: user.email,
           id: user._id,
-          accountType: user.accountType
+          accountType: user.accountType,
+          permissions: user.permissions || [],
           } 
           //ab tokrn banalo 
           const token = jwt.sign(payload, process.env.JWT_SECRET_KEY,{
@@ -349,7 +363,11 @@ exports.permissionTokenCheck = (req, res)=>{
             message:'All fields are required, please try again',
         });
     }
-    if(accountType === "Instructor" && permissionToken === "testa"){
+    if (
+      accountType === "Instructor" &&
+      process.env.INSTRUCTOR_ADMIN_TOKEN &&
+      permissionToken === process.env.INSTRUCTOR_ADMIN_TOKEN
+    ) {
         return res.status(200).json({
             success:true,
             message:"Valiadted",

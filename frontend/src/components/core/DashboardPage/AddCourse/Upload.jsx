@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { FiUploadCloud } from "react-icons/fi"
-import {  } from "react-redux"
 
 import "video-react/dist/video-react.css"
 import { Player } from "video-react"
@@ -13,6 +12,7 @@ function Upload({
   setValue,
   errors,
   video = false,
+  pdf = false,
   viewData = null,
   editData = null,
 }) {
@@ -21,7 +21,6 @@ function Upload({
   const [previewSource, setPreviewSource] = useState(
     viewData ? viewData : editData ? editData : ""
   )
-  
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0]
@@ -32,14 +31,15 @@ function Upload({
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: !video
-      ? { "image/*": [".jpeg", ".jpg", ".png"] }
-      : { "video/*": [".mp4"] },
+    accept: pdf
+      ? { "application/pdf": [".pdf"] }
+      : video
+      ? { "video/*": [".mp4"] }
+      : { "image/*": [".jpeg", ".jpg", ".png"] },
     onDrop,
   })
 
   const previewFile = (file) => {
-    // console.log(file)
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onloadend = () => {
@@ -57,8 +57,6 @@ function Upload({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFile, setValue])
 
-
-
   return (
   <div className="flex flex-col space-y-2">
       <label className="text-sm text-richblack-5" htmlFor={name}>
@@ -72,14 +70,28 @@ function Upload({
       >
         {previewSource ? (
           <div className="flex w-full flex-col p-6">
-            {!video ? (
+            {pdf ? (
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-richblack-5 font-medium">
+                  📄 {selectedFile?.name || "File uploaded"}
+                </p>
+                <a
+                  href={previewSource}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-yellow-50 underline text-sm"
+                >
+                  View PDF
+                </a>
+              </div>
+            ) : video ? (
+              <Player aspectRatio="16:9" playsInline src={previewSource} />
+            ) : (
               <img
                 src={previewSource}
                 alt="Preview"
                 className="h-full w-full rounded-md object-cover"
               />
-            ) : (
-              <Player aspectRatio="16:9" playsInline src={previewSource} />
             )}
             {!viewData && (
               <button
@@ -100,19 +112,20 @@ function Upload({
             className="flex w-full flex-col items-center p-6"
             {...getRootProps()}
           >
-            <input {...getInputProps()}  />
+            <input {...getInputProps()} />
             <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
               <FiUploadCloud className="text-2xl text-yellow-50" />
             </div>
             <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
-              Drag and drop an {!video ? "image" : "video"}, or click to{" "}
-              <span className="font-semibold text-yellow-50">Browse</span> a
-              file
+              Drag and drop {pdf ? "a PDF" : video ? "a video" : "an image"}, or click to{" "}
+              <span className="font-semibold text-yellow-50">Browse</span> a file
             </p>
-            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center  text-xs text-richblack-200">
-              <li>Aspect ratio 16:9</li>
-              <li>Recommended size 1024x576</li>
-            </ul>
+            {!pdf && (
+              <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-richblack-200">
+                <li>Aspect ratio 16:9</li>
+                <li>Recommended size 1024x576</li>
+              </ul>
+            )}
           </div>
         )}
       </div>

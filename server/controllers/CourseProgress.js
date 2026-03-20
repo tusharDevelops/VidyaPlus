@@ -1,6 +1,9 @@
 
 const SubSection = require("../models/subSection")
 const CourseProgress = require("../models/courseProgress")
+const Course = require("../models/course")
+const Section = require("../models/section")
+const { issueCertificateIfEligible } = require("./Certificate")
 
 
 exports.updateCourseProgress = async (req, res) => {
@@ -38,6 +41,27 @@ exports.updateCourseProgress = async (req, res) => {
 
     // Save the updated course progress
     await courseProgress.save()
+
+    // If course is completed, issue certificate (idempotent)
+    try {
+      const course = await Course.findById(courseId).select("courseContent")
+      if (course?.courseContent?.length) {
+        const sections = await Section.find({ _id: { $in: course.courseContent } }).select(
+          "subSection"
+        )
+        const totalLectures = sections.reduce(
+          (acc, s) => acc + (Array.isArray(s.subSection) ? s.subSection.length : 0),
+          0
+        )
+        const completed = courseProgress.completedVideos.length
+        if (totalLectures > 0 && completed >= totalLectures) {
+          await issueCertificateIfEligible({ userId, courseId })
+        }
+      }
+    } catch (e) {
+      // don't fail progress update if certificate issuance fails
+      console.error("CERTIFICATE ISSUE ERROR", e)
+    }
 
     return res.status(200).json({ message: "Course progress updated" })
   } catch (error) {

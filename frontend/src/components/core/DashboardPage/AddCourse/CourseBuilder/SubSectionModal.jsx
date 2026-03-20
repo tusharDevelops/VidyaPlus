@@ -76,6 +76,9 @@ export default function SubSectionModal({
       if (currentValues.lectureVideo !== modalData.videoUrl) {
         formData.append("video", currentValues.lectureVideo)
       }
+      if (currentValues.lectureNote) {
+        formData.append("pdf", currentValues.lectureNote)
+      }
       setLoading(true)
       const result = await updateSubSection(formData, token)
       if (result) {
@@ -110,6 +113,9 @@ export default function SubSectionModal({
     formData.append("title", data.lectureTitle)
     formData.append("description", data.lectureDesc)
     formData.append("video", data.lectureVideo)
+    if (data.lectureNote) {
+      formData.append("pdf", data.lectureNote)
+    }
  
     
     setLoading(true)
@@ -201,6 +207,18 @@ export default function SubSectionModal({
               </span>
             )}
           </div>
+
+          {/* Lecture Notes Upload */}
+          <Upload
+            name="lectureNote"
+            label="Lecture Notes (PDF)"
+            register={register}
+            setValue={setValue}
+            errors={errors}
+            pdf={true}
+            viewData={view ? (modalData.notes?.[0]?.url || null) : null}
+            editData={edit ? (modalData.notes?.[0]?.url || null) : null}
+          />
           {!view && (
             <div className="flex justify-end">
               <IconBtn

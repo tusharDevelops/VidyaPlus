@@ -245,6 +245,30 @@ export default function VideoDetails() {
 
     <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
     <p className="pt-2 pb-6">{videoData?.description}</p>
+
+    {/* PDF Notes Section */}
+    {videoData?.notes?.length > 0 && (
+      <div className="mt-8 border-t border-richblack-700 pt-8">
+        <h2 className="text-2xl font-semibold mb-4 text-richblack-5">Lecture Notes & Resources</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {videoData.notes.map((note, index) => (
+            <a
+              key={index}
+              href={note.url}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-between p-4 rounded-lg bg-richblack-800 border border-richblack-700 hover:bg-richblack-700 transition-all group"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">📄</span>
+                <span className="font-medium text-richblack-50 group-hover:text-yellow-50">{note.title}</span>
+              </div>
+              <span className="text-sm text-yellow-50 font-semibold underline">View PDF</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
     </div>
   )
 }

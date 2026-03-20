@@ -32,6 +32,7 @@ export default function VerifyEmail() {
             firstName,
             lastName,
             email,
+            permissionToken,
             password,
             confirmPassword,}  = signupData;
 
@@ -40,6 +41,7 @@ export default function VerifyEmail() {
             firstName,
             lastName,
             email,
+            permissionToken,
             password,
             confirmPassword,
             otp,

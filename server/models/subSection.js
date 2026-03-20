@@ -15,6 +15,15 @@ const subSectionSchema = new mongoose.Schema({
         type:String,
     },
 
+    notes: [
+        {
+            title: { type: String, required: true },
+            url: { type: String, required: true },
+            publicId: { type: String },
+            createdAt: { type: Date, default: Date.now },
+        },
+    ],
+
 
 });
 

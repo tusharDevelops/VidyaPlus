@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { AiFillCaretDown } from "react-icons/ai"
 import { FaPlus } from "react-icons/fa"
 import { MdEdit } from "react-icons/md"
@@ -18,16 +18,14 @@ export default function NestedView({handleChangeEditSectionName}) {
 
   const { course } = useSelector((state) => state.course)
   const { token } = useSelector((state) => state.auth)
+
   const dispatch = useDispatch()
- // console.log(course)
   // States to keep track of mode of modal [add, view, edit]
   const [addSubSection, setAddSubsection] = useState(null)
   const [viewSubSection, setViewSubSection] = useState(null)
   const [editSubSection, setEditSubSection] = useState(null)
   // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
-
-  const rotateRef = useRef()
 
 
   const handleDeleleSection = async (sectionId) => {
@@ -42,12 +40,7 @@ export default function NestedView({handleChangeEditSectionName}) {
     setConfirmationModal(null)
   }
 
-  const rotateElement = () => {
-   
-  rotateRef.current.style.transform = 'rotate(180deg)'
-     
-    
-  };
+
 
   const handleDeleteSubSection = async (subSectionId, sectionId) => {
     const result = await deleteSubSection({ subSectionId, sectionId, token })

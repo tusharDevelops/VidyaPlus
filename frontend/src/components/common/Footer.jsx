@@ -26,18 +26,18 @@ const Community = ["Discussion Forums", "Study Groups", "Events"];
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 border-t border-slate-900 pt-20 pb-10 mt-20 relative overflow-hidden">
+    <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-8 mt-12 relative overflow-hidden">
       {/* Decorative Blur Orbs */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div className="mx-auto w-11/12 max-w-maxContent relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 pb-16 border-b border-slate-900">
+        <div className="flex flex-col lg:flex-row gap-12 pb-12 border-b border-slate-900">
           {/* Section 1 */}
           <div className="lg:w-[60%] flex flex-wrap gap-12 justify-between">
             <div className="w-full lg:w-[30%] space-y-6">
               <div className="flex items-center gap-2">
-                 <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-xl font-black">V+</div>
-                 <span className="text-xl font-black text-white tracking-tighter">Vidya<span className="text-indigo-500">+</span></span>
+                 <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-lg font-black">V+</div>
+                 <span className="text-lg font-black text-white tracking-tighter">Vidya<span className="text-indigo-500">+</span></span>
               </div>
               
               <div className="space-y-4 pt-2">
@@ -62,8 +62,8 @@ const Footer = () => {
                   { Icon: FaTwitter, link: "https://twitter.com" },
                   { Icon: FaYoutube, link: "https://youtube.com" }
                 ].map(({ Icon, link }, i) => (
-                   <a key={i} href={link} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300">
-                      <Icon className="text-lg" />
+                   <a key={i} href={link} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all duration-300">
+                      <Icon className="text-base" />
                    </a>
                 ))}
               </div>

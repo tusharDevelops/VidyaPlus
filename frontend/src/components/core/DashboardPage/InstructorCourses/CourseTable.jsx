@@ -38,10 +38,10 @@ export default function CoursesTable({ courses, setCourses }) {
 
   return (
     <>
-      <div className="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md overflow-hidden shadow-2xl shadow-indigo-500/5 dark:shadow-none">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md overflow-hidden shadow-xl shadow-indigo-500/5 dark:shadow-none">
         <Table className="w-full">
           <Thead>
-            <Tr className="flex gap-x-10 border-b border-slate-100 dark:border-slate-800 px-10 py-6 bg-slate-50/50 dark:bg-slate-900/40">
+            <Tr className="flex gap-x-10 border-b border-slate-100 dark:border-slate-800 px-6 py-4 bg-slate-50/50 dark:bg-slate-900/40">
               <Th className="flex-1 text-left text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
                 Course Artifact
               </Th>
@@ -59,10 +59,10 @@ export default function CoursesTable({ courses, setCourses }) {
           <Tbody>
             {courses?.length === 0 ? (
               <Tr>
-                <Td className="py-32 text-center">
+                <Td className="py-20 text-center">
                    <div className="flex flex-col items-center gap-4">
-                      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-3xl">📭</div>
-                      <p className="text-xl font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">No Curriculum Found</p>
+                      <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-2xl">📭</div>
+                      <p className="text-lg font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">No Curriculum Found</p>
                    </div>
                 </Td>
               </Tr>
@@ -70,10 +70,10 @@ export default function CoursesTable({ courses, setCourses }) {
               courses?.map((course) => (
                 <Tr
                   key={course._id}
-                  className="flex gap-x-10 border-b border-slate-50 dark:border-slate-800/30 px-10 py-10 last:border-0 hover:bg-indigo-600/[0.02] dark:hover:bg-indigo-400/[0.02] transition-colors group relative"
+                  className="flex gap-x-10 border-b border-slate-50 dark:border-slate-800/30 px-6 py-6 last:border-0 hover:bg-indigo-600/[0.02] dark:hover:bg-indigo-400/[0.02] transition-colors group relative"
                 >
-                  <Td className="flex flex-1 gap-x-8">
-                    <div className="relative h-[140px] w-[240px] flex-shrink-0 overflow-hidden rounded-[1.5rem] border border-slate-200 dark:border-slate-800 shadow-sm group-hover:shadow-indigo-500/10 transition-all duration-500">
+                  <Td className="flex flex-1 gap-x-6">
+                    <div className="relative h-[100px] w-[180px] flex-shrink-0 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm group-hover:shadow-indigo-500/10 transition-all duration-500">
                       <img
                         src={course?.thumbnail}
                         alt={course?.courseName}
@@ -81,9 +81,9 @@ export default function CoursesTable({ courses, setCourses }) {
                       />
                       <div className="absolute inset-0 bg-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
-                    <div className="flex flex-col justify-center gap-3">
+                    <div className="flex flex-col justify-center gap-2">
                       <div>
-                        <h3 className="text-2xl font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors tracking-tight leading-tight">
+                        <h3 className="text-xl font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors tracking-tight leading-tight">
                           {course.courseName}
                         </h3>
                         <p className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400 line-clamp-2 max-w-md">
@@ -109,22 +109,22 @@ export default function CoursesTable({ courses, setCourses }) {
                       </div>
                     </div>
                   </Td>
-                  <Td className="text-xs font-black text-slate-700 dark:text-slate-300 flex items-center w-[120px] uppercase tracking-widest">
+                  <Td className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center w-[120px] uppercase tracking-widest">
                     {course?.duration || "Variable"}
                   </Td>
-                  <Td className="text-xl font-black text-emerald-600 dark:text-emerald-400 flex items-center w-[100px] tracking-tighter">
+                  <Td className="text-lg font-black text-emerald-600 dark:text-emerald-400 flex items-center w-[100px] tracking-tight">
                     ₹{course.price}
                   </Td>
-                  <Td className="flex items-center gap-3 w-[100px]">
+                  <Td className="flex items-center gap-2 w-[100px]">
                     <button
                       disabled={loading}
                       onClick={() => {
                         navigate(`/dashboard/edit-course/${course._id}`)
                       }}
                       title="Refine Curriculum"
-                      className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
                     >
-                      <FiEdit2 size={16} />
+                      <FiEdit2 size={14} />
                     </button>
                     <button
                       disabled={loading}
@@ -144,9 +144,9 @@ export default function CoursesTable({ courses, setCourses }) {
                         })
                       }}
                       title="Archive Course"
-                      className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
                     >
-                      <RiDeleteBin6Line size={16} />
+                      <RiDeleteBin6Line size={14} />
                     </button>
                   </Td>
                 </Tr>

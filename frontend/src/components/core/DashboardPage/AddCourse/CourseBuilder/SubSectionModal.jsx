@@ -35,6 +35,11 @@ export default function SubSectionModal({
   const [loading, setLoading] = useState(false)
   const { token } = useSelector((state) => state.auth)
   const { course } = useSelector((state) => state.course)
+  const [videoSource, setVideoSource] = useState(
+    modalData?.videoUrl?.includes("youtube.com") || modalData?.videoUrl?.includes("youtu.be") 
+    ? "youtube" 
+    : "upload"
+  )
 
     useEffect(()=>{
       if(view||edit){
@@ -52,7 +57,8 @@ export default function SubSectionModal({
     if (
       currentValues.lectureTitle !== modalData.title ||
       currentValues.lectureDesc !== modalData.description ||
-      currentValues.lectureVideo !== modalData.videoUrl
+      currentValues.lectureVideo !== modalData.videoUrl ||
+      currentValues.videoUrl !== modalData.videoUrl
     ) {
       return true
     }
@@ -73,8 +79,11 @@ export default function SubSectionModal({
       if (currentValues.lectureDesc !== modalData.description) {
         formData.append("description", currentValues.lectureDesc)
       }
-      if (currentValues.lectureVideo !== modalData.videoUrl) {
+      if (currentValues.lectureVideo !== modalData.videoUrl && videoSource === "upload") {
         formData.append("video", currentValues.lectureVideo)
+      }
+      if (videoSource === "youtube" && currentValues.videoUrl !== modalData.videoUrl) {
+        formData.append("videoUrl", currentValues.videoUrl)
       }
       if (currentValues.lectureNote) {
         formData.append("pdf", currentValues.lectureNote)
@@ -112,7 +121,11 @@ export default function SubSectionModal({
     formData.append("sectionId", modalData)
     formData.append("title", data.lectureTitle)
     formData.append("description", data.lectureDesc)
-    formData.append("video", data.lectureVideo)
+    if (videoSource === "upload") {
+      formData.append("video", data.lectureVideo)
+    } else {
+      formData.append("videoUrl", data.videoUrl)
+    }
     if (data.lectureNote) {
       formData.append("pdf", data.lectureNote)
     }
@@ -168,18 +181,59 @@ export default function SubSectionModal({
         {/* Modal Form */}
         <form className="space-y-12 p-10" onSubmit={handleSubmit(onSubmit)}>
           
-          {/* Lecture Video Upload */}
+          {/* Video Source Toggle */}
+          {!view && (
+            <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-2xl w-fit">
+               <button 
+                 type="button"
+                 onClick={() => setVideoSource("upload")}
+                 className={`px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${videoSource === "upload" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
+               >
+                 Upload File
+               </button>
+               <button 
+                 type="button"
+                 onClick={() => setVideoSource("youtube")}
+                 className={`px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${videoSource === "youtube" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
+               >
+                 YouTube Link
+               </button>
+            </div>
+          )}
+
+          {/* Lecture Video Upload / Link */}
           <div className="animate-in fade-in slide-in-from-top-4 duration-700">
-             <Upload
-               name="lectureVideo"
-               label="Instructional Video (MP4/WebM)"
-               register={register}
-               setValue={setValue}
-               errors={errors}
-               video={true}
-               viewData={view ? modalData.videoUrl : null}
-               editData={edit ? modalData.videoUrl : null}
-             />
+             {videoSource === "upload" ? (
+               <Upload
+                 name="lectureVideo"
+                 label="Instructional Video (MP4/WebM)"
+                 register={register}
+                 setValue={setValue}
+                 errors={errors}
+                 video={true}
+                 viewData={view ? modalData.videoUrl : null}
+                 editData={edit ? modalData.videoUrl : null}
+               />
+             ) : (
+               <div className="flex flex-col space-y-3">
+                 <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="videoUrl">
+                   YouTube Video URL {!view && <sup className="text-red-500 font-bold">*</sup>}
+                 </label>
+                 <input
+                   disabled={view || loading}
+                   id="videoUrl"
+                   defaultValue={modalData?.videoUrl || ""}
+                   placeholder="https://www.youtube.com/watch?v=..."
+                   {...register("videoUrl", { required: videoSource === "youtube" })}
+                   className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                 />
+                 {errors.videoUrl && (
+                   <span className="ml-2 text-[10px] font-black tracking-widest text-red-500 uppercase">
+                     YouTube URL is mandatory
+                   </span>
+                 )}
+               </div>
+             )}
           </div>
 
           <div className="grid grid-cols-1 gap-5">

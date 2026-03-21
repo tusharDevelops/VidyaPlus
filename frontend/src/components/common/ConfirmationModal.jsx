@@ -3,7 +3,7 @@ import IconBtn from './IconBtn'
 
 export default function ConfirmationModal({modalData}) {
   return (
-    <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-slate-900/40 backdrop-blur-md transition-all duration-300">
+    <div className="fixed inset-0 z-[9999] !mt-0 grid place-items-center overflow-auto bg-slate-900/40 backdrop-blur-md transition-all duration-300">
     <div className="w-11/12 max-w-[400px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-8 shadow-2xl shadow-indigo-500/10 scale-in-center">
       <p className="text-2xl font-black text-slate-900 dark:text-white leading-tight">
         {modalData?.text1}

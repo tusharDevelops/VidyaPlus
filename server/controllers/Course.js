@@ -5,6 +5,8 @@ const SubSection = require("../models/subSection");
 const Course = require("../models/course");
 const CourseProgress = require("../models/courseProgress");
 const {uploadImageToCloudinary} = require("../utilities/imageUploader");
+const { deleteResourceFromCloudinary } = require("../utilities/mediaCleanup");
+const { deleteCourseRecord } = require("../utilities/courseDeletion");
 const { convertSecondsToDuration } = require("../utilities/secToduration")
 
 exports.createCourse = async(req,res)=>{
@@ -58,17 +60,18 @@ exports.createCourse = async(req,res)=>{
         }
 
         //upoad a thumbnail to cloud and create a secured url entry in db
-        const thumbnailImg = await uploadImageToCloudinary(thumbnail, process.env.FOLDER_NAME);
+        const thumbnailImage = await uploadImageToCloudinary(thumbnail, process.env.FOLDER_NAME);
 
         const newCourse = await Course.create({
             courseName,
             courseDescription,
             instructor: instructorDetails._id,
-            whatYouWillLearn,
+            whatYouWillLearn: whatYouWillLearn,
             price,
             tag: tag,
             category: categoryDetails._id,
-            thumbnail: thumbnailImg.secure_url,
+            thumbnail: thumbnailImage.secure_url,
+            thumbnailPublicId: thumbnailImage.public_id,
             status: status,
 			instructions: instructions,
         });
@@ -217,11 +220,16 @@ exports.editCourse = async (req, res) => {
       if (req.files) {
         //console.log("thumbnail update")
         const thumbnail = req.files.thumbnailImage
+        // Delete old thumbnail
+        if (course.thumbnailPublicId) {
+            await deleteResourceFromCloudinary(course.thumbnailPublicId);
+        }
         const thumbnailImage = await uploadImageToCloudinary(
           thumbnail,
           process.env.FOLDER_NAME
         )
         course.thumbnail = thumbnailImage.secure_url
+        course.thumbnailPublicId = thumbnailImage.public_id
       }
   
       // Update only the fields that are present in the request body
@@ -303,40 +311,8 @@ exports.getInstructorCourses = async (req, res) => {
 exports.deleteCourse = async (req, res) => {
   try {
     const { courseId } = req.body
-
-    // Find the course
-    const course = await Course.findById(courseId)
-    if (!course) {
-      return res.status(404).json({ message: "Course not found" })
-    }
-
-    // Unenroll students from the course
-    const studentsEnrolled = course.studentsEnrolled
-    for (const studentId of studentsEnrolled) {
-      await User.findByIdAndUpdate(studentId, {
-        $pull: { courses: courseId },
-      })
-    }
-
-    // Delete sections and sub-sections
-    const courseSections = course.courseContent
-    for (const sectionId of courseSections) {
-      // Delete sub-sections of the section
-      const section = await Section.findById(sectionId)
-      if (section) {
-        const subSections = section.subSection
-        for (const subSectionId of subSections) {
-          await SubSection.findByIdAndDelete(subSectionId)
-        }
-      }
-
-      // Delete the section
-      await Section.findByIdAndDelete(sectionId)
-    }
-
-    // Delete the course
-    await Course.findByIdAndDelete(courseId)
-
+    await deleteCourseRecord(courseId)
+    
     return res.status(200).json({
       success: true,
       message: "Course deleted successfully",

@@ -14,6 +14,9 @@ const subSectionSchema = new mongoose.Schema({
     videoUrl:{
         type:String,
     },
+    videoPublicId: {
+        type: String,
+    },
 
     notes: [
         {

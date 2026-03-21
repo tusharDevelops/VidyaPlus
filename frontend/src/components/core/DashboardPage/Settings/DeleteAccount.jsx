@@ -4,10 +4,17 @@ import { useNavigate } from "react-router-dom"
 
 import { deleteProfile } from "../../../../services/operations/settingAPI"
 
+import { logout } from "../../../../services/operations/authAPI"
+import { useState } from "react"
+
 export default function DeleteAccount() {
   const { token } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [confirmation, setConfirmation] = useState("")
+
+  const CONFIRM_TEXT = "Delete my account"
 
   async function handleDeleteAccount() {
     try {
@@ -38,11 +45,29 @@ export default function DeleteAccount() {
               Account termination involves the aggregate deletion of all pedagogical progress, instructional assets, and credential history. 
               Existing enrollment in <span className="text-red-600 dark:text-red-400 font-black">Paid Curriculum</span> will be permanently forfeited without temporal restitution.
             </p>
+            
+            <div className="flex flex-col space-y-3 pt-2">
+              <label className="text-[10px] font-black text-red-800 dark:text-red-400 uppercase tracking-widest">
+                Type <span className="underline italic select-all cursor-pointer">"{CONFIRM_TEXT}"</span> to confirm
+              </label>
+              <input
+                type="text"
+                placeholder={CONFIRM_TEXT}
+                value={confirmation}
+                onChange={(e) => setConfirmation(e.target.value)}
+                className="w-full sm:w-[320px] bg-white/50 dark:bg-red-950/20 border-2 border-red-200 dark:border-red-900/50 rounded-xl py-3 px-5 text-sm font-bold text-red-900 dark:text-red-100 placeholder:text-red-200 dark:placeholder:text-red-900/40 focus:outline-none focus:ring-4 focus:ring-red-500/10 transition-all"
+              />
+            </div>
           </div>
           
           <button
             type="button"
-            className="w-fit cursor-pointer mt-4 px-10 py-4 rounded-2xl bg-red-600 text-white text-xs font-black uppercase tracking-widest shadow-2xl shadow-red-600/30 hover:bg-red-700 hover:scale-105 active:scale-95 transition-all duration-300"
+            disabled={confirmation !== CONFIRM_TEXT}
+            className={`w-fit cursor-pointer mt-4 px-10 py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300
+              ${confirmation === CONFIRM_TEXT 
+                ? "bg-red-600 text-white shadow-2xl shadow-red-600/30 hover:bg-red-700 hover:scale-105 active:scale-95" 
+                : "bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-50"
+              }`}
             onClick={handleDeleteAccount}
           >
             Execute Termination

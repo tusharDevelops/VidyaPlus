@@ -4,6 +4,7 @@ const Course = require("../models/course");
 const {uploadImageToCloudinary} = require("../utilities/imageUploader");
 const { convertSecondsToDuration } = require("../utilities/secToduration")
 const CourseProgress = require("../models/courseProgress")
+const { deleteCourseRecord } = require("../utilities/courseDeletion")
 
 exports.updateProfile = async (req, res) => {
     try{
@@ -94,9 +95,15 @@ exports.deleteAccount = async (req, res) => {
         } 
         //delete profile
         await Profile.findByIdAndDelete({_id:userDetails.additionalDetails});
-        //TOOD: HW unenroll user form all enrolled courses
+        // Cascade delete instructor courses
+        if (userDetails.accountType === "Instructor") {
+            const courses = await Course.find({ instructor: id });
+            for (const course of courses) {
+                await deleteCourseRecord(course._id);
+            }
+        }
+
         const enrolledCourses = userDetails.courses;
-// TOOD: HW unenroll user from all enrolled courses
         if (enrolledCourses.length !== 0) {
             try {
                 // Loop through each enrolled course

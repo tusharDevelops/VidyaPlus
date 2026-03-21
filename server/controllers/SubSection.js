@@ -2,6 +2,7 @@ const SubSection = require("../models/subSection");
 const Section  = require("../models/section");
 const {uploadImageToCloudinary}  = require("../utilities/imageUploader");
 const cloudinary = require("cloudinary").v2;
+const { deleteResourceFromCloudinary } = require("../utilities/mediaCleanup");
 
 
 //create SubSection
@@ -9,20 +10,24 @@ const cloudinary = require("cloudinary").v2;
 exports.createSubSection = async (req, res) => {
     try{
             //fecth data from Req body
-            const {sectionId, title, description} = req.body;
+            const {sectionId, title, description, videoUrl} = req.body;
             //extract file/video
-            const video  = req.files.video;
-            const pdf = req.files.pdf;
+            const video  = req.files ? req.files.video : null;
+            const pdf = req.files ? req.files.pdf : null;
             
             //validation
-            if(!sectionId || !title || !description || !video) {
+            if(!sectionId || !title || !description || (!video && !videoUrl)) {
                 return res.status(400).json({
                     success:false,
-                    message:'All fields are required',
+                    message:'All fields are required (Video file or YouTube link)',
                 });
             }
-            //upload video to cloudinary
-            const uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME);
+            
+            let uploadDetails = null;
+            if (video) {
+                //upload video to cloudinary
+                uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME);
+            }
             
             let pdfUrl = "";
             let pdfPublicId = "";
@@ -39,9 +44,10 @@ exports.createSubSection = async (req, res) => {
             //create a sub-section
             const subSectionDetails = await SubSection.create({
               title: title,
-              timeDuration: `${uploadDetails.duration}`,
+              timeDuration: uploadDetails ? `${uploadDetails.duration}` : "0",
               description: description,
-              videoUrl: uploadDetails.secure_url,
+              videoUrl: uploadDetails ? uploadDetails.secure_url : videoUrl,
+              videoPublicId: uploadDetails ? uploadDetails.public_id : null,
               notes: pdfUrl ? [{ title: "Lecture Note", url: pdfUrl, publicId: pdfPublicId }] : []
             })
             //update section with this sub section ObjectId
@@ -72,13 +78,15 @@ exports.updateSubSection = async (req, res) => {
       const { sectionId, title, description, subSectionId} = req.body
       const subSection = await SubSection.findById(subSectionId)
   
-      if (!subSection) {
-        return res.status(404).json({
-          success: false,
-          message: "SubSection not found",
-        })
+      if (req.body.videoUrl !== undefined) {
+          // If we are switching from a Cloudinary video to a YouTube link, delete the old one
+          if (subSection.videoPublicId && req.body.videoUrl !== subSection.videoUrl) {
+              await deleteResourceFromCloudinary(subSection.videoPublicId, "video");
+              subSection.videoPublicId = null;
+          }
+          subSection.videoUrl = req.body.videoUrl
       }
-  
+
       if (title !== undefined) {
         subSection.title = title
       }
@@ -88,16 +96,33 @@ exports.updateSubSection = async (req, res) => {
       }
       if (req.files && req.files.video !== undefined) {
         const video = req.files.video
+        
+        // Delete old video
+        if (subSection.videoPublicId) {
+            await deleteResourceFromCloudinary(subSection.videoPublicId, "video");
+        }
+
         const uploadDetails = await uploadImageToCloudinary(
           video,
           process.env.FOLDER_NAME
         )
         subSection.videoUrl = uploadDetails.secure_url
+        subSection.videoPublicId = uploadDetails.public_id
         subSection.timeDuration = `${uploadDetails.duration}`
       }
 
       if (req.files && req.files.pdf !== undefined) {
         const pdf = req.files.pdf
+
+        // Delete old notes
+        if (subSection.notes && subSection.notes.length > 0) {
+            for (const note of subSection.notes) {
+                if (note.publicId) {
+                    await deleteResourceFromCloudinary(note.publicId, "raw");
+                }
+            }
+        }
+
         const pdfUploadDetails = await cloudinary.uploader.upload(
           pdf.tempFilePath, {
             folder: process.env.FOLDER_NAME,
@@ -138,7 +163,27 @@ exports.deleteSubSection = async (req, res) => {
         },{new:true}
       ).populate("subSection").exec()
 
-      const subSection = await SubSection.findByIdAndDelete({ _id: subSectionId })
+      const subSection = await SubSection.findById(subSectionId);
+
+      if (!subSection) {
+          return res.status(404).json({ success: false, message: "SubSection not found" });
+      }
+
+      // Delete video from Cloudinary
+      if (subSection.videoPublicId) {
+          await deleteResourceFromCloudinary(subSection.videoPublicId, "video");
+      }
+
+      // Delete notes from Cloudinary
+      if (subSection.notes && subSection.notes.length > 0) {
+          for (const note of subSection.notes) {
+              if (note.publicId) {
+                  await deleteResourceFromCloudinary(note.publicId, "raw");
+              }
+          }
+      }
+
+      await SubSection.findByIdAndDelete({ _id: subSectionId })
   
       if (!subSection) {
         return res

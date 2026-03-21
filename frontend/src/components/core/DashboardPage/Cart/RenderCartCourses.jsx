@@ -13,15 +13,15 @@ export default function RenderCartCourses() {
       {cart.map((course, indx) => (
         <div
           key={course._id}
-          className={`flex w-full flex-wrap items-start justify-between gap-6 ${
-            indx !== cart.length - 1 && "border-b border-b-richblack-400 pb-6"
-          } ${indx !== 0 && "mt-6"} `}
+          className={`flex w-full flex-col gap-4 sm:flex-row sm:gap-6 ${
+            indx !== cart.length - 1 && "border-b border-b-richblack-400 pb-4 sm:pb-6"
+          } ${indx !== 0 && "mt-4 sm:mt-6"}`}
         >
-          <div className="flex flex-1 flex-col gap-4 xl:flex-row">
+          <div className="flex flex-1 flex-col gap-4 sm:flex-row">
             <img
               src={course?.thumbnail}
               alt={course?.courseName}
-              className="h-[148px] w-[220px] rounded-lg object-cover"
+              className="h-[150px] w-full rounded-lg object-cover sm:h-[120px] sm:w-[180px] lg:h-[148px] lg:w-[220px]"
             />
             <div className="flex flex-col space-y-1">
               <p className="text-lg font-medium text-richblack-5">

@@ -21,7 +21,7 @@ export default function SideBar() {
 
   if (profileLoading || authLoading) {
     return (
-      <div className="grid h-[calc(100vh-3.5rem)] min-w-[220px] items-center border-r-[1px] border-r-richblack-700 bg-richblack-800">
+      <div className="hidden grid h-[calc(100vh-3.5rem)] min-w-[220px] items-center border-r-[1px] border-r-richblack-700 bg-richblack-800 md:grid">
         <div className="spinner"></div>
       </div>
     )
@@ -29,8 +29,7 @@ export default function SideBar() {
 
 
   return (
-    <div className='flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col
-    border-r-[1px] border-r-richblack-700  bg-richblack-900 py-10'>
+    <div className='hidden h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-900 py-8 md:flex md:py-10'>
         <div className='flex flex-col'>
           {
             sidebarLinks.map((link)=>{

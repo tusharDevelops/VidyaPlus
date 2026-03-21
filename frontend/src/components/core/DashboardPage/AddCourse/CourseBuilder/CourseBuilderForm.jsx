@@ -110,8 +110,8 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
 
 
   return (
-    <div className=' space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6'>
-      <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
+    <div className='space-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-4 md:space-y-8 md:p-6'>
+      <p className="text-xl font-semibold text-richblack-5 md:text-2xl">Course Builder</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col space-y-2">
           <label className="text-sm text-richblack-5" htmlFor="sectionName">

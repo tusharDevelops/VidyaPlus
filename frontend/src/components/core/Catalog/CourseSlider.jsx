@@ -15,15 +15,20 @@ const CourseSlider = ({Courses}) => {
       {Courses?.length ? (
         <Swiper
           slidesPerView={1}
-          spaceBetween={25}
+          spaceBetween={15}
           loop={false}
           modules={[FreeMode, Pagination]}
           breakpoints={{
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
             1024: {
               slidesPerView: 3,
+              spaceBetween: 25,
             },
           }}
-          className="max-h-[30rem]"
+          className="max-h-[25rem] sm:max-h-[28rem] lg:max-h-[30rem]"
         >
           {Courses?.map((course, i) => (
             <SwiperSlide key={i}>

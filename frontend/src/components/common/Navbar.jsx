@@ -61,13 +61,12 @@ const Navbar = () => {
     }
 
   return (
-    <div className='flex relative h-16 items-center justify-center border-b-[1px] border-b-richblack-700'>
-      <div className='  w-11/12  flex flex-row items-center justify-between lg:max-w-maxContent'>
+    <div className='flex relative h-14 items-center justify-center border-b-[1px] border-b-richblack-700 sm:h-16'>
+      <div className='w-11/12 flex flex-row items-center justify-between lg:max-w-maxContent'>
         {/* Image */}
-      <Link to="/">
-        
-        <div className=" text-4xl text-white  font-bold">Vidya+</div>
-        <img src={logo} width={120} height={30} className=" absolute top-6 left-39 saturate-150 z-10" alt='x' loading='lazy'/>
+      <Link to="/" className="flex items-center gap-2">
+        <div className="text-2xl text-white font-bold sm:text-3xl">Vidya+</div>
+        <img src={logo} width={80} height={24} className="saturate-150 z-10 hidden sm:block sm:w-[100px] sm:h-[28px] md:w-[120px] md:h-[30px]" alt='vidya plus logo' loading='lazy'/>
       </Link>
 
       <div className=" flex ml-auto  md:hidden" onClick={()=>setHamBurgerOpen(true)} >{!hamburgerOpen && <RxHamburgerMenu className=" text-2xl text-white "/>}</div>

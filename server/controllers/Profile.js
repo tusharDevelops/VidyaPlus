@@ -282,3 +282,59 @@ exports.instructorDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" })
   }
 }
+
+exports.getInstructorStudents = async (req, res) => {
+  try {
+    const instructorId = req.user.id
+
+    // 1. Get all courses of this instructor
+    const instructorCourses = await Course.find({ instructor: instructorId })
+      .select("courseName studentsEnrolled")
+      .populate({
+        path: "studentsEnrolled",
+        select: "firstName lastName email image additionalDetails",
+        populate: {
+          path: "additionalDetails",
+          select: "contactNumber gender"
+        }
+      })
+
+    // 2. Map students to their enrolled courses (among instructor's courses)
+    const studentMap = new Map()
+
+    instructorCourses.forEach((course) => {
+      course.studentsEnrolled.forEach((student) => {
+        if (!studentMap.has(student._id.toString())) {
+          studentMap.set(student._id.toString(), {
+            _id: student._id,
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            image: student.image,
+            contactNumber: student.additionalDetails?.contactNumber,
+            gender: student.additionalDetails?.gender,
+            courses: [],
+          })
+        }
+        studentMap.get(student._id.toString()).courses.push({
+          _id: course._id,
+          courseName: course.courseName,
+        })
+      })
+    })
+
+    const studentsList = Array.from(studentMap.values())
+
+    return res.status(200).json({
+      success: true,
+      data: studentsList,
+    })
+  } catch (error) {
+    console.error("GET_INSTRUCTOR_STUDENTS_ERROR:", error)
+    return res.status(500).json({
+      success: false,
+      message: "Could not fetch students data",
+      error: error.message,
+    })
+  }
+}

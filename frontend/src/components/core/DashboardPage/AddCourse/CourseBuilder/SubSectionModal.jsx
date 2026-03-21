@@ -159,28 +159,28 @@ export default function SubSectionModal({
       <div className='my-10 w-full max-w-[700px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_0_100px_rgba(79,70,229,0.1)] overflow-hidden'>
        
         {/* Modal Header */}
-        <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-6 border-b border-slate-100 dark:border-slate-800">
-          <div className="flex items-center gap-4">
-             <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-xl shadow-indigo-600/20">
-                <span className="text-lg">📹</span>
+        <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800">
+          <div className="flex items-center gap-3 sm:gap-4">
+             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white shadow-xl shadow-indigo-600/20">
+                <span className="text-base">📹</span>
              </div>
              <div>
-                <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1">
+                <p className="text-base sm:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-1">
                   {view && "Lecture Preview"} {add && "Integrate New Lecture"} {edit && "Refine Lecture Details"}
                 </p>
-                <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">CURRICULUM ARCHITECTURE / INSTRUCTIONAL UNIT</p>
+                <p className="text-[8px] sm:text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">INSTRUCTIONAL UNIT</p>
              </div>
           </div>
           <button 
             onClick={() => (!loading ? setModalData(null) : {})}
-            className="w-8 h-8 flex items-center justify-center rounded-xl bg-white dark:bg-slate-800 text-slate-400 hover:text-red-500 transition-all border border-slate-100 dark:border-slate-700 shadow-sm"
+            className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center rounded-xl bg-white dark:bg-slate-800 text-slate-400 hover:text-red-500 transition-all border border-slate-100 dark:border-slate-700 shadow-sm"
           >
-            <RxCross2 size={20} />
+            <RxCross2 size={18} />
           </button>
         </div>
 
         {/* Modal Form */}
-        <form className="space-y-8 p-8" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-6 sm:space-y-8 p-4 sm:p-8" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Video Source Toggle */}
           {!view && (
@@ -188,14 +188,14 @@ export default function SubSectionModal({
                <button 
                  type="button"
                  onClick={() => setVideoSource("upload")}
-                 className={`px-4 py-1.5 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${videoSource === "upload" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
+                 className={`px-3 sm:px-4 py-1.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all ${videoSource === "upload" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
                >
                  Upload File
                </button>
                <button 
                  type="button"
                  onClick={() => setVideoSource("youtube")}
-                 className={`px-4 py-1.5 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${videoSource === "youtube" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
+                 className={`px-3 sm:px-4 py-1.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all ${videoSource === "youtube" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
                >
                  YouTube Link
                </button>

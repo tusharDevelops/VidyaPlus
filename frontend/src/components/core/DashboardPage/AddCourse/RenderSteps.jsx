@@ -25,12 +25,12 @@ export default function RenderSteps() {
     return (
     <>
 
-    <div className='relative mb-8 flex w-full justify-center'>
+    <div className='relative mb-8 flex w-full justify-center px-4'>
         {steps.map((item)=>(
             <React.Fragment key={item.id}>
                 <div className='flex flex-col items-center group'>
-                    <div className={`grid cursor-default aspect-square w-[50px] place-items-center
-                    rounded-2xl border-2 transition-all duration-700 relative
+                    <div className={`grid cursor-default aspect-square w-[35px] sm:w-[50px] place-items-center
+                    rounded-xl sm:rounded-2xl border-2 transition-all duration-700 relative
                     ${
                     step === item.id
                     ? "border-indigo-600 bg-indigo-600/10 text-indigo-600 dark:text-indigo-400 shadow-[0_0_30px_rgba(79,70,229,0.3)] scale-110"
@@ -40,21 +40,21 @@ export default function RenderSteps() {
                     }`}>
                     {
                         step > item.id ? (
-                        <FaCheck className="font-black text-white text-lg" />
+                        <FaCheck className="font-black text-white text-xs sm:text-lg" />
                         ) : (
-                        <span className="font-black text-lg tracking-tighter">{item.id}</span>
+                        <span className="font-black text-xs sm:text-lg tracking-tighter">{item.id}</span>
                         )
                     }
                     {/* Pulsing indicator for active step */}
                     {step === item.id && (
-                        <div className="absolute inset-0 rounded-2xl bg-indigo-600/20 animate-ping -z-10"></div>
+                        <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-indigo-600/20 animate-ping -z-10"></div>
                     )}
                     </div>
                 </div>
 
                 {item.id !== steps.length && (
                     <div
-                    className={`h-[1px] w-[20%] self-center mx-4 transition-all duration-1000 ${
+                    className={`h-[1px] flex-1 min-w-[30px] self-center mx-2 sm:mx-4 transition-all duration-1000 ${
                     step > item.id  ? "bg-indigo-600 shadow-[0_0_15px_rgba(79,70,229,0.5)]" : "bg-slate-200 dark:bg-slate-800"
                     } `}
                     ></div>
@@ -63,16 +63,16 @@ export default function RenderSteps() {
         ))}
     </div>
     
-    <div className="relative mb-16 flex w-full select-none justify-between px-6">
+    <div className="relative mb-8 sm:mb-16 flex w-full select-none justify-between px-2 sm:px-6">
         {steps.map((item) => (
             <div
-            className="flex min-w-[140px] flex-col items-center gap-y-2"
+            className="flex flex-1 flex-col items-center gap-y-2 text-center px-1"
             key={item.id}
             >
                 <p
-                    className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${
+                    className={`text-[8px] sm:text-[10px] font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] transition-all duration-500 ${
                     step >= item.id ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400"
-                    } ${step === item.id ? "scale-110" : ""}`}
+                    } ${step === item.id ? "scale-105" : ""}`}
                 >
                     {item.title}
                 </p>

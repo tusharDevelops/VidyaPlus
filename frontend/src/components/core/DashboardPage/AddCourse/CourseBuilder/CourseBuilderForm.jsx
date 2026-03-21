@@ -105,7 +105,7 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
 
 
   return (
-    <div className='space-y-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 shadow-2xl shadow-indigo-500/5 dark:shadow-none'>
+    <div className='space-y-6 sm:space-y-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-4 sm:p-8 shadow-2xl shadow-indigo-500/5 dark:shadow-none'>
       <header className="space-y-1 border-b border-slate-100 dark:border-slate-800 pb-6">
         <div className="flex items-center gap-2 mb-1">
            <span className="px-2 py-0.5 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-black uppercase tracking-widest">
@@ -113,10 +113,10 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
            </span>
         </div>
         <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Curriculum Architecture</h2>
-        <p className="text-base font-bold text-slate-500 dark:text-slate-400">Organize your expertise into logical modules.</p>
+        <p className="text-sm sm:text-base font-bold text-slate-500 dark:text-slate-400">Organize your expertise into logical modules.</p>
       </header>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-6 shadow-inner group">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-4 sm:p-6 shadow-inner group">
         <div className="flex flex-col space-y-2">
           <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="sectionName">
             Module Title <sup className="text-red-500 font-bold">*</sup>
@@ -134,13 +134,13 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
             </span>
           )}
         </div>
-        <div className="flex items-center gap-x-6">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
           <IconBtn
             type="submit"
             disabled={loading}
             text={editSectionName ? "Synchronize Updates" : "Initialize Module"}
             outline={true}
-            customClasses="shadow-xl shadow-indigo-600/5 border-2 rounded-[1.25rem] px-8 py-3 font-black text-xs uppercase tracking-widest"
+            customClasses="shadow-xl shadow-indigo-600/5 border-2 rounded-[1.25rem] px-8 py-3 font-black text-xs uppercase tracking-widest w-full sm:w-auto flex justify-center"
           >
             <IoAddCircleOutline size={20} className="text-indigo-600 dark:text-indigo-400" />
           </IconBtn>
@@ -150,7 +150,7 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
               onClick={cancelEdit}
               className="text-xs font-black text-slate-400 hover:text-red-500 transition-all uppercase tracking-widest flex items-center gap-2 group/cancel"
             >
-              <span className="w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/cancel:bg-red-500 transition-colors"></span>
+              <span className="hidden sm:block w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/cancel:bg-red-500 transition-colors"></span>
               Abort Edit
             </button>
           )}
@@ -220,14 +220,14 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
       </section>
 
       {/* Next Prev Button */}
-      <div className="flex justify-end gap-x-4 pt-8 border-t border-slate-100 dark:border-slate-800">
+      <div className="flex flex-col sm:flex-row justify-end gap-4 pt-8 border-t border-slate-100 dark:border-slate-800">
         <button
           onClick={goBack}
-          className="flex cursor-pointer items-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 py-3 px-8 font-black text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
+          className="flex cursor-pointer items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 py-3 px-8 font-black text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300 w-full sm:w-auto"
         >
           Back
         </button>
-        <IconBtn disabled={loading} text="Next Stage" onclick={goToNext} customClasses="px-8 py-3 rounded-xl shadow-2xl shadow-indigo-600/20 text-[10px] font-black uppercase tracking-widest">
+        <IconBtn disabled={loading} text="Next Stage" onclick={goToNext} customClasses="w-full sm:w-auto px-8 py-3 rounded-xl shadow-2xl shadow-indigo-600/20 text-[10px] font-black uppercase tracking-widest flex justify-center">
           <MdNavigateNext className="text-xl" />
         </IconBtn>
       </div>

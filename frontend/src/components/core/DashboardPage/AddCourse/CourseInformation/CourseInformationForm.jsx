@@ -176,7 +176,7 @@ export default function CourseInformationForm() {
 }
   return (
     <form onSubmit={handleSubmit(onSubmit)}
-    className='space-y-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 shadow-2xl shadow-indigo-500/5 dark:shadow-none'>
+    className='space-y-6 sm:space-y-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-4 sm:p-8 shadow-2xl shadow-indigo-500/5 dark:shadow-none'>
       
       {/* Course Title */}
       <div className="flex flex-col space-y-2">
@@ -342,12 +342,12 @@ export default function CourseInformationForm() {
       />
 
       {/* Next Button */}
-      <div className="flex justify-end gap-x-4 pt-8 border-t border-slate-100 dark:border-slate-800">
+      <div className="flex flex-col sm:flex-row justify-end gap-4 pt-8 border-t border-slate-100 dark:border-slate-800">
         {editCourse && (
           <button
             onClick={() => dispatch(setStep(2))}
             disabled={loading}
-            className="flex cursor-pointer items-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 py-3 px-6 font-black text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
+            className="flex cursor-pointer items-center justify-center gap-x-2 rounded-xl bg-slate-100 dark:bg-slate-800 py-3 px-6 font-black text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300 w-full sm:w-auto"
           >
             Skip to Builder
           </button>
@@ -355,7 +355,7 @@ export default function CourseInformationForm() {
         <IconBtn
           disabled={loading}
           text={!editCourse ? "Next Stage" : "Commit Changes"}
-          customClasses="px-8 py-3 rounded-xl shadow-2xl shadow-indigo-600/20 text-[10px] font-black uppercase tracking-widest"
+          customClasses="px-8 py-3 rounded-xl shadow-2xl shadow-indigo-600/20 text-[10px] font-black uppercase tracking-widest w-full sm:w-auto flex justify-center"
         >
           <MdNavigateNext className="text-xl" />
         </IconBtn>

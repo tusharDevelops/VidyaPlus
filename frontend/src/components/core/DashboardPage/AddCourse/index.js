@@ -4,30 +4,30 @@ import RenderSteps from './RenderSteps'
 export default function AddCourse() {
   return (
     <>
-    <div className="space-y-16">
-      <div className="flex w-full items-start gap-x-16">
+    <div className="space-y-8 sm:space-y-16">
+      <div className="flex w-full flex-col lg:flex-row items-start gap-y-10 lg:gap-x-16">
         <div className="flex flex-1 flex-col">
-          <header className="mb-16 space-y-3 pb-10 border-b border-slate-100 dark:border-slate-800">
+          <header className="mb-8 sm:mb-16 space-y-3 pb-6 sm:pb-10 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-3 mb-2">
                <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
                  CURRICULUM BUILDER
                </span>
             </div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               Create New Course
             </h1>
-            <p className="text-xl font-bold text-slate-500 dark:text-slate-400 max-w-2xl">
+            <p className="text-sm sm:text-xl font-bold text-slate-500 dark:text-slate-400 max-w-2xl">
               Transform your expertise into a structured learning journey. Every detail matters in building a premium experience.
             </p>
           </header>
           
-          <main className="flex-1">
+          <main className="flex-1 w-full overflow-hidden">
             <RenderSteps />
           </main>
         </div>
         
         {/* Course Upload Tips */}
-        <aside className="sticky top-10 hidden max-w-[420px] flex-1 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none xl:block group">
+        <aside className="sticky top-10 hidden max-w-[420px] flex-1 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md p-6 sm:p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none xl:block group">
            <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
            
            <div className="relative z-10">

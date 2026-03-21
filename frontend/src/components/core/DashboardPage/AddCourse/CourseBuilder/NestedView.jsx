@@ -59,26 +59,26 @@ export default function NestedView({handleChangeEditSectionName}) {
   
   return (
     <>
-      <div className='rounded-2xl bg-slate-50/50 dark:bg-slate-900/30 p-6 md:p-8 border border-slate-200 dark:border-slate-800 shadow-inner overflow-hidden space-y-6' id="nestedViewContainer">
+      <div className='rounded-2xl bg-slate-50/50 dark:bg-slate-900/30 p-3 sm:p-6 md:p-8 border border-slate-200 dark:border-slate-800 shadow-inner overflow-hidden space-y-4 sm:space-y-6' id="nestedViewContainer">
         {course?.courseContent?.map((section, index) => (
            <details key={index} open className="group transition-all duration-500 bg-white dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-indigo-600/5 transition-all">
-              <summary className="flex cursor-pointer items-center justify-between py-4 px-5 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all select-none">
-                  <div className="flex items-center gap-x-4">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20 group-hover:scale-105 transition-transform">
-                       <RxDropdownMenu className="text-xl"/>
+              <summary className="flex cursor-pointer items-center justify-between py-3 px-3 sm:py-4 sm:px-5 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-all select-none gap-x-2">
+                  <div className="flex items-center gap-x-2 sm:gap-x-4 flex-1 min-w-0">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white shadow-md shadow-indigo-600/20 group-hover:scale-105 transition-transform">
+                       <RxDropdownMenu className="text-lg sm:text-xl"/>
                     </div>
-                    <div>
-                       <p className="text-lg font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors tracking-tight leading-tight">
+                    <div className="flex-1 min-w-0">
+                       <p className="text-sm sm:text-lg font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors tracking-tight leading-tight truncate">
                         {section.sectionName}
                        </p>
-                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                          {section.subSection.length} {section.subSection.length === 1 ? 'Instructional Unit' : 'Instructional Units'}
+                       <p className="text-[8px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                          {section.subSection.length} {section.subSection.length === 1 ? 'Unit' : 'Units'}
                        </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-x-2" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center gap-x-1 sm:gap-x-2" onClick={(e) => e.stopPropagation()}>
                     <button
-                      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-white dark:hover:bg-slate-800 shadow-sm border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all"
+                      className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-white dark:hover:bg-slate-800 shadow-sm border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all"
                       onClick={() =>
                         handleChangeEditSectionName(
                           section._id,
@@ -87,10 +87,10 @@ export default function NestedView({handleChangeEditSectionName}) {
                       }
                       title="Refine Module Nomenclature"
                     >
-                      <MdEdit size={16} />
+                      <MdEdit size={14} />
                     </button>
                     <button
-                      className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-white dark:hover:bg-slate-800 shadow-sm border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all"
+                      className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-white dark:hover:bg-slate-800 shadow-sm border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition-all"
                       onClick={() =>
                         setConfirmationModal({
                           text1: "Deconstruct this Module?",
@@ -103,31 +103,31 @@ export default function NestedView({handleChangeEditSectionName}) {
                       }
                       title="Purge Module"
                     >
-                      <RiDeleteBin6Line size={16} />
+                      <RiDeleteBin6Line size={14} />
                     </button>
-                    <div className="h-6 w-[1px] bg-slate-100 dark:bg-slate-700 mx-2"></div>
-                    <AiFillCaretDown className="text-lg text-slate-300 dark:text-slate-600 group-open:rotate-180 transition-transform duration-500" />
+                    <div className="hidden sm:block h-6 w-[1px] bg-slate-100 dark:bg-slate-700 mx-1 sm:mx-2"></div>
+                    <AiFillCaretDown className="text-base sm:text-lg text-slate-300 dark:text-slate-600 group-open:rotate-180 transition-transform duration-500" />
                   </div>
               </summary>
 
-              <div className="px-5 pb-5 pt-2 space-y-3 bg-slate-50/50 dark:bg-slate-900/20 border-t border-slate-50 dark:border-slate-800/50 animate-in slide-in-from-top-4 duration-500">
+              <div className="px-3 sm:px-5 pb-5 pt-2 space-y-3 bg-slate-50/50 dark:bg-slate-900/20 border-t border-slate-50 dark:border-slate-800/50 animate-in slide-in-from-top-4 duration-500">
                 {/* Render All Sub Sections Within a Section */}
                 <div className="space-y-3">
                   {section.subSection.map((data) => (
                     <div
                       key={data?._id}
                       onClick={() => setViewSubSection(data)}
-                      className="flex cursor-pointer items-center justify-between gap-x-3 p-4 rounded-xl bg-white dark:bg-slate-800 border border-white dark:border-slate-700 shadow-sm hover:shadow-md hover:shadow-indigo-600/5 hover:border-indigo-600/20 transition-all group/sub"
+                      className="flex cursor-pointer items-center justify-between gap-x-2 sm:gap-x-3 p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-800 border border-white dark:border-slate-700 shadow-sm hover:shadow-md hover:shadow-indigo-600/5 hover:border-indigo-600/20 transition-all group/sub"
                     >
-                      <div className="flex items-center gap-x-3 flex-1 min-w-0">
-                        <div className="w-7 h-7 rounded-md bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-400 dark:text-indigo-600">
-                           <RxDropdownMenu className="text-base" />
+                      <div className="flex items-center gap-x-2 sm:gap-x-3 flex-1 min-w-0">
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-indigo-50 dark:bg-indigo-900/30 flex-shrink-0 flex items-center justify-center text-indigo-400 dark:text-indigo-600">
+                           <RxDropdownMenu className="text-sm sm:text-base" />
                         </div>
-                        <div className="flex flex-col truncate">
-                          <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 group-hover/sub:text-indigo-600 transition-colors truncate">
+                        <div className="flex flex-1 flex-col truncate">
+                          <p className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 group-hover/sub:text-indigo-600 transition-colors truncate">
                             {data.title}
                           </p>
-                          <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">LECTURE UNIT</p>
+                          <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">LECTURE</p>
                         </div>
                       </div>
                       <div
@@ -156,7 +156,7 @@ export default function NestedView({handleChangeEditSectionName}) {
                             })
                           }
                         >
-                          <RiDeleteBin6Line size={16} />
+                          <RiDeleteBin6Line size={14} />
                         </button>
                       </div>
                     </div>

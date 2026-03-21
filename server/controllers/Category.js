@@ -1,4 +1,9 @@
 const Category = require("../models/category");
+const Course = require("../models/course");
+const Section = require("../models/section");
+const SubSection = require("../models/subSection");
+const User = require("../models/user");
+
 
 //category ka handler function
 exports.createCategory = async(req,res)=>{
@@ -141,3 +146,65 @@ exports.categoryPageDetails = async (req, res) => {
 // const mostSellingCourses = allCourses .sort((a, b) => b.sold - a.sold) .slice(0, 10);
 
 // This line sorts the allCourses array based on the number of sales (sold property) in descending order (b - a sorts in descending order, a - b sorts in ascending order). Then, slice(0, 10) is used to extract the top 10 courses from the sorted array, i.e., the courses with the highest number of sales. The resulting array mostSellingCourses contains the top-selling courses across all categories, sorted from highest to lowest sales, limited to 10 courses.
+
+exports.deleteCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.body;
+        const userId = req.user.id;
+
+        const category = await Category.findById(categoryId).populate("courses");
+        if (!category) {
+            return res.status(404).json({ success: false, message: "Category not found" });
+        }
+
+        const hasOtherInstructorsCourses = category.courses.some(
+            (course) => course.instructor.toString() !== userId.toString()
+        );
+
+        if (hasOtherInstructorsCourses) {
+            return res.status(403).json({
+                success: false,
+                message: "Cannot delete this category. It contains courses created by other instructors.",
+            });
+        }
+
+        for (const course of category.courses) {
+            if (course.studentsEnrolled && course.studentsEnrolled.length > 0) {
+                for (const studentId of course.studentsEnrolled) {
+                    await User.findByIdAndUpdate(studentId, {
+                        $pull: { courses: course._id },
+                    });
+                }
+            }
+            await User.findByIdAndUpdate(userId, {
+                $pull: { courses: course._id },
+            });
+            if (course.courseContent && course.courseContent.length > 0) {
+                for (const sectionId of course.courseContent) {
+                    const section = await Section.findById(sectionId);
+                    if (section && section.subSection) {
+                        for (const subSectionId of section.subSection) {
+                            await SubSection.findByIdAndDelete(subSectionId);
+                        }
+                    }
+                    await Section.findByIdAndDelete(sectionId);
+                }
+            }
+            await Course.findByIdAndDelete(course._id);
+        }
+
+        await Category.findByIdAndDelete(categoryId);
+
+        return res.status(200).json({
+            success: true,
+            message: "Category and all associated courses deleted safely.",
+        });
+    } catch (error) {
+        console.error("Error deleting category:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error during category deletion",
+            error: error.message,
+        });
+    }
+};

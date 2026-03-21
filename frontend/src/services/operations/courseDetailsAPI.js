@@ -21,6 +21,7 @@ const {
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
   CREATE_CATEGORY_API,
+  DELETE_CATEGORY_API,
   ADD_EXAM_NOTE_API,
   DELETE_EXAM_NOTE_API,
   ADD_SUBSECTION_NOTE_API,
@@ -431,6 +432,33 @@ export const createCategory = async (data, token) => {
   }
   toast.dismiss(toastId)
   return result
+}
+
+export const deleteCategory = async (data, token) => {
+  const toastId = toast.loading("Deleting Category...")
+  let success = false
+  try {
+    const response = await apiConnector("DELETE", DELETE_CATEGORY_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log("DELETE CATEGORY API RESPONSE............", response)
+    if (!response?.data?.success) {
+      throw new Error("Could Not Delete Category")
+    }
+    toast.success("Category and associated courses deleted successfully")
+    success = true
+  } catch (error) {
+    console.log("DELETE CATEGORY API ERROR............", error)
+    // Display our custom safety check message if available
+    if (error.response && error.response.data && error.response.data.message) {
+      toast.error(error.response.data.message)
+    } else {
+      toast.error(error.message)
+    }
+    success = false
+  }
+  toast.dismiss(toastId)
+  return success
 }
 
 export const addExamNote = async (data, token) => {

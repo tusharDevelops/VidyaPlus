@@ -30,6 +30,7 @@ import Instructor from "./components/core/DashboardPage/Instructor";
 import Certificates from "./components/core/DashboardPage/Certificates";
 import VerifyCertificatePage from "./pages/VerifyCertificatePage";
 import AddCategory from "./components/core/DashboardPage/AddCategory";
+import ManageCategories from "./components/core/DashboardPage/ManageCategories";
 import CertificateViewPage from "./pages/CertificateViewPage";
 import { useEffect } from "react";
 
@@ -98,6 +99,7 @@ function App() {
            <Route path="dashboard/instructor" element={<Instructor />} />
            <Route path="dashboard/add-course" element={<AddCourse />} />
             <Route path="dashboard/add-category" element={<AddCategory />} />
+            <Route path="dashboard/manage-categories" element={<ManageCategories />} />
            <Route path="dashboard/my-courses" element={<MyCourses />} />
            <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
            </>

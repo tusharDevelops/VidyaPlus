@@ -23,7 +23,7 @@ const {
 } = require("../controllers/CourseNotes")
 
 //& Categories Controllers Import
-const {showAllCategories,createCategory,categoryPageDetails, } = require("../controllers/Category");
+const {showAllCategories,createCategory,categoryPageDetails, deleteCategory} = require("../controllers/Category");
 
 //& Sections Controllers Import
 const {createSection,updateSection,deleteSection,} = require("../controllers/Section");
@@ -86,6 +86,7 @@ router.post("/getSubSectionNotes", authZ, isStudent, getSubSectionNotes)
 // ********************************************************************************************************
 // Category can only be created by an Instructor with permissions
 router.post("/createCategory", authZ, isInstructor, createCategory)
+router.delete("/deleteCategory", authZ, isInstructor, deleteCategory)
 router.get("/showAllCategories", showAllCategories)
 router.post("/getCategoryPageDetails", categoryPageDetails)
 

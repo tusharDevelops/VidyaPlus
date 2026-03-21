@@ -66,4 +66,57 @@
   .animate-fadeInScale {
     animation: fadeInScale 0.5s ease-out;
   }
+
+  /* Mobile drawer animations */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInBlur {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(4px);
+    }
+  }
+
+  .hamburger-drawer-open {
+    animation: slideInLeft 0.3s ease-in-out;
+  }
+
+  .hamburger-backdrop {
+    animation: fadeInBlur 0.3s ease-in-out;
+  }
+
+  /* Mobile responsive typography */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+    }
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  @media (max-width: 640px) {
+    html, body {
+      overflow-x: hidden;
+    }
+  }
+
+  /* Better touch targets for mobile */
+  @media (max-width: 768px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
 }

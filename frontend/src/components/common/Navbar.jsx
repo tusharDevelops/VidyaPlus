@@ -61,15 +61,41 @@ const Navbar = () => {
     }
 
   return (
-    <div className='flex relative h-14 items-center justify-center border-b-[1px] border-b-richblack-700 sm:h-16'>
-      <div className='w-11/12 flex flex-row items-center justify-between lg:max-w-maxContent'>
+    <div className='flex relative h-14 items-center justify-center border-b-[1px] border-b-richblack-700 bg-richblack-900 sm:h-16'>
+      <div className='w-11/12 flex flex-row items-center justify-between px-2 gap-2 sm:px-0 lg:max-w-maxContent'>
         {/* Image */}
       <Link to="/" className="flex items-center gap-2">
         <div className="text-2xl text-white font-bold sm:text-3xl">Vidya+</div>
         <img src={logo} width={80} height={24} className="saturate-150 z-10 hidden sm:block sm:w-[100px] sm:h-[28px] md:w-[120px] md:h-[30px]" alt='vidya plus logo' loading='lazy'/>
       </Link>
 
-      <div className=" flex ml-auto  md:hidden" onClick={()=>setHamBurgerOpen(true)} >{!hamburgerOpen && <RxHamburgerMenu className=" text-2xl text-white "/>}</div>
+      <div className="flex items-center gap-2 ml-auto md:hidden">
+        {/* Mobile Theme Toggle */}
+        <button
+          onClick={() => {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.theme = 'light';
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.theme = 'dark';
+            }
+          }}
+          className='text-lg text-richblack-100 hover:text-white dark:text-slate-300 dark:hover:text-white transition-all p-2 rounded-lg hover:bg-richblack-700'
+          title="Toggle Theme"
+        >
+          🌓
+        </button>
+        
+        {/* Hamburger Menu Button */}
+        <button 
+          className="p-2 hover:bg-richblack-700 rounded-lg transition-colors duration-200"
+          onClick={() => setHamBurgerOpen(true)}
+          aria-label="Open menu"
+        >
+          {!hamburgerOpen && <RxHamburgerMenu className="text-2xl text-white" />}
+        </button>
+      </div>
 
       {/* Nav Links */}
       <nav>

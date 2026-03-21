@@ -37,7 +37,7 @@ export default function CatalogPage() {
          // console.log(catalogPageData)
       }
       catch(error) {
-          console.log(error)
+
       }
   }
   if(categoryId) {

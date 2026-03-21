@@ -34,7 +34,7 @@ const {
           dispatch(setUser(response.data.data))
 
         } catch (error) {
-            console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error)
+
             toast.error("Could Not Update Display Picture")
         }
         toast.dismiss(toastId)
@@ -61,7 +61,7 @@ const {
         )
         toast.success("Profile Updated Successfully")
       } catch (error) {
-        console.log("UPDATE_PROFILE_API API ERROR............", error)
+
         toast.error("Could Not Update Profile")
       }
       toast.dismiss(toastId)
@@ -82,7 +82,7 @@ const {
       }
       toast.success("Password Changed Successfully")
     } catch (error) {
-      console.log("CHANGE_PASSWORD_API API ERROR............", error)
+
       toast.error(error.response.data.message)
     }
     toast.dismiss(toastId)
@@ -104,7 +104,7 @@ const {
         toast.success("Profile Deleted Successfully")
         dispatch(logout(navigate))
       } catch (error) {
-        console.log("DELETE_PROFILE_API API ERROR............", error)
+
         toast.error("Could Not Delete Profile")
       }
       toast.dismiss(toastId)

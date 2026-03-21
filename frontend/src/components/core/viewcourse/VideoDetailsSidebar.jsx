@@ -62,7 +62,7 @@ export default function VideoDetailsSidebar({setReviewModal}) {
   }, [courseSectionData, courseEntireData, location.pathname])
 
 
-  console.log("printing courseSection data",courseSectionData)
+
 
 
   return (

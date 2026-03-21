@@ -48,19 +48,19 @@ function HamburgerDrawer({ isOpen, setIsOpen }) {
 
       {/* Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 h-screen w-full max-w-xs bg-richblack-900 border-r border-richblack-700 z-50 transform transition-transform duration-300 ease-in-out shadow-2xl ${
+        className={`fixed top-0 left-0 h-screen w-full max-w-xs bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-50 transform transition-transform duration-300 ease-in-out shadow-2xl ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-richblack-700 bg-richblack-800">
-          <h2 className="text-lg font-bold text-white">Menu</h2>
+        <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 backdrop-blur-md">
+          <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Menu</h2>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-richblack-700 rounded-lg transition-colors"
+            className="w-11 h-11 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
             aria-label="Close menu"
           >
-            <AiOutlineClose className="text-white text-2xl" />
+            <AiOutlineClose className="text-2xl" />
           </button>
         </div>
 
@@ -75,12 +75,12 @@ function HamburgerDrawer({ isOpen, setIsOpen }) {
                     <Link
                       to={link.path}
                       onClick={handleLinkClick}
-                      className="block px-4 py-3 text-richblack-25 hover:text-white hover:bg-richblack-700 rounded-lg transition-colors duration-200 font-medium"
+                      className="block px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors duration-300 font-bold"
                     >
                       {link.title}
                     </Link>
                   ) : (
-                    <span className="block px-4 py-3 text-richblack-400 font-medium">
+                    <span className="block px-4 py-3 text-slate-400 dark:text-slate-500 font-bold">
                       {link.title}
                     </span>
                   )}
@@ -90,20 +90,20 @@ function HamburgerDrawer({ isOpen, setIsOpen }) {
           </nav>
 
           {/* Divider */}
-          <div className="border-t border-richblack-700 my-2" />
+          <div className="border-t border-slate-200 dark:border-slate-800 my-2" />
 
           {/* Footer Actions */}
-          <div className="px-2 py-4 space-y-2">
+          <div className="px-4 py-4 space-y-3">
             {/* Cart Link */}
             {user && user?.accountType !== "Instructor" && (
               <Link
                 to="/dashboard/cart"
                 onClick={handleLinkClick}
-                className="flex items-center justify-between px-4 py-3 text-richblack-25 hover:text-white hover:bg-richblack-700 rounded-lg transition-colors duration-200 font-medium"
+                className="flex items-center justify-between px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors duration-300 font-bold"
               >
                 <span>Shopping Cart</span>
                 {totalItems > 0 && (
-                  <span className="bg-yellow-1000 text-richblack-900 px-2.5 py-0.5 rounded-full text-xs font-bold">
+                  <span className="bg-indigo-600 text-white px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-indigo-600/30">
                     {totalItems}
                   </span>
                 )}
@@ -116,16 +116,16 @@ function HamburgerDrawer({ isOpen, setIsOpen }) {
                 <Link
                   to="/login"
                   onClick={handleLinkClick}
-                  className="block w-full px-4 py-3 text-center bg-blue-1000 hover:bg-blue-900 text-white rounded-lg transition-colors duration-200 font-semibold"
+                  className="block w-full px-4 py-3 text-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-xl transition-colors duration-300 font-bold"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/signup"
                   onClick={handleLinkClick}
-                  className="block w-full px-4 py-3 text-center border border-yellow-1000 bg-yellow-1000/10 hover:bg-yellow-1000/20 text-yellow-1000 hover:text-yellow-900 rounded-lg transition-colors duration-200 font-semibold"
+                  className="block w-full px-4 py-3 text-center bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/20 rounded-xl transition-all duration-300 font-black"
                 >
-                  Sign Up
+                  Sign Up Free
                 </Link>
               </>
             )}
@@ -133,15 +133,16 @@ function HamburgerDrawer({ isOpen, setIsOpen }) {
             {/* Theme Toggle */}
             <button
               onClick={() => {
-                if (document.documentElement.classList.contains('dark')) {
-                  document.documentElement.classList.remove('dark');
+                const htmlParts = document.documentElement.classList;
+                if (htmlParts.contains('dark')) {
+                  htmlParts.remove('dark');
                   localStorage.theme = 'light';
                 } else {
-                  document.documentElement.classList.add('dark');
+                  htmlParts.add('dark');
                   localStorage.theme = 'dark';
                 }
               }}
-              className="w-full px-4 py-3 text-richblack-25 hover:text-white hover:bg-richblack-700 rounded-lg transition-colors duration-200 font-medium text-center"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors duration-300 font-bold"
             >
               Toggle Dark Mode 🌓
             </button>

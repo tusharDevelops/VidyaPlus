@@ -24,7 +24,7 @@ export default function EditProfile() {
     try {
       dispatch(updateProfile(token, data))
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+
     }
   }
   return (

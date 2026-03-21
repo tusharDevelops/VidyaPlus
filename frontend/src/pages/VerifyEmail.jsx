@@ -15,7 +15,7 @@ export default function VerifyEmail() {
     const navigate = useNavigate();
     const [otp, setOtp] = useState();
     const {loading, signupData} = useSelector((state)=>state.auth);
-    console.log(signupData); 
+
   
     useEffect(() => {
         // Only allow access of this route when user has filled the signup form

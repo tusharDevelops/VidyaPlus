@@ -35,7 +35,7 @@ const CourseDetails = () => {
                 setCourseData(result);
             }
             catch(error) {
-                console.log("Could not fetch coursse details");
+
             }
         }
         getCourseFullDetails();

@@ -70,7 +70,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
         })
 
     } catch (error) {
-        console.log("PAYMENT API ERROR.....", error);
+
         toast.error(error?.message || "Could not initiate payment. Please try again.");
     }
     toast.dismiss(toastId);
@@ -86,7 +86,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {
             Authorization: `Bearer ${token}`
         })
     } catch (error) {
-        console.log("PAYMENT SUCCESS EMAIL ERROR....", error);
+
     }
 }
 
@@ -105,7 +105,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
         navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
     } catch (error) {
-        console.log("PAYMENT VERIFY ERROR....", error);
+
         toast.error("Could not verify payment. Please contact support.");
     }
     toast.dismiss(toastId);

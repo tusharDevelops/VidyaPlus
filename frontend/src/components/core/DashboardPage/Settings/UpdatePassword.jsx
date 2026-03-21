@@ -27,7 +27,7 @@ export default function UpdatePassword() {
     try {
       dispatch( changePassword(token,data))
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+
     }
   }
 

@@ -27,7 +27,7 @@ export default function ContactUsForm() {
       } catch (error) {
         toast.dismiss(toastid);
         toast.error("SOMETHING WENT WRONG");
-        console.log("ERROR MESSAGE - ", error.message)
+
         setLoading(false);
       }
     }

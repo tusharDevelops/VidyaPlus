@@ -34,6 +34,8 @@ import ManageCategories from "./components/core/DashboardPage/ManageCategories";
 import CertificateViewPage from "./pages/CertificateViewPage";
 import { useEffect } from "react";
 
+import InstructorCertificates from "./components/core/DashboardPage/InstructorCertificates";
+
 function App() {
   const { user } = useSelector((state) => state.profile)
 
@@ -100,6 +102,7 @@ function App() {
            <Route path="dashboard/add-course" element={<AddCourse />} />
             <Route path="dashboard/add-category" element={<AddCategory />} />
             <Route path="dashboard/manage-categories" element={<ManageCategories />} />
+            <Route path="dashboard/instructor-certificates" element={<InstructorCertificates />} />
            <Route path="dashboard/my-courses" element={<MyCourses />} />
            <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
            </>

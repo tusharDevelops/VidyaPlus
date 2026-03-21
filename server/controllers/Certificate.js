@@ -135,3 +135,72 @@ exports.verifyCertificate = async (req, res) => {
   }
 }
 
+exports.getInstructorCertificates = async (req, res) => {
+  try {
+    const instructorId = req.user.id
+    
+    // Find all courses owned by this instructor
+    const courses = await Course.find({ instructor: instructorId }).select("_id")
+    const courseIds = courses.map(c => c._id)
+
+    // Find all certificates issued for these courses
+    const certs = await Certificate.find({ courseId: { $in: courseIds } })
+      .sort({ issuedAt: -1 })
+      .populate({ path: "userId", select: "firstName lastName email image" })
+      .populate({ path: "courseId", select: "courseName thumbnail" })
+
+    return res.status(200).json({ success: true, data: certs })
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message })
+  }
+}
+
+exports.issueManualCertificate = async (req, res) => {
+  try {
+    const { userId, courseId } = req.body
+    const instructorId = req.user.id
+
+    if (!userId || !courseId) {
+      return res.status(400).json({ success: false, message: "userId and courseId are required" })
+    }
+
+    // Verify ownership
+    const course = await Course.findOne({ _id: courseId, instructor: instructorId })
+    if (!course) {
+      return res.status(403).json({ success: false, message: "Course not found or unauthorized" })
+    }
+
+    const result = await exports.issueCertificateIfEligible({ userId, courseId })
+    if (result.issued) {
+      return res.status(200).json({ success: true, message: "Certificate issued successfully", data: result.certificate })
+    }
+
+    return res.status(500).json({ success: false, message: "Failed to issue certificate" })
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message })
+  }
+}
+
+exports.deleteCertificate = async (req, res) => {
+  try {
+    const { certificateId } = req.params
+    const instructorId = req.user.id
+
+    const cert = await Certificate.findById(certificateId).populate("courseId")
+    if (!cert) {
+      return res.status(404).json({ success: false, message: "Certificate not found" })
+    }
+
+    // Verify ownership of the course associated with the certificate
+    if (cert.courseId.instructor.toString() !== instructorId) {
+      return res.status(403).json({ success: false, message: "Unauthorized to delete this certificate" })
+    }
+
+    await Certificate.findByIdAndDelete(certificateId)
+
+    return res.status(200).json({ success: true, message: "Certificate revoked successfully" })
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message })
+  }
+}
+

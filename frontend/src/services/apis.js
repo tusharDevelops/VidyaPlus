@@ -93,4 +93,7 @@ export const certificateEndpoints = {
   VERIFY_CERTIFICATE_API: BASE_URL + "/certificate/verify",
   MY_CERTIFICATES_API: BASE_URL + "/certificate/my",
   GENERATE_CERTIFICATE_API: BASE_URL + "/certificate/generate",
+  INSTRUCTOR_CERTIFICATES_API: BASE_URL + "/certificate/instructor/list",
+  ISSUE_CERTIFICATE_API: BASE_URL + "/certificate/instructor/issue",
+  DELETE_CERTIFICATE_API: BASE_URL + "/certificate/instructor/delete",
 }

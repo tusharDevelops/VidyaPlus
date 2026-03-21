@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom"
 
 import { deleteProfile } from "../../../../services/operations/settingAPI"
 
-import { logout } from "../../../../services/operations/authAPI"
 import { useState } from "react"
 
 export default function DeleteAccount() {
   const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [confirmation, setConfirmation] = useState("")

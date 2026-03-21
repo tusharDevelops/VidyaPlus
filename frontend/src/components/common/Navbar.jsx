@@ -181,15 +181,15 @@ const Navbar = () => {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-300 bg-slate-100/80 dark:bg-slate-800 transition-all"
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-300 bg-slate-100/80 dark:bg-slate-800 transition-all"
             >
               {isDark ? <FaSun className="text-yellow-400 text-[14px]" /> : <FaMoon className="text-indigo-500 text-[14px]" />}
             </button>
             <button
               onClick={() => setHamBurgerOpen(true)}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-800 transition-all"
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-200 bg-slate-100/80 dark:bg-slate-800 transition-all shadow-sm"
             >
-              <HiMenuAlt3 className="text-lg" />
+              <HiMenuAlt3 className="text-xl" />
             </button>
           </div>
 

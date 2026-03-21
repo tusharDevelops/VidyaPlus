@@ -69,7 +69,7 @@ export default function ExamNoteModal({
                 </div>
 
                 {/* Modal Form */}
-                <form className="space-y-6 sm:space-y-8 p-4 sm:p-8" onSubmit={handleSubmit(onSubmit)}>
+                <form className="space-y-4 sm:space-y-6 p-4 sm:p-8" onSubmit={handleSubmit(onSubmit)}>
                     {/* Note Title */}
                     <div className="flex flex-col space-y-2">
                         <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="noteTitle">
@@ -90,7 +90,7 @@ export default function ExamNoteModal({
                     </div>
 
                     {/* Note PDF Upload */}
-                    <div className="p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40">
+                    <div className="p-3 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40">
                         <Upload
                             name="examNotePdf"
                             label="PDF Document"

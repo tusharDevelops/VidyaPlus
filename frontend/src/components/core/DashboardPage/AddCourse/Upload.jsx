@@ -67,35 +67,35 @@ function Upload({
       <div
         className={`${
           isDragActive ? "bg-indigo-600/5 ring-4 ring-indigo-600/10 border-indigo-600" : "bg-white dark:bg-slate-900/40 border-slate-200 dark:border-slate-800"
-        } flex min-h-[220px] cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed backdrop-blur-xl transition-all duration-500 hover:border-indigo-600 group relative overflow-hidden`}
+        } flex min-h-[160px] sm:min-h-[220px] cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed backdrop-blur-xl transition-all duration-500 hover:border-indigo-600 group relative overflow-hidden`}
       >
         {previewSource ? (
-          <div className="flex w-full flex-col p-10 animate-in fade-in zoom-in-95 duration-500">
+          <div className="flex w-full flex-col p-4 sm:p-10 animate-in fade-in zoom-in-95 duration-500">
             {pdf ? (
-              <div className="flex flex-col items-center gap-6 py-10">
-                <div className="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center text-white text-2xl shadow-2xl shadow-indigo-600/30 group-hover:scale-110 transition-transform duration-500">
+              <div className="flex flex-col items-center gap-4 sm:gap-6 py-6 sm:py-10">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl sm:rounded-3xl bg-indigo-600 flex items-center justify-center text-white text-xl sm:text-2xl shadow-2xl shadow-indigo-600/30 group-hover:scale-110 transition-transform duration-500">
                    📄
                 </div>
                 <div className="text-center space-y-1">
-                   <p className="text-slate-900 dark:text-white font-black text-xl tracking-tight leading-tight">
+                   <p className="text-slate-900 dark:text-white font-black text-lg sm:text-xl tracking-tight leading-tight px-2 break-all">
                      {selectedFile?.name || "Document Ready"}
                    </p>
-                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Portable Document Format</p>
+                   <p className="text-[8px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Portable Document Format</p>
                 </div>
                 <button
                   type="button"
-                  className="px-8 py-3 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-600/20 transform hover:-translate-y-1"
+                  className="px-6 py-2.5 sm:px-8 sm:py-3 rounded-xl sm:rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-600/20 transform hover:-translate-y-1 text-xs sm:text-base"
                   onClick={() => window.open(previewSource, "_blank")}
                 >
                   Inspect Content
                 </button>
               </div>
             ) : video ? (
-              <div className="rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl bg-black aspect-video">
+              <div className="rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-2xl bg-black aspect-video">
                  <Player aspectRatio="16:9" playsInline src={previewSource} />
               </div>
             ) : (
-              <div className="relative group overflow-hidden rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-2xl aspect-video">
+              <div className="relative group overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-2xl aspect-video">
                 <img
                   src={previewSource}
                   alt="Preview"
@@ -112,40 +112,40 @@ function Upload({
                   setSelectedFile(null)
                   setValue(name, null)
                 }}
-                className="mt-8 self-center text-xs font-black text-slate-400 hover:text-red-500 transition-all uppercase tracking-widest flex items-center gap-2 group/btn"
+                className="mt-4 sm:mt-8 self-center text-[10px] sm:text-xs font-black text-slate-400 hover:text-red-500 transition-all uppercase tracking-widest flex items-center gap-2 group/btn"
               >
-                <span className="w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/btn:bg-red-500 transition-colors"></span>
+                <span className="hidden sm:block w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/btn:bg-red-500 transition-colors"></span>
                 Modify Media
-                <span className="w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/btn:bg-red-500 transition-colors"></span>
+                <span className="hidden sm:block w-6 h-[1px] bg-slate-200 dark:bg-slate-800 group-hover/btn:bg-red-500 transition-colors"></span>
               </button>
             )}
           </div>
         ) : (
           <div
-            className="flex w-full flex-col items-center p-8 text-center group"
+            className="flex w-full flex-col items-center p-6 sm:p-8 text-center group"
             {...getRootProps()}
           >
             <input {...getInputProps()} />
             <div className="relative">
                <div className="absolute inset-0 bg-indigo-600/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-               <div className="relative grid aspect-square w-16 place-items-center rounded-2xl bg-indigo-600 text-white shadow-2xl shadow-indigo-600/20 transform group-hover:-translate-y-2 transition-transform duration-500">
-                 <FiUploadCloud className="text-xl" />
+               <div className="relative grid aspect-square w-12 sm:w-16 place-items-center rounded-xl sm:rounded-2xl bg-indigo-600 text-white shadow-2xl shadow-indigo-600/20 transform group-hover:-translate-y-2 transition-transform duration-500">
+                 <FiUploadCloud className="text-lg sm:text-xl" />
                </div>
             </div>
             
-            <div className="mt-6 space-y-1">
-               <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+            <div className="mt-4 sm:mt-6 space-y-1">
+               <p className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                   {pdf ? "Module Notes" : video ? "Lecture Video" : "Course Artwork"}
                </p>
-               <p className="text-xs font-bold text-slate-500 dark:text-slate-400">
+               <p className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400">
                  Drag asset or <span className="text-indigo-600 dark:text-indigo-400 font-black cursor-pointer hover:underline underline-offset-4">Browse</span>
                </p>
             </div>
 
             {!pdf && (
-              <div className="mt-10 flex gap-4 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-2xl border border-slate-100 dark:border-slate-800">
-                 <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-3 py-1 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">16:9 RATIO</span>
-                 <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest px-3 py-1 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">1024x576 REQ</span>
+              <div className="mt-6 sm:mt-10 flex flex-wrap justify-center gap-2 sm:gap-4 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-2xl border border-slate-100 dark:border-slate-800">
+                 <span className="text-[8px] sm:text-[9px] font-black text-slate-400 uppercase tracking-widest px-2 sm:px-3 py-1 bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl border border-slate-100 dark:border-slate-700">16:9 RATIO</span>
+                 <span className="text-[8px] sm:text-[9px] font-black text-slate-400 uppercase tracking-widest px-2 sm:px-3 py-1 bg-white dark:bg-slate-800 rounded-lg sm:rounded-xl border border-slate-100 dark:border-slate-700 whitespace-nowrap">1024x576 REQ</span>
               </div>
             )}
           </div>

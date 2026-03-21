@@ -177,10 +177,8 @@ export default function SubSectionModal({
           >
             <RxCross2 size={18} />
           </button>
-        </div>
-
-        {/* Modal Form */}
-        <form className="space-y-6 sm:space-y-8 p-4 sm:p-8" onSubmit={handleSubmit(onSubmit)}>
+        </div>        {/* Modal Form */}
+        <form className="space-y-4 sm:space-y-6 p-4 sm:p-8" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Video Source Toggle */}
           {!view && (
@@ -188,14 +186,14 @@ export default function SubSectionModal({
                <button 
                  type="button"
                  onClick={() => setVideoSource("upload")}
-                 className={`px-3 sm:px-4 py-1.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all ${videoSource === "upload" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
+                 className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all ${videoSource === "upload" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
                >
                  Upload File
                </button>
                <button 
                  type="button"
                  onClick={() => setVideoSource("youtube")}
-                 className={`px-3 sm:px-4 py-1.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all ${videoSource === "youtube" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
+                 className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all ${videoSource === "youtube" ? 'bg-white dark:bg-slate-700 text-indigo-600 shadow-sm' : 'text-slate-500'}`}
                >
                  YouTube Link
                </button>
@@ -217,7 +215,7 @@ export default function SubSectionModal({
                  required={false}
                />
              ) : (
-               <div className="flex flex-col space-y-3">
+               <div className="flex flex-col space-y-2 sm:space-y-3">
                  <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="videoUrl">
                    YouTube Video URL (Optional)
                  </label>
@@ -238,9 +236,9 @@ export default function SubSectionModal({
              )}
           </div>
 
-          <div className="grid grid-cols-1 gap-5">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5">
             {/* Lecture Title */}
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-2 sm:space-y-3">
               <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="lectureTitle">
                 Instructional Title {!view && <sup className="text-red-500 font-bold">*</sup>}
               </label>
@@ -259,7 +257,7 @@ export default function SubSectionModal({
             </div>
 
             {/* Lecture Description */}
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-2 sm:space-y-3">
               <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="lectureDesc">
                 Instructional Abstract (Optional)
               </label>
@@ -268,13 +266,13 @@ export default function SubSectionModal({
                 id="lectureDesc"
                 placeholder="Expound upon the core concepts addressed within this unit..."
                 {...register("lectureDesc", { required: false })}
-                className="form-style resize-none min-h-[120px] w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-3 px-4 rounded-xl font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                className="form-style resize-none min-h-[100px] sm:min-h-[120px] w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-3 px-4 rounded-xl font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
               />
             </div>
           </div>
 
           {/* Lecture Notes Upload */}
-          <div className="p-6 rounded-2xl border border-indigo-600/10 bg-indigo-600/[0.02] dark:bg-indigo-400/[0.01]">
+          <div className="p-4 sm:p-6 rounded-2xl border border-indigo-600/10 bg-indigo-600/[0.02] dark:bg-indigo-400/[0.01]">
             <Upload
               name="lectureNote"
               label="Supplemental Artifacts (Optional)"
@@ -289,7 +287,7 @@ export default function SubSectionModal({
           </div>
 
           {!view && (
-            <div className="flex justify-end pt-8 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex justify-end pt-4 sm:pt-8 border-t border-slate-100 dark:border-slate-800">
               <IconBtn
                 disabled={loading}
                 text={loading ? "Saving..." : edit ? "Save Changes" : "Create Lecture"}

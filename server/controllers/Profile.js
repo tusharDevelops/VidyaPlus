@@ -2,6 +2,7 @@ const Profile = require("../models/profile");
 const User = require("../models/user");
 const Course = require("../models/course");
 const {uploadImageToCloudinary} = require("../utilities/imageUploader");
+const { deleteResourceFromCloudinary } = require("../utilities/mediaCleanup")
 const { convertSecondsToDuration } = require("../utilities/secToduration")
 const CourseProgress = require("../models/courseProgress")
 const { deleteCourseRecord } = require("../utilities/courseDeletion")
@@ -126,6 +127,11 @@ exports.deleteAccount = async (req, res) => {
             }
         }
 
+        // Delete user profile image from Cloudinary
+        if (userDetails.imagePublicId) {
+            await deleteResourceFromCloudinary(userDetails.imagePublicId);
+        }
+
         //delete user
         await User.findByIdAndDelete({_id:id});
        
@@ -155,10 +161,19 @@ exports.updateDisplayPicture = async (req, res) => {
         1000,
         1000
       )
-     // console.log(image)
+      
+      const user = await User.findById(userId);
+      // Delete old image if it exists
+      if (user.imagePublicId) {
+          await deleteResourceFromCloudinary(user.imagePublicId);
+      }
+
       const updatedProfile = await User.findByIdAndUpdate(
         { _id: userId },
-        { image: image.secure_url },
+        { 
+            image: image.secure_url,
+            imagePublicId: image.public_id
+        },
         { new: true }
       )
       res.send({

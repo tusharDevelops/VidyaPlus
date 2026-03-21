@@ -15,6 +15,7 @@ function Upload({
   pdf = false,
   viewData = null,
   editData = null,
+  required = true,
 }) {
 
   const [selectedFile, setSelectedFile] = useState(null)
@@ -48,7 +49,7 @@ function Upload({
   }
 
   useEffect(() => {
-    register(name, { required: true })
+    register(name, { required: required })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [register])
 
@@ -60,13 +61,13 @@ function Upload({
   return (
   <div className="flex flex-col space-y-4">
       <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]" htmlFor={name}>
-        {label} {!viewData && <sup className="text-red-500 font-bold">*</sup>}
+        {label} {!viewData && required && <sup className="text-red-500 font-bold">*</sup>}
       </label>
-
+      
       <div
         className={`${
           isDragActive ? "bg-indigo-600/5 ring-4 ring-indigo-600/10 border-indigo-600" : "bg-white dark:bg-slate-900/40 border-slate-200 dark:border-slate-800"
-        } flex min-h-[320px] cursor-pointer items-center justify-center rounded-[2.5rem] border-2 border-dashed backdrop-blur-xl transition-all duration-500 hover:border-indigo-600 group relative overflow-hidden`}
+        } flex min-h-[220px] cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed backdrop-blur-xl transition-all duration-500 hover:border-indigo-600 group relative overflow-hidden`}
       >
         {previewSource ? (
           <div className="flex w-full flex-col p-10 animate-in fade-in zoom-in-95 duration-500">
@@ -127,17 +128,17 @@ function Upload({
             <input {...getInputProps()} />
             <div className="relative">
                <div className="absolute inset-0 bg-indigo-600/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-               <div className="relative grid aspect-square w-24 place-items-center rounded-[2rem] bg-indigo-600 text-white shadow-2xl shadow-indigo-600/20 transform group-hover:-translate-y-2 transition-transform duration-500">
-                 <FiUploadCloud className="text-2xl" />
+               <div className="relative grid aspect-square w-16 place-items-center rounded-2xl bg-indigo-600 text-white shadow-2xl shadow-indigo-600/20 transform group-hover:-translate-y-2 transition-transform duration-500">
+                 <FiUploadCloud className="text-xl" />
                </div>
             </div>
             
-            <div className="mt-10 space-y-2">
-               <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                  Deploy your {pdf ? "Module Notes" : video ? "Lecture Video" : "Course Artwork"}
+            <div className="mt-6 space-y-1">
+               <p className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                  {pdf ? "Module Notes" : video ? "Lecture Video" : "Course Artwork"}
                </p>
-               <p className="text-sm font-bold text-slate-500 dark:text-slate-400">
-                 Drag and drop the asset or <span className="text-indigo-600 dark:text-indigo-400 font-black cursor-pointer hover:underline underline-offset-4">Internal Browse</span>
+               <p className="text-xs font-bold text-slate-500 dark:text-slate-400">
+                 Drag asset or <span className="text-indigo-600 dark:text-indigo-400 font-black cursor-pointer hover:underline underline-offset-4">Browse</span>
                </p>
             </div>
 

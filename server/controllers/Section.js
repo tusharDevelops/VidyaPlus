@@ -1,5 +1,7 @@
 const Section = require("../models/section");
+const SubSection = require("../models/subSection")
 const Course = require("../models/course");
+const { deleteResourceFromCloudinary } = require("../utilities/mediaCleanup")
 
 exports.createSection = async(req,res)=>{
     try {
@@ -91,11 +93,34 @@ exports.deleteSection = async (req,res) => {
     try {
         //get ID - assuming that we are sending ID in params
         const {sectionId} = req.body
-        //use findByIdandDelete
-        //console.log("This is my: ",sectionId)
+        const section = await Section.findById(sectionId);
+        
+        if (section) {
+            // Delete subsections and their media
+            const subSections = section.subSection;
+            for (const subSectionId of subSections) {
+                const subSection = await SubSection.findById(subSectionId);
+                if (subSection) {
+                    // Delete video
+                    if (subSection.videoPublicId) {
+                        await deleteResourceFromCloudinary(subSection.videoPublicId, "video");
+                    }
+                    // Delete notes
+                    if (subSection.notes && subSection.notes.length > 0) {
+                        for (const note of subSection.notes) {
+                            if (note.publicId) {
+                                await deleteResourceFromCloudinary(note.publicId, "raw");
+                            }
+                        }
+                    }
+                    await SubSection.findByIdAndDelete(subSectionId);
+                }
+            }
+        }
+
+        // Delete the section
         await Section.findByIdAndDelete(sectionId);
-        //TODO[Testing]: do we need to delete the entry from the course schema ??
-        //* Done
+
         const updatedCourse = await Course.findOneAndUpdate({courseContent: sectionId},{
             $pull:{
                 courseContent: sectionId

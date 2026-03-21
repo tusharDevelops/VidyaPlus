@@ -231,6 +231,24 @@ exports.editCourse = async (req, res) => {
         course.thumbnail = thumbnailImage.secure_url
         course.thumbnailPublicId = thumbnailImage.public_id
       }
+      
+      // If Exam Notes are found, update them
+      if (req.files && req.files.examNotes) {
+        const notes = req.files.examNotes
+        // Delete old exam notes
+        if (course.examNotes && course.examNotes.length > 0) {
+            for (const note of course.examNotes) {
+                if (note.publicId) {
+                    await deleteResourceFromCloudinary(note.publicId, "raw");
+                }
+            }
+        }
+        const notesUpload = await uploadImageToCloudinary(
+          notes,
+          process.env.FOLDER_NAME
+        )
+        course.examNotes = [{ title: "Exam Note", url: notesUpload.secure_url, publicId: notesUpload.public_id }]
+      }
   
       // Update only the fields that are present in the request body
       for (const key in updates) {

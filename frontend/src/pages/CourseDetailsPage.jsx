@@ -140,7 +140,7 @@ const CourseDetails = () => {
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative z-10">
             <div className='mx-auto grid min-h-[500px] max-w-maxContentTab justify-items-center py-12 lg:mx-0 
-             lg:justify-items-start lg:py-16 xl:max-w-[810px]'>
+             lg:justify-items-start lg:py-8 xl:max-w-[810px]'>
                 <div className="relative block max-h-[30rem] lg:hidden w-full mb-8">
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     <img
@@ -157,7 +157,7 @@ const CourseDetails = () => {
                     <span className="text-slate-400">{courseData?.data?.courseDetails?.category?.name}</span>
                   </div>
                   
-                  <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+                  <h1 className="text-3xl lg:text-2xl font-black text-white tracking-tight leading-[1.1]">
                     {courseName}
                   </h1>
                   
@@ -206,7 +206,7 @@ const CourseDetails = () => {
                   <div className="flex items-center justify-between">
                     <div>
                        <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Total investment</p>
-                       <p className="text-4xl font-black text-white">₹{price}</p>
+                       <p className="text-2xl font-black text-white">₹{price}</p>
                     </div>
                     <div className="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 font-black text-xs">
                        90% OFF
@@ -241,7 +241,7 @@ const CourseDetails = () => {
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
           <div className="mb-20 p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
+            <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
             <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-8 flex items-center gap-3">
               <span className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-sm">💡</span>
               What you'll learn

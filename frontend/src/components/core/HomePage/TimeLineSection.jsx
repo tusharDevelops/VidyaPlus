@@ -32,7 +32,7 @@ const timeline = [
 export default function TimeLineSection() {
   return (
     
-      <div className='w-full flex w-11/12 mx-auto flex-col lg:flex-row gap-16 items-center'>
+      <div className='w-full flex w-11/12 mx-auto flex-col lg:flex-row gap-8 items-center'>
 
         <div className='w-full lg:w-[45%] flex flex-col gap-14'>
             {

@@ -18,7 +18,7 @@ const VismeForm = () => {
   }, []);
 
   return (<>
-  <div className='text-center text-slate-900 dark:text-white mt-12 mb-6 font-bold text-3xl md:text-4xl'>Here we are to <HighlightText text={"Reach you!"} /></div>
+  <div className='text-center text-slate-900 dark:text-white mt-12 mb-6 font-bold text-3xl md:text-2xl'>Here we are to <HighlightText text={"Reach you!"} /></div>
  <div
       className="visme_d"
       data-title="vidya+"

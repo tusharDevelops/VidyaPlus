@@ -34,7 +34,7 @@ export default function ManageCategories() {
   return (
     <div className="space-y-10 animate-in fade-in duration-700">
       <header className="mb-10 space-y-3 pb-8 border-b border-slate-200 dark:border-slate-800">
-        <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           Manage Categories
         </h1>
         <p className="text-lg font-bold text-slate-500 dark:text-slate-400 max-w-2xl">

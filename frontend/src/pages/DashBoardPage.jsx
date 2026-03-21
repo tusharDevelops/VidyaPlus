@@ -11,7 +11,7 @@ export default function DashBoardPage() {
     if(authLoading || profileLoading){
         return (
           <div className='flex h-screen items-center justify-center bg-white dark:bg-slate-950'>
-            <div className='w-16 h-16 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin'></div>
+            <div className='w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin'></div>
           </div>
         )
     }

@@ -59,7 +59,7 @@ export default function CoursesTable({ courses, setCourses }) {
           <Tbody>
             {courses?.length === 0 ? (
               <Tr>
-                <Td className="py-20 text-center">
+                <Td className="py-10 text-center">
                    <div className="flex flex-col items-center gap-4">
                       <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-2xl">📭</div>
                       <p className="text-lg font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">No Curriculum Found</p>

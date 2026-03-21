@@ -31,9 +31,9 @@ const Footer = () => {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div className="mx-auto w-11/12 max-w-maxContent relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12 pb-12 border-b border-slate-900">
+        <div className="flex flex-col lg:flex-row gap-6 pb-12 border-b border-slate-900">
           {/* Section 1 */}
-          <div className="lg:w-[60%] flex flex-wrap gap-12 justify-between">
+          <div className="lg:w-[60%] flex flex-wrap gap-6 justify-between">
             <div className="w-full lg:w-[30%] space-y-6">
               <div className="flex items-center gap-2">
                  <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-lg font-black">V+</div>
@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
 
           {/* Section 2 */}
-          <div className="lg:w-[40%] flex flex-wrap gap-12 justify-between">
+          <div className="lg:w-[40%] flex flex-wrap gap-6 justify-between">
             {FooterLink2.map((ele, i) => (
               <div key={i} className="w-[45%] space-y-6">
                 <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">{ele.title}</h3>

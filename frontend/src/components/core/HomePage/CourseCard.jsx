@@ -30,7 +30,7 @@ export default function CourseCard({cardData, currentCard, setCurrentCard}) {
       onClick={() => setCurrentCard(cardData.heading)}
     >
       {/* Emoji badge */}
-      <div className={`text-4xl mb-4 w-14 h-14 rounded-xl flex items-center justify-center
+      <div className={`text-2xl mb-4 w-14 h-14 rounded-xl flex items-center justify-center
         ${isCurrent ? 'bg-indigo-600/20' : 'bg-slate-100 dark:bg-slate-700'}`}>
         {emoji}
       </div>

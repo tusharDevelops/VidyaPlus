@@ -117,7 +117,7 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
              STEP 02
            </span>
         </div>
-        <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Curriculum Architecture</h2>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Curriculum Architecture</h2>
         <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Organize your expertise into logical modules and refined instructional units.</p>
       </header>
 
@@ -218,8 +218,8 @@ const handleChangeEditSectionName = (sectionId, sectionName) => {
             ))}
           </div>
         ) : (
-          <div className="bg-slate-50/50 dark:bg-slate-900/50 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[2rem] p-16 text-center animate-in fade-in duration-700">
-             <div className="w-16 h-16 rounded-3xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-3xl mx-auto mb-6">📂</div>
+          <div className="bg-slate-50/50 dark:bg-slate-900/50 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 text-center animate-in fade-in duration-700">
+             <div className="w-12 h-12 rounded-3xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-3xl mx-auto mb-6">📂</div>
              <p className="text-lg font-black text-slate-300 dark:text-slate-700 uppercase tracking-[0.2em]">Repository Depleted</p>
              <p className="text-sm font-bold text-slate-400 dark:text-slate-500 mt-2">Add high-fidelity instructional materials to bolster your curriculum.</p>
           </div>

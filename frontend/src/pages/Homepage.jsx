@@ -30,7 +30,7 @@ export default function HomePage() {
         </div>
 
         {/* Content */}
-        <div className='relative z-10 w-full h-full flex flex-col items-center justify-center px-4 md:px-8 py-20 md:py-32'>
+        <div className='relative z-10 w-full h-full flex flex-col items-center justify-center px-4 md:px-8 py-10 md:py-8'>
           <div className='flex flex-col items-center justify-center text-center max-w-4xl'>
             
             {/* Status badge */}
@@ -45,7 +45,7 @@ export default function HomePage() {
             </div>
 
             {/* Main heading */}
-            <h1 className='text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white leading-tight tracking-tight mb-6 transition-colors duration-300'>
+            <h1 className='text-3xl md:text-3xl lg:text-2xl font-black text-slate-900 dark:text-white leading-tight tracking-tight mb-6 transition-colors duration-300'>
               Your Path to <HighlightText text={"Excellence"} /> Starts Here
             </h1>
 
@@ -68,17 +68,17 @@ export default function HomePage() {
             </div>
 
             {/* Social proof */}
-            <div className="grid grid-cols-3 gap-6 md:gap-12 w-full max-w-2xl">
+            <div className="grid grid-cols-3 gap-6 md:gap-6 w-full max-w-2xl">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">50K+</div>
+                <div className="text-3xl md:text-2xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">50K+</div>
                 <div className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors duration-300">Active Students</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">4.9/5</div>
+                <div className="text-3xl md:text-2xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">4.9/5</div>
                 <div className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors duration-300">Parent Rating</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">99%</div>
+                <div className="text-3xl md:text-2xl font-black text-indigo-600 dark:text-cyan-400 mb-2 transition-colors duration-300">99%</div>
                 <div className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors duration-300">Success Rate</div>
               </div>
             </div>
@@ -95,10 +95,10 @@ export default function HomePage() {
       </div>
 
       {/* FLOATING CATEGORIES */}
-      <div className="w-full py-16 bg-white dark:bg-slate-900 relative z-20">
+      <div className="w-full py-8 bg-white dark:bg-slate-900 relative z-20">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Choose Your Path</h2>
+            <h2 className="text-3xl md:text-2xl font-black text-slate-900 dark:text-white mb-4">Choose Your Path</h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Select your class or preparation goal</p>
           </div>
           
@@ -120,10 +120,10 @@ export default function HomePage() {
       </div>
 
       {/* STATS & ACHIEVEMENTS SECTION */}
-      <div className="w-full py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
+      <div className="w-full py-10 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-4">
               Award-Winning <HighlightText text={"Results"} />
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400">Our track record speaks for itself</p>
@@ -137,7 +137,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Board Toppers</h3>
                   <p className="text-gray-600 dark:text-gray-400">5000+ students scoring 95%+</p>
                 </div>
-                <FaTrophy className="text-5xl text-yellow-500" />
+                <FaTrophy className="text-3xl text-yellow-500" />
               </div>
               <div className="space-y-3">
                 {[
@@ -162,7 +162,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Student Impact</h3>
                   <p className="text-gray-600 dark:text-gray-400">Transforming academic outcomes</p>
                 </div>
-                <FaStar className="text-5xl text-blue-500" />
+                <FaStar className="text-3xl text-blue-500" />
               </div>
               <div className="space-y-4">
                 {[
@@ -185,10 +185,10 @@ export default function HomePage() {
       </div>
 
       {/* FEATURES BENTO GRID */}
-      <div className='w-full py-20 bg-white dark:bg-slate-900'>
+      <div className='w-full py-10 bg-white dark:bg-slate-900'>
         <div className='max-w-7xl mx-auto px-4 md:px-8'>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-4">
               Why Choose <HighlightText text={"VidyaPlus"} />?
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -199,7 +199,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 - Large */}
             <div className="md:col-span-2 lg:col-span-2 lg:row-span-2 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-slate-800 dark:to-slate-900 p-8 rounded-3xl border border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all">
-              <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-3xl mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-3xl mb-6">
                 <FaVideo />
               </div>
               <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-3">Interactive Live Classes</h3>
@@ -254,7 +254,7 @@ export default function HomePage() {
       </div>
 
       {/* HOW IT WORKS — STUDENT JOURNEY */}
-      <div className='w-full py-24 bg-slate-800 dark:bg-slate-900 relative overflow-hidden'>
+      <div className='w-full py-12 bg-slate-800 dark:bg-slate-900 relative overflow-hidden'>
         {/* Radial glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px]"></div>
@@ -262,7 +262,7 @@ export default function HomePage() {
           <div className='relative z-10 max-w-7xl mx-auto px-4 md:px-8'>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-5 uppercase tracking-widest">Your Journey</span>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
                 4 Steps to <HighlightText text={"Academic Excellence"} />
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">

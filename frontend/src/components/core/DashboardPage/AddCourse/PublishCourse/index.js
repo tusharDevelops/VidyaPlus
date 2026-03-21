@@ -72,7 +72,7 @@ export default function PublishCourse() {
              STEP 03
            </span>
         </div>
-        <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Deployment & Visibility</h2>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Deployment & Visibility</h2>
         <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Finalize your curriculum's accessibility parameters before synchronization.</p>
       </header>
 

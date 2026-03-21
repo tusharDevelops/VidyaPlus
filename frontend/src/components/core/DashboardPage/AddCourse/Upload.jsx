@@ -72,7 +72,7 @@ function Upload({
           <div className="flex w-full flex-col p-10 animate-in fade-in zoom-in-95 duration-500">
             {pdf ? (
               <div className="flex flex-col items-center gap-6 py-10">
-                <div className="w-24 h-24 rounded-3xl bg-indigo-600 flex items-center justify-center text-white text-4xl shadow-2xl shadow-indigo-600/30 group-hover:scale-110 transition-transform duration-500">
+                <div className="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center text-white text-2xl shadow-2xl shadow-indigo-600/30 group-hover:scale-110 transition-transform duration-500">
                    📄
                 </div>
                 <div className="text-center space-y-1">
@@ -121,14 +121,14 @@ function Upload({
           </div>
         ) : (
           <div
-            className="flex w-full flex-col items-center p-16 text-center group"
+            className="flex w-full flex-col items-center p-8 text-center group"
             {...getRootProps()}
           >
             <input {...getInputProps()} />
             <div className="relative">
                <div className="absolute inset-0 bg-indigo-600/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                <div className="relative grid aspect-square w-24 place-items-center rounded-[2rem] bg-indigo-600 text-white shadow-2xl shadow-indigo-600/20 transform group-hover:-translate-y-2 transition-transform duration-500">
-                 <FiUploadCloud className="text-4xl" />
+                 <FiUploadCloud className="text-2xl" />
                </div>
             </div>
             

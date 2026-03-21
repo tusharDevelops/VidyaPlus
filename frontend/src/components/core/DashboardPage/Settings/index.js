@@ -12,7 +12,7 @@ export default function Settings() {
               SYSTEM PREFERENCES
            </span>
         </div>
-        <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           Account Governance
         </h1>
         <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Refine your identity, security protocols, and platform presence.</p>

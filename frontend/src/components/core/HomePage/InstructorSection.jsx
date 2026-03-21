@@ -7,7 +7,7 @@ import { FaArrowRight } from 'react-icons/fa'
 const InstructorSection = () => {
   return (
     <div className='mt-20 mb-20'>
-      <div className='flex flex-col-reverse lg:flex-row gap-16 items-center'>
+      <div className='flex flex-col-reverse lg:flex-row gap-8 items-center'>
 
         <div className='w-full lg:w-[50%] relative flex justify-center'>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-500/20 dark:bg-purple-900/30 blur-[80px] rounded-full z-0 pointer-events-none"></div>
@@ -19,7 +19,7 @@ const InstructorSection = () => {
         </div>
 
         <div className='flex flex-col gap-8 w-full lg:w-[50%]'>
-            <div className='text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight'>
+            <div className='text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight'>
                 Become an <br/>
                 <HighlightText text={"Instructor"} />
             </div>

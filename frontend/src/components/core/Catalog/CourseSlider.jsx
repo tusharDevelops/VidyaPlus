@@ -40,8 +40,8 @@ const CourseSlider = ({Courses}) => {
           ))}
         </Swiper>
       ) : (
-        <div className="flex flex-col items-center justify-center py-20 bg-slate-50/50 dark:bg-slate-900/40 rounded-[2.5rem] border border-dashed border-slate-300 dark:border-slate-800">
-           <p className="text-4xl mb-4">🎓</p>
+        <div className="flex flex-col items-center justify-center py-10 bg-slate-50/50 dark:bg-slate-900/40 rounded-[2.5rem] border border-dashed border-slate-300 dark:border-slate-800">
+           <p className="text-2xl mb-4">🎓</p>
            <p className="text-xl font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">No Courses Found</p>
            <p className="text-slate-400 dark:text-slate-600 mt-2 font-medium">We couldn't find any courses in this category yet.</p>
         </div>

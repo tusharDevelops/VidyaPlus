@@ -64,7 +64,7 @@ export default function LearningGridSection() {
           >
             {card.order < 0 ? (
               <div className="xl:w-[90%] flex flex-col gap-4 pb-10 xl:pb-0 px-8">
-                <div className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                <div className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                   {card.heading}
                   <HighlightText text={card.highlightText} />
                 </div>

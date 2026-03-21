@@ -47,19 +47,19 @@ export default function SideBar() {
           <button
             onClick={
               ()=>setConfirmationModal({
-                text1: "Terminate Session?",
-                text2: "You are about to be de-authenticated from the regional gateway.",
-                btn1Text: "De-authenticate",
-                btn2Text: "Maintain Session",
+                text1: "Logout",
+                text2: "Are you sure you want to log out from your account?",
+                btn1Text: "Logout",
+                btn2Text: "Cancel",
                 btn1Handler: () => dispatch(logout(navigate)),
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
-            className="group relative px-8 py-4 transition-all duration-500 hover:bg-red-500/[0.03] dark:hover:bg-red-500/[0.02]"
+            className="group relative px-6 py-3 transition-all duration-300 hover:bg-red-500/[0.05] dark:hover:bg-red-500/[0.05] rounded-xl mx-2"
           >
-            <div className="flex items-center gap-x-4">
-              <VscSignOut className="text-xl text-slate-400 group-hover:text-red-500 group-hover:scale-110 transition-all duration-300" />
-              <span className="text-[10px] font-black text-slate-500 group-hover:text-red-500 uppercase tracking-[0.2em] transition-all duration-300">De-authenticate</span>
+            <div className="flex items-center gap-x-3">
+              <VscSignOut className="text-lg text-slate-500 group-hover:text-red-500 transition-colors" />
+              <span className="text-sm font-bold text-slate-500 group-hover:text-red-500 transition-colors">Logout</span>
             </div>
           </button>
       </div>

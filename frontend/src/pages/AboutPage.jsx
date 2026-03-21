@@ -16,8 +16,8 @@ export default function AboutPage() {
       {/* SECTION-1 */}
       <section className="bg-slate-50 dark:bg-slate-900 transition-colors duration-500 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-indigo-600/[0.02] blur-[120px] pointer-events-none"></div>
-        <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-center">
-          <header className="mx-auto py-24 text-5xl font-black text-slate-900 dark:text-white lg:w-[80%] tracking-tight leading-tight">
+        <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 text-center">
+          <header className="mx-auto py-12 text-3xl font-black text-slate-900 dark:text-white lg:w-[80%] tracking-tight leading-tight">
             Driving Innovation in Online Education for a
             <HighlightText text={" Brighter Future"} />
             <p className="mx-auto mt-8 text-center text-xl font-bold text-slate-500 dark:text-slate-400 lg:w-[95%] leading-relaxed max-w-4xl italic border-x-4 border-indigo-600/20 px-10">
@@ -35,7 +35,7 @@ export default function AboutPage() {
 
       {/* SECTION-2 */}
       <section className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-500 relative z-10">
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 text-slate-600 dark:text-slate-400">
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 text-slate-600 dark:text-slate-400">
           <div className="h-[200px] "></div>
           <Quote />
         </div>
@@ -43,10 +43,10 @@ export default function AboutPage() {
 
       {/* SECTION-3 */}
       <section className="bg-white dark:bg-slate-900 transition-colors duration-500">
-      <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-10 pb-20">
-          <div className="flex flex-col items-center gap-16 lg:flex-row justify-between py-24">
+      <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 pb-20">
+          <div className="flex flex-col items-center gap-8 lg:flex-row justify-between py-12">
             <div className="flex lg:w-[50%] flex-col gap-8">
-              <h1 className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-5xl font-black text-transparent tracking-tight">
+              <h1 className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-3xl font-black text-transparent tracking-tight">
                 Our Founding Story
               </h1>
               <div className="space-y-6 text-lg font-bold text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
@@ -69,10 +69,10 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
             <div className="flex flex-col gap-8 p-12 rounded-[3rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 shadow-xl shadow-indigo-500/[0.02] hover:shadow-indigo-500/[0.05] transition-all duration-500 group">
-              <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">👁️</div>
-              <h1 className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-4xl font-black text-transparent tracking-tight">
+              <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">👁️</div>
+              <h1 className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-2xl font-black text-transparent tracking-tight">
                 Our Vision
               </h1>
               <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
@@ -81,8 +81,8 @@ export default function AboutPage() {
             </div>
             
             <div className="flex flex-col gap-8 p-12 rounded-[3rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 shadow-xl shadow-indigo-500/[0.02] hover:shadow-indigo-500/[0.05] transition-all duration-500 group">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-600/20 group-hover:scale-110 transition-transform">🚀</div>
-              <h1 className="bg-gradient-to-r from-emerald-600 to-teal-500 text-transparent bg-clip-text text-4xl font-black tracking-tight">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-600/20 group-hover:scale-110 transition-transform">🚀</div>
+              <h1 className="bg-gradient-to-r from-emerald-600 to-teal-500 text-transparent bg-clip-text text-2xl font-black tracking-tight">
                 Our Mission
               </h1>
               <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
@@ -100,10 +100,10 @@ export default function AboutPage() {
       </section>
 
       {/* REVIEW_SECTION */}
-      <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-12 bg-transparent pb-32">
+      <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-6 bg-transparent pb-32">
         <div className="space-y-4 text-center">
            <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em]">STUDENT PERSPECTIVES</p>
-           <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
              Global Scholarly Review
            </h1>
         </div>

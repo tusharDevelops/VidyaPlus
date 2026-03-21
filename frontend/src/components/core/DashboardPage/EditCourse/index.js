@@ -32,7 +32,7 @@ export default function EditCourse() {
   if (loading) {
     return (
       <div className="flex h-[calc(100vh-10rem)] items-center justify-center">
-        <div className="w-16 h-16 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
       </div>
     )
   }
@@ -45,7 +45,7 @@ export default function EditCourse() {
               CURRICULUM REFINEMENT
            </span>
         </div>
-        <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+        <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           Edit Course Artifact
         </h1>
         <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Modify credentials, pedagogical structure, and deployment parameters.</p>
@@ -55,14 +55,14 @@ export default function EditCourse() {
         {course ? (
           <RenderSteps />
         ) : (
-          <div className="mt-20 flex flex-col items-center justify-center p-24 text-center rounded-[4rem] border-2 border-dashed border-slate-200 dark:border-slate-800 bg-white/5 dark:bg-slate-900/20 backdrop-blur-sm group">
+          <div className="mt-20 flex flex-col items-center justify-center p-12 text-center rounded-[4rem] border-2 border-dashed border-slate-200 dark:border-slate-800 bg-white/5 dark:bg-slate-900/20 backdrop-blur-sm group">
              <div className="relative mb-12">
                 <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl"></div>
-                <div className="relative w-32 h-32 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 text-6xl shadow-2xl">
+                <div className="relative w-20 h-20 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 text-2xl shadow-2xl">
                   🔍
                 </div>
              </div>
-             <h2 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-4">Curriculum Not Found</h2>
+             <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-4">Curriculum Not Found</h2>
              <p className="text-xl font-bold text-slate-500 dark:text-slate-400 max-w-md mx-auto">The requested instructional asset could not be retrieved from the repository.</p>
           </div>
         )}

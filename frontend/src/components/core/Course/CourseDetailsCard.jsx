@@ -70,7 +70,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
 
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <p className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">
+            <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">
               ₹{CurrentPrice}
             </p>
             <div className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">

@@ -34,7 +34,7 @@ export default function ExploreMore() {
   const accent = tabAccents[currentTab]
 
   return (
-    <section className='w-full py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden'>
+    <section className='w-full py-12 bg-slate-50 dark:bg-slate-900 relative overflow-hidden'>
 
       {/* Decorative background gradient */}
       <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-64 bg-gradient-to-r ${accent.from} ${accent.to} opacity-5 dark:opacity-10 blur-[100px] pointer-events-none transition-all duration-700`}></div>
@@ -43,7 +43,7 @@ export default function ExploreMore() {
 
         {/* Header */}
         <div className='text-center mb-14'>
-          <h2 className='text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4'>
+          <h2 className='text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-4'>
             Unlock the <HighlightText text={"Potential of Learning"} />
           </h2>
           <p className='text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto'>

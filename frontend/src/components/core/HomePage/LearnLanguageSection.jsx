@@ -8,9 +8,9 @@ import CTAButton from "../HomePage/Button"
 export default function LearnLanguageSection() {
   return (
     <div className='mt-[160px] mb-40 animate-in fade-in slide-in-from-bottom-10 duration-1000'>
-      <div className='flex flex-col gap-10 items-center'>
+      <div className='flex flex-col gap-5 items-center'>
 
-            <div className='text-5xl font-black text-center text-slate-900 dark:text-white tracking-tight leading-tight'>
+            <div className='text-3xl font-black text-center text-slate-900 dark:text-white tracking-tight leading-tight'>
                 Your Swiss Knife for
                 <HighlightText text={" learning any language"} />
             </div>

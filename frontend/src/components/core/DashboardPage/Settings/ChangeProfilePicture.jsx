@@ -68,9 +68,9 @@ export default function ChangeProfilePicture() {
 
   return (
     <>
-    <div className="group relative flex flex-col sm:flex-row items-center justify-between rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-14 shadow-2xl shadow-indigo-500/5 transition-all duration-500 overflow-hidden">
+    <div className="group relative flex flex-col sm:flex-row items-center justify-between rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-8 shadow-2xl shadow-indigo-500/5 transition-all duration-500 overflow-hidden">
       <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/[0.03] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
-      <div className="flex flex-col sm:flex-row items-center gap-10 relative z-10">
+      <div className="flex flex-col sm:flex-row items-center gap-5 relative z-10">
         <div className="relative">
            <div className="absolute inset-0 bg-indigo-600/20 rounded-full blur-xl group-hover:bg-indigo-600/40 transition-colors duration-500"></div>
            <img

@@ -182,7 +182,7 @@ export default function SubSectionModal({
              />
           </div>
 
-          <div className="grid grid-cols-1 gap-10">
+          <div className="grid grid-cols-1 gap-5">
             {/* Lecture Title */}
             <div className="flex flex-col space-y-3">
               <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] px-1" htmlFor="lectureTitle">

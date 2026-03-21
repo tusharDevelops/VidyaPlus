@@ -13,7 +13,7 @@ export default function AddCourse() {
                  CURRICULUM BUILDER
                </span>
             </div>
-            <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
               Create New Course
             </h1>
             <p className="text-xl font-bold text-slate-500 dark:text-slate-400 max-w-2xl">
@@ -28,7 +28,7 @@ export default function AddCourse() {
         
         {/* Course Upload Tips */}
         <aside className="sticky top-10 hidden max-w-[420px] flex-1 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none xl:block group">
-           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
+           <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
            
            <div className="relative z-10">
               <div className="flex items-center gap-4 mb-10">

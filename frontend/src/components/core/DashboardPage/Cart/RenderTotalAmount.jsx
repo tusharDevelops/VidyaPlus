@@ -23,7 +23,7 @@ export default function RenderTotalAmount() {
       <div className="space-y-6 relative z-10">
         <div className="space-y-1">
            <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.3em]">AGGREGATE VALUATION</p>
-           <p className="text-5xl font-black text-indigo-600 dark:text-indigo-400 tracking-tighter">
+           <p className="text-3xl font-black text-indigo-600 dark:text-indigo-400 tracking-tighter">
              ₹{total}
            </p>
         </div>

@@ -179,7 +179,7 @@ export default function VideoDetails() {
           className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-slate-900/40 flex items-center justify-center backdrop-blur-[2px]">
-           <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white animate-pulse">
+           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white animate-pulse">
               <span className="text-3xl text-white">🎬</span>
            </div>
         </div>

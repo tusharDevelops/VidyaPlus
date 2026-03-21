@@ -30,14 +30,14 @@ export default function Certificates() {
   return (
     <div className="space-y-8">
       <div className="space-y-1">
-        <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">Certificates</h1>
+        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Certificates</h1>
         <p className="text-lg font-medium text-slate-500 dark:text-slate-400">Your earned course completion certificates.</p>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6">
         {certs.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/20 p-12 text-center">
-            <div className="text-4xl mb-4">📜</div>
+            <div className="text-2xl mb-4">📜</div>
             <p className="text-xl font-bold text-slate-600 dark:text-slate-400">No certificates earned yet.</p>
             <p className="text-sm text-slate-400 mt-2">Complete your courses to unlock your professional certifications!</p>
           </div>
@@ -48,7 +48,7 @@ export default function Certificates() {
               className="flex flex-col md:flex-row items-center justify-between gap-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-800/40 backdrop-blur-md p-8 shadow-sm hover:shadow-indigo-500/10 transition-all duration-300 group"
             >
               <div className="flex items-center gap-6">
-                 <div className="w-16 h-16 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center border border-indigo-200 dark:border-indigo-800">
+                 <div className="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center border border-indigo-200 dark:border-indigo-800">
                     <span className="text-2xl">🎓</span>
                  </div>
                  <div className="space-y-1">

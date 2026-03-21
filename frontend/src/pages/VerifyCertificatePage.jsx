@@ -33,7 +33,7 @@ export default function VerifyCertificatePage() {
   return (
     <div className="bg-slate-50 dark:bg-slate-900 min-h-screen transition-colors duration-300">
       <div className="mx-auto w-11/12 max-w-[720px] pt-24 pb-20">
-        <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">Verify Certificate</h1>
+        <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Verify Certificate</h1>
         <p className="mt-4 text-lg font-medium text-slate-600 dark:text-slate-400">
           Enter your unique certificate number to verify its authenticity and details.
         </p>

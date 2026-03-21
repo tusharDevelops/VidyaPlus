@@ -32,7 +32,7 @@ export default function MyCourses() {
                 CONTENT MANAGER
              </span>
            </div>
-          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Your Curriculum</h1>
+          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Your Curriculum</h1>
           <p className="text-lg font-bold text-slate-500 dark:text-slate-400">Manage, iterate, and deploy your instructional high-fidelity assets.</p>
         </div>
         <IconBtn

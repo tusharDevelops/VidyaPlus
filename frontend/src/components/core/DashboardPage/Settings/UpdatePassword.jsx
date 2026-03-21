@@ -34,7 +34,7 @@ export default function UpdatePassword() {
   return (
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-10 flex flex-col gap-y-10 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-14 shadow-2xl shadow-indigo-500/5 transition-all duration-500 group relative overflow-hidden">
+        <div className="my-10 flex flex-col gap-y-10 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-8 shadow-2xl shadow-indigo-500/5 transition-all duration-500 group relative overflow-hidden">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/[0.02] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
           
           <div className="border-b border-slate-100 dark:border-slate-800 pb-8 relative z-10">
@@ -42,7 +42,7 @@ export default function UpdatePassword() {
              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Access Credentials</h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 relative z-10">
             {/* Old Password */}
             <div className="relative flex flex-col gap-3">
               <label htmlFor="oldPassword" className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 px-1">

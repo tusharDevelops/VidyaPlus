@@ -65,7 +65,7 @@ export default function CatalogPage() {
             </span>
           </div>
           <div className="space-y-4">
-            <h1 className="text-5xl lg:text-6xl font-black text-white tracking-tighter">
+            <h1 className="text-3xl lg:text-2xl font-black text-white tracking-tighter">
               {catalogPageData?.data?.selectedCategory?.name}
             </h1>
             <p className="max-w-[800px] text-lg font-medium text-slate-400 leading-relaxed italic border-l-4 border-indigo-600 pl-6 py-2">
@@ -76,7 +76,7 @@ export default function CatalogPage() {
       </div>
 
        {/* Section 1 */}
-       <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-16 lg:max-w-maxContent">
+       <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-8 lg:max-w-maxContent">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-2">
             <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Courses to get you started</h2>
@@ -113,7 +113,7 @@ export default function CatalogPage() {
       </div>
 
         {/* Section 2 */}
-        <div className="py-20 bg-slate-50/50 dark:bg-slate-900/20 border-y border-slate-200 dark:border-slate-800">
+        <div className="py-10 bg-slate-50/50 dark:bg-slate-900/20 border-y border-slate-200 dark:border-slate-800">
           <div className="mx-auto box-content w-full max-w-maxContentTab px-4 lg:max-w-maxContent">
             <div className="space-y-2 mb-12">
               <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
@@ -128,13 +128,13 @@ export default function CatalogPage() {
         </div>
 
       {/* Section 3 */}
-      <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-20 lg:max-w-maxContent">
+      <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-10 lg:max-w-maxContent">
         <div className="space-y-2 mb-12">
           <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Frequently Bought</h2>
           <p className="text-slate-500 dark:text-slate-400 font-medium">Highly-rated courses trusted by thousands of students.</p>
         </div>
         <div>
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             {catalogPageData?.data?.mostSellingCourses
               ?.slice(0, 4)
               .map((course, i) => (

@@ -13,9 +13,9 @@ export default function RenderCartCourses() {
       {cart.map((course, indx) => (
         <div
           key={course._id}
-          className="group relative flex w-full flex-col lg:flex-row items-center justify-between gap-10 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 px-10 shadow-2xl shadow-indigo-500/[0.03] hover:shadow-indigo-500/[0.08] transition-all duration-500 overflow-hidden"
+          className="group relative flex w-full flex-col lg:flex-row items-center justify-between gap-5 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 px-10 shadow-2xl shadow-indigo-500/[0.03] hover:shadow-indigo-500/[0.08] transition-all duration-500 overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/[0.02] rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
+          <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/[0.02] rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
           
           <div className="flex flex-1 flex-col lg:flex-row items-center gap-8 relative z-10 w-full">
             <div className="relative shrink-0 overflow-hidden rounded-[2rem] border-4 border-white dark:border-slate-800 shadow-xl group-hover:scale-105 transition-transform duration-700">
@@ -58,7 +58,7 @@ export default function RenderCartCourses() {
           <div className="flex flex-col items-center lg:items-end gap-6 min-w-[180px] relative z-10 border-t lg:border-t-0 lg:border-l border-slate-100 dark:border-slate-800 pt-6 lg:pt-0 lg:pl-10">
             <div className="space-y-0.5 text-center lg:text-right">
                <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Aggregate Valuation</p>
-               <p className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">
+               <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">
                  ₹{course?.price}
                </p>
             </div>

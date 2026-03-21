@@ -19,11 +19,11 @@ export default function DeleteAccount() {
 
   return (
     <>
-    <div className="my-10 flex flex-col sm:flex-row gap-8 rounded-[3.5rem] border border-red-200/50 dark:border-red-900/30 bg-red-50/50 dark:bg-red-950/10 backdrop-blur-xl p-10 px-14 shadow-2xl shadow-red-500/[0.05] transition-all duration-500 hover:shadow-red-500/[0.1] group relative overflow-hidden">
+    <div className="my-10 flex flex-col sm:flex-row gap-8 rounded-[3.5rem] border border-red-200/50 dark:border-red-900/30 bg-red-50/50 dark:bg-red-950/10 backdrop-blur-xl p-10 px-8 shadow-2xl shadow-red-500/[0.05] transition-all duration-500 hover:shadow-red-500/[0.1] group relative overflow-hidden">
         <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-red-600/[0.02] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
         
         <div className="flex aspect-square h-20 w-20 items-center justify-center rounded-3xl bg-red-100 dark:bg-red-900/40 border border-red-200 dark:border-red-800 shadow-xl shadow-red-500/10 group-hover:scale-110 transition-transform duration-500">
-          <FiTrash2 className="text-4xl text-red-600 dark:text-red-400 animate-pulse" />
+          <FiTrash2 className="text-2xl text-red-600 dark:text-red-400 animate-pulse" />
         </div>
         
         <div className="flex flex-col space-y-4 relative z-10">

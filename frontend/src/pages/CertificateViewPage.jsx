@@ -94,7 +94,7 @@ export default function CertificateViewPage() {
         {/* Header */}
         <div className="mb-10">
           <img src={logo} alt="VidyaPlus" className="mx-auto mb-4 h-12 grayscale brightness-0" />
-          <h1 className="font-serif text-5xl font-bold uppercase tracking-[0.2em] text-richblack-900">
+          <h1 className="font-serif text-3xl font-bold uppercase tracking-[0.2em] text-richblack-900">
             Certificate
           </h1>
           <p className="text-xl font-medium uppercase tracking-[0.3em] text-richblack-600">
@@ -106,7 +106,7 @@ export default function CertificateViewPage() {
         <div className="space-y-8">
           <p className="text-xl italic text-richblack-700">This is to certify that</p>
           
-          <h2 className="border-b-2 border-richblack-900 pb-2 font-serif text-4xl font-bold text-richblack-900">
+          <h2 className="border-b-2 border-richblack-900 pb-2 font-serif text-2xl font-bold text-richblack-900">
             {cert.userName}
           </h2>
           

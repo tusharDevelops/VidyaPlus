@@ -38,14 +38,14 @@ export default function TimeLineSection() {
             {
                 timeline.map( (element, index) => {
                     return (
-                        <div className='flex flex-row gap-6 group' key={index}>
-                            <div className='relative w-[56px] h-[56px] rounded-full bg-slate-100 dark:bg-slate-800/80 flex flex-col items-center justify-center shadow-sm border border-slate-200 dark:border-slate-700 transition-all group-hover:bg-purple-50 dark:group-hover:bg-purple-900/30 group-hover:border-purple-200 dark:group-hover:border-purple-800/50'>
-                                <img src={element.Logo} width={24} height={24} alt='icon' className="dark:brightness-200 dark:grayscale transition-all opacity-80 group-hover:opacity-100"/>
-                                {index !== 3 && <div className="absolute top-[56px] left-1/2 -translate-x-1/2 h-14 w-[2px] border-l-2 border-dashed border-slate-300 dark:border-slate-700"></div>}
+                        <div className='flex flex-row gap-6 group cursor-pointer transition-all duration-300' key={index}>
+                            <div className='relative w-14 h-14 rounded-full bg-gradient-to-br from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-900/80 flex flex-col items-center justify-center shadow-lg hover:shadow-xl border border-slate-200 dark:border-slate-700 transition-all duration-300 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-yellow-50 group-hover:to-yellow-100 dark:group-hover:from-yellow-900/40 dark:group-hover:to-yellow-800/20 group-hover:border-yellow-300 dark:group-hover:border-yellow-600/50'>
+                                <img src={element.Logo} width={24} height={24} alt='icon' className="dark:brightness-200 dark:grayscale transition-all duration-300 opacity-80 group-hover:opacity-100 group-hover:brightness-110"/>
+                                {index !== 3 && <div className="absolute top-14 left-1/2 -translate-x-1/2 h-14 w-0.5 bg-gradient-to-b from-slate-300 to-transparent dark:from-slate-700 dark:to-transparent"></div>}
                             </div>
                             <div className='flex flex-col justify-center'>
-                                <h2 className='font-bold text-[18px] text-slate-900 dark:text-white transition-colors'>{element.heading}</h2>
-                                <p className='text-slate-500 dark:text-slate-400 mt-1 leading-relaxed'>{element.Description}</p>
+                                <h2 className='font-bold text-lg text-slate-900 dark:text-white transition-colors duration-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400'>{element.heading}</h2>
+                                <p className='text-slate-500 dark:text-slate-400 mt-1 leading-relaxed text-sm group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300'>{element.Description}</p>
                             </div>
                         </div>
                     )

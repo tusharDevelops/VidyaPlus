@@ -55,29 +55,29 @@ export default function ChipInput({
   },[])
 
   return (
-    <div className='flex flex-col space-y-2'>
+    <div className='flex flex-col space-y-3'>
        {/* Render the label for the input */}
-       <label className="text-sm text-richblack-5" htmlFor={name}>
+       <label className="text-sm font-semibold text-richblack-5" htmlFor={name}>
         {label} <sup className="text-pink-200">*</sup>
       </label>
 
        {/* Render the chips and input */}
-       <div className='flex w-full flex-wrap gap-y-2'>
+       <div className='flex w-full flex-wrap gap-2 rounded-lg bg-richblack-800 p-3 border border-richblack-700 focus-within:border-yellow-50 transition-all duration-200'>
         {/* Map over the chips array and render each chip */}
             {
                 chips.map((chip,index)=>(
                 <div
                 key={index}
-                className="m-1 flex items-center rounded-full bg-yellow-400 px-2 py-1 text-sm text-richblack-5">
+                className="flex items-center rounded-full bg-gradient-to-r from-yellow-100 to-yellow-50 px-3 py-1.5 text-sm text-richblack-900 font-semibold shadow-sm hover:shadow-md transition-all duration-200">
                 {/* Render the chip value */}
-                {chip}
+                <span>{chip}</span>
                 {/* Render the button to delete the chip */}
                 <button
                 type="button"
-                className="ml-2 focus:outline-none"
+                className="ml-2 focus:outline-none hover:opacity-70 transition-opacity p-1"
                 onClick={() => handleDeleteChip(index)}
                 >
-                <MdClose className="text-sm" />
+                <MdClose className="text-base" />
                 </button>
             </div>
                 ))
@@ -90,13 +90,13 @@ export default function ChipInput({
           type="text"
           placeholder={placeholder}
           onKeyDown={handleKeyDown}
-          className="form-style w-full"
+          className="flex-1 min-w-[150px] bg-transparent text-richblack-5 placeholder:text-richblack-400 focus:outline-none text-sm"
         />
 
        </div>
                 {/* Render an error message if the input is required and not filled */}
             {errors[name] && (
-                <span className="ml-2 text-xs tracking-wide text-pink-200">
+                <span className="ml-2 text-xs tracking-wide text-pink-200 font-semibold">
                 {label} is required
                 </span>
             )}

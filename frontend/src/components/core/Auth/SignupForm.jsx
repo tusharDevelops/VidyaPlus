@@ -103,13 +103,12 @@ function SignupForm() {
       {/* Tab */}
       <Tab tabData={tabData} field={accountType} setField={setAccountType} />
       {/* Form */}
-      <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
-        <div className="flex gap-x-4">
-          <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+      <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-6">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-x-4">
+          <label className="flex-1">
+            <p className="mb-2 text-sm font-semibold text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
             </p>
-
             <input
               required
               type="text"
@@ -117,15 +116,11 @@ function SignupForm() {
               value={firstName}
               onChange={handleOnChange}
               placeholder="Enter first name"
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className="w-full rounded-lg bg-richblack-800 px-4 py-3 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
             />
-
           </label>
-          <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+          <label className="flex-1">
+            <p className="mb-2 text-sm font-semibold text-richblack-5">
               Last Name <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -135,16 +130,13 @@ function SignupForm() {
               value={lastName}
               onChange={handleOnChange}
               placeholder="Enter last name"
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className="w-full rounded-lg bg-richblack-800 px-4 py-3 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
             />
           </label>
         </div>
 
         <label className="w-full">
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+          <p className="mb-2 text-sm font-semibold text-richblack-5">
             Email Address <sup className="text-pink-200">*</sup>
           </p>
           <input
@@ -154,38 +146,30 @@ function SignupForm() {
             value={email}
             onChange={handleOnChange}
             placeholder="Enter email address"
-            style={{
-              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-            }}
-            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+            className="w-full rounded-lg bg-richblack-800 px-4 py-3 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
           />
         </label>
 
-        {
-          accountType === ACCOUNT_TYPE.INSTRUCTOR ? (
-            <label className="w-full">
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-            Permission Token <sup className="text-pink-200">*</sup>
-          </p>
-          <input
-            required
-            type="text"
-            name="permissionToken"
-            value={permissionToken}
-            onChange={handleOnChange}
-            placeholder="This is a special token provided by admin"
-            style={{
-              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-            }}
-            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
-          />
-        </label>
-          ):(<></>)
-        }
+        {accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+          <label className="w-full">
+            <p className="mb-2 text-sm font-semibold text-richblack-5">
+              Permission Token <sup className="text-pink-200">*</sup>
+            </p>
+            <input
+              required
+              type="text"
+              name="permissionToken"
+              value={permissionToken}
+              onChange={handleOnChange}
+              placeholder="This is a special token provided by admin"
+              className="w-full rounded-lg bg-richblack-800 px-4 py-3 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
+            />
+          </label>
+        )}
 
-        <div className="flex gap-x-4">
-          <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-x-4">
+          <label className="relative flex-1">
+            <p className="mb-2 text-sm font-semibold text-richblack-5">
               Create Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -195,24 +179,22 @@ function SignupForm() {
               value={password}
               onChange={handleOnChange}
               placeholder="Enter Password"
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              className="w-full rounded-lg bg-richblack-800 px-4 py-3 pr-12 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
             />
-            <span
+            <button
+              type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+              className="absolute right-4 top-11 z-10 cursor-pointer p-1 hover:bg-richblack-700 rounded transition-colors"
             >
               {showPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEyeInvisible fontSize={20} fill="#AFB2BF" />
               ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEye fontSize={20} fill="#AFB2BF" />
               )}
-            </span>
+            </button>
           </label>
-          <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+          <label className="relative flex-1">
+            <p className="mb-2 text-sm font-semibold text-richblack-5">
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -222,27 +204,25 @@ function SignupForm() {
               value={confirmPassword}
               onChange={handleOnChange}
               placeholder="Confirm Password"
-              style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-              }}
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              className="w-full rounded-lg bg-richblack-800 px-4 py-3 pr-12 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
             />
-            <span
+            <button
+              type="button"
               onClick={() => setShowConfirmPassword((prev) => !prev)}
-              className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+              className="absolute right-4 top-11 z-10 cursor-pointer p-1 hover:bg-richblack-700 rounded transition-colors"
             >
               {showConfirmPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEyeInvisible fontSize={20} fill="#AFB2BF" />
               ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                <AiOutlineEye fontSize={20} fill="#AFB2BF" />
               )}
-            </span>
+            </button>
           </label>
         </div>
 
         <button
           type="submit"
-          className="mt-6 rounded-[8px] text-lg bg-gradient-custom py-[8px] px-[12px] font-medium text-richblack-900"
+          className="mt-2 rounded-lg bg-gradient-to-r from-yellow-200 to-yellow-50 text-base py-3 px-4 font-semibold text-richblack-900 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 active:translate-y-0"
         >
           Create Account
         </button>

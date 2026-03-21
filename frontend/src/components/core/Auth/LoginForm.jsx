@@ -33,10 +33,10 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleOnSubmit}
-      className="mt-6 flex w-full flex-col gap-y-4"
+      className="mt-6 flex w-full flex-col gap-y-6"
     >
       <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        <p className="mb-2 text-sm font-semibold leading-[1.375rem] text-richblack-5">
           Email Address <sup className="text-pink-200">*</sup>
         </p>
         <input
@@ -46,14 +46,11 @@ function LoginForm() {
           value={email}
           onChange={handleOnChange}
           placeholder="Enter email address"
-          style={{
-            boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-          }}
-          className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+          className="w-full rounded-lg bg-richblack-800 px-4 py-3 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
         />
       </label>
       <label className="relative">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+        <p className="mb-2 text-sm font-semibold leading-[1.375rem] text-richblack-5">
           Password <sup className="text-pink-200">*</sup>
         </p>
         <input
@@ -63,30 +60,28 @@ function LoginForm() {
           value={password}
           onChange={handleOnChange}
           placeholder="Enter Password"
-          style={{
-            boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-          }}
-          className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-12 text-richblack-5"
+          className="w-full rounded-lg bg-richblack-800 px-4 py-3 pr-12 text-richblack-5 border border-richblack-700 focus:border-yellow-50 focus:outline-none transition-all duration-200 placeholder:text-richblack-400"
         />
-        <span
+        <button
+          type="button"
           onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+          className="absolute right-4 top-12 z-10 cursor-pointer p-1 hover:bg-richblack-700 rounded transition-colors"
         >
           {showPassword ? (
-            <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+            <AiOutlineEyeInvisible fontSize={20} fill="#AFB2BF" />
           ) : (
-            <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+            <AiOutlineEye fontSize={20} fill="#AFB2BF" />
           )}
-        </span>
+        </button>
         <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
-            Forgot Password
+          <p className="mt-2 ml-auto max-w-max text-xs font-semibold text-blue-100 hover:text-blue-50 transition-colors">
+            Forgot Password?
           </p>
         </Link>
       </label>
       <button
         type="submit"
-        className="mt-6 rounded-[8px] bg-gradient-custom text-lg py-[8px] px-[12px] font-medium text-richblack-900"
+        className="mt-4 rounded-lg bg-gradient-to-r from-yellow-200 to-yellow-50 text-base py-3 px-4 font-semibold text-richblack-900 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 active:translate-y-0"
       >
         Sign In
       </button>

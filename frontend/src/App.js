@@ -30,6 +30,9 @@ import VideoDetails from './components/core/viewcourse/VideoDetails'
 import Instructor from "./components/core/DashboardPage/Instructor";
 import Certificates from "./components/core/DashboardPage/Certificates";
 import VerifyCertificatePage from "./pages/VerifyCertificatePage";
+import AddCategory from "./components/core/DashboardPage/AddCategory";
+import ManageCategories from "./components/core/DashboardPage/ManageCategories";
+import InstructorCertificates from "./components/core/DashboardPage/InstructorCertificates";
 import MyStudents from "./pages/MyStudents";
 import CertificateViewPage from "./pages/CertificateViewPage";
 
@@ -98,6 +101,9 @@ function App() {
            <>
            <Route path="dashboard/instructor" element={<Instructor />} />
            <Route path="dashboard/add-course" element={<AddCourse />} />
+           <Route path="dashboard/add-category" element={<AddCategory />} />
+           <Route path="dashboard/manage-categories" element={<ManageCategories />} />
+           <Route path="dashboard/instructor-certificates" element={<InstructorCertificates />} />
             <Route path="dashboard/monitor-students" element={<MyStudents />} />
             <Route path="dashboard/my-courses" element={<MyCourses />} />
             <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />

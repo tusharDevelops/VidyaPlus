@@ -35,6 +35,27 @@ export const sidebarLinks = [
     icon: "VscVerified",
   },
   {
+    id: 8,
+    name: "Add Category",
+    path: "/dashboard/add-category",
+    type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscFolderOpened",
+  },
+  {
+    id: 9,
+    name: "Manage Categories",
+    path: "/dashboard/manage-categories",
+    type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscFolderLibrary",
+  },
+  {
+    id: 10,
+    name: "Certificates",
+    path: "/dashboard/instructor-certificates",
+    type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscVerified",
+  },
+  {
     id: 11,
     name: "Students",
     path: "/dashboard/monitor-students",

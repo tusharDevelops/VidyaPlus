@@ -12,7 +12,7 @@ const { convertSecondsToDuration } = require("../utilities/secToduration")
 exports.createCourse = async(req,res)=>{
     try {
         //fetch data;
-        const {courseName, courseDescription, whatYouWillLearn, price, tag, category,status,instructions} = req.body;
+        const {courseName, courseDescription, whatYouWillLearn, price, tag, category,status,instructions, certificateSettings} = req.body;
 
         //fetch thumbnail image
         const thumbnail = req.files.thumbnailImage;
@@ -74,6 +74,7 @@ exports.createCourse = async(req,res)=>{
             thumbnailPublicId: thumbnailImage.public_id,
             status: status,
 			instructions: instructions,
+            certificateSettings: certificateSettings ? JSON.parse(certificateSettings) : { enabled: true },
         });
 
         // add new course to user schema of instructor
@@ -115,7 +116,7 @@ exports.getAllCourses = async (req, res) => {
     try {
             //TODO: change the below statement incrementally
     const allCourses = await Course.find(
-        {},
+        { visibility: { $ne: "Private" } },
         {
             courseName: true,
             price: true,
@@ -253,12 +254,27 @@ exports.editCourse = async (req, res) => {
       // Update only the fields that are present in the request body
       for (const key in updates) {
         if (updates.hasOwnProperty(key)) {
-          if (key === "tag" || key === "instructions") {
+          if (key === "tag" || key === "instructions" || key === "certificateSettings") {
             course[key] = JSON.parse(updates[key])
           } else {
             course[key] = updates[key]
           }
         }
+      }
+
+      // Handle custom signature upload if provided
+      if (req.files && req.files.signatureImage) {
+        const signature = req.files.signatureImage;
+        if (course.certificateSettings?.signaturePublicId) {
+            await deleteResourceFromCloudinary(course.certificateSettings.signaturePublicId);
+        }
+        const signatureImage = await uploadImageToCloudinary(signature, process.env.FOLDER_NAME);
+        
+        // ensure certificateSettings object exists
+        if (!course.certificateSettings) course.certificateSettings = { enabled: true };
+        
+        course.certificateSettings.signatureUrl = signatureImage.secure_url;
+        course.certificateSettings.signaturePublicId = signatureImage.public_id;
       }
   
       await course.save()

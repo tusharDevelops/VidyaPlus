@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.css";
 import { Routes,Route } from "react-router-dom";
 import HomePage from "./pages/Homepage"
@@ -29,13 +30,8 @@ import VideoDetails from './components/core/viewcourse/VideoDetails'
 import Instructor from "./components/core/DashboardPage/Instructor";
 import Certificates from "./components/core/DashboardPage/Certificates";
 import VerifyCertificatePage from "./pages/VerifyCertificatePage";
-import AddCategory from "./components/core/DashboardPage/AddCategory";
-import ManageCategories from "./components/core/DashboardPage/ManageCategories";
+import MyStudents from "./pages/MyStudents";
 import CertificateViewPage from "./pages/CertificateViewPage";
-import { useEffect } from "react";
-
-import InstructorCertificates from "./components/core/DashboardPage/InstructorCertificates";
-import InstructorStudents from "./components/core/DashboardPage/InstructorStudents";
 
 function App() {
   const { user } = useSelector((state) => state.profile)
@@ -72,8 +68,8 @@ function App() {
       <Route path="/about" element={<OpenRoute><AboutPage/></OpenRoute>}/> {/* About page route*/}
       <Route path="/contact" element={<OpenRoute><ContactUsPage/></OpenRoute>}/> {/* contactus page route*/}
       <Route path="/verify-certificate" element={<OpenRoute><VerifyCertificatePage/></OpenRoute>} />
-      <Route path="/certificate/:certificateId" element={<CertificateViewPage/>} />
       
+
 
       {/* ****************** YOU CAN GO THESE ROUTE ONLY IF YOU ARE LOGGED_IN********************* */}
       {/* ********************************PROTECTED_ROUTES********************************************* */}
@@ -101,17 +97,15 @@ function App() {
            <>
            <Route path="dashboard/instructor" element={<Instructor />} />
            <Route path="dashboard/add-course" element={<AddCourse />} />
-            <Route path="dashboard/add-category" element={<AddCategory />} />
-            <Route path="dashboard/manage-categories" element={<ManageCategories />} />
-            <Route path="dashboard/instructor-certificates" element={<InstructorCertificates />} />
-            <Route path="dashboard/monitor-students" element={<InstructorStudents />} />
-           <Route path="dashboard/my-courses" element={<MyCourses />} />
-           <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
-           </>
-          )
-        }
-
-       </Route> 
+            <Route path="dashboard/monitor-students" element={<MyStudents />} />
+            <Route path="dashboard/my-courses" element={<MyCourses />} />
+            <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
+            </>
+           )
+         }
+ 
+        </Route> 
+ 
 
 
 

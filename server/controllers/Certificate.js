@@ -17,10 +17,15 @@ exports.issueCertificateIfEligible = async ({ userId, courseId }) => {
 
   const [user, course] = await Promise.all([
     User.findById(userId).select("firstName lastName"),
-    Course.findById(courseId).select("courseName"),
+    Course.findById(courseId).select("courseName certificateSettings"),
   ])
 
   if (!user || !course) return { issued: false }
+  
+  // respect instructor toggle
+  if (course.certificateSettings && course.certificateSettings.enabled === false) {
+    return { issued: false, message: "Certificates are disabled for this course" }
+  }
 
   // ensure unique certificateNumber (rare collision, but loop safely)
   for (let i = 0; i < 5; i++) {
@@ -33,6 +38,9 @@ exports.issueCertificateIfEligible = async ({ userId, courseId }) => {
         completionSnapshot: {
           userName: `${user.firstName} ${user.lastName}`,
           courseName: course.courseName,
+          issuerName: course.certificateSettings?.issuerName || "VidyaPlus Academy",
+          signatureUrl: course.certificateSettings?.signatureUrl,
+          customMessage: course.certificateSettings?.customMessage,
         },
       })
       return { issued: true, certificate: doc }

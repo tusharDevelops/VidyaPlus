@@ -25,7 +25,7 @@ export default function PublishCourse() {
   }, [])
 
   const goBack = () => {
-    dispatch(setStep(2))
+    dispatch(setStep(3))
   }
 
   const goToCourses = () => {
@@ -69,7 +69,7 @@ export default function PublishCourse() {
       <header className="space-y-1 border-b border-slate-100 dark:border-slate-800 pb-6">
         <div className="flex items-center gap-2 mb-1">
            <span className="px-2 py-0.5 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-black uppercase tracking-widest">
-             STEP 03
+             STEP 04
            </span>
         </div>
         <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">Deployment & Visibility</h2>

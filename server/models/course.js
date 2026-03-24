@@ -70,6 +70,19 @@ const courseSchema = new mongoose.Schema({
 		type: String,
 		enum: ["Draft", "Published"],
 	},
+    visibility: {
+        type: String,
+        enum: ["Public", "Private"],
+        default: "Public",
+    },
+    
+    certificateSettings: {
+        enabled: { type: Boolean, default: true },
+        signatureUrl: String,
+        signaturePublicId: String,
+        issuerName: String,
+        customMessage: String,
+    },
     
     createdAt: {
 		type:Date,

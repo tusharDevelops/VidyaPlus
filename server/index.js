@@ -10,6 +10,7 @@ const profileRoutes = require("./routes/Profile")
 const userRoutes = require("./routes/User")
 const contactUsRoutes = require("./routes/Contact")
 const certificateRoutes = require("./routes/Certificate")
+const instructorCRMRoutes = require("./routes/InstructorCRM");
 
 //^importing configs
 
@@ -29,7 +30,7 @@ app.use(fileUpload({
     tempFileDir: "/tmp"
 }));
 app.use(cors({
-    origin: ["http://localhost:3000", process.env.FRONTEND_URL],
+    origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:5173", process.env.FRONTEND_URL],
     credentials: true,
 }));
 
@@ -46,6 +47,7 @@ app.use("/api/v1/course", courseRoutes);
 app.use("/api/v1/payment", paymentRoutes);
 app.use("/api/v1/reach", contactUsRoutes);
 app.use("/api/v1/certificate", certificateRoutes);
+app.use("/api/v1/instructor", instructorCRMRoutes);
 
 //default route for this port
 

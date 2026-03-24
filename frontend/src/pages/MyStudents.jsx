@@ -9,7 +9,7 @@ const MyStudents = () => {
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [cashAmount, setCashAmount] = useState("");
 
-    const fetchStudents = async () => {
+    const fetchStudents = React.useCallback(async () => {
         try {
             const res = await apiConnector("GET", "/api/v1/instructor/my-students", null, { Authorization: `Bearer ${token}` });
             if (res.data.success) {
@@ -18,11 +18,11 @@ const MyStudents = () => {
         } catch (e) {
             console.error("Error fetching CRM students");
         }
-    };
+    }, [token]);
 
     useEffect(() => {
         fetchStudents();
-    }, [token]);
+    }, [fetchStudents]);
 
     const handleLogCash = async (e) => {
         e.preventDefault();

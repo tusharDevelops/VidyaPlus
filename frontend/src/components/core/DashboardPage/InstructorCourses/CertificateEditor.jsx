@@ -19,7 +19,6 @@ export default function CertificateEditor() {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       enabled: course?.certificateSettings?.enabled ?? true,
@@ -73,9 +72,7 @@ export default function CertificateEditor() {
     dispatch(setStep(2))
   }
 
-  const goToNext = () => {
-    dispatch(setStep(4))
-  }
+
 
   return (
     <div className='space-y-6 sm:space-y-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-4 sm:p-8 shadow-2xl shadow-indigo-500/5 dark:shadow-none animate-in fade-in duration-700'>

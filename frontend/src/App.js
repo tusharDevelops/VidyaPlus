@@ -68,6 +68,7 @@ function App() {
       <Route path="/about" element={<OpenRoute><AboutPage/></OpenRoute>}/> {/* About page route*/}
       <Route path="/contact" element={<OpenRoute><ContactUsPage/></OpenRoute>}/> {/* contactus page route*/}
       <Route path="/verify-certificate" element={<OpenRoute><VerifyCertificatePage/></OpenRoute>} />
+      <Route path="/certificate/:certificateId" element={<CertificateViewPage/>} />
       
 
 

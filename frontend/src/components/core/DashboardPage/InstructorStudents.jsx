@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { VscSearch, VscMail, VscDeviceMobile, VscMortarBoard, VscChevronDown, VscChevronUp } from 'react-icons/vsc'
-import { getInstructorStudents } from '../../../services/operations/profileAPI'
+import { VscSearch, VscMail, VscDeviceMobile, VscMortarBoard, VscChevronDown, VscChevronUp, VscTrash } from 'react-icons/vsc'
+import { getInstructorStudents, removeStudentFromCourse } from '../../../services/operations/profileAPI'
+import ConfirmationModal from "../../common/ConfirmationModal"
 
 export default function InstructorStudents() {
   const { token } = useSelector((state) => state.auth)
@@ -9,17 +10,28 @@ export default function InstructorStudents() {
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [expandedStudent, setExpandedStudent] = useState(null)
+  const [confirmationModal, setConfirmationModal] = useState(null)
 
-  useEffect(() => {
-    ;(async () => {
+  const fetchStudents = async () => {
       setLoading(true)
       const result = await getInstructorStudents(token)
       if (result) {
         setStudents(result)
       }
       setLoading(false)
-    })()
+  }
+
+  useEffect(() => {
+    fetchStudents()
   }, [token])
+
+  const handleRemoveStudent = async (studentId, courseId) => {
+    const success = await removeStudentFromCourse(studentId, courseId, token)
+    if (success) {
+      fetchStudents()
+    }
+    setConfirmationModal(null)
+  }
 
   const filteredStudents = students.filter(student => 
     student.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -140,9 +152,25 @@ export default function InstructorStudents() {
                               </h4>
                               <div className="space-y-2">
                                 {student.courses.map((course) => (
-                                  <div key={course._id} className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-between group/course">
+                                  <div key={course._id} className="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-between group/course hover:border-indigo-500 transition-colors">
                                     <span className="text-sm font-bold text-slate-700 dark:text-slate-200">{course.courseName}</span>
-                                    <span className="text-[10px] font-black text-indigo-600 opacity-0 group-hover/course:opacity-100 transition-opacity">ENROLLED</span>
+                                    <div className="flex items-center gap-3">
+                                      <span className="text-[10px] font-black text-indigo-600 opacity-100 md:opacity-0 group-hover/course:opacity-100 transition-opacity">ENROLLED</span>
+                                      <button
+                                        onClick={() => setConfirmationModal({
+                                          text1: "Remove Student?",
+                                          text2: `Are you sure you want to completely remove ${student.firstName} from ${course.courseName}? This action cannot be undone.`,
+                                          btn1Text: "Remove",
+                                          btn2Text: "Cancel",
+                                          btn1Handler: () => handleRemoveStudent(student._id, course._id),
+                                          btn2Handler: () => setConfirmationModal(null),
+                                        })}
+                                        className="w-8 h-8 rounded-full bg-red-100 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all opacity-100 md:opacity-0 group-hover/course:opacity-100"
+                                        title="Remove Student from Course"
+                                      >
+                                        <VscTrash size={16} />
+                                      </button>
+                                    </div>
                                   </div>
                                 ))}
                               </div>
@@ -186,6 +214,8 @@ export default function InstructorStudents() {
           </div>
         </div>
       )}
+
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   )
 }

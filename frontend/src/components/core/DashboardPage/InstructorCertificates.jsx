@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { apiConnector } from '../../../services/apiConnector'
 import { certificateEndpoints } from '../../../services/apis'
+import { approveCertificate } from '../../../services/operations/certificateAPI'
 import { RiDeleteBin6Line } from "react-icons/ri"
-import { FiSearch } from "react-icons/fi"
+import { FiSearch, FiCheck } from "react-icons/fi"
 import ConfirmationModal from "../../common/ConfirmationModal"
 import toast from "react-hot-toast"
 
 export default function InstructorCertificates() {
   const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
   const [certs, setCerts] = useState([])
   const [loading, setLoading] = useState(true)
   const [confirmationModal, setConfirmationModal] = useState(null)
@@ -49,10 +51,21 @@ export default function InstructorCertificates() {
     setConfirmationModal(null)
   }
 
+  const handleApprove = async (certificateId) => {
+    try {
+      const success = await dispatch(approveCertificate(certificateId, token))
+      if (success) {
+        fetchCerts()
+      }
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
   const filteredCerts = certs.filter(c => 
-    c.completionSnapshot.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.certificateNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.courseId.courseName.toLowerCase().includes(searchTerm.toLowerCase())
+    c.completionSnapshot?.userName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    c.certificateNumber?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    c.courseId?.courseName?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
@@ -109,15 +122,21 @@ export default function InstructorCertificates() {
                     <div className="flex items-center gap-4">
                       <img src={c.userId?.image} className="w-10 h-10 rounded-xl object-cover ring-2 ring-slate-100 dark:ring-slate-800" alt="Student" />
                       <div className='space-y-0.5'>
-                        <p className="text-sm font-black text-slate-900 dark:text-white leading-tight">{c.completionSnapshot.userName}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{c.userId?.email}</p>
+                        <p className="text-sm font-black text-slate-900 dark:text-white leading-tight">{c.completionSnapshot?.userName}</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{c.userId?.email || "Unknown"}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-8 py-6">
                     <div className='space-y-0.5'>
                        <p className="text-sm font-bold text-slate-700 dark:text-slate-200 leading-tight">{c.courseId?.courseName}</p>
-                       <p className='text-[10px] font-bold text-indigo-500 dark:text-indigo-400 uppercase tracking-[0.12em]'>Verified Mastery</p>
+                       <p className='text-[10px] font-bold uppercase tracking-[0.12em]'>
+                         {c.approved ? (
+                            <span className="text-indigo-500 dark:text-indigo-400">Verified Mastery</span>
+                         ) : (
+                            <span className="text-amber-500 dark:text-amber-400">Pending Approval</span>
+                         )}
+                       </p>
                     </div>
                   </td>
                   <td className="px-8 py-6">
@@ -131,19 +150,32 @@ export default function InstructorCertificates() {
                     </p>
                   </td>
                   <td className="px-8 py-6 text-right">
-                    <button
-                      onClick={() => setConfirmationModal({
-                        text1: "Revoke Credential?",
-                        text2: "This will permanently invalidate this certificate Number. The student will lose their verified status for this course.",
-                        btn1Text: "Revoke Certificate",
-                        btn2Text: "Cancel",
-                        btn1Handler: () => handleDelete(c._id),
-                        btn2Handler: () => setConfirmationModal(null),
-                      })}
-                      className="p-3 rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm opacity-40 group-hover:opacity-100"
-                    >
-                      <RiDeleteBin6Line size={18} />
-                    </button>
+                    <div className="flex items-center justify-end gap-2">
+                      {!c.approved && (
+                        <button
+                          onClick={() => handleApprove(c._id)}
+                          className="p-3 rounded-2xl bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500 hover:text-white transition-all shadow-sm group-hover:opacity-100 flex items-center gap-1 text-xs font-bold"
+                          title="Approve & Issue"
+                        >
+                          <FiCheck size={18} />
+                          Issue
+                        </button>
+                      )}
+                      <button
+                        onClick={() => setConfirmationModal({
+                          text1: "Revoke Credential?",
+                          text2: "This will permanently invalidate this certificate Number. The student will lose their verified status for this course.",
+                          btn1Text: "Revoke Certificate",
+                          btn2Text: "Cancel",
+                          btn1Handler: () => handleDelete(c._id),
+                          btn2Handler: () => setConfirmationModal(null),
+                        })}
+                        className="p-3 rounded-2xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm opacity-60 group-hover:opacity-100"
+                        title="Revoke"
+                      >
+                        <RiDeleteBin6Line size={18} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

@@ -98,3 +98,29 @@ export async function getInstructorStudents(token) {
   toast.dismiss(toastId)
   return result
 }
+
+export async function removeStudentFromCourse(studentId, courseId, token) {
+  const toastId = toast.loading("Removing student...")
+  let success = false
+  try {
+    const response = await apiConnector(
+      "DELETE",
+      profileEndpoints.REMOVE_STUDENT_API,
+      { studentId, courseId },
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+
+    if (!response.data.success) {
+      throw new Error(response.data.message)
+    }
+    toast.success("Student removed successfully")
+    success = true
+  } catch (error) {
+    console.log("REMOVE_STUDENT_API ERROR............", error)
+    toast.error(error.message || "Could Not Remove Student")
+  }
+  toast.dismiss(toastId)
+  return success
+}

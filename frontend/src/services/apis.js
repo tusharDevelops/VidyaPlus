@@ -25,6 +25,7 @@ export const profileEndpoints = {
   GET_USER_ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
   GET_INSTRUCTOR_DATA_API: BASE_URL + "/profile/instructorDashboard",
   GET_INSTRUCTOR_STUDENTS_API: BASE_URL + "/profile/instructorStudents",
+  REMOVE_STUDENT_API: BASE_URL + "/course/removeStudent",
 }
 
 // STUDENTS ENDPOINTS
@@ -96,5 +97,6 @@ export const certificateEndpoints = {
   GENERATE_CERTIFICATE_API: BASE_URL + "/certificate/generate",
   INSTRUCTOR_CERTIFICATES_API: BASE_URL + "/certificate/instructor/list",
   ISSUE_CERTIFICATE_API: BASE_URL + "/certificate/instructor/issue",
+  APPROVE_CERTIFICATE_API: BASE_URL + "/certificate/instructor/approve",
   DELETE_CERTIFICATE_API: BASE_URL + "/certificate/instructor/delete",
 }

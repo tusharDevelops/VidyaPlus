@@ -2,6 +2,8 @@ const crypto = require("crypto")
 const Certificate = require("../models/certificate")
 const Course = require("../models/course")
 const User = require("../models/user")
+const CourseProgress = require("../models/courseProgress")
+const Section = require("../models/section")
 
 function generateCertificateNumber() {
   const year = new Date().getFullYear()
@@ -22,8 +24,8 @@ exports.issueCertificateIfEligible = async ({ userId, courseId }) => {
 
   if (!user || !course) return { issued: false }
   
-  // respect instructor toggle
-  if (course.certificateSettings && course.certificateSettings.enabled === false) {
+  // respect instructor toggle — default to ENABLED if not explicitly set to false
+  if (course.certificateSettings?.enabled === false) {
     return { issued: false, message: "Certificates are disabled for this course" }
   }
 
@@ -63,18 +65,22 @@ exports.generateCertificate = async (req, res) => {
        return res.status(400).json({ success: false, message: "courseId is required" })
     }
 
-    const { CourseProgress } = require("../models/courseProgress")
-    // Wait, CourseProgress is imported below. I'll just use mongoose.model
-    const mongoose = require("mongoose")
-    const Progress = mongoose.model("CourseProgress")
-    const courseProgress = await Progress.findOne({ courseID: courseId, userId })
+    const courseProgress = await CourseProgress.findOne({ courseID: courseId, userId })
     
     if (!courseProgress) {
        return res.status(403).json({ success: false, message: "Course progress not found" })
     }
 
-    const course = await Course.findById(courseId).select("courseContent")
-    const Section = mongoose.model("Section")
+    const course = await Course.findById(courseId).select("courseContent certificateSettings")
+
+    if (!course) {
+      return res.status(404).json({ success: false, message: "Course not found" })
+    }
+
+    if (course.certificateSettings?.enabled === false) {
+      return res.status(403).json({ success: false, message: "Certificates are disabled for this course" })
+    }
+
     const sections = await Section.find({ _id: { $in: course.courseContent } }).select("subSection")
     
     const totalLectures = sections.reduce(
@@ -84,7 +90,7 @@ exports.generateCertificate = async (req, res) => {
     
     const completed = courseProgress.completedVideos.length
     if (totalLectures === 0 || completed < totalLectures) {
-       return res.status(403).json({ success: false, message: "Course not fully completed yet" })
+       return res.status(403).json({ success: false, message: `Course not fully completed yet (${completed}/${totalLectures} lectures)` })
     }
 
     const result = await exports.issueCertificateIfEligible({ userId, courseId })
@@ -92,9 +98,10 @@ exports.generateCertificate = async (req, res) => {
         return res.status(200).json({ success: true, data: result.certificate })
     }
 
-    return res.status(500).json({ success: false, message: "Failed to issue certificate" })
+    return res.status(500).json({ success: false, message: result.message || "Failed to issue certificate" })
 
   } catch (error) {
+    console.error("generateCertificate error:", error)
     return res.status(500).json({ success: false, message: error.message })
   }
 }
@@ -102,7 +109,7 @@ exports.generateCertificate = async (req, res) => {
 exports.getMyCertificates = async (req, res) => {
   try {
     const userId = req.user.id
-    const certs = await Certificate.find({ userId })
+    const certs = await Certificate.find({ userId, approved: true })
       .sort({ issuedAt: -1 })
       .select("certificateNumber courseId issuedAt completionSnapshot")
       .populate({ path: "courseId", select: "courseName thumbnail" })
@@ -121,11 +128,15 @@ exports.verifyCertificate = async (req, res) => {
     }
 
     const cert = await Certificate.findOne({ certificateNumber }).select(
-      "certificateNumber issuedAt completionSnapshot courseId userId"
+      "certificateNumber issuedAt completionSnapshot courseId userId approved"
     )
 
     if (!cert) {
       return res.status(404).json({ success: false, message: "Certificate not found" })
+    }
+    
+    if (!cert.approved) {
+      return res.status(403).json({ success: false, isPending: true, message: "Certificate is pending instructor approval" })
     }
 
     // minimal public fields
@@ -207,6 +218,29 @@ exports.deleteCertificate = async (req, res) => {
     await Certificate.findByIdAndDelete(certificateId)
 
     return res.status(200).json({ success: true, message: "Certificate revoked successfully" })
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message })
+  }
+}
+
+exports.approveCertificate = async (req, res) => {
+  try {
+    const { certificateId } = req.params
+    const instructorId = req.user.id
+
+    const cert = await Certificate.findById(certificateId).populate("courseId")
+    if (!cert) {
+      return res.status(404).json({ success: false, message: "Certificate not found" })
+    }
+
+    if (cert.courseId.instructor.toString() !== instructorId) {
+      return res.status(403).json({ success: false, message: "Unauthorized to approve this certificate" })
+    }
+
+    cert.approved = true
+    await cert.save()
+
+    return res.status(200).json({ success: true, message: "Certificate approved", data: cert })
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message })
   }

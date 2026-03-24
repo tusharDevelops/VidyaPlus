@@ -4,6 +4,7 @@ const Section = require("../models/section");
 const SubSection = require("../models/subSection");
 const Course = require("../models/course");
 const CourseProgress = require("../models/courseProgress");
+const Profile = require("../models/profile");
 const {uploadImageToCloudinary} = require("../utilities/imageUploader");
 const { deleteResourceFromCloudinary } = require("../utilities/mediaCleanup");
 const { deleteCourseRecord } = require("../utilities/courseDeletion");
@@ -402,10 +403,12 @@ exports.getFullCourseDetails = async (req, res) => {
     const isEnrolled = courseDetails.studentsEnrolled?.some(
       (id) => id.toString() === userId.toString()
     )
-    if (!isEnrolled) {
+    const isInstructor = courseDetails.instructor?._id?.toString() === userId.toString()
+    
+    if (!isEnrolled && !isInstructor) {
       return res.status(403).json({
         success: false,
-        message: "You are not enrolled in this course",
+        message: "You are not enrolled in this course, nor are you the instructor",
       })
     }
 
@@ -440,6 +443,50 @@ exports.getFullCourseDetails = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: error.message,
+    })
+  }
+}
+
+exports.removeStudentFromCourse = async (req, res) => {
+  try {
+    const { courseId, studentId } = req.body
+    const instructorId = req.user.id
+
+    if (!courseId || !studentId) {
+       return res.status(400).json({ success: false, message: "Course ID and Student ID are required" })
+    }
+
+    const course = await Course.findById(courseId)
+    if (!course) {
+       return res.status(404).json({ success: false, message: "Course not found" })
+    }
+    if (course.instructor.toString() !== instructorId) {
+       return res.status(403).json({ success: false, message: "Unauthorized to manage this course" })
+    }
+
+    await Course.findByIdAndUpdate(courseId, {
+      $pull: { studentsEnrolled: studentId }
+    })
+
+    await User.findByIdAndUpdate(studentId, {
+      $pull: { courses: courseId }
+    })
+
+    await CourseProgress.deleteMany({ courseID: courseId, userId: studentId })
+
+    const Certificate = require("../models/certificate")
+    await Certificate.deleteMany({ courseId: courseId, userId: studentId })
+
+    return res.status(200).json({
+      success: true,
+      message: "Student removed from course successfully"
+    })
+  } catch (error) {
+    console.error("Remove Student Error:", error)
+    return res.status(500).json({
+      success: false,
+      message: "Server error while removing student",
+      error: error.message,
     })
   }
 }

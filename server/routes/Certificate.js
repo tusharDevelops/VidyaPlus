@@ -8,7 +8,8 @@ const {
   generateCertificate,
   getInstructorCertificates,
   issueManualCertificate,
-  deleteCertificate
+  deleteCertificate,
+  approveCertificate
 } = require("../controllers/Certificate")
 
 // Student: list own certificates
@@ -25,6 +26,9 @@ router.post("/instructor/issue", authZ, isInstructor, issueManualCertificate)
 
 // Instructor: delete/revoke certificate
 router.delete("/instructor/delete/:certificateId", authZ, isInstructor, deleteCertificate)
+
+// Instructor: approve certificate
+router.put("/instructor/approve/:certificateId", authZ, isInstructor, approveCertificate)
 
 // Public verify (no auth)
 router.post("/verify", verifyCertificate)

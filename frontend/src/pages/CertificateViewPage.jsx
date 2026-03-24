@@ -10,6 +10,7 @@ export default function CertificateViewPage() {
   const [loading, setLoading] = useState(true)
   const [cert, setCert] = useState(null)
   const [error, setError] = useState("")
+  const [isPending, setIsPending] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -36,7 +37,11 @@ export default function CertificateViewPage() {
           setError("Certificate not found")
         }
       } catch (err) {
-        setError("Invalid or expired certificate")
+        if (err.response?.data?.isPending) {
+           setIsPending(true)
+        } else {
+           setError("Invalid or expired certificate")
+        }
       } finally {
         setLoading(false)
       }
@@ -56,12 +61,28 @@ export default function CertificateViewPage() {
     )
   }
 
+  if (isPending) {
+    return (
+      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center text-richblack-5 bg-slate-50 dark:bg-slate-900 transition-colors duration-500">
+        <div className="text-center bg-white dark:bg-slate-800 p-12 rounded-[3rem] shadow-2xl border border-slate-100 dark:border-slate-800 backdrop-blur-xl max-w-lg min-h-[400px] flex flex-col items-center justify-center">
+          <div className="w-24 h-24 rounded-[2rem] bg-amber-500/10 flex items-center justify-center text-5xl mb-6 shadow-inner animate-pulse">⏳</div>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-2">Awaiting Final Issuance</h2>
+          <p className="text-sm font-bold text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
+            Congratulations on completing the course! Your certificate has been recorded and is currently in the draft stage. 
+            Final issuance rights remain with your instructor. You will be able to view and print your certificate as soon as they authorize it.
+          </p>
+          <button onClick={() => navigate(-1)} className="px-8 py-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white font-black uppercase tracking-widest text-[10px] hover:bg-slate-200 dark:hover:bg-slate-600 transition-all cursor-pointer">Return to Dashboard</button>
+        </div>
+      </div>
+    )
+  }
+
   if (error || !cert) {
     return (
       <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center text-richblack-5">
         <div className="text-center">
           <p className="text-3xl font-semibold mb-4 text-pink-200">Oops! {error}</p>
-          <button onClick={() => navigate(-1)} className="yellowButton">Go Back</button>
+          <button onClick={() => navigate(-1)} className="yellowButton cursor-pointer">Go Back</button>
         </div>
       </div>
     )

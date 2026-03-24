@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import { apiConnector } from "../../../../services/apiConnector"
+import { courseEndpoints } from "../../../../services/apis"
 import { FiUpload } from "react-icons/fi"
 import { setStep, setCourse } from "../../../../redux/slices/courseSlice"
 import IconBtn from "../../../common/IconBtn"
 import { MdNavigateNext } from "react-icons/md"
+import { toast } from "react-hot-toast"
 
 export default function CertificateEditor() {
   const { token } = useSelector((state) => state.auth)
@@ -19,6 +21,7 @@ export default function CertificateEditor() {
     handleSubmit,
     setValue,
     watch,
+    getValues,
   } = useForm({
     defaultValues: {
       enabled: course?.certificateSettings?.enabled ?? true,
@@ -44,25 +47,30 @@ export default function CertificateEditor() {
     const formData = new FormData()
     formData.append("courseId", course._id)
     formData.append("certificateSettings", JSON.stringify({
-      enabled: data.enabled,
-      issuerName: data.issuerName,
-      customMessage: data.customMessage,
+      enabled: data.enabled === true || data.enabled === "on" ? true : !!data.enabled,
+      issuerName: data.issuerName || "",
+      customMessage: data.customMessage || "",
     }))
     
-    if (data.signatureImage) {
-      formData.append("signatureImage", data.signatureImage)
+    const signatureImage = data.signatureImage || getValues("signatureImage")
+    if (signatureImage) {
+      formData.append("signatureImage", signatureImage)
     }
 
     try {
-      const response = await apiConnector("POST", "/api/v1/course/editCourse", formData, {
+      const response = await apiConnector("POST", courseEndpoints.EDIT_COURSE_API, formData, {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       })
       if (response.data.success) {
+        toast.success("Credential settings saved!")
         dispatch(setCourse(response.data.data))
         dispatch(setStep(4))
+      } else {
+        toast.error("Failed to save settings")
       }
     } catch (error) {
+      toast.error("Error saving certificate config")
       console.error("Error updating certificate settings:", error)
     }
     setLoading(false)

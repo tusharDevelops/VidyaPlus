@@ -58,6 +58,12 @@ exports.deleteCourseRecord = async (courseId) => {
     }
   }
 
+  // Delete course progress and certificates
+  const CourseProgress = require("../models/courseProgress")
+  const Certificate = require("../models/certificate")
+  await CourseProgress.deleteMany({ courseID: courseId })
+  await Certificate.deleteMany({ courseId: courseId })
+
   // Delete the course
   await Course.findByIdAndDelete(courseId)
 }

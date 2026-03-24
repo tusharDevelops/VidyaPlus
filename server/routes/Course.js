@@ -5,7 +5,7 @@ const router = express.Router()
 // &Import the Controllers
 
 //& Course Controllers Import
-const {createCourse,getAllCourses,getCourseDetails, editCourse, getInstructorCourses, deleteCourse,getFullCourseDetails} = require("../controllers/Course");
+const {createCourse,getAllCourses,getCourseDetails, editCourse, getInstructorCourses, deleteCourse,getFullCourseDetails, removeStudentFromCourse} = require("../controllers/Course");
   
 const {
     updateCourseProgress,
@@ -70,6 +70,9 @@ router.post("/getFullCourseDetails", authZ, getFullCourseDetails)
 
 // To Update Course Progress
 router.post("/updateCourseProgress", authZ, isStudent, updateCourseProgress)
+
+// Remove Student from Course
+router.delete("/removeStudent", authZ, isInstructor, removeStudentFromCourse)
 
 // ********************************************************************************************************
 //                                      In-course Notes (Enrolled-only access)

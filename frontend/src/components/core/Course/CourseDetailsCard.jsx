@@ -19,8 +19,30 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const {
     thumbnail: ThumbnailImage,
     price: CurrentPrice,
-    // _id: courseId,
+    instructions: rawInstructions,
   } = course
+
+  const parseData = (data) => {
+    if (!data) return [];
+    if (typeof data === 'string') {
+      try {
+        const parsed = JSON.parse(data);
+        return Array.isArray(parsed) ? parsed : [parsed];
+      } catch (e) { return [data]; }
+    }
+    if (Array.isArray(data)) {
+      if (data.length === 1 && typeof data[0] === 'string' && data[0].startsWith('[')) {
+        try {
+          const parsed = JSON.parse(data[0]);
+          return Array.isArray(parsed) ? parsed : [parsed];
+        } catch (e) { return data; }
+      }
+      return data;
+    }
+    return [];
+  }
+
+  const instructions = parseData(rawInstructions);
 
   // const handleShare = () => {
   //   copy(window.location.href)
@@ -61,16 +83,16 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div className="absolute top-4 right-4 animate-bounce">
-             <div className="w-10 h-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md flex items-center justify-center text-indigo-600 dark:text-indigo-400 shadow-xl border border-white/20">
-                <FaShareSquare className="text-sm" />
+          <div className="absolute top-4 right-4 group/share shadow-lg rounded-full">
+             <div className="w-10 h-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md flex items-center justify-center text-indigo-600 dark:text-indigo-400 border border-white/20 transition-all duration-300 group-hover/share:bg-indigo-600 group-hover/share:text-white">
+                <FaShareSquare className="text-base" />
              </div>
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">
+            <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">
               ₹{CurrentPrice}
             </p>
             <div className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
@@ -78,9 +100,9 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 pt-2">
             <button
-              className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 transform hover:-translate-y-1 active:translate-y-0"
+              className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 transform hover:-translate-y-1 active:translate-y-0 active:scale-95"
               onClick={
                 user && course?.studentsEnrolled.includes(user?._id)
                   ? () => navigate("/dashboard/enrolled-courses")
@@ -94,7 +116,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
               <button 
                 onClick={handleAddToCart} 
-                className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-slate-800 text-white font-black hover:bg-slate-800 dark:hover:bg-slate-700 transition-all border border-slate-700/50"
+                className="w-full py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-black hover:bg-slate-100 dark:hover:bg-slate-800 transition-all border-2 border-slate-200 dark:border-slate-700 active:scale-95 shadow-sm"
               >
                 Add to Cart
               </button>
@@ -107,12 +129,12 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
 
           <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
             <p className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-4">
-              This Course Includes :
+              This Course Includes:
             </p>
             <div className="flex flex-col gap-3">
-              {course?.instructions?.map((item, i) => (
+              {instructions?.map((item, i) => (
                 <div className="flex items-start gap-3 group" key={i}>
-                  <div className="mt-1 w-4 h-4 rounded-full bg-indigo-600/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 transition-colors group-hover:bg-indigo-600 group-hover:text-white">
+                  <div className="mt-1 w-4 h-4 rounded-full bg-indigo-600/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 transition-all group-hover:bg-indigo-600 group-hover:text-white">
                     <BsFillCaretRightFill className="text-[10px]" />
                   </div>
                   <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors">{item}</span>
@@ -123,10 +145,10 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
 
           <div className="flex justify-center pt-2">
             <button
-              className="flex items-center gap-2 text-xs font-black text-indigo-600 dark:text-indigo-400 hover:scale-105 transition-transform uppercase tracking-widest"
+              className="px-6 py-2.5 rounded-xl flex items-center gap-2 text-[10px] font-black text-slate-500 dark:text-slate-400 transition-all uppercase tracking-[0.2em] border-2 border-slate-100 dark:border-slate-800 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 shadow-sm"
               // onClick={handleShare}
             >
-              <FaShareSquare size={14} /> Share Course
+              <FaShareSquare size={12} /> Share Course
             </button>
           </div>
         </div>

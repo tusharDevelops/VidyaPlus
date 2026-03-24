@@ -49,13 +49,6 @@ export const sidebarLinks = [
     icon: "VscFolderLibrary",
   },
   {
-    id: 10,
-    name: "Certificates",
-    path: "/dashboard/instructor-certificates",
-    type: ACCOUNT_TYPE.INSTRUCTOR,
-    icon: "VscVerified",
-  },
-  {
     id: 11,
     name: "Students",
     path: "/dashboard/monitor-students",

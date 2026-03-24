@@ -69,7 +69,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="w-[45%] lg:w-[30%] space-y-6">
+            <div className="w-full sm:w-[45%] lg:w-[30%] space-y-6">
               <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">Resources</h3>
               <nav className="flex flex-col gap-3">
                 {Resources.slice(0, 6).map((ele, index) => (
@@ -84,7 +84,7 @@ const Footer = () => {
               </nav>
             </div>
 
-            <div className="w-[45%] lg:w-[30%] space-y-8">
+            <div className="w-full sm:w-[45%] lg:w-[30%] space-y-8">
               <div className="space-y-6">
                 <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">Support</h3>
                 <Link to="/help-center" className="block text-sm font-bold text-slate-500 hover:text-indigo-400 transition-colors">
@@ -109,9 +109,9 @@ const Footer = () => {
           </div>
 
           {/* Section 2 */}
-          <div className="lg:w-[40%] flex flex-wrap gap-6 justify-between">
+          <div className="lg:w-[40%] flex flex-wrap gap-6 justify-between pt-8 lg:pt-0">
             {FooterLink2.map((ele, i) => (
-              <div key={i} className="w-[45%] space-y-6">
+              <div key={i} className="w-full sm:w-[45%] space-y-6">
                 <h3 className="text-slate-200 font-black text-sm uppercase tracking-widest">{ele.title}</h3>
                 <nav className="flex flex-col gap-3">
                   {ele.links.map((link, index) => (

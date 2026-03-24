@@ -33,8 +33,8 @@ import VerifyCertificatePage from "./pages/VerifyCertificatePage";
 import AddCategory from "./components/core/DashboardPage/AddCategory";
 import ManageCategories from "./components/core/DashboardPage/ManageCategories";
 import InstructorCertificates from "./components/core/DashboardPage/InstructorCertificates";
-import MyStudents from "./pages/MyStudents";
 import CertificateViewPage from "./pages/CertificateViewPage";
+import InstructorStudents from "./components/core/DashboardPage/InstructorStudents";
 
 function App() {
   const { user } = useSelector((state) => state.profile)
@@ -104,7 +104,7 @@ function App() {
            <Route path="dashboard/add-category" element={<AddCategory />} />
            <Route path="dashboard/manage-categories" element={<ManageCategories />} />
            <Route path="dashboard/instructor-certificates" element={<InstructorCertificates />} />
-            <Route path="dashboard/monitor-students" element={<MyStudents />} />
+            <Route path="dashboard/monitor-students" element={<InstructorStudents />} />
             <Route path="dashboard/my-courses" element={<MyCourses />} />
             <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
             </>

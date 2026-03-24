@@ -3,17 +3,17 @@ import { NavLink, matchPath, useLocation } from 'react-router-dom'
 import * as Icons from "react-icons/vsc"
 import {  } from 'react-redux';
 
-export default function SideBarLinks({link,iconName}) {
+export default function SideBarLinks({link, iconName, onNavClick}) {
 
   const Icon = Icons[iconName]
   const location = useLocation();
-  //const dispatch = useDispatch();
-  const matchRoute = (route)=>{
-    return matchPath(route,location.pathname);
+  const matchRoute = (route) => {
+    return matchPath(route, location.pathname);
   } 
   return (
     <NavLink
     to={link.path}
+    onClick={onNavClick}
     className={`relative px-8 py-4 transition-all duration-500 group flex items-center
               ${matchRoute(link.path)
                 ? "bg-indigo-600/[0.03] dark:bg-indigo-400/[0.02] text-indigo-600 dark:text-indigo-400"

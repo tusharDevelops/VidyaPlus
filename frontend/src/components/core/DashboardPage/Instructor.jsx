@@ -67,25 +67,23 @@ export default function Instructor() {
         </div>
       ) : courses.length > 0 ? (
         <div className="space-y-12">
-          <div className="flex flex-col lg:flex-row gap-8 h-auto lg:h-[450px]">
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Render chart / graph */}
-            <div className="flex-1 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 shadow-xl shadow-indigo-500/5 dark:shadow-none overflow-hidden group relative">
+            <div className="flex-1 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-4 sm:p-8 shadow-xl shadow-indigo-500/5 dark:shadow-none overflow-hidden group relative">
               <div className="absolute -top-10 -right-10 w-64 h-64 bg-indigo-600/[0.03] rounded-full blur-3xl transition-transform group-hover:scale-150 duration-1000"></div>
               {totalAmount > 0 || totalStudents > 0 ? (
-                <div className="h-full relative z-10 flex flex-col">
-                   <div className="flex items-center justify-between mb-8">
+                <div className="relative z-10 flex flex-col">
+                   <div className="flex items-center justify-between mb-6">
                       <div>
                         <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-1">ANALYTICS</p>
-                        <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Statistics Overview</h2>
+                        <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight">Statistics Overview</h2>
                       </div>
-                      <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xl shadow-inner group-hover:scale-110 transition-transform duration-500">📈</div>
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xl shadow-inner group-hover:scale-110 transition-transform duration-500">📈</div>
                    </div>
-                   <div className="flex-1 min-h-[250px]">
-                      <InstructorChart courses={instructorData} />
-                   </div>
+                   <InstructorChart courses={instructorData} />
                 </div>
               ) : (
-                <div className="flex h-full flex-col items-center justify-center text-center">
+                <div className="flex h-full flex-col items-center justify-center text-center py-12">
                   <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-3xl mb-6 shadow-inner rotate-3 group-hover:rotate-0 transition-transform duration-700">📊</div>
                   <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Visualize Your Data</h3>
                   <p className="mt-3 text-slate-500 font-bold max-w-sm text-sm leading-relaxed">Once students enroll in your courses, your statistics will be shown here.</p>
@@ -93,45 +91,32 @@ export default function Instructor() {
               )}
             </div>
 
-            {/* Total Statistics */}
-            <div className="flex lg:w-[320px] flex-col rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 shadow-xl shadow-indigo-500/5 dark:shadow-none relative overflow-hidden group">
+            {/* Total Statistics — row on mobile, column sidebar on lg */}
+            <div className="lg:w-[280px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-4 sm:p-8 shadow-xl shadow-indigo-500/5 dark:shadow-none relative overflow-hidden group">
                <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-600/[0.02] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
-              <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-8 relative z-10">SUMMARY</p>
-              <div className="space-y-8 relative z-10">
+              <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-6 relative z-10">SUMMARY</p>
+              <div className="grid grid-cols-3 lg:grid-cols-1 gap-6 relative z-10">
                 <div className="relative group/stat">
-                   <div className="absolute inset-x-0 -inset-y-4 bg-indigo-600/[0.02] rounded-2xl blur-xl opacity-0 group-hover/stat:opacity-100 transition-opacity"></div>
-                   <div className="relative">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Total Courses</p>
-                      <div className="flex items-center gap-3">
-                        <p className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tighter transition-transform group-hover/stat:-translate-y-1 duration-500">
-                          {courses.length}
-                        </p>
-                      </div>
-                   </div>
+                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Total Courses</p>
+                   <p className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tighter transition-transform group-hover/stat:-translate-y-1 duration-500">
+                     {courses.length}
+                   </p>
                 </div>
                 
                 <div className="relative group/stat">
-                   <div className="absolute inset-x-0 -inset-y-4 bg-blue-600/[0.02] rounded-2xl blur-xl opacity-0 group-hover/stat:opacity-100 transition-opacity"></div>
-                   <div className="relative">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Total Students</p>
-                      <div className="flex items-center gap-3">
-                        <p className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tighter transition-transform group-hover/stat:-translate-y-1 duration-500">
-                          {totalStudents}
-                        </p>
-                      </div>
-                   </div>
+                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Total Students</p>
+                   <p className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tighter transition-transform group-hover/stat:-translate-y-1 duration-500">
+                     {totalStudents}
+                   </p>
                 </div>
 
                 <div className="relative group/stat">
-                   <div className="absolute inset-x-0 -inset-y-4 bg-emerald-600/[0.02] rounded-2xl blur-xl opacity-0 group-hover/stat:opacity-100 transition-opacity"></div>
-                   <div className="relative">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Total Income</p>
-                      <div className="flex items-baseline gap-2 transition-transform group-hover/stat:-translate-y-1 duration-500">
-                        <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400">₹</span>
-                        <p className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tighter">
-                          {totalAmount}
-                        </p>
-                      </div>
+                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Total Income</p>
+                   <div className="flex items-baseline gap-1 transition-transform group-hover/stat:-translate-y-1 duration-500">
+                     <span className="text-2xl font-black text-emerald-600 dark:text-emerald-400">₹</span>
+                     <p className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tighter">
+                       {totalAmount}
+                     </p>
                    </div>
                 </div>
               </div>

@@ -54,14 +54,13 @@ export default function InstructorChart({ courses }) {
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-y-10">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-1 flex-col gap-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.3em]">VISUALIZATION TOGGLE</p>
-        <div className="flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 shadow-inner">
-          {/* Button to switch to the "students" chart */}
+        <div className="flex p-1.5 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 shadow-inner w-full sm:w-auto">
           <button
             onClick={() => setCurrChart("students")}
-            className={`rounded-xl py-2.5 px-6 text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${
+            className={`flex-1 sm:flex-none rounded-xl py-2 px-4 text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${
               currChart === "students"
                 ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20 scale-105"
                 : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
@@ -69,10 +68,9 @@ export default function InstructorChart({ courses }) {
           >
             Students
           </button>
-          {/* Button to switch to the "income" chart */}
           <button
             onClick={() => setCurrChart("income")}
-            className={`rounded-xl py-2.5 px-6 text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${
+            className={`flex-1 sm:flex-none rounded-xl py-2 px-4 text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${
               currChart === "income"
                 ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20 scale-105"
                 : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
@@ -83,9 +81,8 @@ export default function InstructorChart({ courses }) {
         </div>
       </div>
       
-      <div className="relative mx-auto aspect-square h-full w-full max-h-[350px] animate-in zoom-in-95 duration-1000">
+      <div className="relative mx-auto w-full max-h-[260px] sm:max-h-[300px] lg:max-h-[350px] h-[260px] sm:h-[300px] lg:h-[350px] animate-in zoom-in-95 duration-1000">
         <div className="absolute inset-0 bg-indigo-600/5 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-        {/* Render the Pie chart based on the selected chart */}
         <Pie
           data={currChart === "students" ? chartDataStudents : chartIncomeData}
           options={options}

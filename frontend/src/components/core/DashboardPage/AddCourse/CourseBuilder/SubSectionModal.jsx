@@ -156,7 +156,7 @@ export default function SubSectionModal({
     <div className='fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-slate-900/60 backdrop-blur-md p-4'>
 
       {/* BOX */}
-      <div className='my-10 w-full max-w-[700px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_0_100px_rgba(79,70,229,0.1)] overflow-hidden'>
+      <div className='my-10 w-full max-w-[700px] rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_0_100px_rgba(79,70,229,0.1)] overflow-hidden flex flex-col max-h-[90vh]'>
        
         {/* Modal Header */}
         <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-800/40 p-4 sm:p-6 border-b border-slate-100 dark:border-slate-800">
@@ -177,8 +177,8 @@ export default function SubSectionModal({
           >
             <RxCross2 size={18} />
           </button>
-        </div>        {/* Modal Form */}
-        <form className="space-y-4 sm:space-y-6 p-4 sm:p-8" onSubmit={handleSubmit(onSubmit)}>
+        </div>        {/* Modal Form */}
+        <form className="space-y-4 sm:space-y-6 p-4 sm:p-8 overflow-y-auto" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Video Source Toggle */}
           {!view && (

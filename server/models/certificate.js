@@ -28,6 +28,10 @@ const certificateSchema = new mongoose.Schema(
       userName: { type: String, required: true },
       courseName: { type: String, required: true },
     },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 )

@@ -11,9 +11,35 @@ import Footer from '../components/common/Footer'
 import CourseDetailsCard from '../components/core/Course/CourseDetailsCard';
 import { BiInfoCircle } from "react-icons/bi"
 import { HiOutlineGlobeAlt } from "react-icons/hi"
+import { BsFillCaretRightFill } from "react-icons/bs"
 import ReactMarkdown from 'react-markdown';
 import CourseAccordionBar from '../components/core/Course/CourseAccordionBar'
 import { buyCourse } from '../services/operations/StudentFeaturesAPI';
+
+const parseData = (data) => {
+  if (!data) return [];
+  if (typeof data === 'string') {
+    try {
+      const parsed = JSON.parse(data);
+      return parseData(parsed);
+    } catch (e) { 
+      if (data.includes('\n')) return data.split(/\r?\n/).filter(line => line.trim());
+      return [data]; 
+    }
+  }
+  if (Array.isArray(data)) {
+    return data.flatMap(item => {
+      if (typeof item === 'string' && item.startsWith('[')) {
+        try {
+          const parsed = JSON.parse(item);
+          return Array.isArray(parsed) ? parsed : [parsed];
+        } catch (e) { return item; }
+      }
+      return item;
+    });
+  }
+  return [];
+}
 
 const CourseDetails = () => {
 
@@ -46,7 +72,7 @@ const CourseDetails = () => {
 
     useEffect(()=> {
         const count = GetAvgRating(courseData?.data?.courseDetails.ratingAndReviews);
-        setAverageReviewCount(count);
+        setAverageReviewCount(count || 0);
     },[courseData])
 
     const [totalNoOfLectures, setTotalNoOfLectures] = useState(0);
@@ -114,13 +140,16 @@ const CourseDetails = () => {
         )
     }
 
+    const tags = parseData(courseData.data?.courseDetails?.tag);
+    const instructions = parseData(courseData.data?.courseDetails?.instructions);
+    const benefits = parseData(courseData.data?.courseDetails?.whatYouWillLearn);
+
     const {
       //  _id: course_id,
         courseName,
         courseDescription,
         thumbnail,
         price,
-        whatYouWillLearn,
         courseContent,
         ratingAndReviews,
         instructor,
@@ -139,18 +168,18 @@ const CourseDetails = () => {
         
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative z-10">
-            <div className='mx-auto grid min-h-[500px] max-w-maxContentTab justify-items-center py-12 lg:mx-0 
-             lg:justify-items-start lg:py-8 xl:max-w-[810px]'>
-                <div className="relative block max-h-[30rem] lg:hidden w-full mb-8">
+            <div className='mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 
+             lg:justify-items-start lg:py-12 xl:max-w-[810px]'>
+                <div className="relative block max-h-64 sm:max-h-80 lg:hidden w-full mb-6">
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                     <img
                     src={thumbnail}
                     alt="course thumbnail"
-                    className="aspect-video w-full rounded-3xl object-cover shadow-2xl"
+                    className="aspect-video w-full rounded-3xl object-cover shadow-2xl border border-white/10"
                     />
                 </div>
                 
-                <div className="flex flex-col justify-center gap-6 text-slate-100">
+                <div className="flex flex-col justify-center gap-6 text-slate-100 lg:pr-[380px] xl:pr-0">
                   <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-indigo-400 mb-2">
                     <span>Course</span>
                     <span className="text-slate-600">/</span>
@@ -161,9 +190,18 @@ const CourseDetails = () => {
                     {courseName}
                   </h1>
                   
-                  <p className="text-lg text-slate-400 font-medium max-w-[700px] leading-relaxed italic border-l-4 border-indigo-600 pl-6">
+                  <p className="text-lg text-slate-400 font-medium max-w-[700px] leading-relaxed border-l-4 border-indigo-600 pl-6">
                     {courseDescription}
                   </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {tags?.map((item, i) => (
+                      <span key={i} className="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-[10px] font-black uppercase tracking-widest border border-slate-700 hover:text-indigo-400 transition-colors">
+                        #{item}
+                      </span>
+                    ))}
+                  </div>
                   
                   <div className="flex flex-wrap items-center gap-y-4 gap-x-6 pt-2">
                     <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-2xl border border-slate-700/50 backdrop-blur-md">
@@ -201,27 +239,43 @@ const CourseDetails = () => {
                   </div>
                 </div>
                 
-                {/* Mobile Sticky Price Bar (Mockup transition) */}
-                <div className="flex w-full flex-col gap-6 border-t border-slate-800 mt-12 pt-8 lg:hidden">
+                {/* Mobile Price Bar (In-flow) */}
+                <div className="flex w-full flex-col gap-6 border-t border-slate-800 mt-8 pt-8 lg:hidden pb-4">
                   <div className="flex items-center justify-between">
                     <div>
-                       <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-1">Total investment</p>
-                       <p className="text-2xl font-black text-white">₹{price}</p>
+                       <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total investment</p>
+                       <p className="text-3xl font-black text-white">₹{price}</p>
                     </div>
-                    <div className="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 font-black text-xs">
+                    <div className="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 font-black text-[10px] uppercase tracking-widest">
                        90% OFF
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button className="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20" onClick={handleBuyCourse}>
+                    <button className="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-95" onClick={handleBuyCourse}>
                       Enroll Now
                     </button>
-                    <button className="px-8 py-4 rounded-2xl bg-slate-800 text-white font-black hover:bg-slate-700 transition-all border border-slate-700">
+                    <button className="px-8 py-4 rounded-2xl bg-slate-800 text-white font-black hover:bg-slate-700 transition-all border border-slate-700 active:scale-95">
                       Add to Cart
                     </button>
                   </div>
                 </div>
                 
+            </div>
+
+            {/* Sticky Mobile Enrollment Bar */}
+            <div className="fixed bottom-0 left-0 right-0 z-[100] bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 p-4 lg:hidden animate-in slide-in-from-bottom duration-500">
+               <div className="mx-auto flex items-center justify-between max-w-md">
+                  <div className="flex flex-col">
+                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Investment</p>
+                     <p className="text-xl font-black text-slate-900 dark:text-white">₹{price}</p>
+                  </div>
+                  <button 
+                    onClick={handleBuyCourse}
+                    className="px-6 py-3 rounded-xl bg-indigo-600 text-white text-sm font-black shadow-lg shadow-indigo-600/20 active:scale-95 transition-transform"
+                  >
+                    Enroll Now
+                  </button>
+               </div>
             </div>
 
             {/* Floating Sidebar Card (Desktop) */}
@@ -247,9 +301,37 @@ const CourseDetails = () => {
               What you'll learn
             </h2>
             <div className="prose prose-slate dark:prose-invert max-w-none prose-p:font-medium prose-li:font-bold">
-               <ReactMarkdown>{whatYouWillLearn}</ReactMarkdown>
+               {benefits.length > 0 ? (
+                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 list-none pl-0">
+                    {benefits.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <div className="mt-1.5 w-4 h-4 rounded-full bg-indigo-600/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                          <BsFillCaretRightFill className="text-[10px]" />
+                        </div>
+                        <span className="text-slate-600 dark:text-slate-400">{item.replace(/^-\s*/, '').replace(/^\d+\.\s*/, '')}</span>
+                      </li>
+                    ))}
+                 </ul>
+               ) : (
+                 <p className="text-slate-400 italic">No specific learning outcomes listed.</p>
+               )}
             </div>
           </div>
+
+          {/* Requirements Section */}
+          {instructions.length > 0 && (
+            <div className="mb-20 px-4 sm:px-0">
+               <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-6">Requirements</h2>
+               <ul className="space-y-4 list-none pl-0">
+                  {instructions.map((item, i) => (
+                      <li key={i} className="flex items-start gap-4">
+                         <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-2.5"></span>
+                         <span className="text-slate-600 dark:text-slate-400 font-medium">{item}</span>
+                      </li>
+                  ))}
+               </ul>
+            </div>
+          )}
 
           {/* Course Content Section */}
           <div className="max-w-[830px]">
@@ -274,10 +356,10 @@ const CourseDetails = () => {
               
               <div className="flex justify-end">
                   <button
-                    className="text-sm font-black text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all"
+                    className="text-xs font-black text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all uppercase tracking-widest"
                     onClick={() => setIsActive([])}
                   >
-                    COLAPSE ALL SECTIONS
+                    COLLAPSE ALL SECTIONS
                   </button>
               </div>
             </div>

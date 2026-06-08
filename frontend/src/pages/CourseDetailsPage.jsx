@@ -12,7 +12,6 @@ import CourseDetailsCard from '../components/core/Course/CourseDetailsCard';
 import { BiInfoCircle } from "react-icons/bi"
 import { HiOutlineGlobeAlt } from "react-icons/hi"
 import { BsFillCaretRightFill } from "react-icons/bs"
-import ReactMarkdown from 'react-markdown';
 import CourseAccordionBar from '../components/core/Course/CourseAccordionBar'
 import { buyCourse } from '../services/operations/StudentFeaturesAPI';
 

@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaStar, FaTrophy, FaPlay, FaCheckCircle, FaRocket, FaChartLine, FaUserCheck, FaMedal } from 'react-icons/fa'
+import React from 'react'
+import { FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaChartLine, FaUserCheck, FaMedal } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import HighlightText from "../components/core/HomePage/HighlightText"
-import CTAButton from '../components/core/HomePage/Button'
 import ExploreMore from '../components/core/HomePage/ExploreMore'
 import Footer from '../components/common/Footer'
 import VismeForm from '../components/core/HomePage/Vismcontactform'
 
 export default function HomePage() {
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <div className="bg-white dark:bg-slate-900 w-full h-auto flex flex-col overflow-hidden transition-colors duration-300">

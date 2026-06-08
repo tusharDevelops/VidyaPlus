@@ -1,4 +1,3 @@
-import logo from "../../assets/Logo/vidyaplus-removebg-preview.png"
 import { Link, matchPath } from 'react-router-dom'
 import { NavbarLinks } from "../../data/navbar-links"
 import { useLocation } from 'react-router-dom'
@@ -20,7 +19,6 @@ const Navbar = () => {
   const location = useLocation()
   const [hamburgerOpen, setHamBurgerOpen] = useState(false)
   const [subLinks, setSubLinks] = useState([])
-  const [scrolled, setScrolled] = useState(false)
   const [isDark, setIsDark] = useState(
     document.documentElement.classList.contains('dark') ||
     localStorage.theme === 'dark' ||
@@ -28,9 +26,9 @@ const Navbar = () => {
   )
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    // const handleScroll = () => setScrolled(window.scrollY > 20)
+    // window.addEventListener('scroll', handleScroll)
+    // return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const fetchSublinks = async () => {
@@ -58,8 +56,6 @@ const Navbar = () => {
 
   const matchRoute = (route) => matchPath({ path: route }, location.pathname)
 
-  // Is the current page the homepage?
-  const isHome = location.pathname === '/'
 
   return (
     <>

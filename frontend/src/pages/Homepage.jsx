@@ -19,12 +19,12 @@ export default function HomePage() {
             
             {/* Main heading - 72px Display */}
             <h1 className='text-5xl md:text-7xl font-semibold text-ink dark:text-white leading-[1.10] tracking-[-2px] mb-6'>
-              Master New Skills with <span className="underline decoration-brand-coral decoration-4 underline-offset-8">VidyaPlus Academy</span>
+              Master Your Exams with <span className="underline decoration-brand-coral decoration-4 underline-offset-8">VidyaPlus Academy</span>
             </h1>
 
             {/* Subheading */}
             <p className='text-lg md:text-xl text-slate-text dark:text-gray-300 font-medium max-w-2xl leading-relaxed mb-10'>
-              Transform your career with India's premier online coaching center. Join expert-led courses, earn industry-recognized certificates, and achieve your goals.
+              Transform your academic journey with India's premier K-12 coaching center. Get complete school-level handholding, ace your board exams, and earn excellence certificates.
             </p>
 
             {/* CTA Buttons */}
@@ -41,7 +41,7 @@ export default function HomePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-4xl mx-auto pt-8 border-t border-hairline dark:border-slate-800">
               <div className="text-center">
                 <div className="text-4xl font-bold text-ink dark:text-white mb-2">50K+</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Certified Learners</div>
+                <div className="text-sm text-steel dark:text-gray-400 font-medium">Students Mentored</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-ink dark:text-white mb-2">4.9/5</div>
@@ -49,11 +49,11 @@ export default function HomePage() {
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-ink dark:text-white mb-2">99%</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Career Growth</div>
+                <div className="text-sm text-steel dark:text-gray-400 font-medium">Board Success Rate</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-ink dark:text-white mb-2">500+</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Certificate Courses</div>
+                <div className="text-sm text-steel dark:text-gray-400 font-medium">Expert Courses</div>
               </div>
             </div>
           </div>
@@ -72,15 +72,15 @@ export default function HomePage() {
       <div className="w-full py-24 bg-canvas dark:bg-slate-900 relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-ink dark:text-white mb-4 tracking-tight">Top Certificate Programs</h2>
+            <h2 className="text-4xl md:text-5xl font-semibold text-ink dark:text-white mb-4 tracking-tight">K-12 Course Matrix</h2>
           </div>
           
           <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar md:grid md:grid-cols-4 md:overflow-visible md:snap-none md:gap-6">
             {[
-              { title: 'Web Dev', subtitle: 'Full-Stack Mastery', variant: 'product-card-coral', link: '/catalog/web-development', badge: 'POPULAR' },
-              { title: 'Data Science', subtitle: 'AI & Machine Learning', variant: 'product-card-blue', link: '/catalog/data-science' },
-              { title: 'Business', subtitle: 'Management & Marketing', variant: 'product-card-magenta', link: '/catalog/business' },
-              { title: 'Academics', subtitle: 'School & Competitive', variant: 'product-card-emerald', link: '/catalog/academics' }
+              { title: 'Foundation', subtitle: 'Class 1–8 Mastery', variant: 'product-card-coral', link: '/catalog/foundation', badge: 'POPULAR' },
+              { title: 'Class 10', subtitle: 'Board Excellence', variant: 'product-card-blue', link: '/catalog/class10' },
+              { title: 'Class 12', subtitle: 'JEE · NEET · Boards', variant: 'product-card-magenta', link: '/catalog/class12' },
+              { title: 'Olympiads', subtitle: 'Competitive Exams', variant: 'product-card-emerald', link: '/catalog/olympiads' }
             ].map((item, idx) => (
               <Link key={idx} to={item.link} className={`group snap-center min-w-[280px] md:min-w-0 h-[380px] relative p-8 flex flex-col justify-end transition-transform duration-300 hover:-translate-y-2 ${item.variant}`}>
                 {item.badge && (
@@ -111,10 +111,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Live Coaching', desc: 'Interactive daily coaching sessions with top industry professionals', icon: <FaVideo /> },
-              { title: 'Verified Certificates', desc: 'Earn globally recognized certificates upon course completion', icon: <FaAward /> },
-              { title: 'Premium Material', desc: 'Access curated notes, projects, and resources anytime', icon: <FaBookOpen /> },
-              { title: '24/7 Mentorship', desc: 'Get instant help from expert mentors whenever you are stuck', icon: <FaQuestionCircle /> }
+              { title: 'Live Coaching', desc: 'Interactive daily coaching sessions with top faculty', icon: <FaVideo /> },
+              { title: 'Achievement Certificates', desc: 'Earn verified certificates for completing mock exams and milestones', icon: <FaAward /> },
+              { title: 'Board-Aligned Material', desc: 'Access curated notes and NCERT-aligned resources anytime', icon: <FaBookOpen /> },
+              { title: '24/7 Handholding', desc: 'Get instant doubt-solving help from expert mentors whenever you are stuck', icon: <FaQuestionCircle /> }
             ].map((feat, idx) => (
               <div key={idx} className="bg-canvas dark:bg-slate-900 p-8 rounded-3xl border border-hairline dark:border-slate-800 hover:shadow-lg transition-all">
                 <div className="text-4xl text-ink dark:text-white mb-8">
@@ -141,10 +141,10 @@ export default function HomePage() {
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-brand-coral/20 text-brand-coral border border-brand-coral/30 mb-5 uppercase tracking-widest">Your Journey</span>
               <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-                4 Steps to Your Certification
+                4 Steps to Academic Excellence
               </h2>
               <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                A proven, structured roadmap designed to take you from a beginner to a certified professional.
+                A proven, structured roadmap designed around every school student's unique learning journey.
               </p>
             </div>
 
@@ -154,26 +154,26 @@ export default function HomePage() {
             {[
               {
                 step: '01', icon: <FaUserCheck className="text-3xl" />,
-                title: 'Enroll in a Course',
-                desc: 'Sign up and pick from 500+ expertly crafted courses tailored to your career goals.',
+                title: 'Enroll & Assess',
+                desc: 'Sign up and take a free diagnostic test. We pinpoint your strengths and build a personalised school study plan.',
                 from: 'from-blue-500', to: 'to-cyan-400', glow: 'shadow-blue-500/30',
               },
               {
                 step: '02', icon: <FaVideo className="text-3xl" />,
                 title: 'Learn from Experts',
-                desc: 'Attend interactive live coaching sessions, participate in polls, and complete hands-on assignments.',
+                desc: 'Attend interactive live coaching sessions with top educators, participate in polls, and clarify concepts instantly.',
                 from: 'from-indigo-500', to: 'to-violet-500', glow: 'shadow-indigo-500/30',
               },
               {
                 step: '03', icon: <FaChartLine className="text-3xl" />,
-                title: 'Master the Skills',
-                desc: 'Take mock tests, build real-world projects, and track your progress with analytics.',
+                title: 'Practice & Track',
+                desc: 'Attempt chapter-wise tests, full board mock exams, and track your progress with analytics.',
                 from: 'from-orange-500', to: 'to-amber-400', glow: 'shadow-orange-500/30',
               },
               {
                 step: '04', icon: <FaMedal className="text-3xl" />,
-                title: 'Earn Your Certificate',
-                desc: 'Pass the final assessment, download your verified certificate, and upgrade your career.',
+                title: 'Achieve & Certify',
+                desc: 'Crack board exams, earn your excellence certificate, and launch into a bright future.',
                 from: 'from-green-500', to: 'to-emerald-400', glow: 'shadow-green-500/30',
               }
             ].map((item, idx) => (

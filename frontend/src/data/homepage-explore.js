@@ -1,95 +1,94 @@
 export const HomePageExplore = [
     {
-      tag: 'Primary (Class 1-5)',
+      tag: 'Technology & IT',
       courses: [
         {
-          heading: "Foundation Mathematics",
-          description: "Build strong fundamental concepts in numbers, basic arithmetic, shapes, and logical reasoning for young minds.",
-          level: 'Class 1-5',
-          lessonNumber: 15
+          heading: "Full-Stack Web Development",
+          description: "Learn to build modern, scalable web applications from scratch using React, Node.js, and MongoDB.",
+          level: 'Beginner to Advanced',
+          lessonNumber: 120
         },
         {
-          heading: "Environmental Science",
-          description: "Discover the world around us. Engaging visual lessons about nature, animals, and basic physical sciences.",
-          level: 'Class 1-5',
-          lessonNumber: 12
+          heading: "Python for Data Science",
+          description: "Master Python programming and learn to analyze large datasets with pandas, NumPy, and scikit-learn.",
+          level: 'Intermediate',
+          lessonNumber: 85
         },
         {
-          heading: "English Reading & Grammar",
-          description: "Develop crucial reading, writing, and vocabulary skills through interactive stories and grammar exercises.",
-          level: 'Class 1-5',
-          lessonNumber: 20
+          heading: "Cloud Computing with AWS",
+          description: "Gain hands-on experience deploying and managing infrastructure on Amazon Web Services.",
+          level: 'Advanced',
+          lessonNumber: 60
         },
       ]
     },
     {
-      tag: 'Middle (Class 6-8)',
+      tag: 'Business & Marketing',
       courses: [
         {
-          heading: "Mathematics Mastery",
-          description: "Step into algebra, geometry, and advanced arithmetic. Clear explanations for complex middle-school math topics.",
-          level: 'Class 6-8',
-          lessonNumber: 25
-        },
-        {
-          heading: "Integrated Science",
-          description: "Comprehensive coverage of Physics, Chemistry, and Biology fundamentals laying the groundwork for high school.",
-          level: 'Class 6-8',
-          lessonNumber: 30
-        },
-        {
-          heading: "Social Studies & History",
-          description: "Interactive timeline-based learning covering Indian History, Geography, and Civics tailored for middle school.",
-          level: 'Class 6-8',
-          lessonNumber: 18
-        },
-      ]
-    },
-    {
-      tag: 'Secondary (Class 9-10)',
-      courses: [
-        {
-          heading: "Board Exam Prep - Mathematics",
-          description: "Exhaustive problem-solving, previous year questions, and advanced geometry/trigonometry to ace the 10th boards.",
-          level: 'Class 9-10',
-          lessonNumber: 40
-        },
-        {
-          heading: "Science for Board Exams",
-          description: "In-depth Physics, Chemistry, and Biology. Focus on numericals, chemical equations, and life processes.",
-          level: 'Class 9-10',
+          heading: "Digital Marketing Mastery",
+          description: "Complete guide to SEO, SEM, social media marketing, and email campaigns to grow any business.",
+          level: 'All Levels',
           lessonNumber: 45
         },
         {
-          heading: "NTSE & Olympiad Foundation",
-          description: "Higher-order thinking skills and advanced problem-solving techniques for competitive exams.",
-          level: 'Class 9-10',
-          lessonNumber: 25
+          heading: "Financial Analysis & Modeling",
+          description: "Learn corporate finance, valuation techniques, and build dynamic financial models in Excel.",
+          level: 'Intermediate',
+          lessonNumber: 55
+        },
+        {
+          heading: "Project Management Professional",
+          description: "Prepare for your PMP certification with comprehensive strategies for Agile and Waterfall projects.",
+          level: 'Advanced',
+          lessonNumber: 40
         },
       ]
     },
     {
-      tag: 'Senior Secondary (Class 11-12)',
+      tag: 'Design & Arts',
       courses: [
         {
-          heading: "Senior Secondary Physics",
-          description: "Rigorous mechanics, electromagnetism, and modern physics tailored for NCERT and State Board examinations.",
-          level: 'Class 11-12',
-          lessonNumber: 60
-        },
-        {
-          heading: "Core Biology & Chemistry",
-          description: "Comprehensive NCERT-aligned curriculum with deep dives into human physiology, genetics, and organic chemistry.",
-          level: 'Class 11-12',
-          lessonNumber: 75
-        },
-        {
-          heading: "Commerce & Accountancy",
-          description: "Master financial accounting, business studies, and economics principles for board exams and higher studies.",
-          level: 'Class 11-12',
+          heading: "UI/UX Design Bootcamp",
+          description: "Learn user research, wireframing, prototyping, and high-fidelity design using Figma.",
+          level: 'Beginner',
           lessonNumber: 50
+        },
+        {
+          heading: "Graphic Design Masterclass",
+          description: "Master Adobe Photoshop, Illustrator, and InDesign to create stunning visual assets.",
+          level: 'All Levels',
+          lessonNumber: 65
+        },
+        {
+          heading: "Video Editing & Production",
+          description: "Professional video editing techniques using Adobe Premiere Pro and After Effects.",
+          level: 'Intermediate',
+          lessonNumber: 70
+        },
+      ]
+    },
+    {
+      tag: 'Academics & Exams',
+      courses: [
+        {
+          heading: "UPSC Civil Services Foundation",
+          description: "Comprehensive coaching for IAS/IPS exams covering History, Polity, Geography, and current affairs.",
+          level: 'Advanced',
+          lessonNumber: 150
+        },
+        {
+          heading: "Banking & SSC Exams Prep",
+          description: "Intensive training on quantitative aptitude, logical reasoning, and English for competitive exams.",
+          level: 'All Levels',
+          lessonNumber: 80
+        },
+        {
+          heading: "English Language Fluency",
+          description: "Improve spoken and written English communication for corporate environments and IELTS.",
+          level: 'Beginner to Inter',
+          lessonNumber: 30
         },
       ]
     },
   ];
-  

@@ -6,17 +6,17 @@ import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 
 const tabsName = [
-  "Primary (Class 1-5)",
-  "Middle (Class 6-8)",
-  "Secondary (Class 9-10)",
-  "Senior Secondary (Class 11-12)",
+  "Technology & IT",
+  "Business & Marketing",
+  "Design & Arts",
+  "Academics & Exams",
 ]
 
 const tabAccents = {
-  "Primary (Class 1-5)": { from: 'from-orange-500', to: 'to-red-500', border: 'border-orange-400', badge: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' },
-  "Middle (Class 6-8)": { from: 'from-blue-500', to: 'to-cyan-500', border: 'border-blue-400', badge: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' },
-  "Secondary (Class 9-10)": { from: 'from-purple-500', to: 'to-pink-500', border: 'border-purple-400', badge: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
-  "Senior Secondary (Class 11-12)": { from: 'from-green-500', to: 'to-emerald-500', border: 'border-green-400', badge: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' },
+  "Technology & IT": { from: 'from-orange-500', to: 'to-red-500', border: 'border-orange-400', badge: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' },
+  "Business & Marketing": { from: 'from-blue-500', to: 'to-cyan-500', border: 'border-blue-400', badge: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' },
+  "Design & Arts": { from: 'from-purple-500', to: 'to-pink-500', border: 'border-purple-400', badge: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
+  "Academics & Exams": { from: 'from-green-500', to: 'to-emerald-500', border: 'border-green-400', badge: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' },
 }
 
 export default function ExploreMore() {
@@ -44,10 +44,10 @@ export default function ExploreMore() {
         {/* Header */}
         <div className='text-center mb-14'>
           <h2 className='text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-4'>
-            Unlock the <HighlightText text={"Potential of Learning"} />
+            Unlock Your <HighlightText text={"Career Potential"} />
           </h2>
           <p className='text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto'>
-            Structured curriculum from Class 1 to 12 — every subject, every level, every aspiration.
+            Explore top-rated online courses designed to build your skills and grant you verified certificates.
           </p>
         </div>
 

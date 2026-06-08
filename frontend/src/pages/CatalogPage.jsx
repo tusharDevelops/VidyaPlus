@@ -49,18 +49,14 @@ export default function CatalogPage() {
   return (
   <>
     {/* Hero Section */}
-    <div className="box-content bg-slate-900 border-b border-indigo-500/20 px-4 relative overflow-hidden">
-        {/* Animated Orbs */}
-        <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }}></div>
-        
+    <div className="box-content bg-slate-900 border-b border-hairline px-4 relative overflow-hidden">
         <div className="mx-auto flex min-h-[300px] max-w-maxContentTab flex-col justify-center gap-6 lg:max-w-maxContent relative z-10 py-12">
           <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-slate-400">
             <span>Home</span>
-            <span className="text-indigo-500">/</span>
+            <span className="text-slate-600">/</span>
             <span>Catalog</span>
-            <span className="text-indigo-500">/</span>
-            <span className="text-indigo-400">
+            <span className="text-slate-600">/</span>
+            <span className="text-white">
               {catalogPageData?.data?.selectedCategory?.name}
             </span>
           </div>
@@ -68,7 +64,7 @@ export default function CatalogPage() {
             <h1 className="text-3xl lg:text-2xl font-black text-white tracking-tighter">
               {catalogPageData?.data?.selectedCategory?.name}
             </h1>
-            <p className="max-w-[800px] text-lg font-medium text-slate-400 leading-relaxed italic border-l-4 border-indigo-600 pl-6 py-2">
+            <p className="max-w-[800px] text-lg font-medium text-slate-400 leading-relaxed italic border-l-4 border-white pl-6 py-2">
               {catalogPageData?.data?.selectedCategory?.description}
             </p>
           </div>
@@ -84,20 +80,20 @@ export default function CatalogPage() {
           </div>
           <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-slate-800">
             <button
-              className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all duration-300 ${
+              className={`px-8 py-2.5 rounded-full text-sm font-black transition-all duration-300 ${
                 active === 1
-                  ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-lg shadow-indigo-600/10"
-                  : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
+                  ? "bg-white text-ink shadow-sm"
+                  : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
               }`}
               onClick={() => setActive(1)}
             >
               Popular
             </button>
             <button
-              className={`px-8 py-2.5 rounded-xl text-sm font-black transition-all duration-300 ${
+              className={`px-8 py-2.5 rounded-full text-sm font-black transition-all duration-300 ${
                 active === 2
-                  ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-lg shadow-indigo-600/10"
-                  : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
+                  ? "bg-white text-ink shadow-sm"
+                  : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
               }`}
               onClick={() => setActive(2)}
             >

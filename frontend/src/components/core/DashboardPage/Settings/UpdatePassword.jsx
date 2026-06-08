@@ -34,11 +34,9 @@ export default function UpdatePassword() {
   return (
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-10 flex flex-col gap-y-10 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-8 shadow-2xl shadow-indigo-500/5 transition-all duration-500 group relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/[0.02] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
-          
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 relative z-10">
-             <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em] mb-1">SECURITY PROTOCOL</p>
+        <div className="my-10 flex flex-col gap-y-10 rounded-hero border border-hairline dark:border-slate-800 bg-canvas dark:bg-slate-900 p-10 px-8 shadow-sm transition-all duration-500 group relative overflow-hidden">
+          <div className="border-b border-hairline dark:border-slate-800 pb-8 relative z-10">
+             <p className="text-[10px] font-black text-ink dark:text-white uppercase tracking-[0.3em] mb-1">SECURITY PROTOCOL</p>
              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Access Credentials</h2>
           </div>
 
@@ -54,7 +52,7 @@ export default function UpdatePassword() {
                   name="oldPassword"
                   id="oldPassword"
                   placeholder="Enter current token"
-                  className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                  className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                   {...register("oldPassword", { required: true })}
                 />
                 <span
@@ -62,9 +60,9 @@ export default function UpdatePassword() {
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-[10] cursor-pointer p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-xl transition-all"
                 >
                   {showOldPassword ? (
-                    <AiOutlineEyeInvisible fontSize={22} className="text-slate-400 group-hover/field:text-indigo-600 dark:group-hover/field:text-indigo-400" />
+                    <AiOutlineEyeInvisible fontSize={22} className="text-slate-400 group-hover/field:text-ink dark:group-hover/field:text-white" />
                   ) : (
-                    <AiOutlineEye fontSize={22} className="text-slate-400 group-hover/field:text-indigo-600 dark:group-hover/field:text-indigo-400" />
+                    <AiOutlineEye fontSize={22} className="text-slate-400 group-hover/field:text-ink dark:group-hover/field:text-white" />
                   )}
                 </span>
               </div>
@@ -86,7 +84,7 @@ export default function UpdatePassword() {
                   name="newPassword"
                   id="newPassword"
                   placeholder="Enter new token"
-                  className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                  className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                   {...register("newPassword", { required: true })}
                 />
                 <span
@@ -94,9 +92,9 @@ export default function UpdatePassword() {
                   className="absolute right-4 top-1/2 -translate-y-1/2 z-[10] cursor-pointer p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-xl transition-all"
                 >
                   {showNewPassword ? (
-                    <AiOutlineEyeInvisible fontSize={22} className="text-slate-400 group-hover/field:text-indigo-600 dark:group-hover/field:text-indigo-400" />
+                    <AiOutlineEyeInvisible fontSize={22} className="text-slate-400 group-hover/field:text-ink dark:group-hover/field:text-white" />
                   ) : (
-                    <AiOutlineEye fontSize={22} className="text-slate-400 group-hover/field:text-indigo-600 dark:group-hover/field:text-indigo-400" />
+                    <AiOutlineEye fontSize={22} className="text-slate-400 group-hover/field:text-ink dark:group-hover/field:text-white" />
                   )}
                 </span>
               </div>
@@ -109,20 +107,20 @@ export default function UpdatePassword() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-6 pt-10 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-end gap-6 pt-10 border-t border-hairline dark:border-slate-800">
           <button
             type="button"
             onClick={() => {
               navigate("/dashboard/my-profile")
             }}
-            className="cursor-pointer rounded-2xl bg-slate-100 dark:bg-slate-800 py-4 px-10 text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
+            className="btn-secondary py-3 px-8 text-xs"
           >
             Abort Encryption
           </button>
           <IconBtn 
             type="submit" 
             text="Commit Token Update" 
-            customClasses="px-12 py-4 rounded-2xl shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
+            customClasses="btn-primary py-3 px-8 text-xs"
           />
         </div>
       </form>

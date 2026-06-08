@@ -73,7 +73,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   return (
     <>
       <div
-        className="flex flex-col gap-6 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-2xl shadow-indigo-500/10 dark:shadow-none backdrop-blur-md"
+        className="flex flex-col gap-6 rounded-hero bg-canvas dark:bg-slate-900 border border-hairline dark:border-slate-800 p-6 shadow-sm"
       >
         {/* Course Image */}
         <div className="relative group overflow-hidden rounded-3xl aspect-video">
@@ -83,8 +83,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div className="absolute top-4 right-4 group/share shadow-lg rounded-full">
-             <div className="w-10 h-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md flex items-center justify-center text-indigo-600 dark:text-indigo-400 border border-white/20 transition-all duration-300 group-hover/share:bg-indigo-600 group-hover/share:text-white">
+          <div className="absolute top-4 right-4 group/share shadow-sm rounded-full">
+             <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center text-ink dark:text-white border border-hairline transition-all duration-300 group-hover/share:bg-ink group-hover/share:text-white dark:group-hover/share:bg-white dark:group-hover/share:text-ink">
                 <FaShareSquare className="text-base" />
              </div>
           </div>
@@ -95,14 +95,14 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">
               ₹{CurrentPrice}
             </p>
-            <div className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+            <div className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest">
                LIFETIME ACCESS
             </div>
           </div>
 
           <div className="flex flex-col gap-3 pt-2">
             <button
-              className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 transform hover:-translate-y-1 active:translate-y-0 active:scale-95"
+              className="btn-primary w-full"
               onClick={
                 user && course?.studentsEnrolled.includes(user?._id)
                   ? () => navigate("/dashboard/enrolled-courses")
@@ -116,7 +116,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             {(!user || !course?.studentsEnrolled.includes(user?._id)) && (
               <button 
                 onClick={handleAddToCart} 
-                className="w-full py-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-black hover:bg-slate-100 dark:hover:bg-slate-800 transition-all border-2 border-slate-200 dark:border-slate-700 active:scale-95 shadow-sm"
+                className="btn-secondary w-full"
               >
                 Add to Cart
               </button>
@@ -134,7 +134,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             <div className="flex flex-col gap-3">
               {instructions?.map((item, i) => (
                 <div className="flex items-start gap-3 group" key={i}>
-                  <div className="mt-1 w-4 h-4 rounded-full bg-indigo-600/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 transition-all group-hover:bg-indigo-600 group-hover:text-white">
+                  <div className="mt-1 w-4 h-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-ink dark:text-white transition-all group-hover:bg-ink group-hover:text-white">
                     <BsFillCaretRightFill className="text-[10px]" />
                   </div>
                   <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors">{item}</span>
@@ -145,7 +145,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
 
           <div className="flex justify-center pt-2">
             <button
-              className="px-6 py-2.5 rounded-xl flex items-center gap-2 text-[10px] font-black text-slate-500 dark:text-slate-400 transition-all uppercase tracking-[0.2em] border-2 border-slate-100 dark:border-slate-800 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 shadow-sm"
+              className="px-6 py-2.5 rounded-full flex items-center gap-2 text-[10px] font-black text-slate-500 dark:text-slate-400 transition-all uppercase tracking-[0.2em] border-2 border-hairline dark:border-slate-800 hover:bg-ink hover:text-white shadow-sm"
               // onClick={handleShare}
             >
               <FaShareSquare size={12} /> Share Course

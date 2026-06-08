@@ -17,13 +17,11 @@ export default function RenderTotalAmount() {
   }
 
   return (
-    <div className="min-w-[320px] w-full lg:w-[350px] rounded-[3.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-12 shadow-2xl shadow-indigo-500/[0.05] transition-all duration-500 group relative overflow-hidden">
-      <div className="absolute -top-24 -left-24 w-64 h-64 bg-indigo-600/[0.03] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
-      
+    <div className="min-w-[320px] w-full lg:w-[350px] rounded-hero border border-hairline dark:border-slate-800 bg-canvas dark:bg-slate-900 p-10 px-12 shadow-sm transition-all duration-500 group relative overflow-hidden">
       <div className="space-y-6 relative z-10">
         <div className="space-y-1">
            <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.3em]">AGGREGATE VALUATION</p>
-           <p className="text-3xl font-black text-indigo-600 dark:text-indigo-400 tracking-tighter">
+           <p className="text-3xl font-black text-brand-coral tracking-tighter">
              ₹{total}
            </p>
         </div>
@@ -33,7 +31,7 @@ export default function RenderTotalAmount() {
         <IconBtn
           text="Authorize Deployment"
           onclick={handleBuyCourse}
-          customClasses="w-full justify-center py-5 rounded-[1.75rem] shadow-[0_20px_50px_rgba(79,70,229,0.3)] hover:shadow-indigo-600/40 text-sm font-black uppercase tracking-widest"
+          customClasses="btn-primary w-full py-5 text-sm"
         />
         
         <div className="flex flex-col items-center gap-2 pt-4">

@@ -14,14 +14,13 @@ export default function AboutPage() {
   return (
     <div>
       {/* SECTION-1 */}
-      <section className="bg-slate-50 dark:bg-slate-900 transition-colors duration-500 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-indigo-600/[0.02] blur-[120px] pointer-events-none"></div>
+      <section className="bg-canvas dark:bg-slate-900 transition-colors duration-500 relative overflow-hidden">
         <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 text-center">
-          <header className="mx-auto py-12 text-3xl font-black text-slate-900 dark:text-white lg:w-[80%] tracking-tight leading-tight">
-            Driving Innovation in Online Education for a
-            <HighlightText text={" Brighter Future"} />
-            <p className="mx-auto mt-8 text-center text-xl font-bold text-slate-500 dark:text-slate-400 lg:w-[95%] leading-relaxed max-w-4xl italic border-x-4 border-indigo-600/20 px-10">
-              Vidya+ is transforming online education by embracing the latest technologies. Our mission is to build a brighter future through innovative courses and a vibrant, supportive learning community.
+          <header className="mx-auto py-12 text-4xl md:text-5xl font-black text-slate-900 dark:text-white lg:w-[80%] tracking-tight leading-tight">
+            Guiding School Students to
+            <HighlightText text={" Board Excellence"} />
+            <p className="mx-auto mt-8 text-center text-xl font-bold text-slate-500 dark:text-slate-400 lg:w-[95%] leading-relaxed max-w-4xl italic border-x-4 border-hairline dark:border-slate-800 px-10">
+              VidyaPlus Academy provides comprehensive K-12 coaching and school-level handholding, ensuring every student has the tools and mentorship needed to ace their exams and build a brighter future.
             </p>
           </header>
           <div className="sm:h-[70px] lg:h-[150px]"></div>
@@ -46,47 +45,46 @@ export default function AboutPage() {
       <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 pb-20">
           <div className="flex flex-col items-center gap-8 lg:flex-row justify-between py-12">
             <div className="flex lg:w-[50%] flex-col gap-8">
-              <h1 className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-3xl font-black text-transparent tracking-tight">
+              <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">
                 Our Founding Story
               </h1>
               <div className="space-y-6 text-lg font-bold text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
                 <p>
-                  Our founder grew up in a poor family, struggling with limited access to education and resources. Despite these challenges, he was determined to learn and succeed, studying under a kerosene lamp with borrowed books.
+                  Our founders, experienced educators themselves, witnessed the immense pressure and lack of structured guidance faced by school students preparing for crucial board exams. They saw firsthand how students struggled without proper mentorship.
                 </p>
-                <p className="p-8 rounded-3xl bg-indigo-600/[0.03] border-l-8 border-indigo-600 dark:bg-indigo-400/[0.02]">
-                  Driven by a vision to transform education, he worked tirelessly to gain experience in the tech industry. His goal was to create Vidya+, an edtech platform designed to bridge the educational gap between privileged and underprivileged students.
+                <p className="p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-800 border border-hairline border-l-8 border-l-brand-coral">
+                  Driven by a vision to transform K-12 education, they established VidyaPlus Academy to provide comprehensive school-level handholding, ensuring every student from classes 1 to 12 can approach their board exams with confidence.
                 </p>
               </div>
             </div>
 
             <div className='relative group'>
-              <div className="absolute inset-0 bg-indigo-600/20 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
               <img
                 src={FoundingStory}
                 alt=""
-                className="rounded-[3rem] shadow-2xl shadow-indigo-500/10 border-8 border-white dark:border-slate-800 lg:max-w-[480px] relative z-10 group-hover:scale-105 transition-transform duration-700"
+                className="rounded-hero shadow-sm border border-hairline dark:border-slate-800 lg:max-w-[480px] relative z-10 group-hover:scale-105 transition-transform duration-700"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-            <div className="flex flex-col gap-8 p-12 rounded-[3rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 shadow-xl shadow-indigo-500/[0.02] hover:shadow-indigo-500/[0.05] transition-all duration-500 group">
-              <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">👁️</div>
-              <h1 className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-2xl font-black text-transparent tracking-tight">
+            <div className="flex flex-col gap-8 p-12 rounded-hero bg-slate-50 dark:bg-slate-900/40 border border-hairline dark:border-slate-800 shadow-sm transition-all duration-500 group">
+              <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center text-white text-3xl shadow-sm group-hover:scale-110 transition-transform">👁️</div>
+              <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                 Our Vision
               </h1>
               <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
-                Vidya+ uses advanced technology to offer high-quality courses and build a vibrant learning community. Our mission goes beyond providing information—we aim to foster wisdom, critical thinking, and a deep understanding of subjects. We believe that education should nurture thoughtful individuals, preparing them for success in a complex world.
+                VidyaPlus Academy aims to create an environment where school students thrive academically. Our mission goes beyond syllabus completion—we aim to foster critical thinking, subject mastery, and board exam excellence through structured daily coaching.
               </p>
             </div>
             
-            <div className="flex flex-col gap-8 p-12 rounded-[3rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 shadow-xl shadow-indigo-500/[0.02] hover:shadow-indigo-500/[0.05] transition-all duration-500 group">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-600/20 group-hover:scale-110 transition-transform">🚀</div>
-              <h1 className="bg-gradient-to-r from-emerald-600 to-teal-500 text-transparent bg-clip-text text-2xl font-black tracking-tight">
+            <div className="flex flex-col gap-8 p-12 rounded-hero bg-slate-50 dark:bg-slate-900/40 border border-hairline dark:border-slate-800 shadow-sm transition-all duration-500 group">
+              <div className="w-12 h-12 rounded-2xl bg-brand-magenta flex items-center justify-center text-white text-3xl shadow-sm group-hover:scale-110 transition-transform">🚀</div>
+              <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                 Our Mission
               </h1>
               <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
-                Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing. Join us in our mission to ensure every student, regardless of their background, can achieve their full potential.
+                Our mission is to deliver the highest quality school-level education handholding. Through expert mentorship, rigorous mock exams, and verified achievement certificates, we ensure every Class 1 to 12 student achieves their full potential and outstanding board results.
               </p>
             </div>
           </div>
@@ -102,7 +100,7 @@ export default function AboutPage() {
       {/* REVIEW_SECTION */}
       <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-6 bg-transparent pb-32">
         <div className="space-y-4 text-center">
-           <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em]">STUDENT PERSPECTIVES</p>
+           <p className="text-[10px] font-black text-ink dark:text-white uppercase tracking-[0.3em]">STUDENT PERSPECTIVES</p>
            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
              Global Scholarly Review
            </h1>

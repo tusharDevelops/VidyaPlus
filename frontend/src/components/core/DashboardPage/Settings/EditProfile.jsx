@@ -32,11 +32,10 @@ export default function EditProfile() {
       <form onSubmit={handleSubmit(submitProfileForm)}>
         {/* Profile Information */}
         {/* Profile Information */}
-        <div className="my-10 flex flex-col gap-y-10 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-10 px-8 shadow-2xl shadow-indigo-500/5 transition-all duration-500 group relative overflow-hidden">
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-indigo-600/[0.02] rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
+        <div className="my-10 flex flex-col gap-y-10 rounded-hero border border-hairline dark:border-slate-800 bg-canvas dark:bg-slate-900 p-10 px-8 shadow-sm transition-all duration-500 group relative overflow-hidden">
           
-          <div className="border-b border-slate-100 dark:border-slate-800 pb-8 relative z-10">
-             <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em] mb-1">DATA INTEGRITY</p>
+          <div className="border-b border-hairline dark:border-slate-800 pb-8 relative z-10">
+             <p className="text-[10px] font-black text-ink dark:text-white uppercase tracking-[0.3em] mb-1">DATA INTEGRITY</p>
              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Profile Information</h2>
           </div>
 
@@ -51,7 +50,7 @@ export default function EditProfile() {
                 name="firstName"
                 id="firstName"
                 placeholder="Enter forename"
-                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                 {...register("firstName", { required: true })}
                 defaultValue={user?.firstName}
               />
@@ -72,7 +71,7 @@ export default function EditProfile() {
                 name="lastName"
                 id="lastName"
                 placeholder="Enter surname"
-                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
               />
@@ -92,7 +91,7 @@ export default function EditProfile() {
                 type="date"
                 name="dateOfBirth"
                 id="dateOfBirth"
-                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                 {...register("dateOfBirth", {
                   required: {
                     value: true,
@@ -121,7 +120,7 @@ export default function EditProfile() {
                 type="text"
                 name="gender"
                 id="gender"
-                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
@@ -150,7 +149,7 @@ export default function EditProfile() {
                 name="contactNumber"
                 id="contactNumber"
                 placeholder="Enter contact protocol"
-                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm"
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm"
                 {...register("contactNumber", {
                   required: {
                     value: true,
@@ -177,7 +176,7 @@ export default function EditProfile() {
                 name="about"
                 id="about"
                 placeholder="Expound upon your professional journey..."
-                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all py-4 px-6 rounded-2xl font-bold text-sm min-h-[140px] resize-none"
+                className="form-style w-full bg-slate-50 dark:bg-slate-900/50 border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 transition-all py-4 px-6 rounded-hero font-bold text-sm min-h-[140px] resize-none"
                 {...register("about", { required: true })}
                 defaultValue={user?.additionalDetails?.about}
               />
@@ -190,20 +189,20 @@ export default function EditProfile() {
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-6 pt-10 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-end gap-6 pt-10 border-t border-hairline dark:border-slate-800">
           <button
             type="button"
             onClick={() => {
               navigate("/dashboard/my-profile")
             }}
-            className="cursor-pointer rounded-2xl bg-slate-100 dark:bg-slate-800 py-4 px-10 text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-300"
+            className="btn-secondary py-3 px-8 text-xs"
           >
             Abort Modifications
           </button>
           <IconBtn 
             type="submit" 
             text="Synchronize Profile" 
-            customClasses="px-12 py-4 rounded-2xl shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
+            customClasses="btn-primary py-3 px-8 text-xs"
           />
         </div>
       </form>

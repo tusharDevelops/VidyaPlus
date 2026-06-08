@@ -68,8 +68,8 @@ export default function SideBar() {
     <>
       {/* ─── Desktop Sidebar ─── */}
       <div className='hidden lg:flex h-[calc(100vh-3.5rem)] min-w-[260px] flex-col
-        border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80
-        backdrop-blur-xl py-12 transition-all duration-500 shadow-2xl shadow-indigo-500/[0.02]
+        border-r border-hairline dark:border-slate-800 bg-canvas dark:bg-slate-900/80
+        backdrop-blur-xl py-12 transition-all duration-500
         overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800'>
         <Links onNav={() => {}} />
       </div>
@@ -101,8 +101,8 @@ export default function SideBar() {
         shadow-2xl transition-transform duration-300 overflow-y-auto
         ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
-        <div className="flex items-center justify-between px-5 pt-5 pb-2 border-b border-slate-100 dark:border-slate-800">
-          <span className="text-xs font-black text-indigo-600 uppercase tracking-widest">Menu</span>
+        <div className="flex items-center justify-between px-5 pt-5 pb-2 border-b border-hairline dark:border-slate-800">
+          <span className="text-xs font-black text-ink dark:text-white uppercase tracking-widest">Menu</span>
           <button
             onClick={() => setMobileOpen(false)}
             className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors"

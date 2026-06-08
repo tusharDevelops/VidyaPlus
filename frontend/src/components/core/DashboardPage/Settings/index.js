@@ -8,7 +8,7 @@ export default function Settings() {
     <div className="space-y-12 animate-in fade-in duration-700">
       <header className="border-b border-slate-200 dark:border-slate-800 pb-10">
         <div className="flex items-center gap-3 mb-2">
-           <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+           <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest">
               SYSTEM PREFERENCES
            </span>
         </div>

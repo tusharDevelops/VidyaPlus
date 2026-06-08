@@ -13,10 +13,8 @@ export default function RenderCartCourses() {
       {cart.map((course, indx) => (
         <div
           key={course._id}
-          className="group relative flex w-full flex-col lg:flex-row items-center justify-between gap-5 rounded-[3rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-xl p-8 px-10 shadow-2xl shadow-indigo-500/[0.03] hover:shadow-indigo-500/[0.08] transition-all duration-500 overflow-hidden"
+          className="group relative flex w-full flex-col lg:flex-row items-center justify-between gap-5 rounded-hero border border-hairline dark:border-slate-800 bg-canvas dark:bg-slate-900 p-8 px-10 shadow-sm transition-all duration-500 overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/[0.02] rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
-          
           <div className="flex flex-1 flex-col lg:flex-row items-center gap-8 relative z-10 w-full">
             <div className="relative shrink-0 overflow-hidden rounded-[2rem] border-4 border-white dark:border-slate-800 shadow-xl group-hover:scale-105 transition-transform duration-700">
               <img
@@ -29,14 +27,14 @@ export default function RenderCartCourses() {
 
             <div className="flex flex-col space-y-4 text-center lg:text-left flex-1">
               <div className="space-y-1">
-                 <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em]">Module Identification</p>
-                 <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                 <p className="text-[10px] font-black text-ink dark:text-white uppercase tracking-[0.3em]">Module Identification</p>
+                 <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-brand-coral transition-colors">
                     {course?.courseName}
                  </h3>
               </div>
               
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                 <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                 <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 border border-hairline dark:border-slate-700">
                     {course?.category?.name}
                  </span>
                  <div className="flex items-center gap-2 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
@@ -65,7 +63,7 @@ export default function RenderCartCourses() {
             
             <button
               onClick={() => dispatch(removeFromCart(course._id))}
-              className="group/btn flex items-center gap-x-3 rounded-2xl bg-red-500/[0.03] dark:bg-red-500/[0.02] border border-red-200/50 dark:border-red-900/30 py-3.5 px-8 text-red-600 dark:text-red-400 font-black uppercase text-[10px] tracking-widest hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all duration-500 shadow-sm"
+              className="group/btn flex items-center gap-x-3 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/30 py-3.5 px-8 text-red-600 dark:text-red-400 font-black uppercase text-[10px] tracking-widest hover:bg-red-600 hover:text-white transition-all duration-500 shadow-sm"
             >
               <RiDeleteBin6Line className="text-sm group-hover/btn:scale-125 transition-transform" />
               <span>Purge from Inventory</span>

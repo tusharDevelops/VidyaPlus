@@ -14,7 +14,7 @@ const TABS = { ALL: 'all', ENROLLED: 'enrolled' }
 function Avatar({ src, name }) {
   return src
     ? <img src={src} alt={name} className="w-11 h-11 rounded-2xl object-cover ring-4 ring-indigo-600/10 shadow-md flex-shrink-0" />
-    : <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-base flex-shrink-0 shadow-md">
+    : <div className="w-11 h-11 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-ink dark:text-white font-black text-base flex-shrink-0 border border-hairline">
         {name?.[0]?.toUpperCase() || '?'}
       </div>
 }
@@ -103,7 +103,7 @@ export default function InstructorStudents() {
       {/* ── Page Header ── */}
       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 border-b border-slate-200 dark:border-slate-800 pb-8">
         <div className="space-y-2">
-          <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest inline-block">
+          <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest inline-block">
             STUDENT MANAGEMENT
           </span>
           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter leading-none mt-1">
@@ -130,8 +130,7 @@ export default function InstructorStudents() {
             to="/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest
-              hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-600/25 transition-all duration-300 whitespace-nowrap"
+            className="btn-primary px-5 py-3 flex items-center gap-2 whitespace-nowrap"
           >
             <VscPersonAdd className="text-base" />
             Register New Student
@@ -370,17 +369,16 @@ export default function InstructorStudents() {
                               {/* Snapshot */}
                               <div className="space-y-3">
                                 <h4 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest">✨ Student Snapshot</h4>
-                                <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-600/20 relative overflow-hidden">
-                                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
-                                  <p className="text-[10px] font-black text-white/60 uppercase tracking-widest mb-1">STATUS</p>
+                                <div className="p-6 rounded-[2rem] bg-slate-50 dark:bg-slate-900 border border-hairline text-slate-900 dark:text-white shadow-sm relative overflow-hidden">
+                                  <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">STATUS</p>
                                   <p className="text-lg font-black">Active Learner</p>
-                                  <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+                                  <div className="mt-5 flex items-center justify-between border-t border-hairline pt-4">
                                     <div>
-                                      <p className="text-[8px] font-black text-white/50 uppercase tracking-widest">GENDER</p>
+                                      <p className="text-[8px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">GENDER</p>
                                       <p className="text-xs font-bold capitalize">{student.gender || 'Not specified'}</p>
                                     </div>
                                     <div className="text-right">
-                                      <p className="text-[8px] font-black text-white/50 uppercase tracking-widest">COURSES</p>
+                                      <p className="text-[8px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">COURSES</p>
                                       <p className="text-xs font-bold">{student.courses.length} enrolled</p>
                                     </div>
                                   </div>

@@ -156,29 +156,29 @@ export default function HomePage() {
                 step: '01', icon: <FaUserCheck className="text-3xl" />,
                 title: 'Enroll & Assess',
                 desc: 'Sign up and take a free diagnostic test. We pinpoint your strengths and build a personalised school study plan.',
-                from: 'from-blue-500', to: 'to-cyan-400', glow: 'shadow-blue-500/30',
+                bgClass: 'bg-brand-blue', glow: 'shadow-sm',
               },
               {
                 step: '02', icon: <FaVideo className="text-3xl" />,
                 title: 'Learn from Experts',
                 desc: 'Attend interactive live coaching sessions with top educators, participate in polls, and clarify concepts instantly.',
-                from: 'from-indigo-500', to: 'to-violet-500', glow: 'shadow-indigo-500/30',
+                bgClass: 'bg-brand-magenta', glow: 'shadow-sm',
               },
               {
                 step: '03', icon: <FaChartLine className="text-3xl" />,
                 title: 'Practice & Track',
                 desc: 'Attempt chapter-wise tests, full board mock exams, and track your progress with analytics.',
-                from: 'from-orange-500', to: 'to-amber-400', glow: 'shadow-orange-500/30',
+                bgClass: 'bg-brand-coral', glow: 'shadow-sm',
               },
               {
                 step: '04', icon: <FaMedal className="text-3xl" />,
                 title: 'Achieve & Certify',
                 desc: 'Crack board exams, earn your excellence certificate, and launch into a bright future.',
-                from: 'from-green-500', to: 'to-emerald-400', glow: 'shadow-green-500/30',
+                bgClass: 'bg-brand-emerald', glow: 'shadow-sm',
               }
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center text-center relative z-10 group">
-                <div className={`w-28 h-28 rounded-full bg-gradient-to-br ${item.from} ${item.to} flex items-center justify-center text-white shadow-2xl ${item.glow} mb-6 relative transition-transform group-hover:-translate-y-2 duration-300`}>
+                <div className={`w-28 h-28 rounded-full ${item.bgClass} flex items-center justify-center text-white ${item.glow} mb-6 relative transition-transform group-hover:-translate-y-2 duration-300`}>
                   {item.icon}
                   <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-slate-900 text-white text-xs font-black border-2 border-slate-700 flex items-center justify-center shadow-lg">
                     {item.step}

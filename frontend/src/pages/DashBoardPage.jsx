@@ -17,7 +17,7 @@ export default function DashBoardPage() {
     }
     
     return(
-      <div className="relative flex min-h-[calc(100vh-7rem)] bg-white dark:bg-slate-950 transition-colors duration-500">
+      <div className="relative flex min-h-[calc(100vh-7rem)] bg-canvas dark:bg-slate-900 transition-colors duration-500">
         <SideBar />
         <div className="flex-1 h-[calc(100vh-7rem)] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800">
           <div className="mx-auto w-11/12 max-w-[1200px] py-14 px-4 lg:px-10">

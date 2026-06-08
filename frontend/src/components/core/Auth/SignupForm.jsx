@@ -224,7 +224,7 @@ function SignupForm() {
 
         <button
           type="submit"
-          className="yellowButton w-full mt-6"
+          className="btn-primary w-full mt-6"
         >
           Create Account
         </button>

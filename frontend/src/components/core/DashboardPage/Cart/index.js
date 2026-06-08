@@ -21,7 +21,7 @@ export default function Cart() {
     <div className="space-y-12 animate-in fade-in duration-700">
       <header className="border-b border-slate-200 dark:border-slate-800 pb-6">
         <div className="flex items-center gap-3 mb-2">
-           <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+           <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest">
               CHECKOUT
            </span>
         </div>
@@ -39,10 +39,9 @@ export default function Cart() {
           <RenderTotalAmount />
         </div>
       ) : (
-        <div className="mt-12 flex flex-col items-center justify-center p-12 text-center rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800 bg-white/5 dark:bg-slate-900/20 backdrop-blur-sm group hover:border-indigo-600/20 transition-all duration-500">
+        <div className="mt-12 flex flex-col items-center justify-center p-12 text-center rounded-hero border border-hairline dark:border-slate-800 bg-canvas dark:bg-slate-900 group hover:border-ink/20 dark:hover:border-white/20 transition-all duration-500">
            <div className="relative mb-8">
-              <div className="absolute inset-0 bg-indigo-600/20 rounded-full blur-2xl group-hover:bg-indigo-600/30 transition-colors duration-500"></div>
-              <div className="relative w-16 h-16 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800 text-3xl group-hover:scale-110 transition-transform duration-500 shadow-xl">
+              <div className="relative w-16 h-16 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-3xl group-hover:scale-110 transition-transform duration-500 shadow-sm">
                 🛒
               </div>
            </div>
@@ -50,7 +49,7 @@ export default function Cart() {
            <p className="text-base font-bold text-slate-500 dark:text-slate-400 max-w-sm mx-auto">Looks like you haven't added any courses to your cart yet. Discover premium courses to start learning today.</p>
            <button 
              onClick={() => navigate("/catalog")}
-             className="mt-8 px-8 py-3.5 rounded-xl bg-indigo-600 text-white text-sm font-black uppercase tracking-widest shadow-lg shadow-indigo-600/20 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
+             className="btn-primary mt-8 px-8 py-3.5"
            >
              Explore Full Catalog
            </button>

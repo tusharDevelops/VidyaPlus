@@ -80,7 +80,7 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className="yellowButton w-full mt-4"
+        className="btn-primary w-full mt-4"
       >
         Sign In
       </button>

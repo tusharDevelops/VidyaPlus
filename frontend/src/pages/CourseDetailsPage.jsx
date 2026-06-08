@@ -161,9 +161,6 @@ const CourseDetails = () => {
   return (
 <>
     <div className='relative w-full bg-slate-900 overflow-hidden'>
-        {/* Animated Background Orbs */}
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }}></div>
         
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative z-10">
@@ -179,7 +176,7 @@ const CourseDetails = () => {
                 </div>
                 
                 <div className="flex flex-col justify-center gap-6 text-slate-100 lg:pr-[380px] xl:pr-0">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-indigo-400 mb-2">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-brand-coral mb-2">
                     <span>Course</span>
                     <span className="text-slate-600">/</span>
                     <span className="text-slate-400">{courseData?.data?.courseDetails?.category?.name}</span>
@@ -189,14 +186,14 @@ const CourseDetails = () => {
                     {courseName}
                   </h1>
                   
-                  <p className="text-lg text-slate-400 font-medium max-w-[700px] leading-relaxed border-l-4 border-indigo-600 pl-6">
+                  <p className="text-lg text-slate-400 font-medium max-w-[700px] leading-relaxed border-l-4 border-white pl-6">
                     {courseDescription}
                   </p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 pt-2">
                     {tags?.map((item, i) => (
-                      <span key={i} className="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-[10px] font-black uppercase tracking-widest border border-slate-700 hover:text-indigo-400 transition-colors">
+                      <span key={i} className="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-[10px] font-black uppercase tracking-widest border border-slate-700 hover:text-brand-coral transition-colors">
                         #{item}
                       </span>
                     ))}
@@ -204,7 +201,7 @@ const CourseDetails = () => {
                   
                   <div className="flex flex-wrap items-center gap-y-4 gap-x-6 pt-2">
                     <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-2xl border border-slate-700/50 backdrop-blur-md">
-                      <span className="text-indigo-400 font-black text-lg">{avgReviewCount}</span>
+                      <span className="text-brand-coral font-black text-lg">{avgReviewCount}</span>
                       <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
                     </div>
                     <div className="flex items-center gap-6 text-sm font-bold text-slate-400">
@@ -216,7 +213,7 @@ const CourseDetails = () => {
 
                   <div className="flex flex-wrap items-center gap-8 pt-4">
                     <div className="flex items-center gap-3">
-                       <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-sm font-black border-2 border-white/20">
+                       <div className="w-10 h-10 rounded-full bg-brand-coral flex items-center justify-center text-sm font-black border-2 border-white/20">
                           {instructor?.firstName?.[0]}
                        </div>
                        <div>
@@ -227,11 +224,11 @@ const CourseDetails = () => {
                     
                     <div className="flex gap-8 border-l border-slate-800 pl-8">
                        <div className="flex items-center gap-3 text-sm font-bold text-slate-400">
-                          <BiInfoCircle className="text-indigo-400 text-xl" />
+                          <BiInfoCircle className="text-brand-coral text-xl" />
                           <span>{formatDate(createdAt)}</span>
                        </div>
                        <div className="flex items-center gap-3 text-sm font-bold text-slate-400">
-                          <HiOutlineGlobeAlt className="text-indigo-400 text-xl" />
+                          <HiOutlineGlobeAlt className="text-brand-coral text-xl" />
                           <span>English</span>
                        </div>
                     </div>
@@ -250,10 +247,10 @@ const CourseDetails = () => {
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button className="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-95" onClick={handleBuyCourse}>
+                    <button className="btn-primary w-full" onClick={handleBuyCourse}>
                       Enroll Now
                     </button>
-                    <button className="px-8 py-4 rounded-2xl bg-slate-800 text-white font-black hover:bg-slate-700 transition-all border border-slate-700 active:scale-95">
+                    <button className="btn-secondary w-full">
                       Add to Cart
                     </button>
                   </div>
@@ -270,7 +267,7 @@ const CourseDetails = () => {
                   </div>
                   <button 
                     onClick={handleBuyCourse}
-                    className="px-6 py-3 rounded-xl bg-indigo-600 text-white text-sm font-black shadow-lg shadow-indigo-600/20 active:scale-95 transition-transform"
+                    className="btn-primary px-6 py-3"
                   >
                     Enroll Now
                   </button>
@@ -294,9 +291,9 @@ const CourseDetails = () => {
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
           <div className="mb-20 p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
+            <div className="absolute top-0 right-0 w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
             <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-8 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white text-sm">💡</span>
+              <span className="w-8 h-8 rounded-lg bg-brand-coral flex items-center justify-center text-white text-sm">💡</span>
               What you'll learn
             </h2>
             <div className="prose prose-slate dark:prose-invert max-w-none prose-p:font-medium prose-li:font-bold">
@@ -304,7 +301,7 @@ const CourseDetails = () => {
                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 list-none pl-0">
                     {benefits.map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className="mt-1.5 w-4 h-4 rounded-full bg-indigo-600/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                        <div className="mt-1.5 w-4 h-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-ink dark:text-white">
                           <BsFillCaretRightFill className="text-[10px]" />
                         </div>
                         <span className="text-slate-600 dark:text-slate-400">{item.replace(/^-\s*/, '').replace(/^\d+\.\s*/, '')}</span>
@@ -324,7 +321,7 @@ const CourseDetails = () => {
                <ul className="space-y-4 list-none pl-0">
                   {instructions.map((item, i) => (
                       <li key={i} className="flex items-start gap-4">
-                         <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-2.5"></span>
+                         <span className="w-1.5 h-1.5 rounded-full bg-ink dark:bg-white mt-2.5"></span>
                          <span className="text-slate-600 dark:text-slate-400 font-medium">{item}</span>
                       </li>
                   ))}
@@ -342,11 +339,11 @@ const CourseDetails = () => {
                 </div>
                 <div className="flex items-center gap-6 text-sm font-black text-slate-400">
                   <span className="flex items-center gap-2">
-                    <span className="text-indigo-600 dark:text-indigo-400">{courseContent.length}</span> Sections
+                    <span className="text-ink dark:text-white">{courseContent.length}</span> Sections
                   </span>
                   <span className="w-1 h-1 rounded-full bg-slate-300"></span>
                   <span className="flex items-center gap-2">
-                    <span className="text-indigo-600 dark:text-indigo-400">{totalNoOfLectures}</span> Lectures
+                    <span className="text-ink dark:text-white">{totalNoOfLectures}</span> Lectures
                   </span>
                   <span className="w-1 h-1 rounded-full bg-slate-300"></span>
                   <span className="text-slate-900 dark:text-white">{courseData.data?.totalDuration}</span>
@@ -355,7 +352,7 @@ const CourseDetails = () => {
               
               <div className="flex justify-end">
                   <button
-                    className="text-xs font-black text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-8 transition-all uppercase tracking-widest"
+                    className="text-xs font-black text-slate-500 hover:text-ink dark:text-slate-400 dark:hover:text-white transition-colors uppercase tracking-widest"
                     onClick={() => setIsActive([])}
                   >
                     COLLAPSE ALL SECTIONS
@@ -377,10 +374,10 @@ const CourseDetails = () => {
 
             {/* Author Details */}
             <div className="mt-24 mb-12 p-10 rounded-[2.5rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800">
-              <p className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.3em] mb-8">Meet your Instructor</p>
+              <p className="text-xs font-black text-ink dark:text-white uppercase tracking-[0.3em] mb-8">Meet your Instructor</p>
               <div className="flex items-center gap-8 mb-8">
                 <div className="relative group">
-                   <div className="absolute inset-0 bg-indigo-600 rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                   <div className="absolute inset-0 bg-slate-100 dark:bg-slate-800 rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
                    <img
                     src={
                       instructor.image

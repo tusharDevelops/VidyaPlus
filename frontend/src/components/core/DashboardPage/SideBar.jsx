@@ -32,7 +32,7 @@ export default function SideBar() {
       <div className='flex flex-col gap-y-2'>
         {
           sidebarLinks.map((link) => {
-            if(link.type && user?.accountType !== link.type) return null;
+            if(link.type && link.type?.toLowerCase() !== user?.accountType?.toLowerCase()) return null;
             return (<SideBarLinks key={link.id} link={link} iconName={link.icon} onNavClick={onNav} />)
           })
         }

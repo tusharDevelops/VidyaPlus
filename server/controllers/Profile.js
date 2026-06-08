@@ -338,3 +338,69 @@ exports.getInstructorStudents = async (req, res) => {
     })
   }
 }
+
+// Get ALL students on the platform, with enrollment info for this instructor's courses
+exports.getAllStudents = async (req, res) => {
+  try {
+    const instructorId = req.user.id
+
+    // 1. Get instructor's courses and the IDs of students enrolled
+    const instructorCourses = await Course.find({ instructor: instructorId })
+      .select("_id courseName studentsEnrolled")
+
+    // Build a map: studentId -> list of instructor courses they are enrolled in
+    const enrolledInInstructorCourses = new Map()
+    instructorCourses.forEach((course) => {
+      course.studentsEnrolled.forEach((studentId) => {
+        const key = studentId.toString()
+        if (!enrolledInInstructorCourses.has(key)) {
+          enrolledInInstructorCourses.set(key, [])
+        }
+        enrolledInInstructorCourses.get(key).push({
+          _id: course._id,
+          courseName: course.courseName,
+        })
+      })
+    })
+
+    // 2. Fetch ALL students on the platform
+    const allStudents = await User.find({ accountType: "Student" })
+      .select("firstName lastName email image courses createdAt")
+      .populate({
+        path: "additionalDetails",
+        select: "contactNumber gender dateOfBirth about"
+      })
+      .sort({ createdAt: -1 })
+
+    // 3. Shape the response with enrollment info
+    const result = allStudents.map((student) => ({
+      _id: student._id,
+      firstName: student.firstName,
+      lastName: student.lastName,
+      email: student.email,
+      image: student.image,
+      contactNumber: student.additionalDetails?.contactNumber || null,
+      gender: student.additionalDetails?.gender || null,
+      dateOfBirth: student.additionalDetails?.dateOfBirth || null,
+      about: student.additionalDetails?.about || null,
+      totalCoursesOnPlatform: student.courses?.length || 0,
+      joinedAt: student.createdAt,
+      // Courses enrolled in THIS instructor's offerings
+      enrolledInMyCourses: enrolledInInstructorCourses.get(student._id.toString()) || [],
+      isEnrolledWithMe: enrolledInInstructorCourses.has(student._id.toString()),
+    }))
+
+    return res.status(200).json({
+      success: true,
+      data: result,
+      total: result.length,
+    })
+  } catch (error) {
+    console.error("GET_ALL_STUDENTS_ERROR:", error)
+    return res.status(500).json({
+      success: false,
+      message: "Could not fetch all students",
+      error: error.message,
+    })
+  }
+}

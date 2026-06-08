@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+}
 
 @layer components {
   /* Smooth scrolling behavior */
@@ -203,13 +209,33 @@
     @apply text-sm font-bold text-slate-900 dark:text-white;
   }
 
-  /* Button styles */
-  .yellowButton {
-    @apply rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 py-3 px-5 text-center font-bold text-white shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all duration-300 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  /* MiniMax Editorial Button styles */
+  .btn-primary, .yellowButton {
+    @apply rounded-full bg-ink py-[11px] px-6 text-center font-bold text-white hover:bg-charcoal transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
-  .blackButton {
-    @apply rounded-xl border-2 border-indigo-600 bg-transparent py-3 px-5 text-center font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600/10 hover:-translate-y-0.5 transition-all duration-300 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  .btn-secondary, .blackButton {
+    @apply rounded-full border border-ink bg-transparent py-[11px] px-6 text-center font-bold text-ink hover:bg-surface-soft transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-tertiary {
+    @apply rounded-full border border-hairline bg-canvas py-[11px] px-6 text-center font-bold text-ink hover:bg-surface transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .product-card-coral {
+    @apply bg-gradient-to-br from-[#FF4C29] to-[#FF6B35] text-white rounded-hero;
+  }
+  
+  .product-card-blue {
+    @apply bg-gradient-to-br from-[#2563EB] to-[#3B82F6] text-white rounded-hero;
+  }
+  
+  .product-card-magenta {
+    @apply bg-gradient-to-br from-[#D946EF] to-[#A855F7] text-white rounded-hero;
+  }
+  
+  .product-card-emerald {
+    @apply bg-gradient-to-br from-[#10B981] to-[#34D399] text-white rounded-hero;
   }
 
   /* Gradient custom */

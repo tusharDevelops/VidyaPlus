@@ -63,29 +63,18 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-          ${scrolled || !isHome
-            ? 'bg-white/98 dark:bg-slate-900/98 backdrop-blur-xl shadow-sm border-b border-slate-200 dark:border-slate-800'
-            : 'bg-transparent border-b border-transparent'
-          }
-        `}
-      >
-        <div className='max-w-7xl mx-auto px-4 md:px-8 flex h-16 md:h-20 items-center justify-between gap-6'>
+      <div className="fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300 bg-canvas dark:bg-slate-900 border-b border-hairline dark:border-slate-800 shadow-sm">
+        {/* Promo Banner */}
+        <div className="w-full bg-ink text-white py-2 text-center text-sm font-medium">
+          🎉 Now Admitting 2026–27 — <Link to="/signup" className="underline hover:text-brand-coral transition-colors">Apply Free →</Link>
+        </div>
+        <div className='max-w-7xl mx-auto w-full px-4 md:px-8 flex h-16 md:h-20 items-center justify-between gap-6'>
 
-          {/* Logo (Composite Text + Feather layered) */}
+          {/* Logo */}
           <Link to="/" className="relative flex items-center justify-center flex-shrink-0 group px-2 py-1">
-            {/* The Text */}
-            <span className="text-2xl md:text-3xl font-black tracking-tighter text-slate-900 dark:text-white transition-colors duration-300 relative z-10 leading-none">
-              Vidya+
+            <span className="text-2xl md:text-3xl font-black tracking-tighter text-ink dark:text-white transition-colors duration-300">
+              Vidya<span className="text-brand-coral">+</span>
             </span>
-            {/* The Feather overlapping exactly like the reference image */}
-            <img
-              src={logo}
-              alt="Feather Logo"
-              loading="lazy"
-              className="absolute left-[2px] top-[10px] md:top-[12px] w-full h-auto object-contain z-20 opacity-95 group-hover:opacity-100 group-hover:scale-105 drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] dark:drop-shadow-none transition-all duration-300 pointer-events-none"
-            />
           </Link>
 
           {/* Desktop Nav */}
@@ -121,8 +110,8 @@ const Navbar = () => {
                     to={link?.path}
                     className={`px-3 py-1.5 rounded-md text-sm font-semibold transition-colors
                       ${matchRoute(link?.path)
-                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20'
-                        : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                        ? 'text-ink dark:text-white border-b-2 border-ink dark:border-white'
+                        : 'text-charcoal dark:text-slate-200 hover:text-ink dark:hover:text-white'
                       }`}
                   >
                     {link.title}
@@ -161,13 +150,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="px-4 py-1.5 rounded-lg text-sm font-bold text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all"
+                  className="btn-secondary text-sm px-4 py-2"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-4 py-1.5 rounded-lg text-sm font-bold bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-sm shadow-indigo-500/20 hover:-translate-y-0.5 hover:shadow-indigo-500/40 transition-all"
+                  className="btn-primary text-sm px-4 py-2"
                 >
                   Sign Up Free
                 </Link>
@@ -196,8 +185,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Spacer so content doesn't hide under fixed navbar */}
-      <div className="h-16 md:h-20" />
+      {/* Spacer so content doesn't hide under fixed navbar (navbar + promo banner height) */}
+      <div className="h-[104px] md:h-[116px]" />
 
       <HamburgerDrawer isOpen={hamburgerOpen} setIsOpen={setHamBurgerOpen} />
     </>

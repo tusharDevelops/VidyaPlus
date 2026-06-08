@@ -9,7 +9,43 @@ module.exports = {
       mono: ["Roboto Mono", "monospace"],
     },
     extend: {
+      fontFamily: {
+        sans: ["DM Sans", "sans-serif"],
+      },
+      borderRadius: {
+        hero: "32px",
+        full: "9999px",
+      },
       colors: {
+        brand: {
+          coral: "#FF4C29",
+          blue: "#2563EB",
+          magenta: "#D946EF",
+          emerald: "#10B981",
+        },
+        ink: {
+          DEFAULT: "#111111",
+          strong: "#000000",
+        },
+        charcoal: "#333333",
+        slate: {
+          text: "#6B7280",
+        },
+        steel: "#9CA3AF",
+        muted: "#6B7280",
+        canvas: "#FFFFFF",
+        surface: {
+          DEFAULT: "#F9FAFB",
+          soft: "#F3F4F6",
+        },
+        hairline: {
+          DEFAULT: "#E5E7EB",
+          soft: "#F3F4F6",
+        },
+        success: {
+          bg: "#DCFCE7",
+          text: "#166534",
+        },
         white: "#fff",
         black: "#000",
         transparent: "#ffffff00",

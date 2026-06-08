@@ -38,7 +38,7 @@ export default function CoursesTable({ courses, setCourses }) {
 
   return (
     <>
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md overflow-hidden shadow-xl shadow-indigo-500/5 dark:shadow-none">
+      <div className="rounded-[2rem] border border-hairline dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md overflow-hidden shadow-sm">
         <Table className="w-full">
           <Thead>
             <Tr className="flex gap-x-10 border-b border-slate-100 dark:border-slate-800 px-6 py-4 bg-slate-50/50 dark:bg-slate-900/40">
@@ -70,20 +70,20 @@ export default function CoursesTable({ courses, setCourses }) {
               courses?.map((course) => (
                 <Tr
                   key={course._id}
-                  className="flex gap-x-10 border-b border-slate-50 dark:border-slate-800/30 px-6 py-6 last:border-0 hover:bg-indigo-600/[0.02] dark:hover:bg-indigo-400/[0.02] transition-colors group relative"
+                  className="flex gap-x-10 border-b border-hairline dark:border-slate-800/30 px-6 py-6 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group relative"
                 >
                   <Td className="flex flex-1 gap-x-6">
-                    <div className="relative h-[100px] w-[180px] flex-shrink-0 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm group-hover:shadow-indigo-500/10 transition-all duration-500">
+                    <div className="relative h-[100px] w-[180px] flex-shrink-0 overflow-hidden rounded-2xl border border-hairline dark:border-slate-800 shadow-sm transition-all duration-500">
                       <img
                         src={course?.thumbnail}
                         alt={course?.courseName}
                         className="h-full w-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                       />
-                      <div className="absolute inset-0 bg-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </div>
                     <div className="flex flex-col justify-center gap-2">
                       <div>
-                        <h3 className="text-xl font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors tracking-tight leading-tight">
+                        <h3 className="text-xl font-black text-slate-900 dark:text-white group-hover:text-brand-coral transition-colors tracking-tight leading-tight">
                           {course.courseName}
                         </h3>
                         <p className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400 line-clamp-2 max-w-md">
@@ -101,9 +101,9 @@ export default function CoursesTable({ courses, setCourses }) {
                             <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">DRAFT</span>
                           </div>
                         ) : (
-                          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20">
-                            <div className="w-1.5 h-1.5 rounded-full bg-indigo-600"></div>
-                            <span className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">LIVE</span>
+                          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-brand-emerald/10 border border-brand-emerald/20">
+                            <div className="w-1.5 h-1.5 rounded-full bg-brand-emerald"></div>
+                            <span className="text-[10px] font-black text-brand-emerald uppercase tracking-widest">LIVE</span>
                           </div>
                         )}
                       </div>
@@ -122,7 +122,7 @@ export default function CoursesTable({ courses, setCourses }) {
                         navigate(`/dashboard/edit-course/${course._id}`)
                       }}
                       title="Refine Curriculum"
-                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-brand-coral hover:text-white dark:hover:bg-brand-coral dark:hover:text-white transition-all duration-300 shadow-sm border border-hairline dark:border-slate-700/50"
                     >
                       <FiEdit2 size={14} />
                     </button>
@@ -144,7 +144,7 @@ export default function CoursesTable({ courses, setCourses }) {
                         })
                       }}
                       title="Archive Course"
-                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-slate-200/50 dark:border-slate-700/50"
+                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-red-600 hover:text-white dark:hover:bg-red-600 dark:hover:text-white transition-all duration-300 shadow-sm border border-hairline dark:border-slate-700/50"
                     >
                       <RiDeleteBin6Line size={14} />
                     </button>

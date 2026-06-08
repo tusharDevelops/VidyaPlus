@@ -33,7 +33,7 @@ export default function ManageCategories() {
 
   return (
     <div className="space-y-10 animate-in fade-in duration-700">
-      <header className="mb-10 space-y-3 pb-8 border-b border-slate-200 dark:border-slate-800">
+      <header className="mb-10 space-y-3 pb-8 border-b border-hairline dark:border-slate-800">
         <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           Manage Categories
         </h1>
@@ -47,16 +47,16 @@ export default function ManageCategories() {
           <div className="spinner"></div>
         </div>
       ) : categories?.length === 0 ? (
-        <div className="flex flex-col items-center justify-center min-h-[40vh] bg-slate-50 dark:bg-slate-900/40 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <div className="flex flex-col items-center justify-center min-h-[40vh] bg-slate-50 dark:bg-slate-900/40 rounded-hero border border-hairline dark:border-slate-800">
            <p className="text-xl font-black text-slate-400">No categories found.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories?.map((category) => (
-            <div key={category._id} className="relative group overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md p-8 shadow-sm hover:shadow-2xl transition-all duration-500">
+            <div key={category._id} className="relative group overflow-hidden rounded-[2rem] border border-hairline dark:border-slate-800 bg-white dark:bg-slate-900/40 p-8 shadow-sm hover:shadow-lg transition-all duration-500">
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-600/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-ink dark:text-white group-hover:bg-brand-coral group-hover:text-white transition-all">
                     📁
                   </div>
                 </div>

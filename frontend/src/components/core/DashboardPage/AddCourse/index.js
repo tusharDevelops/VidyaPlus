@@ -9,7 +9,7 @@ export default function AddCourse() {
         <div className="flex flex-1 flex-col">
           <header className="mb-8 sm:mb-16 space-y-3 pb-6 sm:pb-10 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-3 mb-2">
-               <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+               <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest">
                  CURRICULUM BUILDER
                </span>
             </div>
@@ -27,12 +27,10 @@ export default function AddCourse() {
         </div>
         
         {/* Course Upload Tips */}
-        <aside className="sticky top-10 hidden max-w-[420px] flex-1 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 backdrop-blur-md p-6 sm:p-10 shadow-2xl shadow-indigo-500/5 dark:shadow-none xl:block group">
-           <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-600/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
-           
+        <aside className="sticky top-10 hidden max-w-[420px] flex-1 rounded-hero border border-hairline dark:border-slate-800 bg-white dark:bg-slate-900/40 p-6 sm:p-10 shadow-sm xl:block group">
            <div className="relative z-10">
               <div className="flex items-center gap-4 mb-10">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white text-2xl shadow-lg shadow-indigo-600/20">⚡</div>
+                <div className="w-12 h-12 rounded-2xl bg-brand-coral flex items-center justify-center text-white text-2xl shadow-sm">⚡</div>
                 <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Best Practices</p>
               </div>
               
@@ -46,7 +44,7 @@ export default function AddCourse() {
                   { label: "Supplementary Material", text: "Upload PDF notes and resources to provide a 360-degree learning experience." }
                 ].map((tip, i) => (
                   <li key={i} className="flex gap-4 group/item">
-                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-600 flex-shrink-0 group-hover/item:scale-150 transition-transform"></div>
+                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral flex-shrink-0 group-hover/item:scale-150 transition-transform"></div>
                     <div className="space-y-1">
                        <p className="text-sm font-black text-slate-900 dark:text-slate-100 tracking-tight">{tip.label}</p>
                        <p className="text-xs font-bold text-slate-500 dark:text-slate-400 leading-relaxed uppercase tracking-wider">{tip.text}</p>
@@ -55,8 +53,8 @@ export default function AddCourse() {
                 ))}
               </ul>
 
-              <div className="mt-12 p-6 rounded-3xl bg-indigo-600/5 border border-indigo-600/10">
-                 <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest text-center">
+              <div className="mt-12 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-hairline">
+                 <p className="text-[10px] font-black text-ink dark:text-white uppercase tracking-widest text-center">
                    Pro Tip: Engagement increases by 40% with high-quality audio sections.
                  </p>
               </div>

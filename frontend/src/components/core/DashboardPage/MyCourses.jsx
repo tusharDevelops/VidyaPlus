@@ -28,7 +28,7 @@ export default function MyCourses() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b border-slate-200 dark:border-slate-800 pb-10">
         <div className="space-y-2">
            <div className="flex items-center gap-3 mb-1">
-             <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+             <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest">
                 CONTENT MANAGER
              </span>
            </div>
@@ -38,7 +38,7 @@ export default function MyCourses() {
         <IconBtn
           text="Initialize New Curriculum"
           onclick={() => navigate("/dashboard/add-course")}
-          customClasses="w-full sm:w-auto px-8 py-4 rounded-[1.25rem] shadow-2xl shadow-indigo-600/20 text-xs font-black uppercase tracking-widest"
+          customClasses="btn-primary w-full sm:w-auto px-8 py-4 text-xs flex items-center justify-center gap-2"
         >
           <VscAdd size={20} />
         </IconBtn>

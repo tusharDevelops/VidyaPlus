@@ -73,7 +73,7 @@ export default function InstructorCertificates() {
       <header className="space-y-3 pb-8 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className='space-y-1'>
            <div className="flex items-center gap-2 mb-1">
-             <span className="px-2 py-0.5 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[9px] font-black uppercase tracking-widest">
+             <span className="px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[9px] font-black uppercase tracking-widest">
                REGISTRY MANAGEMENT
              </span>
            </div>
@@ -82,13 +82,13 @@ export default function InstructorCertificates() {
         </div>
         
         <div className="relative group">
-          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-ink dark:group-focus-within:text-white transition-colors" />
           <input 
             type="text" 
             placeholder="Search by student, ID, or course..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-11 pr-6 py-3 rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 focus:ring-4 focus:ring-indigo-600/5 transition-all text-sm font-bold w-full md:w-[320px]"
+            className="pl-11 pr-6 py-3 rounded-2xl bg-white dark:bg-slate-900/50 border border-hairline dark:border-slate-800 focus:ring-4 focus:ring-slate-900/5 transition-all text-sm font-bold w-full md:w-[320px]"
           />
         </div>
       </header>
@@ -98,13 +98,13 @@ export default function InstructorCertificates() {
           <div className="spinner"></div>
         </div>
       ) : filteredCerts.length === 0 ? (
-        <div className="flex flex-col items-center justify-center min-h-[40vh] bg-slate-50/50 dark:bg-slate-900/20 rounded-[2.5rem] border border-dashed border-slate-200 dark:border-slate-800 p-12 text-center">
+        <div className="flex flex-col items-center justify-center min-h-[40vh] bg-slate-50/50 dark:bg-slate-900/20 rounded-hero border border-dashed border-hairline dark:border-slate-800 p-12 text-center">
            <div className='w-16 h-16 rounded-3xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-3xl mb-4'>📜</div>
            <p className="text-xl font-black text-slate-900 dark:text-white mb-2">Registry is Empty</p>
            <p className="text-sm font-bold text-slate-500 dark:text-slate-400 max-w-sm">No certificates have been issued yet. They will appear here automatically when students complete your courses.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 backdrop-blur-xl shadow-2xl shadow-indigo-500/5">
+        <div className="overflow-x-auto rounded-[2rem] border border-hairline dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 shadow-sm">
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
               <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
@@ -132,9 +132,9 @@ export default function InstructorCertificates() {
                        <p className="text-sm font-bold text-slate-700 dark:text-slate-200 leading-tight">{c.courseId?.courseName}</p>
                        <p className='text-[10px] font-bold uppercase tracking-[0.12em]'>
                          {c.approved ? (
-                            <span className="text-indigo-500 dark:text-indigo-400">Verified Mastery</span>
+                            <span className="text-brand-emerald">Verified Mastery</span>
                          ) : (
-                            <span className="text-amber-500 dark:text-amber-400">Pending Approval</span>
+                            <span className="text-brand-coral">Pending Approval</span>
                          )}
                        </p>
                     </div>

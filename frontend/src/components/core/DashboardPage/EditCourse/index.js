@@ -32,7 +32,7 @@ export default function EditCourse() {
   if (loading) {
     return (
       <div className="flex h-[calc(100vh-10rem)] items-center justify-center">
-        <div className="w-12 h-12 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-slate-200 dark:border-slate-800 border-t-ink dark:border-t-white rounded-full animate-spin"></div>
       </div>
     )
   }
@@ -41,7 +41,7 @@ export default function EditCourse() {
     <div className="space-y-12 animate-in fade-in duration-700">
       <header className="border-b border-slate-200 dark:border-slate-800 pb-10">
         <div className="flex items-center gap-3 mb-2">
-           <span className="px-3 py-1 rounded-full bg-indigo-600/10 border border-indigo-600/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-widest">
+           <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-hairline text-ink dark:text-white text-[10px] font-black uppercase tracking-widest">
               CURRICULUM REFINEMENT
            </span>
         </div>
@@ -55,10 +55,9 @@ export default function EditCourse() {
         {course ? (
           <RenderSteps />
         ) : (
-          <div className="mt-20 flex flex-col items-center justify-center p-12 text-center rounded-[4rem] border-2 border-dashed border-slate-200 dark:border-slate-800 bg-white/5 dark:bg-slate-900/20 backdrop-blur-sm group">
+          <div className="mt-20 flex flex-col items-center justify-center p-12 text-center rounded-hero border-2 border-dashed border-hairline bg-white dark:bg-slate-900/40 shadow-sm group">
              <div className="relative mb-12">
-                <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl"></div>
-                <div className="relative w-20 h-20 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 text-2xl shadow-2xl">
+                <div className="relative w-20 h-20 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-2xl shadow-sm">
                   🔍
                 </div>
              </div>

@@ -36,7 +36,7 @@ export default function Certificates() {
 
       <div className="mt-8 grid grid-cols-1 gap-6">
         {certs.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/20 p-12 text-center">
+          <div className="rounded-hero border border-dashed border-hairline bg-slate-50/50 dark:bg-slate-800/20 p-12 text-center">
             <div className="text-2xl mb-4">📜</div>
             <p className="text-xl font-bold text-slate-600 dark:text-slate-400">No certificates earned yet.</p>
             <p className="text-sm text-slate-400 mt-2">Complete your courses to unlock your professional certifications!</p>
@@ -45,14 +45,14 @@ export default function Certificates() {
           certs.map((c) => (
             <div
               key={c._id}
-              className="flex flex-col md:flex-row items-center justify-between gap-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-800/40 backdrop-blur-md p-8 shadow-sm hover:shadow-indigo-500/10 transition-all duration-300 group"
+              className="flex flex-col md:flex-row items-center justify-between gap-6 rounded-hero border border-hairline bg-white/50 dark:bg-slate-800/40 p-8 shadow-sm hover:shadow-lg transition-all duration-300 group"
             >
               <div className="flex items-center gap-6">
-                 <div className="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center border border-indigo-200 dark:border-indigo-800">
+                 <div className="w-12 h-12 rounded-2xl bg-brand-coral flex items-center justify-center shadow-sm">
                     <span className="text-2xl">🎓</span>
                  </div>
                  <div className="space-y-1">
-                   <p className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                   <p className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-coral transition-colors">
                      {c?.completionSnapshot?.courseName}
                    </p>
                    <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export default function Certificates() {
                        Issued: {c?.issuedAt ? new Date(c.issuedAt).toLocaleDateString() : "-"}
                      </span>
                      <span className="h-1 w-1 rounded-full bg-slate-400"></span>
-                     <span className="text-xs font-bold text-indigo-500 dark:text-indigo-400">
+                     <span className="text-xs font-bold text-brand-coral">
                         #{c.certificateNumber}
                      </span>
                    </div>
@@ -70,13 +70,13 @@ export default function Certificates() {
               <div className="flex gap-3 w-full md:w-auto">
                 <Link
                   to={`/certificate/${c.certificateNumber}`}
-                  className="flex-1 md:flex-none text-center px-6 py-2 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20"
+                  className="flex-1 md:flex-none text-center px-6 py-2 btn-primary"
                 >
                   View
                 </Link>
                 <Link
                   to={`/verify-certificate`}
-                  className="flex-1 md:flex-none text-center px-6 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-200 dark:hover:bg-slate-600 transition-all"
+                  className="flex-1 md:flex-none text-center px-6 py-2 btn-secondary"
                 >
                   Verify
                 </Link>

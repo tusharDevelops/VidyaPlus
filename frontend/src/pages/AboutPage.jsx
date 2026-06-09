@@ -1,5 +1,11 @@
 import React from 'react';
 import Footer from '../components/common/Footer';
+import AboutImg1 from '../assets/Images/indian_students_library_1780996275100.png';
+import AboutImg2 from '../assets/Images/indian_teacher_explaining_1780996288539.png';
+import AboutImg3 from '../assets/Images/indian_school_building_1780996311223.png';
+import TeacherImg1 from '../assets/Images/indian_teacher_portrait_1_1780996324609.png';
+import TeacherImg2 from '../assets/Images/indian_teacher_portrait_2_1780996337249.png';
+import TeacherImg3 from '../assets/Images/indian_teacher_portrait_3_1780996350467.png';
 
 export default function AboutPage() {
   return (
@@ -20,9 +26,9 @@ export default function AboutPage() {
         {/* Image Grid / Story Banner */}
         <section className="px-4 md:px-16 mx-auto w-full max-w-screen-2xl pb-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" alt="Students studying" className="w-full h-80 object-cover rounded-[32px] bg-surface" />
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="Teacher explaining" className="w-full h-80 object-cover rounded-[32px] bg-surface md:-translate-y-8" />
-            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070&auto=format&fit=crop" alt="Library" className="w-full h-80 object-cover rounded-[32px] bg-surface" />
+            <img src={AboutImg1} alt="Indian Students studying" className="w-full h-80 object-cover rounded-[32px] bg-surface" />
+            <img src={AboutImg2} alt="Indian Teacher explaining" className="w-full h-80 object-cover rounded-[32px] bg-surface md:-translate-y-8" />
+            <img src={AboutImg3} alt="Indian School building" className="w-full h-80 object-cover rounded-[32px] bg-surface" />
           </div>
         </section>
 
@@ -81,21 +87,21 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Teacher 1 */}
             <div className="bg-canvas border border-hairline p-8 rounded-[32px]">
-              <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop" alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
+              <img src={TeacherImg1} alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
               <h4 className="text-[24px] font-bold mb-2">Rahul Sharma</h4>
               <p className="text-[14px] text-brand-blue font-semibold uppercase tracking-wider mb-4">Mathematics Expert</p>
               <p className="text-[16px] text-muted leading-relaxed">10+ years of experience teaching CBSE Class 10 &amp; 12. Known for making complex math problems easy to solve.</p>
             </div>
             {/* Teacher 2 */}
             <div className="bg-canvas border border-hairline p-8 rounded-[32px]">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
+              <img src={TeacherImg2} alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
               <h4 className="text-[24px] font-bold mb-2">Priya Patel</h4>
               <p className="text-[14px] text-brand-magenta font-semibold uppercase tracking-wider mb-4">Science Head</p>
               <p className="text-[16px] text-muted leading-relaxed">Ex-scientist turned educator. Specializes in Physics and Chemistry for Class 12 Boards and Olympiads.</p>
             </div>
             {/* Teacher 3 */}
             <div className="bg-canvas border border-hairline p-8 rounded-[32px]">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
+              <img src={TeacherImg3} alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
               <h4 className="text-[24px] font-bold mb-2">Ankit Verma</h4>
               <p className="text-[14px] text-brand-emerald font-semibold uppercase tracking-wider mb-4">English &amp; SST</p>
               <p className="text-[16px] text-muted leading-relaxed">Makes history and literature come alive. Focuses on writing skills necessary to secure 95+ in language exams.</p>

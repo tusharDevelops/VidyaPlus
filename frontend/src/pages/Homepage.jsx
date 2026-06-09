@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/common/Footer';
+import HeroImage from '../assets/Images/indian_classroom_hero_1780996210430.png';
 
 export default function HomePage() {
   return (
@@ -32,8 +33,8 @@ export default function HomePage() {
             <div className="flex-1 w-full aspect-square relative rounded-[32px] overflow-hidden bg-surface">
               <img 
                 className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700" 
-                alt="Students in classroom" 
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop" 
+                alt="Indian Students in classroom" 
+                src={HeroImage}
               />
             </div>
           </div>

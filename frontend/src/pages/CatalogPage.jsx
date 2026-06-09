@@ -1,148 +1,140 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { apiConnector } from '../services/apiConnector';
 import { categories } from '../services/apis';
 import { useParams } from "react-router-dom";
-import {getCatalogPageData} from '../services/operations/PageAndComponentData'
+import { getCatalogPageData } from '../services/operations/PageAndComponentData';
 import CourseSlider from "../components/core/Catalog/CourseSlider";
 import Footer from "../components/common/Footer";
 import CourseCard from "../components/core/Catalog/Course_Card";
 
-
 export default function CatalogPage() {
+  const { catalogName } = useParams();
+  const [active, setActive] = useState(1);
+  const [catalogPageData, setCatalogPageData] = useState(null);
+  const [categoryId, setCategoryId] = useState("");
 
-  //const { loading } = useSelector((state) => state.profile)
-  const { catalogName } = useParams()
-  const [active, setActive] = useState(1)
-    const [catalogPageData, setCatalogPageData] = useState(null);
-    const [categoryId, setCategoryId] = useState("");
-
-  //Fetch all categories
-  useEffect(()=> {
-    const getCategories = async() => {
-        const res = await apiConnector("GET", categories.CATEGORIES_API);
-        const category_id = 
+  // Fetch all categories
+  useEffect(() => {
+    const getCategories = async () => {
+      const res = await apiConnector("GET", categories.CATEGORIES_API);
+      const category_id =
         res?.data?.data?.filter((ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)[0]._id;
-        setCategoryId(category_id);
-       
-    }
+      setCategoryId(category_id);
+    };
     getCategories();
-},[catalogName]);
+  }, [catalogName]);
 
-  useEffect(()=>{
-    const getCategoryDetails = async() => {
-      try{
-          const res = await getCatalogPageData(categoryId);
-         // console.log("PRinting res: ", res);
-          setCatalogPageData(res);
-         // console.log(catalogPageData)
+  useEffect(() => {
+    const getCategoryDetails = async () => {
+      try {
+        const res = await getCatalogPageData(categoryId);
+        setCatalogPageData(res);
+      } catch (error) {
+        console.error(error);
       }
-      catch(error) {
-
-      }
-  }
-  if(categoryId) {
+    };
+    if (categoryId) {
       getCategoryDetails();
-  }
-  },[categoryId])
-
+    }
+  }, [categoryId]);
 
   return (
-  <>
-    {/* Hero Section */}
-    <div className="box-content bg-slate-900 border-b border-hairline px-4 relative overflow-hidden">
-        <div className="mx-auto flex min-h-[300px] max-w-maxContentTab flex-col justify-center gap-6 lg:max-w-maxContent relative z-10 py-12">
-          <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-slate-400">
-            <span>Home</span>
-            <span className="text-slate-600">/</span>
-            <span>Catalog</span>
-            <span className="text-slate-600">/</span>
-            <span className="text-white">
-              {catalogPageData?.data?.selectedCategory?.name}
-            </span>
+    <div className="bg-canvas text-ink min-h-screen flex flex-col font-sans">
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="bg-canvas border-b border-hairline py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="flex flex-col justify-center gap-6">
+            <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-widest text-muted">
+              <span>Home</span>
+              <span>/</span>
+              <span>Catalog</span>
+              <span>/</span>
+              <span className="text-ink">
+                {catalogPageData?.data?.selectedCategory?.name}
+              </span>
+            </div>
+            <div className="space-y-4 max-w-4xl">
+              <h1 className="text-[48px] font-bold tracking-tight">
+                {catalogPageData?.data?.selectedCategory?.name}
+              </h1>
+              <p className="text-[18px] text-muted leading-relaxed">
+                {catalogPageData?.data?.selectedCategory?.description}
+              </p>
+            </div>
           </div>
-          <div className="space-y-4">
-            <h1 className="text-3xl lg:text-2xl font-black text-white tracking-tighter">
-              {catalogPageData?.data?.selectedCategory?.name}
-            </h1>
-            <p className="max-w-[800px] text-lg font-medium text-slate-400 leading-relaxed italic border-l-4 border-white pl-6 py-2">
-              {catalogPageData?.data?.selectedCategory?.description}
-            </p>
-          </div>
-        </div>
-      </div>
+        </section>
 
-       {/* Section 1 */}
-       <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-8 lg:max-w-maxContent">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Courses to get you started</h2>
-            <p className="text-slate-500 dark:text-slate-400 font-medium">Hand-picked selections for academic excellence.</p>
+        {/* Section 1 */}
+        <section className="py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div className="space-y-2">
+              <h2 className="text-[36px] font-bold tracking-tight">Courses to get you started</h2>
+              <p className="text-[18px] text-muted">Hand-picked selections for academic excellence.</p>
+            </div>
+            <div className="flex bg-surface p-1 rounded-full border border-hairline">
+              <button
+                className={`px-8 py-3 rounded-full text-[14px] font-semibold transition-all duration-300 ${
+                  active === 1
+                    ? "bg-canvas text-ink shadow-sm"
+                    : "text-muted hover:text-ink"
+                }`}
+                onClick={() => setActive(1)}
+              >
+                Popular
+              </button>
+              <button
+                className={`px-8 py-3 rounded-full text-[14px] font-semibold transition-all duration-300 ${
+                  active === 2
+                    ? "bg-canvas text-ink shadow-sm"
+                    : "text-muted hover:text-ink"
+                }`}
+                onClick={() => setActive(2)}
+              >
+                Latest
+              </button>
+            </div>
           </div>
-          <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-slate-800">
-            <button
-              className={`px-8 py-2.5 rounded-full text-sm font-black transition-all duration-300 ${
-                active === 1
-                  ? "bg-white text-ink shadow-sm"
-                  : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
-              }`}
-              onClick={() => setActive(1)}
-            >
-              Popular
-            </button>
-            <button
-              className={`px-8 py-2.5 rounded-full text-sm font-black transition-all duration-300 ${
-                active === 2
-                  ? "bg-white text-ink shadow-sm"
-                  : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
-              }`}
-              onClick={() => setActive(2)}
-            >
-              Latest
-            </button>
+          <div className="rounded-[32px] border border-hairline p-8 md:p-12 bg-surface">
+            <CourseSlider
+              Courses={catalogPageData?.data?.selectedCategory?.courses}
+            />
           </div>
-        </div>
-        <div className="rounded-3xl border border-slate-100 dark:border-slate-900 p-8 bg-slate-50/30 dark:bg-slate-900/10">
-          <CourseSlider
-            Courses={catalogPageData?.data?.selectedCategory?.courses}
-          />
-        </div>
-      </div>
+        </section>
 
         {/* Section 2 */}
-        <div className="py-10 bg-slate-50/50 dark:bg-slate-900/20 border-y border-slate-200 dark:border-slate-800">
-          <div className="mx-auto box-content w-full max-w-maxContentTab px-4 lg:max-w-maxContent">
+        <section className="bg-surface border-y border-hairline py-24 px-4 md:px-16 w-full">
+          <div className="mx-auto max-w-screen-2xl">
             <div className="space-y-2 mb-12">
-              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-[36px] font-bold tracking-tight">
                 Top courses in {catalogPageData?.data?.differentCategory?.name}
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 font-medium">Explore alternative paths for your learning journey.</p>
+              <p className="text-[18px] text-muted">Explore alternative paths for your learning journey.</p>
             </div>
             <CourseSlider
               Courses={catalogPageData?.data?.differentCategory?.courses}
             />
           </div>
-        </div>
+        </section>
 
-      {/* Section 3 */}
-      <div className="mx-auto box-content w-full max-w-maxContentTab px-4 py-10 lg:max-w-maxContent">
-        <div className="space-y-2 mb-12">
-          <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Frequently Bought</h2>
-          <p className="text-slate-500 dark:text-slate-400 font-medium">Highly-rated courses trusted by thousands of students.</p>
-        </div>
-        <div>
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {/* Section 3 */}
+        <section className="py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="space-y-2 mb-12">
+            <h2 className="text-[36px] font-bold tracking-tight">Frequently Bought</h2>
+            <p className="text-[18px] text-muted">Highly-rated courses trusted by thousands of students.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {catalogPageData?.data?.mostSellingCourses
               ?.slice(0, 4)
               .map((course, i) => (
-                <div key={i} className="group bg-white dark:bg-slate-900/40 p-6 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 backdrop-blur-md hover:border-indigo-500/50 hover:shadow-[0_20px_50px_rgba(79,70,229,0.15)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500">
-                  <CourseCard course={course} Height={"h-[450px]"} />
+                <div key={i} className="bg-canvas p-6 md:p-8 rounded-[32px] border border-hairline hover:border-ink transition-colors duration-300">
+                  <CourseCard course={course} Height={"h-[300px]"} />
                 </div>
               ))}
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
 
       <Footer />
-  </>
-  )
+    </div>
+  );
 }

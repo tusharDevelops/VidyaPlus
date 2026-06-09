@@ -1,122 +1,110 @@
-import React from 'react'
-import FoundingStory from "../assets/Images/WhatsApp Image 2024-07-28 at 23.26.37_c0b46600.jpg"
-import BannerImage1 from "../assets/Images/abts1.jpg"
-import BannerImage2 from "../assets/Images/abts2.jpg"
-import BannerImage3 from "../assets/Images/abts3.jpg"
-import HighlightText from '../components/core/HomePage/HighlightText'
-import Quote from '../components/core/AboutPage/Quote'
-//import StatsBar from '../components/core/AboutPage/StatsBar'
-import LearningGridSection from '../components/core/AboutPage/LearningGridSection'
-import ContactFormSection from '../components/core/AboutPage/ContactFormSection'
+import React from 'react';
 import Footer from '../components/common/Footer';
 
 export default function AboutPage() {
   return (
-    <div>
-      {/* SECTION-1 */}
-      <section className="bg-canvas dark:bg-slate-900 transition-colors duration-500 relative overflow-hidden">
-        <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 text-center">
-          <header className="mx-auto py-12 text-4xl md:text-5xl font-black text-slate-900 dark:text-white lg:w-[80%] tracking-tight leading-tight">
-            Guiding School Students to
-            <HighlightText text={" Board Excellence"} />
-            <p className="mx-auto mt-8 text-center text-xl font-bold text-slate-500 dark:text-slate-400 lg:w-[95%] leading-relaxed max-w-4xl italic border-x-4 border-hairline dark:border-slate-800 px-10">
-              VidyaPlus Academy provides comprehensive K-12 coaching and school-level handholding, ensuring every student has the tools and mentorship needed to ace their exams and build a brighter future.
+    <div className="bg-canvas text-ink antialiased font-sans min-h-screen flex flex-col">
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="relative bg-canvas pt-32 pb-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-[40px] md:text-[64px] font-bold mb-8 leading-[1.10] tracking-[-0.04em]">
+              Empowering Students to Achieve Board Excellence
+            </h1>
+            <p className="text-[18px] text-muted max-w-2xl mx-auto mb-12 leading-relaxed">
+              We provide complete school-level handholding to ensure every student succeeds. At VidyaPlus, your child's academic journey is our top priority.
             </p>
-          </header>
-          <div className="sm:h-[70px] lg:h-[150px]"></div>
-          <div className="absolute bottom-0 left-[50%] grid w-[90%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-8 px-4">
-            <img src={BannerImage1} className="rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 border-8 border-white dark:border-slate-800" alt="" />
-            <img src={BannerImage2} className="rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 border-8 border-white dark:border-slate-800" alt="" />
-            <img src={BannerImage3} className="rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 border-8 border-white dark:border-slate-800" alt="" />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* SECTION-2 */}
-      <section className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-colors duration-500 relative z-10">
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 text-slate-600 dark:text-slate-400">
-          <div className="h-[200px] "></div>
-          <Quote />
-        </div>
-      </section>
-
-      {/* SECTION-3 */}
-      <section className="bg-white dark:bg-slate-900 transition-colors duration-500">
-      <div className="mx-auto flex w-11/12 max-w-maxContent flex-col justify-between gap-5 pb-20">
-          <div className="flex flex-col items-center gap-8 lg:flex-row justify-between py-12">
-            <div className="flex lg:w-[50%] flex-col gap-8">
-              <h1 className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-                Our Founding Story
-              </h1>
-              <div className="space-y-6 text-lg font-bold text-slate-600 dark:text-slate-400 leading-relaxed text-justify">
-                <p>
-                  Our founders, experienced educators themselves, witnessed the immense pressure and lack of structured guidance faced by school students preparing for crucial board exams. They saw firsthand how students struggled without proper mentorship.
-                </p>
-                <p className="p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-800 border border-hairline border-l-8 border-l-brand-coral">
-                  Driven by a vision to transform K-12 education, they established VidyaPlus Academy to provide comprehensive school-level handholding, ensuring every student from classes 1 to 12 can approach their board exams with confidence.
-                </p>
-              </div>
-            </div>
-
-            <div className='relative group'>
-              <img
-                src={FoundingStory}
-                alt=""
-                className="rounded-hero shadow-sm border border-hairline dark:border-slate-800 lg:max-w-[480px] relative z-10 group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
+        {/* Image Grid / Story Banner */}
+        <section className="px-4 md:px-16 mx-auto w-full max-w-screen-2xl pb-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" alt="Students studying" className="w-full h-80 object-cover rounded-[32px] bg-surface" />
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="Teacher explaining" className="w-full h-80 object-cover rounded-[32px] bg-surface md:-translate-y-8" />
+            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070&auto=format&fit=crop" alt="Library" className="w-full h-80 object-cover rounded-[32px] bg-surface" />
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-            <div className="flex flex-col gap-8 p-12 rounded-hero bg-slate-50 dark:bg-slate-900/40 border border-hairline dark:border-slate-800 shadow-sm transition-all duration-500 group">
-              <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center text-white text-3xl shadow-sm group-hover:scale-110 transition-transform">👁️</div>
-              <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                Our Vision
-              </h1>
-              <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
-                VidyaPlus Academy aims to create an environment where school students thrive academically. Our mission goes beyond syllabus completion—we aim to foster critical thinking, subject mastery, and board exam excellence through structured daily coaching.
+        {/* Our Story */}
+        <section className="border-t border-hairline py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            <div className="flex-1">
+              <span className="text-brand-coral font-semibold text-[14px] uppercase tracking-widest">Our Story</span>
+              <h2 className="text-[40px] font-bold mt-4 mb-6 tracking-[-0.02em]">Built for Indian Students</h2>
+              <p className="text-[18px] text-muted leading-relaxed mb-6">
+                VidyaPlus started with a simple idea: every child deserves top-quality education, no matter where they live. We saw that many students struggle with board exams and competitive tests like Olympiads simply because they lack the right guidance.
+              </p>
+              <p className="text-[18px] text-muted leading-relaxed">
+                We brought together the best teachers in India to create an online platform that is easy to use, highly engaging, and focused entirely on student success. Today, thousands of parents trust us to guide their children to top ranks.
               </p>
             </div>
-            
-            <div className="flex flex-col gap-8 p-12 rounded-hero bg-slate-50 dark:bg-slate-900/40 border border-hairline dark:border-slate-800 shadow-sm transition-all duration-500 group">
-              <div className="w-12 h-12 rounded-2xl bg-brand-magenta flex items-center justify-center text-white text-3xl shadow-sm group-hover:scale-110 transition-transform">🚀</div>
-              <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                Our Mission
-              </h1>
-              <p className="text-lg font-bold text-slate-500 dark:text-slate-400 leading-relaxed text-justify">
-                Our mission is to deliver the highest quality school-level education handholding. Through expert mentorship, rigorous mock exams, and verified achievement certificates, we ensure every Class 1 to 12 student achieves their full potential and outstanding board results.
+            <div className="flex-1 bg-surface p-12 rounded-[32px] border border-hairline relative">
+              <span className="text-[80px] leading-none text-brand-coral absolute top-8 left-8 opacity-20">"</span>
+              <p className="text-[24px] font-bold leading-relaxed relative z-10 text-ink mt-8">
+                Our mission is to make high-quality coaching accessible, affordable, and effective for every student in India.
+              </p>
+              <p className="mt-8 text-[16px] font-semibold uppercase tracking-wider text-muted">
+                — Founders, VidyaPlus
               </p>
             </div>
           </div>
-      </div>
-      </section>
+        </section>
 
-      {/* SECTION-4 grid + form*/}
-      <section className="mx-auto mt-20 flex w-11/12 max-w-maxContent flex-col justify-between gap-32 pb-32">
-        <LearningGridSection/>
-        <ContactFormSection/>
-      </section>
+        {/* Mission & Vision Grid */}
+        <section className="bg-surface py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl rounded-[48px] my-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-canvas border border-hairline p-12 rounded-[32px] hover:border-ink transition-colors duration-300">
+              <h3 className="text-[32px] font-bold mb-6">Our Mission</h3>
+              <p className="text-[18px] text-muted leading-relaxed">
+                To provide complete handholding for school students. We aim to clear every doubt, build strong fundamentals, and guide students step-by-step to score top marks in their Class 10 and 12 Board Exams.
+              </p>
+            </div>
+            <div className="bg-canvas border border-hairline p-12 rounded-[32px] hover:border-ink transition-colors duration-300">
+              <h3 className="text-[32px] font-bold mb-6">Our Vision</h3>
+              <p className="text-[18px] text-muted leading-relaxed">
+                To be India's most trusted online academy, where parents and students know they will receive the highest standard of teaching, transparent pricing, and measurable academic growth.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      {/* REVIEW_SECTION */}
-      <div className="relative mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-6 bg-transparent pb-32">
-        <div className="space-y-4 text-center">
-           <p className="text-[10px] font-black text-ink dark:text-white uppercase tracking-[0.3em]">STUDENT PERSPECTIVES</p>
-           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-             Global Scholarly Review
-           </h1>
-        </div>
-        {/* <ReviewSlider /> */}
-      </div>
+        {/* Meet Our Teachers */}
+        <section className="py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="text-center mb-16">
+            <h2 className="text-[48px] font-bold mb-4 tracking-[-0.02em]">Meet Our Teachers</h2>
+            <p className="text-[18px] text-muted max-w-2xl mx-auto leading-relaxed">
+              Learn from educators who have years of experience in helping students top their board exams.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Teacher 1 */}
+            <div className="bg-canvas border border-hairline p-8 rounded-[32px]">
+              <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop" alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
+              <h4 className="text-[24px] font-bold mb-2">Rahul Sharma</h4>
+              <p className="text-[14px] text-brand-blue font-semibold uppercase tracking-wider mb-4">Mathematics Expert</p>
+              <p className="text-[16px] text-muted leading-relaxed">10+ years of experience teaching CBSE Class 10 &amp; 12. Known for making complex math problems easy to solve.</p>
+            </div>
+            {/* Teacher 2 */}
+            <div className="bg-canvas border border-hairline p-8 rounded-[32px]">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
+              <h4 className="text-[24px] font-bold mb-2">Priya Patel</h4>
+              <p className="text-[14px] text-brand-magenta font-semibold uppercase tracking-wider mb-4">Science Head</p>
+              <p className="text-[16px] text-muted leading-relaxed">Ex-scientist turned educator. Specializes in Physics and Chemistry for Class 12 Boards and Olympiads.</p>
+            </div>
+            {/* Teacher 3 */}
+            <div className="bg-canvas border border-hairline p-8 rounded-[32px]">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop" alt="Teacher" className="w-full h-64 object-cover rounded-[24px] mb-6 bg-surface" />
+              <h4 className="text-[24px] font-bold mb-2">Ankit Verma</h4>
+              <p className="text-[14px] text-brand-emerald font-semibold uppercase tracking-wider mb-4">English &amp; SST</p>
+              <p className="text-[16px] text-muted leading-relaxed">Makes history and literature come alive. Focuses on writing skills necessary to secure 95+ in language exams.</p>
+            </div>
+          </div>
+        </section>
 
-      {/* FOOTER  section*/}
+      </main>
       <Footer />
-
-
-
-
-
-
-
     </div>
-  )
+  );
 }

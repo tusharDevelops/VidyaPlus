@@ -4,9 +4,9 @@ import Template from "../components/core/Auth/Template"
 function SignupPage() {
   return (
     <Template
-     title="Join the Vidya+ Learning Revolution!"
-      description1="Empower your future with knowledge and skills that last a lifetime."
-      description2="Innovative education to unlock your full potential."
+      title="Join VidyaPlus Today!"
+      description1="Start your journey to board excellence."
+      description2="Get the best teachers and score top marks."
       image={signupImg}
       formType="signup"
     />

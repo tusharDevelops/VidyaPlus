@@ -1,217 +1,193 @@
-import React from 'react'
-import { FaVideo, FaQuestionCircle, FaBookOpen, FaAward, FaChartLine, FaUserCheck, FaMedal } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import ExploreMore from '../components/core/HomePage/ExploreMore'
-import Footer from '../components/common/Footer'
-import VismeForm from '../components/core/HomePage/Vismcontactform'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '../components/common/Footer';
 
 export default function HomePage() {
-
   return (
-    <div className="bg-white dark:bg-slate-900 w-full h-auto flex flex-col overflow-hidden transition-colors duration-300">
-      
-      {/* HERO SECTION - MODERN & WOW */}
-      <div className='relative w-full min-h-[90vh] flex items-center justify-center bg-canvas dark:bg-slate-900 transition-colors duration-500 pt-10'>
-        
-        {/* Content */}
-        <div className='relative z-10 w-full h-full flex flex-col items-center justify-center px-4 md:px-8 py-10 md:py-8'>
-          <div className='flex flex-col items-center justify-center text-center max-w-[900px]'>
-            
-            {/* Main heading - 72px Display */}
-            <h1 className='text-5xl md:text-7xl font-semibold text-ink dark:text-white leading-[1.10] tracking-[-2px] mb-6'>
-              Master Your Exams with <span className="underline decoration-brand-coral decoration-4 underline-offset-8">VidyaPlus Academy</span>
-            </h1>
-
-            {/* Subheading */}
-            <p className='text-lg md:text-xl text-slate-text dark:text-gray-300 font-medium max-w-2xl leading-relaxed mb-10'>
-              Transform your academic journey with India's premier K-12 coaching center. Get complete school-level handholding, ace your board exams, and earn excellence certificates.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className='flex flex-col md:flex-row justify-center gap-4 mb-16'>
-              <Link to="/signup" className="btn-primary text-base px-8 py-3 flex items-center justify-center gap-2">
-                Start Free Trial
-              </Link>
-              <Link to="/catalog/courses" className="btn-secondary text-base px-8 py-3 flex items-center justify-center gap-2">
-                Explore Courses
-              </Link>
-            </div>
-
-            {/* Stats Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-4xl mx-auto pt-8 border-t border-hairline dark:border-slate-800">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-ink dark:text-white mb-2">50K+</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Students Mentored</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-ink dark:text-white mb-2">4.9/5</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Average Rating</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-ink dark:text-white mb-2">99%</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Board Success Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-ink dark:text-white mb-2">500+</div>
-                <div className="text-sm text-steel dark:text-gray-400 font-medium">Expert Courses</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 hidden md:block">
-          <div className="flex flex-col items-center gap-2 animate-bounce opacity-70 hover:opacity-100 transition-opacity">
-            <span className="text-xs text-indigo-500 dark:text-cyan-400 font-bold uppercase tracking-wider">Scroll</span>
-            <div className="w-0.5 h-6 bg-gradient-to-b from-indigo-500 dark:from-cyan-400 to-transparent rounded-full"></div>
-          </div>
-        </div>
-      </div>
-
-      {/* VIBRANT PRODUCT MATRIX */}
-      <div className="w-full py-24 bg-canvas dark:bg-slate-900 relative z-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-ink dark:text-white mb-4 tracking-tight">K-12 Course Matrix</h2>
-          </div>
-          
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar md:grid md:grid-cols-4 md:overflow-visible md:snap-none md:gap-6">
-            {[
-              { title: 'Foundation', subtitle: 'Class 1–8 Mastery', variant: 'product-card-coral', link: '/catalog/foundation', badge: 'POPULAR' },
-              { title: 'Class 10', subtitle: 'Board Excellence', variant: 'product-card-blue', link: '/catalog/class10' },
-              { title: 'Class 12', subtitle: 'JEE · NEET · Boards', variant: 'product-card-magenta', link: '/catalog/class12' },
-              { title: 'Olympiads', subtitle: 'Competitive Exams', variant: 'product-card-emerald', link: '/catalog/olympiads' }
-            ].map((item, idx) => (
-              <Link key={idx} to={item.link} className={`group snap-center min-w-[280px] md:min-w-0 h-[380px] relative p-8 flex flex-col justify-end transition-transform duration-300 hover:-translate-y-2 ${item.variant}`}>
-                {item.badge && (
-                  <span className="absolute top-6 right-6 bg-white/20 text-white backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                    {item.badge}
-                  </span>
-                )}
-                <div>
-                  <h3 className="text-4xl font-bold text-white mb-2 leading-tight">{item.title}</h3>
-                  <p className="text-white/80 font-medium">{item.subtitle}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* STATS & ACHIEVEMENTS REMOVED - MOVED TO HERO */}
-
-      {/* WHITE TILES GRID */}
-      <div className='w-full pb-24 bg-canvas dark:bg-slate-900'>
-        <div className='max-w-7xl mx-auto px-4 md:px-8'>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-semibold text-ink dark:text-white mb-4">
-              Why Choose <span className="underline decoration-brand-blue decoration-2 underline-offset-4">VidyaPlus Academy?</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: 'Live Coaching', desc: 'Interactive daily coaching sessions with top faculty', icon: <FaVideo /> },
-              { title: 'Achievement Certificates', desc: 'Earn verified certificates for completing mock exams and milestones', icon: <FaAward /> },
-              { title: 'Board-Aligned Material', desc: 'Access curated notes and NCERT-aligned resources anytime', icon: <FaBookOpen /> },
-              { title: '24/7 Handholding', desc: 'Get instant doubt-solving help from expert mentors whenever you are stuck', icon: <FaQuestionCircle /> }
-            ].map((feat, idx) => (
-              <div key={idx} className="bg-canvas dark:bg-slate-900 p-8 rounded-3xl border border-hairline dark:border-slate-800 hover:shadow-lg transition-all">
-                <div className="text-4xl text-ink dark:text-white mb-8">
-                  {feat.icon}
-                </div>
-                <h3 className="text-xl font-bold text-ink dark:text-white mb-3">{feat.title}</h3>
-                <p className="text-steel dark:text-gray-400 text-sm leading-relaxed">
-                  {feat.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CURRICULUM SECTION */}
-      <div className="w-full relative z-20">
-        <ExploreMore/>
-      </div>
-
-      {/* HOW IT WORKS — STUDENT JOURNEY */}
-      <div className='w-full py-24 bg-ink dark:bg-slate-900 relative overflow-hidden'>
-          <div className='relative z-10 max-w-7xl mx-auto px-4 md:px-8'>
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold bg-brand-coral/20 text-brand-coral border border-brand-coral/30 mb-5 uppercase tracking-widest">Your Journey</span>
-              <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-                4 Steps to Academic Excellence
-              </h2>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                A proven, structured roadmap designed around every school student's unique learning journey.
+    <div className="bg-canvas text-ink antialiased font-sans">
+      <main>
+        {/* Hero Section */}
+        <section className="relative bg-canvas pt-32 pb-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1 text-left">
+              <h1 className="text-[40px] md:text-[72px] font-bold mb-8 leading-[1.10] tracking-[-0.04em]">
+                Your Child's Success in Boards &amp; Olympiads Starts Here.
+              </h1>
+              <p className="text-[18px] text-muted max-w-xl mb-12 leading-relaxed">
+                Top-quality coaching for Classes 6 to 12. Learn from India's best teachers, right from home.
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-              <div className="hidden lg:block absolute top-14 left-[15%] right-[15%] h-px bg-gradient-to-r from-blue-500/30 via-indigo-500/50 to-green-500/30 z-0"></div>
-
-            {[
-              {
-                step: '01', icon: <FaUserCheck className="text-3xl" />,
-                title: 'Enroll & Assess',
-                desc: 'Sign up and take a free diagnostic test. We pinpoint your strengths and build a personalised school study plan.',
-                bgClass: 'bg-brand-blue', glow: 'shadow-sm',
-              },
-              {
-                step: '02', icon: <FaVideo className="text-3xl" />,
-                title: 'Learn from Experts',
-                desc: 'Attend interactive live coaching sessions with top educators, participate in polls, and clarify concepts instantly.',
-                bgClass: 'bg-brand-magenta', glow: 'shadow-sm',
-              },
-              {
-                step: '03', icon: <FaChartLine className="text-3xl" />,
-                title: 'Practice & Track',
-                desc: 'Attempt chapter-wise tests, full board mock exams, and track your progress with analytics.',
-                bgClass: 'bg-brand-coral', glow: 'shadow-sm',
-              },
-              {
-                step: '04', icon: <FaMedal className="text-3xl" />,
-                title: 'Achieve & Certify',
-                desc: 'Crack board exams, earn your excellence certificate, and launch into a bright future.',
-                bgClass: 'bg-brand-emerald', glow: 'shadow-sm',
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center relative z-10 group">
-                <div className={`w-28 h-28 rounded-full ${item.bgClass} flex items-center justify-center text-white ${item.glow} mb-6 relative transition-transform group-hover:-translate-y-2 duration-300`}>
-                  {item.icon}
-                  <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-slate-900 text-white text-xs font-black border-2 border-slate-700 flex items-center justify-center shadow-lg">
-                    {item.step}
-                  </span>
-                </div>
-                <div className="w-full rounded-2xl bg-slate-800/60 border border-slate-700/60 p-6 backdrop-blur-sm group-hover:border-slate-500 transition-all duration-300">
-                  <h3 className="text-lg font-extrabold text-white mb-3">{item.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-            </div>
-
-            <div className="text-center mt-24">
-              <div className="w-full bg-brand-coral rounded-hero p-12 md:p-16 text-center shadow-2xl flex flex-col items-center">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight">Ready to Excel? Start your free trial today.</h2>
-                <Link to="/signup" className="btn-tertiary text-base text-brand-coral px-10 py-4 hover:text-brand-coral hover:bg-white/90 shadow-xl inline-flex">
-                  Begin Now
+              <div className="flex flex-wrap gap-4">
+                <Link to="/signup">
+                  <button className="bg-ink text-canvas font-semibold text-[14px] px-8 py-4 rounded-full transition-all hover:opacity-90 active:scale-95">
+                    Start Learning For Free
+                  </button>
+                </Link>
+                <Link to="/catalog/foundation">
+                  <button className="border border-ink text-ink font-semibold text-[14px] px-8 py-4 rounded-full transition-all hover:bg-surface active:scale-95">
+                    View Courses
+                  </button>
                 </Link>
               </div>
             </div>
-
+            <div className="flex-1 w-full aspect-square relative rounded-[32px] overflow-hidden bg-surface">
+              <img 
+                className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700" 
+                alt="Students in classroom" 
+                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop" 
+              />
+            </div>
           </div>
-        </div>
+        </section>
 
-      {/* Contact form section */}
-      <div className="w-full pt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-        <VismeForm/>
-      </div>
+        {/* Stats Bar */}
+        <section className="border-y border-hairline py-12 bg-canvas px-4 md:px-16">
+          <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-around gap-8 items-center text-center">
+            <div>
+              <div className="text-[36px] font-bold">50,000+</div>
+              <div className="text-[14px] text-muted uppercase tracking-wider mt-1">Students</div>
+            </div>
+            <div className="hidden md:block w-px h-12 bg-hairline"></div>
+            <div>
+              <div className="text-[36px] font-bold flex items-center justify-center gap-2">
+                <span className="text-brand-coral text-4xl">★</span>
+                4.9/5
+              </div>
+              <div className="text-[14px] text-muted uppercase tracking-wider mt-1">Rating</div>
+            </div>
+            <div className="hidden md:block w-px h-12 bg-hairline"></div>
+            <div>
+              <div className="text-[36px] font-bold">100+</div>
+              <div className="text-[14px] text-muted uppercase tracking-wider mt-1">Top Teachers</div>
+            </div>
+          </div>
+        </section>
 
-      {/* FOOTER */}
-      <Footer/>
+        {/* What We Offer: Bento Grid */}
+        <section className="py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <span className="text-brand-coral font-semibold text-[14px] uppercase tracking-widest">The Curriculum</span>
+              <h2 className="text-[48px] font-bold mt-2 tracking-[-0.02em]">What We Offer</h2>
+            </div>
+            <Link to="/catalog/all" className="hidden md:flex items-center gap-2 text-ink font-semibold text-[14px] group">
+              Explore all grades
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {/* Foundation Card */}
+            <Link to="/catalog/foundation" className="md:col-span-7 bg-brand-coral text-canvas rounded-[32px] p-8 md:p-12 flex flex-col justify-between min-h-[400px] group overflow-hidden relative">
+              <div className="relative z-10">
+                <span className="bg-white/20 px-4 py-2 rounded-full text-[14px] font-semibold">Grades 6-9</span>
+                <h3 className="text-[36px] font-bold mt-8">Foundation Classes</h3>
+                <p className="text-[16px] mt-4 max-w-xs opacity-90 leading-relaxed">Building the cognitive base for long-term academic excellence.</p>
+              </div>
+              <div className="relative z-10 flex mt-8">
+                <button className="bg-white text-ink px-8 py-3 rounded-full font-semibold text-[14px] shadow-sm">Explore</button>
+              </div>
+              <span className="absolute -right-8 -bottom-8 text-[200px] opacity-10 group-hover:rotate-12 transition-transform duration-500">📚</span>
+            </Link>
+
+            {/* Class 10 Boards */}
+            <Link to="/catalog/class-10" className="md:col-span-5 bg-brand-blue text-canvas rounded-[32px] p-8 md:p-12 flex flex-col justify-between min-h-[400px] group overflow-hidden relative">
+              <div className="relative z-10">
+                <span className="bg-white/20 px-4 py-2 rounded-full text-[14px] font-semibold">Target 100%</span>
+                <h3 className="text-[36px] font-bold mt-8">Class 10 Boards</h3>
+                <p className="text-[16px] mt-4 opacity-90 leading-relaxed">Comprehensive preparation with sample papers and revision tracks.</p>
+              </div>
+              <div className="relative z-10 mt-8">
+                <button className="bg-white text-ink px-8 py-3 rounded-full font-semibold text-[14px] shadow-sm">Start Preparations</button>
+              </div>
+              <span className="absolute -right-4 -bottom-4 text-[160px] opacity-10 group-hover:scale-110 transition-transform duration-500">🎯</span>
+            </Link>
+
+            {/* Class 12 Science & Commerce */}
+            <Link to="/catalog/class-12" className="md:col-span-5 bg-brand-magenta text-canvas rounded-[32px] p-8 md:p-12 flex flex-col justify-between min-h-[400px] group overflow-hidden relative">
+              <div className="relative z-10">
+                <span className="bg-white/20 px-4 py-2 rounded-full text-[14px] font-semibold">Pre-University</span>
+                <h3 className="text-[36px] font-bold mt-8">Class 12 Prep</h3>
+                <p className="text-[16px] mt-4 opacity-90 leading-relaxed">Science &amp; Commerce specialization with industry-expert mentors.</p>
+              </div>
+              <div className="relative z-10 mt-8">
+                <button className="bg-white text-ink px-8 py-3 rounded-full font-semibold text-[14px] shadow-sm">View Stream</button>
+              </div>
+              <span className="absolute -right-4 -bottom-4 text-[160px] opacity-10 group-hover:-rotate-6 transition-transform duration-500">🎓</span>
+            </Link>
+
+            {/* Olympiads & NTSE */}
+            <Link to="/catalog/olympiads" className="md:col-span-7 bg-brand-emerald text-canvas rounded-[32px] p-8 md:p-12 flex flex-col justify-between min-h-[400px] group overflow-hidden relative">
+              <div className="relative z-10">
+                <span className="bg-white/20 px-4 py-2 rounded-full text-[14px] font-semibold">Competitive Edge</span>
+                <h3 className="text-[36px] font-bold mt-8">Olympiads &amp; NTSE</h3>
+                <p className="text-[16px] mt-4 max-w-sm opacity-90 leading-relaxed">Advanced conceptual training for Math, Science, and Mental Ability examinations.</p>
+              </div>
+              <div className="relative z-10 mt-8">
+                <button className="bg-white text-ink px-8 py-3 rounded-full font-semibold text-[14px] shadow-sm">Enroll Now</button>
+              </div>
+              <span className="absolute -right-8 -bottom-8 text-[200px] opacity-10 group-hover:translate-y-4 transition-transform duration-500">🏆</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* Why Choose VidyaPlus? */}
+        <section className="bg-surface py-24 px-4 md:px-16 mx-auto w-full max-w-screen-2xl rounded-[48px] my-12">
+          <div className="text-center mb-16">
+            <h2 className="text-[48px] font-bold mb-4 tracking-[-0.02em]">Why Choose VidyaPlus?</h2>
+            <p className="text-[18px] text-muted max-w-2xl mx-auto leading-relaxed">We've combined pedagogical expertise with cutting-edge technology to create the ultimate learning ecosystem.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-canvas border border-hairline p-8 md:p-10 rounded-[32px] hover:border-ink transition-colors duration-300">
+              <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-8 bg-[#F3F4F6]">
+                <span className="text-2xl">📺</span>
+              </div>
+              <h4 className="text-[28px] font-bold mb-4">Live Classes</h4>
+              <p className="text-[16px] text-muted leading-relaxed">Interactive sessions where students can participate in real-time polls and live chats with teachers.</p>
+            </div>
+            
+            <div className="bg-canvas border border-hairline p-8 md:p-10 rounded-[32px] hover:border-ink transition-colors duration-300">
+              <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-8 bg-[#F3F4F6]">
+                <span className="text-2xl">🧠</span>
+              </div>
+              <h4 className="text-[28px] font-bold mb-4">Doubt Solving</h4>
+              <p className="text-[16px] text-muted leading-relaxed">Dedicated 24/7 support to ensure no question goes unanswered. Connect with mentors instantly.</p>
+            </div>
+            
+            <div className="bg-canvas border border-hairline p-8 md:p-10 rounded-[32px] hover:border-ink transition-colors duration-300">
+              <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-8 bg-[#F3F4F6]">
+                <span className="text-2xl">📝</span>
+              </div>
+              <h4 className="text-[28px] font-bold mb-4">Mock Tests</h4>
+              <p className="text-[16px] text-muted leading-relaxed">Weekly performance evaluations and board-level mock exams with detailed analytics.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Massive Footer CTA */}
+        <section className="px-4 md:px-16 mx-auto w-full max-w-screen-2xl pb-24 mt-12">
+          <div className="bg-brand-coral rounded-[32px] p-12 md:p-24 text-canvas flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left relative overflow-hidden">
+            <div className="relative z-10 max-w-2xl">
+              <h2 className="text-[40px] md:text-[48px] font-bold leading-tight mb-6 tracking-[-0.02em]">Ready to score top marks? Join VidyaPlus today.</h2>
+              <p className="text-[18px] opacity-90 leading-relaxed">Start your free trial today. No credit card required.</p>
+            </div>
+            <div className="relative z-10 shrink-0">
+              <Link to="/signup">
+                <button className="bg-canvas text-ink font-semibold text-[16px] px-10 py-5 rounded-full transition-all hover:scale-105 active:scale-95 shadow-lg">
+                  Sign Up Now
+                </button>
+              </Link>
+            </div>
+            
+            {/* Decorative background elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
+          </div>
+        </section>
+
+      </main>
+      
+      <Footer />
     </div>
   );
 }

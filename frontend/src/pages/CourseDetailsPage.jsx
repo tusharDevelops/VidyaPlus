@@ -56,11 +56,10 @@ const CourseDetails = () => {
         const getCourseFullDetails = async() => {
             try{
                 const result = await fetchCourseDetails(courseId);
-                //console.log("Printing CourseData-> " , result);
                 setCourseData(result);
             }
             catch(error) {
-
+               console.error(error);
             }
         }
         getCourseFullDetails();
@@ -93,24 +92,19 @@ const CourseDetails = () => {
       )
     }
 
-    
-
-
     const handleBuyCourse = () => {
-        
         if(token) {
             buyCourse(token, [courseId], user, navigate, dispatch);
             return;
         }
         setConfirmationModal({
-            text1:"you are not Logged in",
+            text1:"You are not logged in",
             text2:"Please login to purchase the course",
             btn1Text:"Login",
             btn2Text:"Cancel",
             btn1Handler:() => navigate("/login"),
             btn2Handler:()=>setConfirmationModal(null),
         })
-
     }
 
     if(loading || !courseData) {
@@ -121,9 +115,7 @@ const CourseDetails = () => {
         )
     }
 
-
     if (paymentLoading) {
-        // console.log("payment loading")
         return (
           <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
             <div className="spinner"></div>
@@ -144,7 +136,6 @@ const CourseDetails = () => {
     const benefits = parseData(courseData.data?.courseDetails?.whatYouWillLearn);
 
     const {
-      //  _id: course_id,
         courseName,
         courseDescription,
         thumbnail,
@@ -156,79 +147,77 @@ const CourseDetails = () => {
         createdAt,
     } = courseData.data?.courseDetails
    
-
-   
   return (
 <>
-    <div className='relative w-full bg-slate-900 overflow-hidden'>
+    <div className='relative w-full bg-canvas text-ink font-sans min-h-screen'>
         
         {/* Hero Section */}
-        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative z-10">
-            <div className='mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 
-             lg:justify-items-start lg:py-12 xl:max-w-[810px]'>
-                <div className="relative block max-h-64 sm:max-h-80 lg:hidden w-full mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+        <section className="bg-canvas border-b border-hairline py-16 px-4 md:px-16 mx-auto w-full max-w-screen-2xl relative z-10">
+            <div className='mx-auto grid min-h-[450px] gap-12 lg:grid-cols-12 items-center'>
+                
+                {/* Mobile Thumbnail */}
+                <div className="relative block lg:hidden w-full mb-6">
                     <img
                     src={thumbnail}
                     alt="course thumbnail"
-                    className="aspect-video w-full rounded-3xl object-cover shadow-2xl border border-white/10"
+                    className="aspect-video w-full rounded-[32px] object-cover border border-hairline"
                     />
                 </div>
                 
-                <div className="flex flex-col justify-center gap-6 text-slate-100 lg:pr-[380px] xl:pr-0">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-brand-coral mb-2">
+                <div className="flex flex-col justify-center gap-6 lg:col-span-8">
+                  <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-widest text-muted mb-2">
                     <span>Course</span>
-                    <span className="text-slate-600">/</span>
-                    <span className="text-slate-400">{courseData?.data?.courseDetails?.category?.name}</span>
+                    <span>/</span>
+                    <span className="text-ink">{courseData?.data?.courseDetails?.category?.name}</span>
                   </div>
                   
-                  <h1 className="text-3xl lg:text-2xl font-black text-white tracking-tight leading-[1.1]">
+                  <h1 className="text-[40px] md:text-[56px] font-bold tracking-tight leading-[1.1]">
                     {courseName}
                   </h1>
                   
-                  <p className="text-lg text-slate-400 font-medium max-w-[700px] leading-relaxed border-l-4 border-white pl-6">
+                  <p className="text-[18px] text-muted max-w-[700px] leading-relaxed">
                     {courseDescription}
                   </p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 pt-2">
                     {tags?.map((item, i) => (
-                      <span key={i} className="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-[10px] font-black uppercase tracking-widest border border-slate-700 hover:text-brand-coral transition-colors">
+                      <span key={i} className="px-4 py-2 rounded-full bg-surface text-ink text-[12px] font-semibold uppercase tracking-widest border border-hairline">
                         #{item}
                       </span>
                     ))}
                   </div>
                   
                   <div className="flex flex-wrap items-center gap-y-4 gap-x-6 pt-2">
-                    <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-2xl border border-slate-700/50 backdrop-blur-md">
-                      <span className="text-brand-coral font-black text-lg">{avgReviewCount}</span>
+                    <div className="flex items-center gap-2 bg-surface px-4 py-2 rounded-full border border-hairline">
+                      <span className="text-brand-coral font-bold text-[16px]">{avgReviewCount}</span>
                       <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
                     </div>
-                    <div className="flex items-center gap-6 text-sm font-bold text-slate-400">
-                      <span className="hover:text-white transition-colors cursor-default">{`(${ratingAndReviews.length} reviews)`}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
-                      <span className="hover:text-white transition-colors cursor-default">{`${studentsEnrolled.length} Students`}</span>
+                    <div className="flex items-center gap-4 text-[14px] font-semibold text-muted">
+                      <span>{`(${ratingAndReviews.length} reviews)`}</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-hairline"></span>
+                      <span>{`${studentsEnrolled.length} Students`}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-8 pt-4">
                     <div className="flex items-center gap-3">
-                       <div className="w-10 h-10 rounded-full bg-brand-coral flex items-center justify-center text-sm font-black border-2 border-white/20">
+                       <div className="w-12 h-12 rounded-full bg-surface flex items-center justify-center text-ink border border-hairline font-bold text-[16px]">
                           {instructor?.firstName?.[0]}
                        </div>
                        <div>
-                          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Instructor</p>
-                          <p className="text-sm font-black text-white">{`${instructor.firstName} ${instructor.lastName}`}</p>
+                          <p className="text-[12px] font-semibold text-muted uppercase tracking-widest">Instructor</p>
+                          <p className="text-[16px] font-bold text-ink">{`${instructor.firstName} ${instructor.lastName}`}</p>
                        </div>
                     </div>
                     
-                    <div className="flex gap-8 border-l border-slate-800 pl-8">
-                       <div className="flex items-center gap-3 text-sm font-bold text-slate-400">
-                          <BiInfoCircle className="text-brand-coral text-xl" />
+                    <div className="flex gap-8 border-l border-hairline pl-8">
+                       <div className="flex items-center gap-3 text-[14px] font-semibold text-muted">
+                          <BiInfoCircle className="text-[20px]" />
                           <span>{formatDate(createdAt)}</span>
                        </div>
-                       <div className="flex items-center gap-3 text-sm font-bold text-slate-400">
-                          <HiOutlineGlobeAlt className="text-brand-coral text-xl" />
+                       <div className="flex items-center gap-3 text-[14px] font-semibold text-muted">
+                          <HiOutlineGlobeAlt className="text-[20px]" />
                           <span>English</span>
                        </div>
                     </div>
@@ -236,21 +225,18 @@ const CourseDetails = () => {
                 </div>
                 
                 {/* Mobile Price Bar (In-flow) */}
-                <div className="flex w-full flex-col gap-6 border-t border-slate-800 mt-8 pt-8 lg:hidden pb-4">
+                <div className="flex w-full flex-col gap-6 border-t border-hairline mt-8 pt-8 lg:hidden pb-4">
                   <div className="flex items-center justify-between">
                     <div>
-                       <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total investment</p>
-                       <p className="text-3xl font-black text-white">₹{price}</p>
-                    </div>
-                    <div className="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 font-black text-[10px] uppercase tracking-widest">
-                       90% OFF
+                       <p className="text-[12px] font-semibold text-muted uppercase tracking-widest mb-1">Total investment</p>
+                       <p className="text-[32px] font-bold">₹{price}</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button className="btn-primary w-full" onClick={handleBuyCourse}>
+                    <button className="bg-ink text-canvas font-semibold text-[14px] px-8 py-4 rounded-full w-full" onClick={handleBuyCourse}>
                       Enroll Now
                     </button>
-                    <button className="btn-secondary w-full">
+                    <button className="bg-canvas border border-ink text-ink font-semibold text-[14px] px-8 py-4 rounded-full w-full">
                       Add to Cart
                     </button>
                   </div>
@@ -259,15 +245,15 @@ const CourseDetails = () => {
             </div>
 
             {/* Sticky Mobile Enrollment Bar */}
-            <div className="fixed bottom-0 left-0 right-0 z-[100] bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 p-4 lg:hidden animate-in slide-in-from-bottom duration-500">
+            <div className="fixed bottom-0 left-0 right-0 z-[100] bg-canvas border-t border-hairline p-4 lg:hidden">
                <div className="mx-auto flex items-center justify-between max-w-md">
                   <div className="flex flex-col">
-                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Investment</p>
-                     <p className="text-xl font-black text-slate-900 dark:text-white">₹{price}</p>
+                     <p className="text-[12px] font-semibold text-muted uppercase tracking-widest">Investment</p>
+                     <p className="text-[24px] font-bold">₹{price}</p>
                   </div>
                   <button 
                     onClick={handleBuyCourse}
-                    className="btn-primary px-6 py-3"
+                    className="bg-ink text-canvas font-semibold text-[14px] px-8 py-4 rounded-full"
                   >
                     Enroll Now
                   </button>
@@ -275,132 +261,121 @@ const CourseDetails = () => {
             </div>
 
             {/* Floating Sidebar Card (Desktop) */}
-            <div className="right-[3rem] top-[80px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 
-            md:translate-y-0 lg:absolute lg:block z-40">
+            <div className="hidden lg:block absolute right-[4rem] top-[80px] w-1/3 max-w-[410px] z-40">
                 <CourseDetailsCard
                   course={courseData?.data?.courseDetails}
                   setConfirmationModal={setConfirmationModal}
                   handleBuyCourse={handleBuyCourse}
                 />
             </div>
-        </div>
-    </div>
+        </section>
 
     
-    <div className="mx-auto box-content px-4 pt-20 pb-20 text-start lg:w-[1260px]">
-        <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
-          {/* What will you learn section */}
-          <div className="mb-20 p-10 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700"></div>
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-8 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-brand-coral flex items-center justify-center text-white text-sm">💡</span>
-              What you'll learn
-            </h2>
-            <div className="prose prose-slate dark:prose-invert max-w-none prose-p:font-medium prose-li:font-bold">
-               {benefits.length > 0 ? (
-                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 list-none pl-0">
-                    {benefits.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="mt-1.5 w-4 h-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-ink dark:text-white">
-                          <BsFillCaretRightFill className="text-[10px]" />
-                        </div>
-                        <span className="text-slate-600 dark:text-slate-400">{item.replace(/^-\s*/, '').replace(/^\d+\.\s*/, '')}</span>
-                      </li>
-                    ))}
-                 </ul>
-               ) : (
-                 <p className="text-slate-400 italic">No specific learning outcomes listed.</p>
-               )}
-            </div>
-          </div>
+        <div className="mx-auto px-4 pt-20 pb-20 lg:w-[1260px]">
+            <div className="mx-auto lg:mx-0 xl:max-w-[810px]">
+              {/* What will you learn section */}
+              <div className="mb-20 p-8 md:p-12 rounded-[32px] bg-canvas border border-hairline">
+                <h2 className="text-[32px] font-bold tracking-tight mb-8">
+                  What you'll learn
+                </h2>
+                <div className="text-[16px] text-ink">
+                   {benefits.length > 0 ? (
+                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 list-none pl-0">
+                        {benefits.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <div className="mt-1.5 w-6 h-6 rounded-full bg-surface flex items-center justify-center text-ink shrink-0 border border-hairline">
+                              <BsFillCaretRightFill className="text-[12px]" />
+                            </div>
+                            <span className="text-muted">{item.replace(/^-\s*/, '').replace(/^\d+\.\s*/, '')}</span>
+                          </li>
+                        ))}
+                     </ul>
+                   ) : (
+                     <p className="text-muted italic">No specific learning outcomes listed.</p>
+                   )}
+                </div>
+              </div>
 
-          {/* Requirements Section */}
-          {instructions.length > 0 && (
-            <div className="mb-20 px-4 sm:px-0">
-               <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-6">Requirements</h2>
-               <ul className="space-y-4 list-none pl-0">
-                  {instructions.map((item, i) => (
-                      <li key={i} className="flex items-start gap-4">
-                         <span className="w-1.5 h-1.5 rounded-full bg-ink dark:bg-white mt-2.5"></span>
-                         <span className="text-slate-600 dark:text-slate-400 font-medium">{item}</span>
-                      </li>
+              {/* Requirements Section */}
+              {instructions.length > 0 && (
+                <div className="mb-20">
+                   <h2 className="text-[24px] font-bold tracking-tight mb-6">Requirements</h2>
+                   <ul className="space-y-4 list-none pl-0">
+                      {instructions.map((item, i) => (
+                          <li key={i} className="flex items-center gap-4">
+                             <span className="w-2 h-2 rounded-full bg-ink shrink-0"></span>
+                             <span className="text-[16px] text-muted font-medium">{item}</span>
+                          </li>
+                      ))}
+                   </ul>
+                </div>
+              )}
+
+              {/* Course Content Section */}
+              <div className="max-w-[830px]">
+                <div className="flex flex-col gap-6 mb-10">
+                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div className="space-y-1">
+                      <h2 className="text-[32px] font-bold tracking-tight">Curriculum</h2>
+                      <p className="text-[16px] text-muted font-medium">Over {totalNoOfLectures} expert-led lessons.</p>
+                    </div>
+                    <div className="flex items-center gap-4 text-[14px] font-bold text-muted">
+                      <span>{courseContent.length} Sections</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-hairline"></span>
+                      <span>{totalNoOfLectures} Lectures</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-hairline"></span>
+                      <span className="text-ink">{courseData.data?.totalDuration}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end">
+                      <button
+                        className="text-[12px] font-bold text-muted hover:text-ink transition-colors uppercase tracking-widest"
+                        onClick={() => setIsActive([])}
+                      >
+                        Collapse All Sections
+                      </button>
+                  </div>
+                </div>
+
+                {/* Course Details Accordion */}
+                <div className="space-y-2">
+                  {courseContent?.map((section, index) => (
+                    <CourseAccordionBar
+                      section={section}
+                      key={index}
+                      isActive={isActive}
+                      handleActive={handleActive}
+                    />
                   ))}
-               </ul>
-            </div>
-          )}
+                </div>
 
-          {/* Course Content Section */}
-          <div className="max-w-[830px]">
-            <div className="flex flex-col gap-6 mb-10">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                <div className="space-y-1">
-                  <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Curriculum</h2>
-                  <p className="text-slate-500 dark:text-slate-400 font-medium">Over {totalNoOfLectures} expert-led lessons.</p>
+                {/* Author Details */}
+                <div className="mt-24 mb-12 p-8 md:p-12 rounded-[32px] bg-surface border border-hairline">
+                  <p className="text-[12px] font-bold text-muted uppercase tracking-[0.2em] mb-8">Meet your Instructor</p>
+                  <div className="flex items-center gap-8 mb-8">
+                    <img
+                        src={
+                          instructor.image
+                            ? instructor.image
+                            : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
+                        }
+                        alt={instructor.firstName}
+                        className="h-24 w-24 rounded-full object-cover border border-hairline"
+                    />
+                    <div>
+                       <h3 className="text-[28px] font-bold tracking-tight">
+                         {`${instructor.firstName} ${instructor.lastName}`}
+                       </h3>
+                       <p className="text-[16px] text-muted font-semibold mt-1">Expert Educator @ VidyaPlus</p>
+                    </div>
+                  </div>
+                  <div className="text-[16px] text-ink leading-relaxed">
+                    {instructor?.additionalDetails?.about || "An expert instructor dedicated to providing high-quality education and helping students master complex topics through practical and engaging learning experiences."}
+                  </div>
                 </div>
-                <div className="flex items-center gap-6 text-sm font-black text-slate-400">
-                  <span className="flex items-center gap-2">
-                    <span className="text-ink dark:text-white">{courseContent.length}</span> Sections
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                  <span className="flex items-center gap-2">
-                    <span className="text-ink dark:text-white">{totalNoOfLectures}</span> Lectures
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                  <span className="text-slate-900 dark:text-white">{courseData.data?.totalDuration}</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-end">
-                  <button
-                    className="text-xs font-black text-slate-500 hover:text-ink dark:text-slate-400 dark:hover:text-white transition-colors uppercase tracking-widest"
-                    onClick={() => setIsActive([])}
-                  >
-                    COLLAPSE ALL SECTIONS
-                  </button>
               </div>
             </div>
-
-            {/* Course Details Accordion */}
-            <div className="space-y-1">
-              {courseContent?.map((section, index) => (
-                <CourseAccordionBar
-                  section={section}
-                  key={index}
-                  isActive={isActive}
-                  handleActive={handleActive}
-                />
-              ))}
-            </div>
-
-            {/* Author Details */}
-            <div className="mt-24 mb-12 p-10 rounded-[2.5rem] bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800">
-              <p className="text-xs font-black text-ink dark:text-white uppercase tracking-[0.3em] mb-8">Meet your Instructor</p>
-              <div className="flex items-center gap-8 mb-8">
-                <div className="relative group">
-                   <div className="absolute inset-0 bg-slate-100 dark:bg-slate-800 rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                   <img
-                    src={
-                      instructor.image
-                        ? instructor.image
-                        : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
-                    }
-                    alt={instructor.firstName}
-                    className="h-24 w-24 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-xl relative z-10"
-                  />
-                </div>
-                <div>
-                   <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                     {`${instructor.firstName} ${instructor.lastName}`}
-                   </h3>
-                   <p className="text-slate-500 dark:text-slate-400 font-bold">Expert Educator @ Vidya+</p>
-                </div>
-              </div>
-              <div className="p-6 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 shadow-sm italic text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-                {instructor?.additionalDetails?.about || "An expert instructor dedicated to providing high-quality education and helping students master complex topics through practical and engaging learning experiences."}
-              </div>
-            </div>
-          </div>
-        
         </div>
     </div>
 

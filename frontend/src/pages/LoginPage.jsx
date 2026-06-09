@@ -5,8 +5,8 @@ function LoginPage() {
   return (
     <Template
       title="Welcome Back!"
-      description1="Build skills for today, tomorrow, and beyond."
-      description2="Education to future-proof your career."
+      description1="Ready to ace your exams?"
+      description2="Let's continue your learning journey."
       image={loginImg}
       formType="login"
     />

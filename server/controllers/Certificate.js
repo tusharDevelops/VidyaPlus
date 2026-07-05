@@ -127,9 +127,9 @@ exports.verifyCertificate = async (req, res) => {
       return res.status(400).json({ success: false, message: "certificateNumber is required" })
     }
 
-    const cert = await Certificate.findOne({ certificateNumber }).select(
-      "certificateNumber issuedAt completionSnapshot courseId userId approved"
-    )
+    const cert = await Certificate.findOne({ certificateNumber })
+      .populate("courseId", "certificateSettings")
+      .select("certificateNumber issuedAt completionSnapshot courseId userId approved")
 
     if (!cert) {
       return res.status(404).json({ success: false, message: "Certificate not found" })
@@ -147,6 +147,9 @@ exports.verifyCertificate = async (req, res) => {
         issuedAt: cert.issuedAt,
         courseName: cert.completionSnapshot.courseName,
         userName: cert.completionSnapshot.userName,
+        issuerName: cert.courseId?.certificateSettings?.issuerName,
+        customMessage: cert.courseId?.certificateSettings?.customMessage,
+        signatureUrl: cert.courseId?.certificateSettings?.signatureUrl,
       },
     })
   } catch (error) {

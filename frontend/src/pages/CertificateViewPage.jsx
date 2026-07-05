@@ -107,75 +107,107 @@ export default function CertificateViewPage() {
       </div>
 
       {/* Certificate Container */}
-      <div className="relative overflow-hidden rounded-lg border-[12px] border-double border-yellow-50 bg-white p-12 text-center shadow-2xl certificate-layout">
-        {/* Decorative Corner Elements */}
-        <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full border-4 border-yellow-50 opacity-10"></div>
-        <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full border-4 border-yellow-50 opacity-10"></div>
+      <div className="relative overflow-hidden bg-white p-16 text-center shadow-2xl certificate-layout w-full max-w-[1000px] aspect-[1.414/1] flex flex-col justify-between">
         
-        {/* Header */}
-        <div className="mb-10">
-          <img src={logo} alt="VidyaPlus" className="mx-auto mb-4 h-12 grayscale brightness-0" />
-          <h1 className="font-serif text-3xl font-bold uppercase tracking-[0.2em] text-richblack-900">
-            Certificate
+        {/* Background Corners & Borders */}
+        <div className="absolute inset-4 border border-[#d4af37] z-10 pointer-events-none"></div>
+        
+        {/* Top Left Decoration (Blue & Gold curve) */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-[#0a2342] rounded-br-[100%] z-0 -translate-x-12 -translate-y-12"></div>
+        <div className="absolute top-0 left-0 w-80 h-80 bg-[#d4af37] opacity-40 rounded-br-[100%] z-0 -translate-x-16 -translate-y-16"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#f5f0e1] opacity-50 rounded-br-[100%] z-0 -translate-x-20 -translate-y-20"></div>
+        
+        {/* Bottom Right Decoration (Gold curves) */}
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#d4af37] opacity-30 rounded-tl-[100%] z-0 translate-x-12 translate-y-12"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#f5f0e1] opacity-60 rounded-tl-[100%] z-0 translate-x-20 translate-y-20"></div>
+
+        {/* Top Left Gold Seal/Ribbon SVG */}
+        <div className="absolute top-12 left-12 z-20">
+          <svg width="80" height="120" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Ribbon Tails */}
+            <path d="M20 70 L20 140 L50 120 L80 140 L80 70 Z" fill="#d4af37" opacity="0.8"/>
+            <path d="M30 70 L30 130 L50 115 L70 130 L70 70 Z" fill="#b89326"/>
+            {/* Gold Seal Base */}
+            <circle cx="50" cy="50" r="45" fill="url(#goldGrad)" stroke="#eedc82" strokeWidth="2"/>
+            {/* Inner Ring */}
+            <circle cx="50" cy="50" r="35" stroke="#eedc82" strokeWidth="1" strokeDasharray="3 3"/>
+            {/* Starburst/Ridges */}
+            <path d="M50 10 L54 18 L62 14 L62 23 L71 23 L68 31 L76 35 L70 42 L77 48 L70 54 L75 62 L66 64 L67 73 L58 72 L54 80 L46 80 L42 72 L33 73 L34 64 L25 62 L30 54 L23 48 L30 42 L24 35 L32 31 L29 23 L38 23 L38 14 L46 18 Z" fill="#d4af37" opacity="0.5"/>
+            <defs>
+              <radialGradient id="goldGrad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+                <stop offset="0%" stopColor="#fff8cc"/>
+                <stop offset="50%" stopColor="#d4af37"/>
+                <stop offset="100%" stopColor="#8a7322"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Top Right Certificate No */}
+        <div className="absolute top-16 right-16 z-20 text-right">
+          <p className="font-bold text-[#0a2342] text-sm tracking-wide font-sans">
+            Certificate No. {cert.certificateNumber}
+          </p>
+        </div>
+
+        {/* Header content */}
+        <div className="relative z-20 pt-4 flex flex-col items-center">
+          <img src={logo} alt="VidyaPlus" className="mb-4 h-24 object-contain drop-shadow-md" />
+          <h1 className="font-serif text-[3.5rem] font-medium tracking-wide text-[#0a2342] leading-none mb-2">
+            CERTIFICATE
           </h1>
-          <p className="text-xl font-medium uppercase tracking-[0.3em] text-richblack-600">
-            of Completion
+          <p className="text-xl font-medium tracking-[0.2em] text-[#0a2342] mb-8 font-sans">
+            OF COMPLETION
+          </p>
+          <p className="text-lg text-[#333333] font-sans font-medium">
+            This certificate is proudly presented to
           </p>
         </div>
 
-        {/* Content */}
-        <div className="space-y-8">
-          <p className="text-xl italic text-richblack-700">This is to certify that</p>
-          
-          <h2 className="border-b-2 border-richblack-900 pb-2 font-serif text-2xl font-bold text-richblack-900">
-            {cert.userName}
-          </h2>
-          
-          <p className="text-lg text-richblack-700">
-            has successfully completed the premium online course
-          </p>
-          
-          <h3 className="text-3xl font-bold text-yellow-100 mix-blend-difference">
-            {cert.courseName}
-          </h3>
-          
-          <p className="mx-auto max-w-[600px] text-sm leading-relaxed text-richblack-500">
-            demonstrating exceptional dedication, skill acquisition, and mastery of the core concepts 
-            outlined in the curriculum of VidyaPlus. This achievement marks a significant milestone 
-            in their academic and professional journey.
-          </p>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-16 flex items-end justify-between border-t border-richblack-100 pt-8">
-          <div className="text-left">
-            <p className="text-xs uppercase tracking-widest text-richblack-400">Issued On</p>
-            <p className="font-bold text-richblack-900">
-              {new Date(cert.issuedAt).toLocaleDateString('en-US', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-              })}
-            </p>
+        {/* Recipient Name */}
+        <div className="relative z-20 w-full px-20 my-2">
+          <div className="flex items-center justify-center space-x-4">
+            <div className="flex-1 h-[1px] bg-slate-400"></div>
+            <h2 className="font-serif text-[3.5rem] font-bold text-[#14476a] whitespace-nowrap px-8 drop-shadow-sm">
+              {cert.userName}
+            </h2>
+            <div className="flex-1 h-[1px] bg-slate-400"></div>
           </div>
-          
-          <div className="text-center">
-             <div className="mb-1 h-12 w-48 border-b border-richblack-900 flex items-end justify-center">
-                <p className="font-serif text-xl italic text-richblack-900 opacity-80">VidyaPlus Team</p>
+        </div>
+
+        {/* Certificate Body */}
+        <div className="relative z-20 px-24 mb-4">
+          <p className="text-[1.1rem] leading-relaxed text-[#333333] font-sans whitespace-pre-wrap">
+            {cert.customMessage || `This is to certify that ${cert.userName} has successfully completed the ${cert.courseName} course at Vidya+ Academy. They have demonstrated an exceptional understanding of the curriculum and mastery of the core concepts during the period ending on ${new Date(cert.issuedAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.`}
+          </p>
+        </div>
+
+        {/* Footer Area */}
+        <div className="relative z-20 flex justify-between items-end px-16 pb-8 w-full mt-auto">
+          {/* QR Code Placeholder */}
+          <div className="flex flex-col items-start">
+             <img 
+               src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${window.location.href}`} 
+               alt="Verify Certificate" 
+               className="w-24 h-24 border-4 border-white shadow-md bg-white rounded-md"
+             />
+             <p className="text-[0.6rem] text-slate-500 mt-2 font-mono uppercase tracking-wider">Scan to Verify</p>
+          </div>
+
+          {/* Signature */}
+          <div className="flex flex-col items-center">
+             <div className="mb-2 h-16 w-48 flex items-end justify-center border-b-[1.5px] border-slate-800">
+                {cert.signatureUrl ? (
+                   <img src={cert.signatureUrl} alt="Signature" className="max-h-full object-contain mb-1" />
+                ) : (
+                   <span className="font-serif text-3xl text-[#0a2342] opacity-80" style={{fontFamily: "'Brush Script MT', cursive"}}>{cert.issuerName || "VidyaPlus Team"}</span>
+                )}
              </div>
-             <p className="text-[10px] uppercase tracking-widest text-richblack-400">Authorized Signature</p>
-          </div>
-
-          <div className="text-right">
-            <p className="text-xs uppercase tracking-widest text-richblack-400">Certificate ID</p>
-            <p className="font-mono font-bold text-richblack-900">{cert.certificateNumber}</p>
+             <p className="font-bold text-[#0a2342] text-lg font-sans">{cert.issuerName || "VidyaPlus Team"}</p>
+             <p className="text-sm text-slate-600 font-sans tracking-wide">Authorized Issuer</p>
           </div>
         </div>
 
-        {/* Logo Mark */}
-        <div className="mt-12 opacity-20">
-            <p className="text-[8px] uppercase tracking-[0.5em] text-richblack-900">VidyaPlus - Empowering Future Leaders</p>
-        </div>
       </div>
 
       <style jsx>{`
@@ -185,19 +217,24 @@ export default function CertificateViewPage() {
           }
           body {
             background-color: white !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           .certificate-layout {
             box-shadow: none !important;
-            border-width: 8px !important;
-            margin: 0 !important;
+            border-width: 0 !important;
+            margin: 0 auto !important;
             width: 100% !important;
+            height: auto !important;
+            page-break-after: avoid;
+            page-break-inside: avoid;
           }
         }
         .certificate-layout {
            font-family: 'Inter', sans-serif;
-           background-image: 
-            radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0);
-           background-size: 24px 24px;
+           background-color: #ffffff;
         }
       `}</style>
     </div>

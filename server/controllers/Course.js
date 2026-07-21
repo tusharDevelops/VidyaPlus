@@ -219,7 +219,7 @@ exports.editCourse = async (req, res) => {
       }
   
       // If Thumbnail Image is found, update it
-      if (req.files) {
+      if (req.files && req.files.thumbnailImage) {
         //console.log("thumbnail update")
         const thumbnail = req.files.thumbnailImage
         // Delete old thumbnail
@@ -255,7 +255,20 @@ exports.editCourse = async (req, res) => {
       // Update only the fields that are present in the request body
       for (const key in updates) {
         if (updates.hasOwnProperty(key)) {
-          if (key === "tag" || key === "instructions" || key === "certificateSettings") {
+          if (key === "certificateSettings") {
+            try {
+              const parsed = typeof updates[key] === "string" ? JSON.parse(updates[key]) : updates[key];
+              const currentSettings = course.certificateSettings || {};
+              course.certificateSettings = {
+                  ...currentSettings,
+                  enabled: parsed.enabled !== undefined ? parsed.enabled : currentSettings.enabled,
+                  issuerName: parsed.issuerName !== undefined ? parsed.issuerName : currentSettings.issuerName,
+                  customMessage: parsed.customMessage !== undefined ? parsed.customMessage : currentSettings.customMessage
+              };
+            } catch (e) {
+              console.error("Error parsing certificateSettings:", e);
+            }
+          } else if (key === "tag" || key === "instructions") {
             course[key] = JSON.parse(updates[key])
           } else {
             course[key] = updates[key]
@@ -265,18 +278,25 @@ exports.editCourse = async (req, res) => {
 
       // Handle custom signature upload if provided
       if (req.files && req.files.signatureImage) {
-        const signature = req.files.signatureImage;
-        if (course.certificateSettings?.signaturePublicId) {
-            await deleteResourceFromCloudinary(course.certificateSettings.signaturePublicId);
+        try {
+          const signature = req.files.signatureImage;
+          if (course.certificateSettings && course.certificateSettings.signaturePublicId) {
+              await deleteResourceFromCloudinary(course.certificateSettings.signaturePublicId);
+          }
+          const signatureImage = await uploadImageToCloudinary(signature, process.env.FOLDER_NAME);
+          
+          const currentSettings = course.certificateSettings || {};
+          course.certificateSettings = {
+              ...currentSettings,
+              signatureUrl: signatureImage.secure_url,
+              signaturePublicId: signatureImage.public_id
+          };
+        } catch (e) {
+          console.error("Error uploading signature image:", e);
         }
-        const signatureImage = await uploadImageToCloudinary(signature, process.env.FOLDER_NAME);
-        
-        // ensure certificateSettings object exists
-        if (!course.certificateSettings) course.certificateSettings = { enabled: true };
-        
-        course.certificateSettings.signatureUrl = signatureImage.secure_url;
-        course.certificateSettings.signaturePublicId = signatureImage.public_id;
       }
+
+      course.markModified("certificateSettings");
   
       await course.save()
   

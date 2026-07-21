@@ -152,11 +152,11 @@ export default function CertificateViewPage() {
 
         {/* Header content */}
         <div className="relative z-20 pt-4 flex flex-col items-center">
-          <div className="flex flex-col items-center mb-4">
-             <span className="text-3xl font-black tracking-widest text-[#0a2342] font-serif uppercase">
-                Vidya<span className="text-red-600">+</span>
+          <div className="flex flex-col items-center mb-2">
+             <span className="text-[2.5rem] font-black text-[#111111] font-sans -mb-1 z-10" style={{ letterSpacing: '-0.02em', fontFamily: 'Inter, sans-serif' }}>
+                Vidya<span className="text-[#ff4a1c]">+</span>
              </span>
-             <img src={logo} alt="VidyaPlus Feather" className="h-14 object-contain drop-shadow-md" />
+             <img src={logo} alt="VidyaPlus Feather" className="h-14 object-contain drop-shadow-md z-0" />
           </div>
           <h1 className="font-serif text-[3.5rem] font-medium tracking-wide text-[#0a2342] leading-none mb-2">
             CERTIFICATE

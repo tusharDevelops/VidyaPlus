@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { apiConnector } from "../services/apiConnector"
 import { certificateEndpoints } from "../services/apis"
 import { IoIosArrowBack, IoIosPrint } from "react-icons/io"
-import logo from "../assets/Logo/vidyaplus-removebg-preview.png"
+import logo from "../assets/Logo/Logo-Full-Dark.png"
 
 export default function CertificateViewPage() {
   const { certificateId } = useParams()

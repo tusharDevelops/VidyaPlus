@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { apiConnector } from "../services/apiConnector"
 import { certificateEndpoints } from "../services/apis"
 import { IoIosArrowBack, IoIosPrint } from "react-icons/io"
-import logo from "../assets/Logo/Logo-Full-Dark.png"
+import logo from "../assets/Logo/vidyaplus-removebg-preview.png"
 
 export default function CertificateViewPage() {
   const { certificateId } = useParams()
@@ -152,7 +152,12 @@ export default function CertificateViewPage() {
 
         {/* Header content */}
         <div className="relative z-20 pt-4 flex flex-col items-center">
-          <img src={logo} alt="VidyaPlus" className="mb-4 h-24 object-contain drop-shadow-md" />
+          <div className="flex flex-col items-center mb-4">
+             <span className="text-3xl font-black tracking-widest text-[#0a2342] font-serif uppercase">
+                Vidya<span className="text-red-600">+</span>
+             </span>
+             <img src={logo} alt="VidyaPlus Feather" className="h-14 object-contain drop-shadow-md" />
+          </div>
           <h1 className="font-serif text-[3.5rem] font-medium tracking-wide text-[#0a2342] leading-none mb-2">
             CERTIFICATE
           </h1>

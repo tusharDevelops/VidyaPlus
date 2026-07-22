@@ -34,6 +34,20 @@ exports.signUp = async(req,res)=>{
             });
         }
 
+        // Enforce strict password creation
+        const hasMinLength = password.length >= 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+
+        if (!hasMinLength || !hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) {
+            return res.status(400).json({
+                success: false,
+                message: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+            });
+        }
+
          //check user already exist or not
          const existingUser = await User.findOne({email});
          if(existingUser) {

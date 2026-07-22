@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
@@ -33,6 +33,24 @@ function SignupForm() {
 
   const { firstName, lastName, email, permissionToken, password, confirmPassword } = formData
 
+  // Password Validation Criteria
+  const passwordChecks = {
+    minLength: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    number: /[0-9]/.test(password),
+    specialChar: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password),
+  }
+
+  const metCount = Object.values(passwordChecks).filter(Boolean).length
+
+  const isPasswordValid = 
+    passwordChecks.minLength && 
+    passwordChecks.uppercase && 
+    passwordChecks.lowercase && 
+    passwordChecks.number && 
+    passwordChecks.specialChar
+
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
@@ -44,6 +62,11 @@ function SignupForm() {
   // Handle Form Submission
   const handleOnSubmit = async(e) => {
     e.preventDefault()
+
+    if (!isPasswordValid) {
+      toast.error("Password must meet all complexity requirements.")
+      return
+    }
 
     if (password !== confirmPassword) {
       toast.error("Passwords Do Not Match")
@@ -60,17 +83,11 @@ function SignupForm() {
       if(!resp)return;
     }
 
-     
-
-     
     // Setting signup data to state
     // To be used after otp verification
     dispatch(setSignupData(signupData))
     // Send OTP to user for verification
     dispatch(sendOtp(formData.email, navigate))
-     
-
-    
 
     // Reset
     setFormData({
@@ -109,7 +126,6 @@ function SignupForm() {
             <p className="lable-style mb-1">
               First Name <sup className="text-rose-500 font-bold">*</sup>
             </p>
-
             <input
               required
               type="text"
@@ -119,7 +135,6 @@ function SignupForm() {
               placeholder="Enter first name"
               className="form-style w-full"
             />
-
           </label>
           <label className="flex-1">
             <p className="lable-style mb-1">
@@ -136,7 +151,6 @@ function SignupForm() {
             />
           </label>
         </div>
-
         <label className="w-full">
           <p className="lable-style mb-1">
             Email Address <sup className="text-rose-500 font-bold">*</sup>
@@ -221,6 +235,93 @@ function SignupForm() {
             </span>
           </label>
         </div>
+
+        {/* Real-time Password Strength & Creation Indicator */}
+        {password.length > 0 && (
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs space-y-3 shadow-sm animate-in fade-in slide-in-from-top-2 duration-300">
+            {/* Strength Bar & Badge Header */}
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-slate-700 dark:text-slate-300 text-xs uppercase tracking-wider">
+                Password Strength
+              </span>
+              <span className={`text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                metCount <= 2 ? "bg-rose-500/10 text-rose-500 border border-rose-500/20" :
+                metCount <= 4 ? "bg-amber-500/10 text-amber-500 border border-amber-500/20" :
+                "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
+              }`}>
+                {metCount <= 2 ? "Weak" : metCount <= 4 ? "Medium" : "Strong"}
+              </span>
+            </div>
+
+            {/* 5-Bar Progress Segment */}
+            <div className="grid grid-cols-5 gap-1.5 h-1.5 w-full">
+              {[1, 2, 3, 4, 5].map((level) => (
+                <div
+                  key={level}
+                  className={`h-full rounded-full transition-all duration-300 ${
+                    level <= metCount
+                      ? metCount <= 2
+                        ? "bg-rose-500"
+                        : metCount <= 4
+                        ? "bg-amber-500"
+                        : "bg-emerald-500"
+                      : "bg-slate-200 dark:bg-slate-800"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Interactive Checklist */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
+              <div className={`flex items-center gap-1.5 transition-colors ${passwordChecks.minLength ? "text-emerald-600 dark:text-emerald-400 font-semibold" : "text-slate-500 dark:text-slate-400"}`}>
+                <div className={`p-0.5 rounded-full ${passwordChecks.minLength ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-200 dark:bg-slate-800 text-slate-400"}`}>
+                  {passwordChecks.minLength ? <AiOutlineCheck className="w-3 h-3 stroke-[3]" /> : <AiOutlineClose className="w-3 h-3" />}
+                </div>
+                <span>At least 8 characters</span>
+              </div>
+
+              <div className={`flex items-center gap-1.5 transition-colors ${passwordChecks.uppercase ? "text-emerald-600 dark:text-emerald-400 font-semibold" : "text-slate-500 dark:text-slate-400"}`}>
+                <div className={`p-0.5 rounded-full ${passwordChecks.uppercase ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-200 dark:bg-slate-800 text-slate-400"}`}>
+                  {passwordChecks.uppercase ? <AiOutlineCheck className="w-3 h-3 stroke-[3]" /> : <AiOutlineClose className="w-3 h-3" />}
+                </div>
+                <span>One uppercase letter (A-Z)</span>
+              </div>
+
+              <div className={`flex items-center gap-1.5 transition-colors ${passwordChecks.lowercase ? "text-emerald-600 dark:text-emerald-400 font-semibold" : "text-slate-500 dark:text-slate-400"}`}>
+                <div className={`p-0.5 rounded-full ${passwordChecks.lowercase ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-200 dark:bg-slate-800 text-slate-400"}`}>
+                  {passwordChecks.lowercase ? <AiOutlineCheck className="w-3 h-3 stroke-[3]" /> : <AiOutlineClose className="w-3 h-3" />}
+                </div>
+                <span>One lowercase letter (a-z)</span>
+              </div>
+
+              <div className={`flex items-center gap-1.5 transition-colors ${passwordChecks.number ? "text-emerald-600 dark:text-emerald-400 font-semibold" : "text-slate-500 dark:text-slate-400"}`}>
+                <div className={`p-0.5 rounded-full ${passwordChecks.number ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-200 dark:bg-slate-800 text-slate-400"}`}>
+                  {passwordChecks.number ? <AiOutlineCheck className="w-3 h-3 stroke-[3]" /> : <AiOutlineClose className="w-3 h-3" />}
+                </div>
+                <span>One number (0-9)</span>
+              </div>
+
+              <div className={`flex items-center gap-1.5 transition-colors col-span-1 sm:col-span-2 ${passwordChecks.specialChar ? "text-emerald-600 dark:text-emerald-400 font-semibold" : "text-slate-500 dark:text-slate-400"}`}>
+                <div className={`p-0.5 rounded-full ${passwordChecks.specialChar ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-200 dark:bg-slate-800 text-slate-400"}`}>
+                  {passwordChecks.specialChar ? <AiOutlineCheck className="w-3 h-3 stroke-[3]" /> : <AiOutlineClose className="w-3 h-3" />}
+                </div>
+                <span>One special character (!@#$%^&*)</span>
+              </div>
+            </div>
+
+            {/* Confirm Password Matching Status */}
+            {confirmPassword.length > 0 && (
+              <div className={`pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center gap-1.5 text-[11px] font-semibold ${
+                password === confirmPassword ? "text-emerald-600 dark:text-emerald-400" : "text-rose-500"
+              }`}>
+                <div className={`p-0.5 rounded-full ${password === confirmPassword ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-rose-500/20 text-rose-500"}`}>
+                  {password === confirmPassword ? <AiOutlineCheck className="w-3 h-3 stroke-[3]" /> : <AiOutlineClose className="w-3 h-3" />}
+                </div>
+                <span>{password === confirmPassword ? "Passwords match perfectly" : "Passwords do not match yet"}</span>
+              </div>
+            )}
+          </div>
+        )}
 
         <button
           type="submit"
